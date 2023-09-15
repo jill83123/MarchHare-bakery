@@ -5,13 +5,21 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'index',
-      component: () => import('../views/frontend/IndexPage.vue'),
+      component: () => import('../views/frontend/UserPages.vue'),
     },
     {
-      path: '/dashboard',
-      name: 'dashboard',
-      component: () => import('../views/backend/DashboardPage.vue'),
+      path: '/login',
+      component: () => import('../views/backend/AdminLogin.vue'),
+    },
+    {
+      path: '/admin',
+      component: () => import('../views/backend/AdminPage.vue'),
+      children: [
+        {
+          path: '',
+          component: () => import('../views/backend/ProductDashboard.vue'),
+        }
+      ]
     },
   ],
 });

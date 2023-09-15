@@ -12,7 +12,7 @@
 @tailwind base;
 
 @layer base {
-  a {
+  a:hover {
     @apply opacity-80;
   }
 }

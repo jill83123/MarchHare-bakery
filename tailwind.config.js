@@ -4,7 +4,7 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
   content: [
-    "./index.html",
+    './index.html',
     './src/**/*.{vue,js,ts,jsx,tsx}',
     './node_modules/tw-elements/dist/js/**/*.js',
   ],
@@ -20,11 +20,13 @@ module.exports = {
       },
       colors: {
         cream: '#F6E7C9',
-        brown: '#956C4C',
+        oak: '#956C4C',
         black: {
           light: '#525252',
           DEFAULT: '#303030',
         },
+        cerulean: '#859FAF',
+        danger: '#E76565',
       },
     },
   },
