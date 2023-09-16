@@ -4,7 +4,7 @@
     data-te-navbar-ref
   >
     <div
-      class="container flex flex-wrap items-center justify-between w-full px-3"
+      class="container flex flex-wrap items-center justify-between w-full"
     >
       <RouterLink to="/" class="flex items-center py-3">
         <svg

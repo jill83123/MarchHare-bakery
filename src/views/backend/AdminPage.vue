@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import Navbar from '../../components/NavBackend.vue';
+import Navbar from '../../components/backend/NavBackend.vue';
 
 export default {
   created() {

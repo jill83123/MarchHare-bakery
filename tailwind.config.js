@@ -11,10 +11,12 @@ module.exports = {
   theme: {
     container: {
       center: true,
+      padding: '.75rem',
     },
     extend: {
       fontFamily: {
         sans: ['Noto Sans TC', ...defaultTheme.fontFamily.sans],
+        'noto-serif': ['Noto Serif TC', 'serif'],
         maru: ['Zen Maru Gothic', 'sans'],
         chenyuluoyan: ['chenyuluoyan', 'sans'],
       },
@@ -27,6 +29,7 @@ module.exports = {
         },
         cerulean: '#859FAF',
         danger: '#E76565',
+        success: '#A1BE84',
       },
     },
   },
