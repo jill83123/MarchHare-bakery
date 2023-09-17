@@ -7,7 +7,7 @@
     aria-labelledby="productModal"
     aria-modal="true"
     role="dialog"
-    ref="productModal"
+    ref="modal"
   >
     <div
       data-te-modal-dialog-ref
@@ -24,7 +24,7 @@
             class="text-xl font-medium leading-normal text-neutral-800 dark:text-neutral-200"
             id="exampleModalXlLabel"
           >
-            Extra large modal
+            {{ state === 'new' ? '新增' : '編輯' }}商品
           </h5>
           <!--Close button-->
           <button
@@ -48,18 +48,46 @@
 
         <!--Modal body-->
         <div class="relative p-4">
-          <div class="flex gap-10">
-            <div class="w-5/12">
+          <div class="flex flex-col gap-5 lg:flex-row">
+            <div class="lg:w-5/12">
               <div class="mb-4">
                 <label for="formFile" class="inline-block mb-1 text-neutral-700">上傳圖片</label>
                 <input
                   class="relative m-0 block w-full min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-neutral-700 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none"
                   type="file"
                   id="formFile"
+                  ref="photoInput"
+                  @change.prevent="uploadPhoto"
                 />
               </div>
+              <div class="mb-4">
+                <label for="imageUrl" class="block mb-1">或 輸入網址</label>
+                <div class="relative flex flex-wrap items-stretch">
+                  <input
+                    type="text"
+                    class="relative m-0 block w-[1px] min-w-0 flex-auto rounded-l border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none border-r-0"
+                    placeholder="主要圖片"
+                    id="imageUrl"
+                    v-model="tempProduct.imageUrl"
+                    aria-label="Recipient's username"
+                    aria-describedby="basic-addon2"
+                  />
+                  <button
+                    type="button"
+                    class="rounded-r border border-solid border-neutral-300 px-3 py-[0.25rem] text-center text-base font-normal leading-[1.6] text-neutral-700 hover:bg-danger hover:text-white hover:border-danger"
+                    id="basic-addon2"
+                    @click.prevent="clearInput"
+                    >刪除</button
+                  >
+                </div>
+              </div>
+              <img
+                :src="tempProduct.imageUrl"
+                :alt="tempProduct.imageUrl"
+                class="object-cover object-center aspect-square"
+              />
             </div>
-            <div class="w-7/12">
+            <div class="lg:w-7/12">
               <div class="mb-4">
                 <label for="name" class="block mb-1"
                   >商品名稱<span class="text-danger"> *</span></label
@@ -172,16 +200,12 @@
             type="button"
             class="inline-block px-[23px] py-[9px] text-sm font-medium leading-normal text-right text-black uppercase transition duration-150 ease-in-out bg-transparent border border-gray-300 rounded focus:outline-none focus:ring-0 active:bg-cerulean-700 hover:opacity-80 hover:bg-gray-100"
             data-te-modal-dismiss
-            data-te-ripple-init
-            data-te-ripple-color="light"
           >
             取消
           </button>
           <button
             type="button"
             class="inline-block rounded bg-cerulean px-6 py-2.5 text-sm font-medium uppercase leading-normal text-white transition duration-150 ease-in-out focus:outline-none focus:ring-0 active:bg-cerulean-700 hover:opacity-80 text-right"
-            data-te-ripple-init
-            data-te-ripple-color="light"
             @click.prevent="$emit('update-products', this.tempProduct)"
           >
             確認
@@ -205,6 +229,9 @@ export default {
         };
       },
     },
+    state: {
+      type: String,
+    },
   },
   watch: {
     product() {
@@ -215,6 +242,25 @@ export default {
     return {
       tempProduct: {},
     };
+  },
+  methods: {
+    uploadPhoto() {
+      const imageFile = this.$refs.photoInput.files[0];
+      const formData = new FormData();
+      formData.append('file-to-upload', imageFile);
+
+      const api = `${import.meta.env.VITE_APP_API}/api/${
+        import.meta.env.VITE_APP_PATH
+      }/admin/upload`;
+      this.$http.post(api, formData).then((res) => {
+        if (res.data.success) {
+          this.tempProduct.imageUrl = res.data.imageUrl;
+        }
+      });
+    },
+    clearInput() {
+      this.tempProduct.imageUrl = '';
+    },
   },
   mixins: [modalMixin],
 };

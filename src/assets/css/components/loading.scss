@@ -1,0 +1,59 @@
+@keyframes ldio {
+  0%,
+  100% {
+    animation-timing-function: cubic-bezier(0.45, 0, 0.9, 0.55);
+  }
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(0, 15px);
+    animation-timing-function: cubic-bezier(0, 0.45, 0.55, 0.9);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.loadingio-spinner {
+  width: 200px;
+  height: 200px;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+}
+.ldio {
+  svg {
+    margin: 0 auto;
+    animation: ldio 1s cubic-bezier(0.47, 0, 0.75, 0.72) infinite;
+  }
+}
+
+.loading-text {
+  position: absolute;
+  transform: translate(50%, 60%);
+
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  text-align: center;
+  span {
+    display: inline-block;
+    margin: 0 0.1em;
+
+    animation: loading04 0.7s infinite;
+    @for $i from 1 through 6 {
+      &:nth-child(#{$i + 1}) {
+        animation-delay: #{$i * 0.1}s;
+      }
+    }
+  }
+}
+@keyframes loading04 {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(3px);
+  }
+}

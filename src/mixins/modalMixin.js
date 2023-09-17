@@ -2,7 +2,7 @@ import { Modal } from 'tw-elements';
 
 export default {
   mounted() {
-    this.modal = new Modal(this.$refs.productModal);
+    this.modal = new Modal(this.$refs.modal);
   },
   data() {
     return {

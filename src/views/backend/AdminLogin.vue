@@ -1,8 +1,5 @@
 <template>
-  <div
-    class=""
-    style="background: url(/images/cloud-bg.png) no-repeat center / cover"
-  >
+  <div class="" style="background: url(/images/cloud-bg.png) no-repeat center / cover">
     <div class="container flex flex-col h-screen">
       <div
         class="w-full p-10 mx-auto my-auto rounded-lg shadow-md md:w-2/3 lg:w-[40%] backdrop-blur-sm"
@@ -29,9 +26,7 @@
               fill="#ffffff"
             />
           </svg>
-          <h1 class="text-xl text-white"
-            >三月兔<br /><span class="text-3xl">後台登入</span></h1
-          >
+          <h1 class="text-xl text-white">三月兔<br /><span class="text-3xl">後台登入</span></h1>
         </div>
         <form @submit.prevent="signIn">
           <div class="relative mb-5" data-te-input-wrapper-init>
@@ -65,15 +60,12 @@
             </label>
           </div>
           <div class="flex">
-            <router-link
-              to="/"
-              class="flex items-center self-end text-sm text-white"
-              ><span class="mr-1 material-symbols-outlined"> undo </span
-              >回首頁</router-link
+            <router-link to="/" class="flex items-center self-end text-sm text-white"
+              ><span class="mr-1 material-symbols-outlined"> undo </span>回首頁</router-link
             >
             <button
               type="submit"
-              class="ml-auto inline-block rounded bg-cerulean px-6 py-2.5 text-sm font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-cerulean-600 hover:shadow-[0_8px_9px_-4px_rgba(133,159,175,0.25),0_4px_18px_0_rgba(133,159,175,0.2)] focus:bg-cerulean-600 focus:shadow-[0_8px_9px_-4px_rgba(133,159,175,0.25),0_4px_18px_0_rgba(133,159,175,0.2)] focus:outline-none focus:ring-0 active:bg-cerulean-700 active:shadow-[0_8px_9px_-4px_rgba(133,159,175,0.25),0_4px_18px_0_rgba(133,159,175,0.2)] hover:opacity-80"
+              class="ml-auto inline-block rounded bg-cerulean px-6 py-2.5 text-sm font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-cerulean-600 focus:outline-none focus:ring-0 active:bg-cerulean-700 hover:opacity-80"
             >
               登入
             </button>
@@ -103,7 +95,7 @@ export default {
         if (res.data.success) {
           const { token, expired } = res.data;
           document.cookie = `MarchHareToken=${token}; expires=${new Date(expired)}`;
-          this.$router.push('/admin')
+          this.$router.replace('/admin');
         }
       });
     },
@@ -111,20 +103,5 @@ export default {
   mounted() {
     initTE({ Input });
   },
-  created() {
-    const token = document.cookie.replace(
-      /(?:(?:^|.*;\s*)MarchHareToken\s*=\s*([^;]*).*$)|^.*$/,
-      '$1'
-    );
-    this.$http.defaults.headers.common.Authorization = `${token}`;
-    const api = `${import.meta.env.VITE_APP_API}/api/user/check`;
-    this.$http.post(api).then((res) => {
-      if (res.data.success) {
-        this.$router.push('/admin');
-      }
-    });
-  },
 };
 </script>
-
-<style scoped></style>

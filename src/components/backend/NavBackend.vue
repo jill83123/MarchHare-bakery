@@ -1,11 +1,9 @@
 <template>
   <nav
-    class="relative flex items-center justify-between py-2 text-white shadow-sm bg-cerulean md:flex-wrap md:justify-start"
+    class="fixed top-0 left-0 right-0 flex items-center justify-between py-2 text-white shadow-sm bg-cerulean md:flex-wrap md:justify-start"
     data-te-navbar-ref
   >
-    <div
-      class="container flex flex-wrap items-center justify-between w-full"
-    >
+    <div class="container flex flex-wrap items-center justify-between w-full">
       <RouterLink to="/" class="flex items-center py-3">
         <svg
           width="45"
@@ -27,8 +25,7 @@
             fill="#ffffff"
           />
         </svg>
-        <h1
-          class="font-maru font-medium text-2xl text-white -tracking-[.1em] ml-2"
+        <h1 class="font-maru font-medium text-2xl text-white -tracking-[.1em] ml-2"
           >三月兔<span class="ml-2 text-sm tracking-tighter">後台管理</span></h1
         >
       </RouterLink>
@@ -72,13 +69,10 @@
       >
         <ul class="flex flex-col mr-auto lg:flex-row" data-te-navbar-nav-ref>
           <li
-            class="mb-4 leading-9 border-b-2 border-dotted border-white/50 lg:border-0 lg:my-0"
+            class="mb-4 leading-9 border-b-2 border-dotted border-white/50 lg:mb-0 lg:border-0"
             data-te-nav-item-ref
           >
-            <RouterLink
-              class="block transition duration-150 ease-in-out lg:p-3"
-              to="/"
-              data-te-nav-link-ref
+            <RouterLink class="relative block py-1 pl-4 transition lg:p-3" to="/admin"
               >商品列表</RouterLink
             >
           </li>
@@ -86,10 +80,7 @@
             class="mb-4 leading-9 border-b-2 border-dotted border-white/50 lg:mb-0 lg:border-0"
             data-te-nav-item-ref
           >
-            <RouterLink
-              class="block transition duration-150 ease-in-out lg:p-3"
-              to="/"
-              data-te-nav-link-ref
+            <RouterLink class="relative block py-1 pl-4 transition lg:p-3" to="/"
               >訂單管理</RouterLink
             >
           </li>
@@ -97,10 +88,7 @@
             class="mb-4 leading-9 border-b-2 border-dotted border-white/50 lg:mb-0 lg:border-0"
             data-te-nav-item-ref
           >
-            <RouterLink
-              class="block transition duration-150 ease-in-out lg:p-3"
-              to="/"
-              data-te-nav-link-ref
+            <RouterLink class="relative block py-1 pl-4 transition lg:p-3" to="/"
               >優惠券</RouterLink
             >
           </li>
@@ -108,16 +96,13 @@
             class="mb-4 leading-9 border-b-2 border-dotted border-white/50 lg:mb-0 lg:border-0"
             data-te-nav-item-ref
           >
-            <RouterLink
-              class="block transition duration-150 ease-in-out lg:p-3"
-              to="/"
-              data-te-nav-link-ref
+            <RouterLink class="relative block py-1 pl-4 transition lg:p-3" to="/"
               >文章管理</RouterLink
             >
           </li>
         </ul>
         <button
-          class="block px-[22px] py-3 ml-3 text-sm leading-none uppercase align-middle transition duration-150 ease-in-out border-2 rounded border-neutral-50 text-neutral-50 hover:border-neutral-100 hover:bg-neutral-100 hover:text-cerulean focus:border-neutral-100 focus:outline-none focus:ring-0 active:border-neutral-300"
+          class="block px-[22px] py-3 ml-auto lg:ml-3 mb-2 lg:mb-0 text-sm leading-none uppercase align-middle transition duration-150 ease-in-out border rounded border-neutral-50 text-neutral-50 hover:border-neutral-100 hover:bg-neutral-100 hover:text-cerulean focus:border-neutral-100 focus:outline-none focus:ring-0 active:border-neutral-300"
           data-te-ripple-init
           @click.prevent="signOut"
         >
@@ -147,3 +132,27 @@ export default {
   },
 };
 </script>
+
+<style scoped lang="scss">
+.router-link-active {
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    z-index: -1;
+    left: 0;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+}
+
+a {
+  transition: all 0.3s;
+  &:hover {
+    transform: translateY(-5%);
+  }
+}
+</style>
