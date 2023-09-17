@@ -1,8 +1,8 @@
 <template>
   <LoadingOverlay :active="isLoading" class="loading">
-    <div class="loadingio-spinner"
+    <div class="loadingio-spinner w-[200px] h-[200px] inline-block relative overflow-hidden"
       ><div class="ldio">
-        <svg
+        <svg class="mx-auto"
           width="50"
           height="50"
           viewBox="0 0 100 79"
@@ -31,14 +31,14 @@
             d="m30.0679,38.233c1.8886,-0.7555 3.0286,-0.2002 3.6058,1.4154c0.4687,1.3117 -0.0817,2.3274 -1.1917,3.0219c-0.9043,0.5657 -1.8764,0.4528 -2.6155,-0.2776c-1.2927,-1.2773 -1.4541,-2.6546 0.2014,-4.1597z"
           />
         </svg>
-        <div class="text-black loading-text">
-          <span>L</span>
-          <span>O</span>
-          <span>A</span>
-          <span>D</span>
-          <span>I</span>
-          <span>N</span>
-          <span>G</span>
+        <div class="absolute font-extrabold text-center text-black translate-x-1/2 translate-y-1/2 loading-text font-montserrat">
+          <span class="inline-block mx-[0.1em]">L</span>
+          <span class="inline-block mx-[0.1em]">O</span>
+          <span class="inline-block mx-[0.1em]">A</span>
+          <span class="inline-block mx-[0.1em]">D</span>
+          <span class="inline-block mx-[0.1em]">I</span>
+          <span class="inline-block mx-[0.1em]">N</span>
+          <span class="inline-block mx-[0.1em]">G</span>
         </div>
       </div>
     </div>

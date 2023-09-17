@@ -19,6 +19,7 @@ module.exports = {
         'noto-serif': ['Noto Serif TC', 'serif'],
         maru: ['Zen Maru Gothic', 'sans'],
         chenyuluoyan: ['chenyuluoyan', 'sans'],
+        montserrat: ['Montserrat', 'sans-serif'],
       },
       colors: {
         cream: '#F6E7C9',
