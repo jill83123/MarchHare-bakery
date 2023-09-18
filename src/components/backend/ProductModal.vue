@@ -114,7 +114,7 @@
                     :title="`${tempProduct.title}-主要圖片`"
                   />
                   <button
-                    class="box-content absolute top-0 right-0 p-2 text-white border-none rounded-none material-symbols-outlined hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
+                    class="box-content absolute top-0 right-0 p-2 border-none rounded-none text-black-light material-symbols-outlined hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
                     title="刪除主要圖片"
                     @click.prevent="delPhoto(tempProduct.imageUrl)"
                   >
@@ -134,7 +134,7 @@
                     :alt="`${tempProduct.title}-圖片${index + 2}`"
                   />
                   <button
-                    class="box-content absolute top-0 right-0 p-2 text-white border-none rounded-none material-symbols-outlined hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
+                    class="box-content absolute top-0 right-0 p-2 border-none rounded-none text-black-light material-symbols-outlined hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
                     :title="`刪除圖片${index + 2}`"
                     @click.prevent="delPhoto(index)"
                   >
@@ -304,11 +304,14 @@ export default {
     uploadPhoto(way) {
       if (way === 'button' && this.$refs.imageUrlInput.value !== '') {
         this.loadingIcon = true;
-        if (this.tempProduct.imageUrl === '') {
+
+        if (this.tempProduct.imageUrl === '' || !this.tempProduct.imageUrl) {
           this.tempProduct.imageUrl = this.$refs.imageUrlInput.value;
+          this.$refs.imageUrlInput.value = '';
           this.loadingIcon = false;
           return;
         }
+
         if (!this.tempProduct.imagesUrl) {
           this.tempProduct.imagesUrl = [];
         }
@@ -329,19 +332,20 @@ export default {
         }/admin/upload`;
         this.$http.post(api, formData).then((res) => {
           if (res.data.success) {
-            if (this.tempProduct.imageUrl === '') {
+            if (this.tempProduct.imageUrl === '' || !this.tempProduct.imageUrl) {
               this.tempProduct.imageUrl = res.data.imageUrl;
+              this.$refs.imageFileInput.value = '';
               this.loadingIcon = false;
+              return;
             }
 
             if (!this.tempProduct.imagesUrl) {
               this.tempProduct.imagesUrl = [];
-            } else {
-              this.tempProduct.imagesUrl.push(res.data.imageUrl);
             }
+            this.tempProduct.imagesUrl.push(res.data.imageUrl);
+            this.$refs.imageFileInput.value = '';
+            this.loadingIcon = false;
           }
-          this.$refs.imageFileInput.value = '';
-          this.loadingIcon = false;
         });
       }
     },
