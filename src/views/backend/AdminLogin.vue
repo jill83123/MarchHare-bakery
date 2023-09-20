@@ -96,7 +96,6 @@ export default {
       const states = statesStore();
       const api = `${import.meta.env.VITE_APP_API}/admin/signin`;
       this.$http.post(api, this.admin).then((res) => {
-        console.log(res);
         if (res.data.success) {
           const { token, expired } = res.data;
           document.cookie = `MarchHareToken=${token}; expires=${new Date(expired)}`;
@@ -107,7 +106,7 @@ export default {
           });
         } else {
           states.pushToastMessage({
-            title: `${this.productModalState === 'new' ? '新增' : '編輯'}失敗`,
+            title: `登入失敗`,
             style: 'bg-danger',
             message: res.data.message,
           });

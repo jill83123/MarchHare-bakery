@@ -46,20 +46,20 @@
       </div>
     </div>
   </LoadingOverlay>
-  <div class="container flex justify-between py-5 mt-20 lg:text-right">
+  <div class="container flex justify-between py-4 mt-20 lg:text-right">
     <h2 class="flex items-center text-3xl text-black font-noto-serif"
       ><span class="text-5xl material-symbols-outlined"> edit_note </span>商品列表</h2
     >
     <button
       type="button"
-      class="flex items-center inline-block rounded bg-cerulean px-6 py-2.5 text-sm font-medium uppercase leading-normal text-white transition duration-150 ease-in-out focus:outline-none focus:ring-0 active:bg-cerulean-700 hover:opacity-80"
+      class="flex items-center rounded bg-cerulean px-6 py-2.5 text-sm font-medium uppercase leading-normal text-white transition duration-150 ease-in-out focus:outline-none focus:ring-0 active:bg-cerulean-700 hover:opacity-80"
       @click.prevent="openModal('new')"
     >
       <span class="material-symbols-outlined"> add </span>新增商品
     </button>
   </div>
 
-  <div class="container flex flex-col">
+  <div class="container flex flex-col mb-5 min-h-[679px]">
     <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
         <div class="overflow-hidden">
@@ -130,12 +130,15 @@
   ></ProductModal>
 
   <DelModal ref="delModal" @del-product="delProduct" :item="tempProduct"></DelModal>
+
+  <Pagination :pages="pagination" @change-page="getProducts"></Pagination>
 </template>
 
 <script>
 import statesStore from '../../stores/statesStore';
 import ProductModal from '../../components/backend/ProductModal.vue';
 import DelModal from '../../components/backend/DelModal.vue';
+import Pagination from '../../components/backend/PaginationBackend.vue';
 
 export default {
   data() {
@@ -155,9 +158,11 @@ export default {
         import.meta.env.VITE_APP_PATH
       }/admin/products?page=${page}`;
       this.$http.get(api).then((res) => {
+        console.log(res);
         if (res.data.success) {
           this.products = res.data.products;
           this.pagination = res.data.pagination;
+          this.pagination = res.data.pagination
           this.isLoading = false;
         }
       });
@@ -238,6 +243,7 @@ export default {
   components: {
     ProductModal,
     DelModal,
+    Pagination,
   },
 };
 </script>
