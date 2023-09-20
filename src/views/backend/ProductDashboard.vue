@@ -2,7 +2,8 @@
   <LoadingOverlay :active="isLoading" class="loading">
     <div class="loadingio-spinner w-[200px] h-[200px] inline-block relative overflow-hidden"
       ><div class="ldio">
-        <svg class="mx-auto"
+        <svg
+          class="mx-auto"
           width="50"
           height="50"
           viewBox="0 0 100 79"
@@ -31,7 +32,9 @@
             d="m30.0679,38.233c1.8886,-0.7555 3.0286,-0.2002 3.6058,1.4154c0.4687,1.3117 -0.0817,2.3274 -1.1917,3.0219c-0.9043,0.5657 -1.8764,0.4528 -2.6155,-0.2776c-1.2927,-1.2773 -1.4541,-2.6546 0.2014,-4.1597z"
           />
         </svg>
-        <div class="absolute font-extrabold text-center text-black translate-x-1/2 translate-y-1/2 loading-text font-montserrat">
+        <div
+          class="absolute font-extrabold text-center text-black translate-x-1/2 translate-y-[60%] loading-text font-montserrat"
+        >
           <span class="inline-block mx-[0.1em]">L</span>
           <span class="inline-block mx-[0.1em]">O</span>
           <span class="inline-block mx-[0.1em]">A</span>
@@ -130,6 +133,7 @@
 </template>
 
 <script>
+import statesStore from '../../stores/statesStore';
 import ProductModal from '../../components/backend/ProductModal.vue';
 import DelModal from '../../components/backend/DelModal.vue';
 
@@ -173,10 +177,21 @@ export default {
       }
 
       this.$http[httpMethod](api, { data: this.tempProduct }).then((res) => {
+        const states = statesStore();
         if (res.data.success) {
           this.$refs.productModal.hideModal();
           this.getProducts();
           this.tempProduct = {};
+          states.pushToastMessage({
+            title: `${this.productModalState === 'new' ? '新增' : '編輯'}成功`,
+            style: 'bg-success',
+          });
+        } else {
+          states.pushToastMessage({
+            title: `${this.productModalState === 'new' ? '新增' : '編輯'}失敗`,
+            style: 'bg-danger',
+            message: res.data.message.join(' 、 '),
+          });
         }
       });
     },
@@ -195,6 +210,7 @@ export default {
       this.$refs.productModal.showModal();
     },
     delProduct(item) {
+      const states = statesStore();
       const api = `${import.meta.env.VITE_APP_API}/api/${
         import.meta.env.VITE_APP_PATH
       }/admin/product/${item.id}`;
@@ -202,6 +218,16 @@ export default {
         if (res.data.success) {
           this.$refs.delModal.hideModal();
           this.getProducts();
+          states.pushToastMessage({
+            title: `刪除成功`,
+            style: 'bg-success',
+          });
+        } else {
+          states.pushToastMessage({
+            title: `$刪除失敗`,
+            style: 'bg-danger',
+            message: res.data.message,
+          });
         }
       });
     },

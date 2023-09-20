@@ -145,7 +145,7 @@ export default {
     z-index: -1;
     left: 0;
     border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.15);
+    background-color: rgba(255, 255, 255, 0.10);
   }
 }
 

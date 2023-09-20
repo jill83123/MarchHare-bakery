@@ -1,10 +1,12 @@
 <template>
   <Navbar></Navbar>
   <router-view></router-view>
+  <Toast></Toast>
 </template>
 
 <script>
 import Navbar from '../../components/backend/NavBackend.vue';
+import Toast from '../../components/ToastBox.vue';
 
 export default {
   created() {
@@ -22,6 +24,7 @@ export default {
   },
   components: {
     Navbar,
+    Toast,
   },
 };
 </script>

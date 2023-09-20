@@ -106,7 +106,7 @@
                     <p>假如目前沒有主要圖片，上傳時會優先補上</p></div
                   >
                 </div>
-                <div class="relative" v-if="tempProduct.imageUrl">
+                <div class="relative bg-white" v-if="tempProduct.imageUrl">
                   <img
                     class="object-cover object-center w-full aspect-square"
                     :src="tempProduct.imageUrl"
@@ -118,7 +118,25 @@
                     title="刪除主要圖片"
                     @click.prevent="delPhoto(tempProduct.imageUrl)"
                   >
-                    close
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 18 18"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M3.4 16L2 14.6L7.6 9L2 3.4L3.4 2L9 7.6L14.6 2L16 3.4L10.4 9L16 14.6L14.6 16L9 10.4L3.4 16Z"
+                        fill="white"
+                        fill-opacity="0.8"
+                      />
+                      <path
+                        d="M3.04645 16.3536L3.4 16.7071L3.75355 16.3536L9 11.1071L14.2464 16.3536L14.6 16.7071L14.9536 16.3536L16.3536 14.9536L16.7071 14.6L16.3536 14.2464L11.1071 9L16.3536 3.75355L16.7071 3.4L16.3536 3.04645L14.9536 1.64645L14.6 1.29289L14.2464 1.64645L9 6.89289L3.75355 1.64645L3.4 1.29289L3.04645 1.64645L1.64645 3.04645L1.29289 3.4L1.64645 3.75355L6.89289 9L1.64645 14.2464L1.29289 14.6L1.64645 14.9536L3.04645 16.3536Z"
+                        stroke="#303030"
+                        stroke-opacity="0.8"
+                        stroke-miterlimit="10"
+                      />
+                    </svg>
                   </button>
                 </div>
               </div>
@@ -138,7 +156,25 @@
                     :title="`刪除圖片${index + 2}`"
                     @click.prevent="delPhoto(index)"
                   >
-                    close
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 18 18"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M3.4 16L2 14.6L7.6 9L2 3.4L3.4 2L9 7.6L14.6 2L16 3.4L10.4 9L16 14.6L14.6 16L9 10.4L3.4 16Z"
+                        fill="white"
+                        fill-opacity="0.8"
+                      />
+                      <path
+                        d="M3.04645 16.3536L3.4 16.7071L3.75355 16.3536L9 11.1071L14.2464 16.3536L14.6 16.7071L14.9536 16.3536L16.3536 14.9536L16.7071 14.6L16.3536 14.2464L11.1071 9L16.3536 3.75355L16.7071 3.4L16.3536 3.04645L14.9536 1.64645L14.6 1.29289L14.2464 1.64645L9 6.89289L3.75355 1.64645L3.4 1.29289L3.04645 1.64645L1.64645 3.04645L1.29289 3.4L1.64645 3.75355L6.89289 9L1.64645 14.2464L1.29289 14.6L1.64645 14.9536L3.04645 16.3536Z"
+                        stroke="#303030"
+                        stroke-opacity="0.8"
+                        stroke-miterlimit="10"
+                      />
+                    </svg>
                   </button>
                 </li>
               </ul>

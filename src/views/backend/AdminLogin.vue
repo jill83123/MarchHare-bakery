@@ -72,12 +72,15 @@
           </div>
         </form>
       </div>
-    </div></div
-  >
+    </div>
+  </div>
+  <Toast></Toast>
 </template>
 
 <script>
 import { Input, initTE } from 'tw-elements';
+import statesStore from '../../stores/statesStore';
+import Toast from '../../components/ToastBox.vue';
 
 export default {
   data() {
@@ -90,18 +93,33 @@ export default {
   },
   methods: {
     signIn() {
+      const states = statesStore();
       const api = `${import.meta.env.VITE_APP_API}/admin/signin`;
       this.$http.post(api, this.admin).then((res) => {
+        console.log(res);
         if (res.data.success) {
           const { token, expired } = res.data;
           document.cookie = `MarchHareToken=${token}; expires=${new Date(expired)}`;
           this.$router.replace('/admin');
+          states.pushToastMessage({
+            title: `登入成功`,
+            style: 'bg-success',
+          });
+        } else {
+          states.pushToastMessage({
+            title: `${this.productModalState === 'new' ? '新增' : '編輯'}失敗`,
+            style: 'bg-danger',
+            message: res.data.message,
+          });
         }
       });
     },
   },
   mounted() {
     initTE({ Input });
+  },
+  components: {
+    Toast,
   },
 };
 </script>
