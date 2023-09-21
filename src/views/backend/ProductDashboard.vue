@@ -71,6 +71,7 @@
                 <th scope="col" class="px-6 py-4 w-[10%]">原價</th>
                 <th scope="col" class="px-6 py-4 w-[10%]">售價</th>
                 <th scope="col" class="px-6 py-4 w-[10%]">上架</th>
+                <th scope="col" class="px-6 py-4 w-[10%]">最後更新時間</th>
                 <th scope="col" class="px-6 py-4 w-[10%]">編輯</th>
               </tr>
             </thead>
@@ -83,13 +84,19 @@
                 <th class="px-6 py-4 whitespace-nowrap">{{ item.category }}</th>
                 <td class="px-6 py-4 font-normal whitespace-nowrap">{{ item.title }}</td>
                 <td class="px-6 py-4 font-normal text-gray-400 whitespace-nowrap"
-                  >$ {{ item.origin_price }}</td
+                  >$ {{ $filters.currency(item.origin_price) }}</td
                 >
-                <td class="px-6 py-4 font-normal whitespace-nowrap">$ {{ item.price }}</td>
                 <td class="px-6 py-4 font-normal whitespace-nowrap"
-                  ><p class="font-normal text-success" v-if="item.is_enabled">上架</p>
-                  <p class="text-gray-400" v-else>未上架</p></td
+                  >$ {{ $filters.currency(item.price) }}</td
                 >
+                <td class="px-6 py-4 font-normal whitespace-nowrap">
+                  <p class="font-normal text-success" v-if="item.is_enabled">上架</p>
+                  <p class="text-gray-400" v-else>未上架</p>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <p v-if="item.lastEditDate">{{ $filters.date(item.lastEditDate) }}</p>
+                  <p v-else>無紀錄</p>
+                  </td>
                 <td class="px-6 py-4 whitespace-nowrap">
                   <button
                     class="inline-block pr-4 hover:text-cerulean"
@@ -158,16 +165,18 @@ export default {
         import.meta.env.VITE_APP_PATH
       }/admin/products?page=${page}`;
       this.$http.get(api).then((res) => {
-        console.log(res);
         if (res.data.success) {
           this.products = res.data.products;
           this.pagination = res.data.pagination;
-          this.pagination = res.data.pagination
+          this.pagination = res.data.pagination;
           this.isLoading = false;
         }
       });
     },
     updateProduct(item) {
+      const lastEditDate = Math.floor(new Date().getTime() / 1000);
+      this.tempProduct.lastEditDate = lastEditDate;
+
       let httpMethod = 'post';
       let api = `${import.meta.env.VITE_APP_API}/api/${
         import.meta.env.VITE_APP_PATH
