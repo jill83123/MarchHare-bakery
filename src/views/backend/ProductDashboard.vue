@@ -96,7 +96,7 @@
                 <td class="px-6 py-4 whitespace-nowrap">
                   <p v-if="item.lastEditDate">{{ $filters.date(item.lastEditDate) }}</p>
                   <p v-else>無紀錄</p>
-                  </td>
+                </td>
                 <td class="px-6 py-4 whitespace-nowrap">
                   <button
                     class="inline-block pr-4 hover:text-cerulean"
@@ -196,16 +196,16 @@ export default {
           this.$refs.productModal.hideModal();
           this.getProducts();
           this.tempProduct = {};
-          states.pushToastMessage({
-            title: `${this.productModalState === 'new' ? '新增' : '編輯'}成功`,
-            style: 'bg-success',
-          });
+          states.pushToastMessage(
+            res.data.success,
+            `${this.productModalState === 'new' ? '新增' : '編輯'}成功`
+          );
         } else {
-          states.pushToastMessage({
-            title: `${this.productModalState === 'new' ? '新增' : '編輯'}失敗`,
-            style: 'bg-danger',
-            message: res.data.message.join(' 、 '),
-          });
+          states.pushToastMessage(
+            res.data.success,
+            `${this.productModalState === 'new' ? '新增' : '編輯'}失敗`,
+            res.data.message
+          );
         }
       });
     },
@@ -232,16 +232,9 @@ export default {
         if (res.data.success) {
           this.$refs.delModal.hideModal();
           this.getProducts();
-          states.pushToastMessage({
-            title: `刪除成功`,
-            style: 'bg-success',
-          });
+          states.pushToastMessage(res.data.success, `刪除成功`);
         } else {
-          states.pushToastMessage({
-            title: `$刪除失敗`,
-            style: 'bg-danger',
-            message: res.data.message,
-          });
+          states.pushToastMessage(res.data.success, `刪除失敗`, res.data.message);
         }
       });
     },

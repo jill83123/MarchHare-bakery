@@ -100,16 +100,9 @@ export default {
           const { token, expired } = res.data;
           document.cookie = `MarchHareToken=${token}; expires=${new Date(expired)}`;
           this.$router.replace('/admin');
-          states.pushToastMessage({
-            title: `登入成功`,
-            style: 'bg-success',
-          });
+          states.pushToastMessage(res.data.success, `登入成功`);
         } else {
-          states.pushToastMessage({
-            title: `登入失敗`,
-            style: 'bg-danger',
-            message: res.data.message,
-          });
+          states.pushToastMessage(res.data.success, `登入失敗`, res.data.message);
         }
       });
     },

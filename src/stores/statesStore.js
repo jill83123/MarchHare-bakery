@@ -5,9 +5,13 @@ export default defineStore('statesStore', {
     messages: [],
   }),
   actions: {
-    pushToastMessage(data) {
-      const { title, message, style } = data;
-      this.messages.push({title, message, style});
+    pushToastMessage(res, title, message) {
+      if (res) {
+        this.messages.push({ title, message, style: 'bg-success' });
+      } else {
+        const content = typeof message === 'string' ? [message] : message;
+        this.messages.push({ title, message: content.join(' 、 '), style: 'bg-danger' });
+      }
     },
   },
 });
