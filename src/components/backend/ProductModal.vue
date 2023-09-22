@@ -7,6 +7,7 @@
     aria-labelledby="productModal"
     aria-modal="true"
     role="dialog"
+    data-te-backdrop="static"
     ref="modal"
   >
     <div
@@ -14,16 +15,13 @@
       class="pointer-events-none relative w-auto translate-y-[-50px] opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto mt-7 min-[576px]:max-w-[800px] min-[1024px]:max-w-[1140px] px-2 sm:px-5"
     >
       <div
-        class="relative flex flex-col w-full text-current bg-white border-none rounded-md shadow-lg outline-none pointer-events-auto bg-clip-padding dark:bg-neutral-600 max-h-[94vh] lg:max-h-[90vh]"
+        class="relative flex flex-col w-full text-current bg-white border-none rounded-md shadow-lg outline-none pointer-events-auto bg-clip-padding max-h-[94vh] lg:max-h-[90vh]"
       >
         <div
-          class="flex items-center justify-between flex-shrink-0 p-4 border-b-2 border-opacity-100 rounded-t-md border-neutral-100 dark:border-opacity-50"
+          class="flex items-center justify-between flex-shrink-0 p-4 border-b-2 border-opacity-100 rounded-t-md border-neutral-100"
         >
           <!--Modal title-->
-          <h5
-            class="text-xl font-medium leading-normal text-neutral-800 dark:text-neutral-200"
-            id="exampleModalXlLabel"
-          >
+          <h5 class="text-xl font-medium leading-normal text-neutral-800" id="exampleModalXlLabel">
             {{ state === 'new' ? '新增' : '編輯' }}商品
           </h5>
           <!--Close button-->
@@ -101,10 +99,10 @@
                 <div
                   class="absolute top-[1%] bottom-[1%] left-[1%] right-[1%] flex items-center justify-center border-2 border-dotted"
                 >
-                  <div class="text-center text-gray-400"
-                    ><h6 class="text-2xl leading-10">主要圖片</h6>
-                    <p>假如目前沒有主要圖片，上傳時會優先補上</p></div
-                  >
+                  <div class="text-center text-gray-400">
+                    <h6 class="text-2xl leading-10">主要圖片</h6>
+                    <p>假如目前沒有主要圖片，上傳時會優先補上</p>
+                  </div>
                 </div>
                 <div class="relative bg-white" v-if="tempProduct.imageUrl">
                   <img
@@ -118,13 +116,7 @@
                     title="刪除主要圖片"
                     @click.prevent="delPhoto(tempProduct.imageUrl)"
                   >
-                    <svg
-                      width="18"
-                      height="18"
-                      viewBox="0 0 18 18"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path
                         d="M3.4 16L2 14.6L7.6 9L2 3.4L3.4 2L9 7.6L14.6 2L16 3.4L10.4 9L16 14.6L14.6 16L9 10.4L3.4 16Z"
                         fill="white"
@@ -156,13 +148,7 @@
                     :title="`刪除圖片${index + 2}`"
                     @click.prevent="delPhoto(index)"
                   >
-                    <svg
-                      width="18"
-                      height="18"
-                      viewBox="0 0 18 18"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path
                         d="M3.4 16L2 14.6L7.6 9L2 3.4L3.4 2L9 7.6L14.6 2L16 3.4L10.4 9L16 14.6L14.6 16L9 10.4L3.4 16Z"
                         fill="white"
@@ -181,9 +167,7 @@
             </div>
             <div class="lg:w-7/12">
               <div class="mb-4">
-                <label for="name" class="block mb-1"
-                  >商品名稱<span class="text-danger"> *</span></label
-                >
+                <label for="name" class="block mb-1">商品名稱<span class="text-danger"> *</span></label>
                 <input
                   type="text"
                   class="m-0 block w-full rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
@@ -194,9 +178,7 @@
               </div>
               <div class="flex gap-2 mb-4">
                 <div class="w-1/2">
-                  <label for="category" class="block mb-1"
-                    >分類<span class="text-danger"> *</span></label
-                  >
+                  <label for="category" class="block mb-1">分類<span class="text-danger"> *</span></label>
                   <input
                     type="text"
                     class="m-0 block w-full rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
@@ -206,9 +188,7 @@
                   />
                 </div>
                 <div class="w-1/2">
-                  <label for="unit" class="block mb-1"
-                    >單位<span class="text-danger"> *</span></label
-                  >
+                  <label for="unit" class="block mb-1">單位<span class="text-danger"> *</span></label>
                   <input
                     type="text"
                     class="m-0 block w-full rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
@@ -220,9 +200,7 @@
               </div>
               <div class="flex gap-2 mb-4">
                 <div class="w-1/2">
-                  <label for="origin" class="block mb-1"
-                    >原價<span class="text-danger"> *</span></label
-                  >
+                  <label for="origin" class="block mb-1">原價<span class="text-danger"> *</span></label>
                   <input
                     type="number"
                     min="0"
@@ -233,9 +211,7 @@
                   />
                 </div>
                 <div class="w-1/2">
-                  <label for="price" class="block mb-1 font-semibold"
-                    >售價<span class="text-danger"> *</span></label
-                  >
+                  <label for="price" class="block mb-1 font-semibold">售價<span class="text-danger"> *</span></label>
                   <input
                     type="number"
                     min="0"
@@ -274,9 +250,7 @@
                   id="flexSwitchCheckDefault"
                   v-model="tempProduct.is_enabled"
                 />
-                <label
-                  class="inline-block pl-[0.15rem] hover:cursor-pointer"
-                  for="flexSwitchCheckDefault"
+                <label class="inline-block pl-[0.15rem] hover:cursor-pointer" for="flexSwitchCheckDefault"
                   >是否上架</label
                 >
               </div>
@@ -286,7 +260,7 @@
 
         <!--Modal footer-->
         <div
-          class="flex flex-wrap items-center justify-end flex-shrink-0 gap-2 p-4 border-t-2 border-opacity-100 rounded-b-md border-neutral-100 dark:border-opacity-50"
+          class="flex flex-wrap items-center justify-end flex-shrink-0 gap-2 p-4 border-t-2 border-opacity-100 rounded-b-md border-neutral-100"
         >
           <button
             type="button"
@@ -363,9 +337,7 @@ export default {
         const formData = new FormData();
         formData.append('file-to-upload', imageFile);
 
-        const api = `${import.meta.env.VITE_APP_API}/api/${
-          import.meta.env.VITE_APP_PATH
-        }/admin/upload`;
+        const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/admin/upload`;
         this.$http.post(api, formData).then((res) => {
           if (res.data.success) {
             if (this.tempProduct.imageUrl === '' || !this.tempProduct.imageUrl) {

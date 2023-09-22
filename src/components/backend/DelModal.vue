@@ -82,7 +82,7 @@
             class="inline-block rounded bg-danger px-6 py-2.5 text-sm font-medium uppercase leading-normal text-white transition duration-150 ease-in-out focus:outline-none focus:ring-0 active:bg-cerulean-700 hover:opacity-80 text-right"
             data-te-ripple-init
             data-te-ripple-color="light"
-            @click.prevent="$emit('del-product', item)"
+            @click.prevent="$emit('del', item)"
           >
             確認刪除
           </button>

@@ -99,7 +99,7 @@ export default {
         if (res.data.success) {
           const { token, expired } = res.data;
           document.cookie = `MarchHareToken=${token}; expires=${new Date(expired)}`;
-          this.$router.replace('/admin');
+          this.$router.replace('/admin/product');
           states.pushToastMessage(res.data.success, `登入成功`);
         } else {
           states.pushToastMessage(res.data.success, `登入失敗`, res.data.message);

@@ -72,7 +72,7 @@
             class="mb-4 leading-9 border-b-2 border-dotted border-white/50 lg:mb-0 lg:border-0"
             data-te-nav-item-ref
           >
-            <RouterLink class="relative block py-1 pl-4 transition lg:p-3" to="/admin"
+            <RouterLink class="relative block py-1 pl-4 transition lg:p-3" to="/admin/product" exact
               >商品列表</RouterLink
             >
           </li>
@@ -88,7 +88,7 @@
             class="mb-4 leading-9 border-b-2 border-dotted border-white/50 lg:mb-0 lg:border-0"
             data-te-nav-item-ref
           >
-            <RouterLink class="relative block py-1 pl-4 transition lg:p-3" to="/"
+            <RouterLink class="relative block py-1 pl-4 transition lg:p-3" to="/admin/coupon"
               >優惠券</RouterLink
             >
           </li>
@@ -145,7 +145,7 @@ export default {
     z-index: -1;
     left: 0;
     border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.10);
+    background-color: rgba(255, 255, 255, 0.1);
   }
 }
 

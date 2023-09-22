@@ -13,13 +13,20 @@ const router = createRouter({
     },
     {
       path: '/admin',
+      redirect: '/admin/product',
       component: () => import('../views/backend/AdminPage.vue'),
       children: [
         {
-          path: '',
+          path: 'product',
+          key: 'ProductDashboard',
           component: () => import('../views/backend/ProductDashboard.vue'),
-        }
-      ]
+        },
+        {
+          path: 'coupon',
+          key: 'CouponDashboard',
+          component: () => import('../views/backend/CouponDashboard.vue'),
+        },
+      ],
     },
   ],
 });

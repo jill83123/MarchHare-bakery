@@ -11,3 +11,8 @@ export function date(time) {
   const localDate = new Date(time * 1000);
   return localDate.toLocaleString('zh-TW', { hour12: false });
 }
+
+export function onlyDate(time) {
+  const localDate = new Date(time * 1000);
+  return localDate.toLocaleDateString('zh-TW');
+}

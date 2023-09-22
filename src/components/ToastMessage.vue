@@ -64,6 +64,10 @@ export default {
       delay: 5000,
     });
     toast.show();
+    setTimeout(() => {
+      const toastContainer = toastEl.parentNode;
+      toastContainer.removeChild(toastEl);
+    }, 7000);
   },
 };
 </script>
