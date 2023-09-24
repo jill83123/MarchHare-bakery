@@ -1,7 +1,5 @@
 <template>
-  <LoadingOverlay :active="isLoading" class="loading">
-    <LoadingStyle></LoadingStyle>
-  </LoadingOverlay>
+  <LoadingAnimation :active="isLoading"></LoadingAnimation>
   <div class="container flex justify-between py-4 mt-20 lg:text-right">
     <h2 class="flex items-center text-3xl text-black font-noto-serif"
       ><span class="text-5xl material-symbols-outlined"> edit_note </span>商品列表</h2

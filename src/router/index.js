@@ -5,7 +5,18 @@ const router = createRouter({
   routes: [
     {
       path: '/',
+      redirect: '/index',
       component: () => import('../views/frontend/UserPages.vue'),
+      children: [
+        {
+          path: '/index',
+          component: () => import('../views/frontend/UserIndex.vue'),
+        },
+        {
+          path: '/shop',
+          component: () => import('../views/frontend/OnlineShop.vue'),
+        },
+      ],
     },
     {
       path: '/login',

@@ -1,7 +1,5 @@
 <template>
-  <LoadingOverlay :active="isLoading" class="loading">
-    <LoadingStyle></LoadingStyle>
-  </LoadingOverlay>
+  <LoadingAnimation :active="isLoading"></LoadingAnimation>
   <div class="container flex justify-between py-4 mt-20 lg:text-right">
     <h2 class="flex items-center text-3xl text-black font-noto-serif"
       ><span class="mr-1 text-4xl material-symbols-outlined"> sell </span>優惠券</h2
@@ -43,13 +41,11 @@
                     {{ item.code }}
                   </div>
                 </td>
-                <td class="px-6 py-4 font-normal text-gray-400 whitespace-nowrap"
-                  >{{ $filters.currency(item.percent) }} %</td
-                >
+                <td class="px-6 py-4 font-normal whitespace-nowrap">{{ $filters.currency(item.percent) }} %</td>
                 <td class="px-6 py-4 font-normal whitespace-nowrap">{{ $filters.onlyDate(item.due_date) }}</td>
                 <td class="px-6 py-4 font-normal whitespace-nowrap">
-                  <p class="font-normal text-success" v-if="item.is_enabled">上架</p>
-                  <p class="text-gray-400" v-else>未上架</p>
+                  <p class="font-normal text-success" v-if="item.is_enabled">啟用</p>
+                  <p class="text-gray-400" v-else>未啟用</p>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
                   <p v-if="item.lastEditDate">{{ $filters.date(item.lastEditDate) }}</p>

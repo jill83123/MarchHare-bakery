@@ -3,6 +3,10 @@ import { defineStore } from 'pinia';
 export default defineStore('statesStore', {
   state: () => ({
     messages: [],
+    state: {
+      isLoading: false,
+      loadingIcon: '',
+    },
   }),
   actions: {
     pushToastMessage(res, title, message) {
