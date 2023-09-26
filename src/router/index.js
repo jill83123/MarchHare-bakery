@@ -15,7 +15,41 @@ const router = createRouter({
         {
           path: '/shop',
           component: () => import('../views/frontend/OnlineShop.vue'),
+          children: [
+            {
+              path: 'product-details',
+              component: () => import('../views/frontend/ProductDetails.vue'),
+            },
+          ],
         },
+        {
+          path: '/checkout',
+          component: () => import('../views/frontend/UserCheckout.vue'),
+          // children: [
+          //   {
+          //     path: 'information',
+          //     component: () => import('../views/frontend/ProductDetails.vue'),
+          //   },
+          //   {
+          //     path: 'complete',
+          //     component: () => import('../views/frontend/ProductDetails.vue'),
+          //   },
+          // ],
+        },
+        // {
+        //   path: '/blog',
+        //   component: () => import('../views/frontend/OnlineShop.vue'),
+        //   children: [
+        //     {
+        //       path: 'article',
+        //       component: () => import('../views/frontend/ProductDetails.vue'),
+        //     },
+        //   ],
+        // },
+        // {
+        //   path: '/faq',
+        //   component: () => import('../views/frontend/OnlineShop.vue'),
+        // },
       ],
     },
     {

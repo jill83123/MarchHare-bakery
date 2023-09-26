@@ -132,7 +132,7 @@
         aria-labelledby="pills-all-tab"
         data-te-tab-active
       >
-        <ul class="flex flex-wrap -ml-3 gap-y-5">
+        <ul class="flex flex-wrap -mx-3 gap-y-5">
           <li
             class="w-full px-3 productCard sm:w-1/2 lg:w-1/3 xl:w-1/4"
             v-for="product in productList"
@@ -164,11 +164,18 @@
                 </div>
                 <div class="flex items-center justify-between">
                   <div class="flex flex-col">
-                    <span
-                      class="text-xl font-medium"
-                      :class="{ 'text-success': product.price !== product.origin_price }"
-                      >NT {{ $filters.currency(product.price) }}</span
-                    >
+                    <div>
+                      <span
+                        class="text-xl font-medium"
+                        :class="{ 'text-success': product.price !== product.origin_price }"
+                        >NT {{ $filters.currency(product.price) }}</span
+                      >
+                      <span
+                        class="px-2 ml-2 text-xs text-white rounded-full font-montserrat op bg-success"
+                        v-if="product.price !== product.origin_price"
+                        >SALE</span
+                      >
+                    </div>
                     <span
                       class="text-xs text-gray-500 line-through"
                       :class="{ hidden: product.price === product.origin_price }"
@@ -276,7 +283,6 @@ export default {
         },
       };
       this.$http.post(api, data).then((res) => {
-        console.log('add', res);
         if (res.data.success) {
           const cart = cartStore();
           cart.getCartList();
