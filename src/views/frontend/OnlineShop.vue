@@ -21,7 +21,7 @@
   </div>
 
   <!-- bar -->
-  <div class="container">
+  <main class="container">
     <!--Pills navigation-->
     <div class="flex flex-col items-center mt-10 mb-6 md:mt-16 md:mb-12 sm:flex-row">
       <div class="hidden xl:block xl:w-1/3"></div>
@@ -240,7 +240,8 @@
         Tab 4
       </div>
     </div>
-  </div>
+  </main>
+
   <Pagination :pages="pagination"></Pagination>
 </template>
 

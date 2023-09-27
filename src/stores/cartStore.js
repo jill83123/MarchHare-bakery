@@ -5,10 +5,14 @@ export default defineStore('cartStore', {
   state: () => ({
     cartList: [],
     cartTotalPrice: 0,
+    finalTotalPrice: 0,
     status: {
       updateIcon: '',
       isLoading: false,
+      coupon: false,
     },
+    currentStep: 1,
+    userInfo: {},
   }),
 
   actions: {
@@ -45,6 +49,26 @@ export default defineStore('cartStore', {
       axios.delete(api).then((res) => {
         if (res.data.success) {
           this.getCartList();
+        }
+      });
+    },
+    updateCurrentStep(step) {
+      if (step === 2) {
+        this.status.coupon = false;
+      }
+      this.currentStep = step;
+    },
+    pushUserInfo(info) {
+      this.userInfo = info;
+    },
+    useCoupon(couponCode) {
+      this.status.isLoading = true;
+      const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/coupon`;
+      axios.post(api, { data: { code: couponCode } }).then((res) => {
+        if (res.data.success) {
+          this.status.coupon = true;
+          this.status.isLoading = false;
+          this.finalTotalPrice = res.data.data.final_total;
         }
       });
     },

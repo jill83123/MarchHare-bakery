@@ -26,6 +26,8 @@ module.exports = {
         cerulean: '#859FAF',
         danger: '#E76565',
         success: '#A1BE84',
+        warning: '#FFE486',
+        info: '#9AB8DC',
         brown: {
           100: '#ebcbad',
           300: '#D4A373',

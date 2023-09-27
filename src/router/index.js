@@ -24,17 +24,26 @@ const router = createRouter({
         },
         {
           path: '/checkout',
+          redirect: '/checkout/cart',
           component: () => import('../views/frontend/UserCheckout.vue'),
-          // children: [
-          //   {
-          //     path: 'information',
-          //     component: () => import('../views/frontend/ProductDetails.vue'),
-          //   },
-          //   {
-          //     path: 'complete',
-          //     component: () => import('../views/frontend/ProductDetails.vue'),
-          //   },
-          // ],
+          children: [
+            {
+              path: 'cart',
+              component: () => import('../views/frontend/CheckCart.vue'),
+            },
+            {
+              path: 'information',
+              component: () => import('../views/frontend/CheckInfo.vue'),
+            },
+            {
+              path: 'pay',
+              component: () => import('../views/frontend/CheckPay.vue'),
+            },
+            {
+              path: 'complete',
+              component: () => import('../views/frontend/CheckComplete.vue'),
+            },
+          ],
         },
         // {
         //   path: '/blog',

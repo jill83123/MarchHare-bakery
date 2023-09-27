@@ -130,7 +130,7 @@
               <span class="absolute -top-[15%] -right-[30%] rounded-full w-[15px] h-[15px] bg-red-400"></span>
             </a>
           </li>
-          <li>
+          <li :class="{ 'cursor-not-allowed': currentStep >= 2 && $route.matched[1].path === '/checkout' }">
             <a
               class="relative block"
               data-te-collapse-init
@@ -138,6 +138,7 @@
               role="button"
               aria-expanded="false"
               aria-controls="collapseWithScrollbar"
+              :class="{ 'pointer-events-none	': currentStep >= 2 && $route.matched[1].path === '/checkout' }"
             >
               <span
                 class="align-middle material-symbols-outlined"
@@ -162,7 +163,7 @@
         </ul>
         <!-- cart list -->
         <div
-          class="!visible hidden max-h-[500px] min-w-[375px0] lg:min-w-[550px] mt-3 absolute right-0 top-[100%] bg-[rgb(255,255,255,0.95)] rounded-md border"
+          class="!visible hidden max-h-[500px] max-w-[375px0] lg:max-w-[550px] mt-3 absolute right-0 top-[100%] bg-[rgb(255,255,255,0.95)] rounded-md border"
           data-te-collapse-item
           id="collapseWithScrollbar"
           ref="collapse"
@@ -215,7 +216,7 @@
                       v-model="cartItem.qty"
                       @change="updateCart(cartItem.id, cartItem.qty === 0 || cartItem.qty === '' ? 1 : cartItem.qty)"
                     />
-                    <span class="pl-2 text-sm text-gray-400"> / {{ cartItem.product.unit }}</span>
+                    <span class="pl-2 text-sm text-gray-400"> {{ cartItem.product.unit }}</span>
                     <button
                       @click.prevent="updateCart(cartItem.id, cartItem.qty + 1)"
                       :disabled="status.updateIcon === cartItem.id"
@@ -258,7 +259,7 @@
                 <button
                   type="button"
                   class="z-10 flex items-center px-8 py-2 ml-auto text-sm font-medium leading-normal tracking-wider text-white uppercase transition duration-150 ease-in-out rounded-full to-check bg-brown-300 focus:outline-none focus:ring-0 active:bg-cerulean-700 hover:opacity-80"
-                  @click.prevent="GoToCheckout()"
+                  @click.prevent="goToCheckout()"
                   >前往結帳
                 </button>
               </div>
@@ -285,7 +286,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(cartStore, ['cartList', 'cartTotalPrice', 'status']),
+    ...mapState(cartStore, ['cartList', 'cartTotalPrice', 'status', 'currentStep']),
   },
   methods: {
     ...mapActions(cartStore, ['delCartItem', 'updateCart']),
@@ -301,15 +302,25 @@ export default {
         }
       }
     },
-    GoToCheckout() {
+    hideCollapse() {
       const myCollapse = new Collapse(this.$refs.collapse);
       myCollapse.hide();
+    },
+    goToCheckout() {
+      this.hideCollapse();
       this.$router.push('/checkout');
+    },
+    clickAwayHideCart(clickEvent) {
+      const isCollapsed = this.$refs.collapse.hasAttribute('data-te-collapse-show');
+      if (isCollapsed && !this.$refs.collapse.contains(clickEvent.target)) {
+        this.hideCollapse();
+      }
     },
   },
   mounted() {
     initTE({ Collapse, initTE });
     window.addEventListener('scroll', this.stickyNav);
+    document.addEventListener('click', this.clickAwayHideCart);
   },
 };
 </script>
@@ -348,7 +359,9 @@ a {
     @apply text-gray-500;
   }
 }
+</style>
 
+<style lang="scss">
 .cart-list {
   & li:nth-child(even) {
     @apply bg-gray-100;
@@ -357,7 +370,7 @@ a {
 
   /* scrollbar */
   &::-webkit-scrollbar {
-    width: 10px;
+    width: 8px;
     height: 95%;
     @apply rounded-xl;
   }
