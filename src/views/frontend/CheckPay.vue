@@ -6,7 +6,7 @@
       </div>
     </router-link>
     <div class="flex flex-col-reverse gap-8 lg:flex-row lg:gap-0">
-      <div class="relative w-full lg:pr-2 lg:w-1/2 ">
+      <div class="relative w-full lg:pr-2 lg:w-1/2">
         <img class="absolute -top-3 right-10" src="../../assets/images/double-tail-clip.svg" alt="tail-clip" />
         <div class="h-full px-5 border rounded-md py-7 bg-neutral-100">
           <div class="mb-4">
@@ -21,7 +21,7 @@
                 type="text"
                 class="m-0 block w-full border-b border-solid border-neutral-300 bg-neutral-50 bg-clip-padding px-3 py-[6px] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-brown-300 focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
                 id="name"
-                v-model="userInfo.name"
+                v-model="userInfo.user.name"
               />
             </div>
             <div class="w-1/2">
@@ -31,7 +31,7 @@
                 type="tel"
                 class="m-0 block w-full border-b border-solid border-neutral-300 bg-neutral-50 bg-clip-padding px-3 py-[6px] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-brown-300 focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
                 id="tel"
-                v-model="userInfo.tel"
+                v-model="userInfo.user.tel"
               />
             </div>
           </div>
@@ -42,7 +42,7 @@
               type="email"
               class="m-0 block w-full border-b border-solid border-neutral-300 bg-neutral-50 bg-clip-padding px-3 py-[6px] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-brown-300 focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
               id="mail"
-              v-model="userInfo.email"
+              v-model="userInfo.user.email"
             />
           </div>
           <div class="mb-4">
@@ -52,7 +52,7 @@
               type="text"
               class="m-0 block w-full border-b border-solid border-neutral-300 bg-neutral-50 bg-clip-padding px-3 py-[6px] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-brown-300 focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
               id="address"
-              v-model="userInfo.address"
+              v-model="userInfo.user.address"
             />
           </div>
           <div class="pb-4 mb-4 border-b-2 border-gray-300 border-dashed">
@@ -102,7 +102,7 @@
               type="button"
               class="z-10 flex items-center self-end px-8 py-2 ml-auto text-sm font-medium leading-normal tracking-wider text-white uppercase transition duration-150 ease-in-out rounded-full to-check bg-brown-300 focus:outline-none focus:ring-0 hover:opacity-80 disabled:bg-gray-300"
               :disabled="!userInfo.payWay"
-              @click.prevent="toComplete()"
+              @click.prevent="finishOrder()"
               >確認付款
             </button>
           </div>
@@ -204,15 +204,10 @@ export default {
     ...mapState(cartStore, ['cartList', 'cartTotalPrice', 'status', 'finalTotalPrice', 'userInfo']),
   },
   methods: {
-    ...mapActions(cartStore, ['getCartList', 'updateCurrentStep', 'pushUserInfo', 'useCoupon']),
-
-    toComplete() {
-      this.pushUserInfo(this.userInfo);
-      this.$router.push('/checkout/complete');
-    },
+    ...mapActions(cartStore, ['getCartList', 'updateCurrentStep', 'pushUserInfo', 'useCoupon', 'finishOrder']),
   },
   created() {
-    if (Object.keys(this.userInfo).length === 0){
+    if (Object.keys(this.userInfo).length === 0) {
       this.$router.replace('/checkout/information');
     }
     this.updateCurrentStep(3);

@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import axios from 'axios';
+import router from '../router/index';
 
 export default defineStore('cartStore', {
   state: () => ({
@@ -12,7 +13,8 @@ export default defineStore('cartStore', {
       coupon: false,
     },
     currentStep: 1,
-    userInfo: {},
+    userInfo: { user: { name: '', email: '', tel: '', address: '' }, message: '' },
+    OrderData: {},
   }),
 
   actions: {
@@ -67,8 +69,19 @@ export default defineStore('cartStore', {
       axios.post(api, { data: { code: couponCode } }).then((res) => {
         if (res.data.success) {
           this.status.coupon = true;
-          this.status.isLoading = false;
           this.finalTotalPrice = res.data.data.final_total;
+        }
+        this.status.isLoading = false;
+      });
+    },
+    finishOrder() {
+      console.log(this.userInfo);
+      const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/order`;
+      axios.post(api, { data: this.userInfo }).then((res) => {
+        // console.log(res);
+        if (res.data.success) {
+          this.OrderData = res.data;
+          router.replace('/checkout/complete');
         }
       });
     },

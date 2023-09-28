@@ -111,7 +111,7 @@
           <tr class="align-text-top border-b-2 border-dashed border-brown-100">
             <td class="py-4 pr-1 sm:tracking-wider sm:pr-4">訂單編號</td>
             <td class="py-4 pr-1 sm:tracking-wider sm:pr-4"
-              >MsfdfF86432sfdsfs
+              >{{ OrderData.orderId }}
               <button>
                 <span class="text-lg material-symbols-outlined"> file_copy </span>
               </button>
@@ -120,42 +120,45 @@
           </tr>
           <tr class="align-text-top border-b-2 border-dashed border-brown-100">
             <td class="py-4 pr-1 sm:tracking-wider sm:pr-4">下訂時間</td>
-            <td class="py-4 pr-1 sm:tracking-wider sm:pr-4"></td>
+            <td class="py-4 pr-1 sm:tracking-wider sm:pr-4">{{ $filters.date(OrderData.create_at) }}</td>
           </tr>
           <tr class="border-b-2 border-dashed border-brown-100">
             <td class="py-4 pr-1 sm:tracking-wider sm:pr-4">姓名</td>
-            <td class="py-4 pr-1 sm:tracking-wider sm:pr-4"></td>
+            <td class="py-4 pr-1 sm:tracking-wider sm:pr-4">{{ userInfo.user.name }}</td>
           </tr>
           <tr class="border-b-2 border-dashed border-brown-100">
             <td class="py-4 pr-1 sm:tracking-wider sm:pr-4">電話</td>
-            <td class="py-4 pr-1 sm:tracking-wider sm:pr-4"></td>
+            <td class="py-4 pr-1 sm:tracking-wider sm:pr-4">{{ userInfo.user.tel }}</td>
           </tr>
           <tr class="border-b-2 border-dashed border-brown-100">
             <td class="py-4 pr-1 sm:tracking-wider sm:pr-4">E-mail</td>
-            <td class="py-4 pr-1 sm:tracking-wider sm:pr-4"></td>
+            <td class="py-4 pr-1 sm:tracking-wider sm:pr-4">{{ userInfo.user.email }}</td>
           </tr>
           <tr class="border-b-2 border-dashed border-brown-100">
             <td class="py-4 pr-1 sm:tracking-wider sm:pr-4">地址</td>
-            <td class="py-4 pr-1 sm:tracking-wider sm:pr-4"></td>
+            <td class="py-4 pr-1 sm:tracking-wider sm:pr-4">{{ userInfo.user.address }}</td>
           </tr>
           <tr class="border-b-2 border-dashed border-brown-100">
-            <td class="py-4 pr-1 sm:tracking-wider sm:pr-4">付款方式</td>
-            <td class="py-4 pr-1 sm:tracking-wider sm:pr-4"></td>
+            <td class="py-4 pr-1 sm:tracking-wider sm:pr-4">是否付款</td>
+            <td class="py-4 pr-1 sm:tracking-wider sm:pr-4">{{
+              userInfo.payWay === 'other' ? '已付款' : '尚未付款'
+            }}</td>
           </tr>
           <tr class="border-b-2 border-dashed border-brown-100">
             <td class="py-4 pr-1 sm:tracking-wider sm:pr-4">留言</td>
-            <td class="py-4 pr-1 sm:tracking-wider sm:pr-4"></td>
+            <td class="py-4 pr-1 sm:tracking-wider sm:pr-4">{{ userInfo.message === '' ? '無' : userInfo.message }}</td>
           </tr>
         </tbody>
       </table>
     </div>
     <div class="text-center">
-      <RouterLink
+      <button
         to="/shop"
         type="button"
         class="z-10 px-8 py-2 mb-2 text-sm font-medium leading-normal text-white uppercase transition duration-150 ease-in-out rounded-full sm:tracking-wider to-check bg-brown-300 focus:outline-none focus:ring-0 hover:opacity-80 disabled:bg-gray-300"
+        @click.prevent="shoppingMore()"
         >繼續逛逛
-      </RouterLink>
+      </button>
       <button
         type="button"
         class="z-10 flex items-center px-8 py-2 mx-auto mb-10 text-sm font-medium leading-normal text-gray-500 uppercase transition duration-150 ease-in-out rounded-full sm:tracking-wider focus:outline-none focus:ring-1 hover:opacity-80"
@@ -170,8 +173,16 @@ import { mapState, mapActions } from 'pinia';
 import cartStore from '../../stores/cartStore';
 
 export default {
+  computed: {
+    ...mapState(cartStore, ['OrderData', 'userInfo']),
+  },
   methods: {
-    ...mapActions(cartStore, ['delCartItem', 'updateCart', 'getCartList', 'updateCurrentStep']),
+    ...mapActions(cartStore, ['updateCurrentStep']),
+
+    shoppingMore(){
+      this.$router.replace('/shop')
+      this.userInfo = { user: { name: '', email: '', tel: '', address: '' }, message: '' };
+    }
   },
   created() {
     this.updateCurrentStep(4);

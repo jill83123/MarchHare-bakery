@@ -163,7 +163,7 @@
         </ul>
         <!-- cart list -->
         <div
-          class="!visible hidden max-h-[500px] max-w-[375px0] lg:max-w-[550px] mt-3 absolute right-0 top-[100%] bg-[rgb(255,255,255,0.95)] rounded-md border"
+          class="!visible hidden max-h-[500px] lg:min-w-[550px] mt-3 absolute right-0 top-[100%] bg-[rgb(255,255,255,0.95)] rounded-md border"
           data-te-collapse-item
           id="collapseWithScrollbar"
           ref="collapse"
@@ -239,11 +239,11 @@
             </ul>
             <p class="text-center" v-if="cartList.length === 0"
               >目前購物車是空的<br />快來
-              <RouterLink
-                to="/shop"
+              <button
                 type="button"
                 class="z-10 items-center inline-block mx-1 font-medium leading-normal tracking-wider uppercase transition duration-150 ease-in-out border-b text-brown-300 border-brown-300 hover:opacity-80"
-                >點我</RouterLink
+                @click.prevent="goToShopping()"
+                >點我</button
               >
               進行選購吧！</p
             >
@@ -305,6 +305,10 @@ export default {
     hideCollapse() {
       const myCollapse = new Collapse(this.$refs.collapse);
       myCollapse.hide();
+    },
+    goToShopping() {
+      this.hideCollapse();
+      this.$router.push('/shop');
     },
     goToCheckout() {
       this.hideCollapse();
