@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <ol
-      class="mx-auto relative flex w-full lg:w-7/12 justify-between gap-5 before:h-[1px] before:top-[50%] before:absolute before:z-[-10] before:left-[5%] before:right-[5%] font-bold mb-14 before:border-dotted before:border-b-4"
+      class="overflow-x-hidden mx-auto relative flex w-full lg:w-7/12 justify-between gap-2 lg:gap-5 before:h-[1px] before:top-[50%] before:absolute before:z-[-10] before:left-[5%] before:right-[5%] font-bold mb-14 before:border-dotted before:border-b-4"
     >
       <li class="relative flex flex-col items-center text-black-light">
         <span
@@ -16,7 +16,7 @@
           done
         </span>
         <svg
-          class="rotate-[4deg]"
+          class="rotate-[4deg] w-[85px] lg:w-[95px]"
           style="fill: #ebcbad"
           width="95"
           height="96"
@@ -54,7 +54,7 @@
           done
         </span>
         <svg
-          class="-rotate-[4deg]"
+          class="-rotate-[4deg] w-[85px] lg:w-[95px]"
           fill="#e5e7eb"
           width="95"
           height="96"
@@ -92,7 +92,7 @@
           done
         </span>
         <svg
-          class="rotate-[4deg]"
+          class="rotate-[4deg] w-[85px] lg:w-[95px]"
           fill="#e5e7eb"
           width="95"
           height="96"
@@ -130,7 +130,7 @@
           done
         </span>
         <svg
-          class="-rotate-[4deg]"
+          class="-rotate-[4deg] w-[85px] lg:w-[95px]"
           fill="#e5e7eb"
           width="95"
           height="96"

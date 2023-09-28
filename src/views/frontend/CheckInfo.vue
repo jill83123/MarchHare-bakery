@@ -1,12 +1,12 @@
 <template>
-  <div class="container w-full mb-12 lg:w-7/12">
+  <div class="container w-full mb-12 xl:10/12 2xl:w-7/12">
     <router-link to="/checkout" class="inline-block mb-4">
       <div class="flex items-center">
         <span class="mr-1 material-symbols-outlined"> keyboard_double_arrow_left </span>返回上一步
       </div>
     </router-link>
-    <div class="flex">
-      <div class="relative w-full pr-2 lg:w-1/2">
+    <div class="flex flex-col-reverse gap-8 lg:flex-row lg:gap-0">
+      <div class="relative w-full lg:pr-2 lg:w-1/2">
         <img class="absolute -top-3 right-10" src="../../assets/images/double-tail-clip.svg" alt="tail-clip" />
         <VForm class="px-5 border rounded-md pt-9 pb-7 bg-neutral-100" v-slot="{ errors }" @submit="toPay()">
           <div class="flex gap-2 mb-4">
@@ -17,8 +17,8 @@
               </label>
               <VField
                 type="text"
-                class="m-0 block w-full rounded border border-solid border-neutral-300 bg-neutral-50 bg-clip-padding px-3 py-[6px] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
-                :class="{ ' border-danger': errors['姓名'] }"
+                class="m-0 block w-full rounded border border-solid bg-neutral-50 bg-clip-padding px-3 py-[6px] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
+                :class="{ 'border-danger': errors['姓名'], 'border-neutral-300': !errors['姓名'] }"
                 placeholder="請輸入姓名"
                 name="姓名"
                 id="name"
@@ -42,8 +42,8 @@
               </label>
               <VField
                 type="tel"
-                class="m-0 block w-full rounded border border-solid border-neutral-300 bg-neutral-50 bg-clip-padding px-3 py-[6px] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
-                :class="{ ' border-danger': errors['電話'] }"
+                class="m-0 block w-full rounded border border-solid bg-neutral-50 bg-clip-padding px-3 py-[6px] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
+                :class="{ 'border-danger': errors['電話'], 'border-neutral-300': !errors['電話'] }"
                 placeholder="請輸入電話"
                 name="電話"
                 id="tel"
@@ -65,8 +65,8 @@
             <label for="mail" class="block mb-1">E-mail<span class="text-danger"> *</span></label>
             <VField
               type="email"
-              class="m-0 block w-full rounded border border-solid border-neutral-300 bg-neutral-50 bg-clip-padding px-3 py-[6px] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
-              :class="{ ' border-danger': errors['E-mail'] }"
+              class="m-0 block w-full rounded border border-solid bg-neutral-50 bg-clip-padding px-3 py-[6px] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
+              :class="{ 'border-danger': errors['E-mail'], 'border-neutral-300': !errors['E-mail'] }"
               placeholder="請輸入E-mail"
               name="E-mail"
               id="mail"
@@ -75,20 +75,20 @@
             ></VField>
             <ErrorMessage class="absolute right-0 text-sm text-danger" name="E-mail"></ErrorMessage>
             <span class="absolute bottom-[12%] right-2 material-symbols-outlined text-danger" v-if="errors['E-mail']">
-                error
-              </span>
-              <span
-                class="absolute bottom-[12%] right-2 material-symbols-outlined text-success"
-                v-else-if="!errors['E-mail'] && tempUserInfo.email"
-                >check_circle</span
-              >
+              error
+            </span>
+            <span
+              class="absolute bottom-[12%] right-2 material-symbols-outlined text-success"
+              v-else-if="!errors['E-mail'] && tempUserInfo.email"
+              >check_circle</span
+            >
           </div>
           <div class="relative mb-4">
             <label for="address" class="block mb-1">地址<span class="text-danger"> *</span></label>
             <VField
               type="text"
-              class="m-0 block w-full rounded border border-solid border-neutral-300 bg-neutral-50 bg-clip-padding px-3 py-[6px] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
-              :class="{ ' border-danger': errors['地址'] }"
+              class="m-0 block w-full rounded border border-solid bg-neutral-50 bg-clip-padding px-3 py-[6px] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
+              :class="{ 'border-danger': errors['地址'], 'border-neutral-300': !errors['地址'] }"
               placeholder="請輸入地址"
               name="地址"
               id="address"
@@ -97,13 +97,13 @@
             ></VField>
             <ErrorMessage class="absolute right-0 text-sm text-danger" name="地址"></ErrorMessage>
             <span class="absolute bottom-[12%] right-2 material-symbols-outlined text-danger" v-if="errors['地址']">
-                error
-              </span>
-              <span
-                class="absolute bottom-[12%] right-2 material-symbols-outlined text-success"
-                v-else-if="!errors['地址'] && tempUserInfo.address"
-                >check_circle</span
-              >
+              error
+            </span>
+            <span
+              class="absolute bottom-[12%] right-2 material-symbols-outlined text-success"
+              v-else-if="!errors['地址'] && tempUserInfo.address"
+              >check_circle</span
+            >
           </div>
           <div class="mb-4">
             <label for="message" class="block mb-1">留言</label>
@@ -156,7 +156,7 @@
         </VForm>
       </div>
       <!-- cart list -->
-      <div class="w-full pl-2 lg:w-1/2">
+      <div class="w-full lg:pl-2 lg:w-1/2">
         <div class="bg-[rgb(255,255,255,0.95)] rounded-md border">
           <div class="px-2 py-4 text-black-light">
             <div class="flex pb-3 pl-2 mb-2 border-b-2 border-gray-300 border-dotted">
@@ -215,7 +215,7 @@
         </div>
       </div>
     </div>
-    <div class="mt-6">
+    <div class="mt-6 sm:w-4/5 lg:w-full">
       <h4
         class="relative inline-block text-lg after:-z-[1] after:-left-1 after:-right-1 mb-2 after:bg-warning after:absolute after:top-1/2 after:bottom-0"
         >購買須知</h4

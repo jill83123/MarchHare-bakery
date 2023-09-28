@@ -6,11 +6,11 @@
           <table class="min-w-full mb-6 text-sm text-left">
             <thead class="font-medium text-black border-b border-gray-400">
               <tr>
-                <th scope="col" class="w-[5%] px-6 py-4">#</th>
-                <th scope="col" class="w-[60%] px-6 py-4">清單</th>
-                <th scope="col" class="w-[10%] px-6 py-4">小計</th>
-                <th scope="col" class="w-[15%] px-6 py-4">編輯</th>
-                <th scope="col" class="w-[10%] px-6 py-4">刪除</th>
+                <th scope="col" class="w-[5%] px-1 py-4 md:px-4 lg:px-6">#</th>
+                <th scope="col" class="md:w-[55%] px-1 py-4 md:px-4 lg:px-6">清單</th>
+                <th scope="col" class="max-[450px]:w-[20%] md:w-[15%] px-1 py-4 md:px-4 lg:px-6">小計</th>
+                <th scope="col" class="w-[15%] px-1 py-4 md:px-4 lg:px-6">編輯</th>
+                <th scope="col" class="w-[10%] px-0 py-4 md:px-4 lg:px-6">刪除</th>
               </tr>
             </thead>
             <tbody class="text-black-light">
@@ -19,20 +19,19 @@
                 v-for="(cartItem, index) in cartList"
                 :key="cartItem.id"
               >
-                <td class="px-6 py-4 font-medium">{{ index + 1 }}</td>
-                <td class="px-6 py-4">
-                  <img src="" alt="" />
-                  <div class="flex gap-8">
+                <td class="px-2 py-4 font-medium md:px-4 lg:px-6">{{ index + 1 }}</td>
+                <td class="px-1 py-4 md:px-4 lg:px-6">
+                  <div class="flex flex-col gap-2 md:gap-8 min-[450px]:flex-row">
                     <img
-                      class="w-[130px] object-cover"
+                      class="w-full min-[450px]:w-[130px] object-cover"
                       :src="cartItem.product.imageUrl"
                       :alt="cartItem.product.title"
                     />
                     <div class="flex flex-col justify-center">
                       <div>
-                        <h4 class="inline-block mb-1 mr-1 text-xl font-medium text-black">
-                          {{ cartItem.product.title }}
-                        </h4>
+                        <h4 class="inline-block mb-1 mr-1 font-medium text-black lg:text-xl">
+                          {{ cartItem.product.title }} </h4
+                        ><br />
                         <span class="text-xs tracking-wider text-gray-500"
                           >NT {{ $filters.currency(cartItem.product.price) }} 元</span
                         >
@@ -41,10 +40,13 @@
                     </div>
                   </div>
                 </td>
-                <td class="px-6 py-4 tracking-wider">
-                  <span>NT {{ $filters.currency(cartItem.final_total) }} 元</span>
+                <td class="px-2 py-4 text-xs tracking-wider max-[450px]:text-center sm:text-left sm:text-sm md:px-4 lg:px-6">
+                  <span
+                    ><span class="hidden sm:inline-block">NT</span>
+                    {{ $filters.currency(cartItem.final_total) }} 元</span
+                  >
                 </td>
-                <td class="px-6 py-4 pl-3">
+                <td class="px-2 py-4 md:px-4 lg:px-6">
                   <div class="flex items-center">
                     <button
                       class="pr-1"
@@ -63,7 +65,7 @@
                       v-model="cartItem.qty"
                       @change="updateCart(cartItem.id, cartItem.qty === 0 || cartItem.qty === '' ? 1 : cartItem.qty)"
                     />
-                    <span class="pl-2 text-sm text-gray-400"> {{ cartItem.product.unit }}</span>
+                    <span class="hidden pl-2 text-sm text-gray-400 sm:inline-block"> {{ cartItem.product.unit }}</span>
                     <button
                       @click.prevent="updateCart(cartItem.id, cartItem.qty + 1)"
                       :disabled="status.updateIcon === cartItem.id"
@@ -72,7 +74,7 @@
                     </button>
                   </div>
                 </td>
-                <td class="px-6 py-4">
+                <td class="px-1 py-4 md:px-4 lg:px-6">
                   <button class="self-end hover:text-danger" @click.prevent="delCartItem('one', cartItem.id)">
                     <span class="align-bottom material-symbols-outlined"> delete </span>
                   </button>
@@ -80,11 +82,9 @@
               </tr>
             </tbody>
 
-            <tfoot class="text-base font-medium tracking-wider border-t border-gray-200">
-              <td class="px-6 py-4 text-brown-300" colspan="2">{{ cartList.length }} 個商品</td>
-              <td class="px-6 py-4 font-bold text-brown-500" colspan="3"
-                >共 NT {{ $filters.currency(cartTotalPrice) }} 元</td
-              >
+            <tfoot class="text-base font-bold tracking-wider border-t border-gray-200 text-brown-500">
+              <td class="px-1 py-4 md:px-4 lg:px-6" colspan="2">{{ cartList.length }} 個商品</td>
+              <td class="px-1 py-4 md:px-4 lg:px-6" colspan="3">共 NT {{ $filters.currency(cartTotalPrice) }} 元</td>
             </tfoot>
           </table>
 

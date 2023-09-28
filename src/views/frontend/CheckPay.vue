@@ -1,12 +1,12 @@
 <template>
-  <div class="container w-full mb-12 lg:w-7/12">
+  <div class="container w-full mb-12 xl:10/12 2xl:w-7/12">
     <router-link to="/checkout/information" class="inline-block mb-4">
       <div class="flex items-center">
         <span class="mr-1 material-symbols-outlined"> keyboard_double_arrow_left </span>返回上一步修改
       </div>
     </router-link>
-    <div class="flex">
-      <div class="relative w-full pr-2 lg:w-1/2">
+    <div class="flex flex-col-reverse gap-8 lg:flex-row lg:gap-0">
+      <div class="relative w-full lg:pr-2 lg:w-1/2 ">
         <img class="absolute -top-3 right-10" src="../../assets/images/double-tail-clip.svg" alt="tail-clip" />
         <div class="h-full px-5 border rounded-md py-7 bg-neutral-100">
           <div class="mb-4">
@@ -102,13 +102,14 @@
               type="button"
               class="z-10 flex items-center self-end px-8 py-2 ml-auto text-sm font-medium leading-normal tracking-wider text-white uppercase transition duration-150 ease-in-out rounded-full to-check bg-brown-300 focus:outline-none focus:ring-0 hover:opacity-80 disabled:bg-gray-300"
               :disabled="!userInfo.payWay"
+              @click.prevent="toComplete()"
               >確認付款
             </button>
           </div>
         </div>
       </div>
       <!-- cart list -->
-      <div class="w-full pl-2 lg:w-1/2">
+      <div class="w-full lg:pl-2 lg:w-1/2">
         <div class="bg-[rgb(255,255,255,0.95)] rounded-md border">
           <div class="px-2 py-4 text-black-light">
             <div class="flex pb-3 pl-2 mb-2 border-b-2 border-gray-300 border-dotted">
@@ -164,7 +165,7 @@
         </div>
       </div>
     </div>
-    <div class="mt-6">
+    <div class="mt-6 sm:w-4/5 lg:w-full">
       <h4
         class="relative inline-block text-lg after:-z-[1] after:-left-1 after:-right-1 mb-2 after:bg-warning after:absolute after:top-1/2 after:bottom-0"
         >購買須知</h4
@@ -205,9 +206,9 @@ export default {
   methods: {
     ...mapActions(cartStore, ['getCartList', 'updateCurrentStep', 'pushUserInfo', 'useCoupon']),
 
-    toPay() {
+    toComplete() {
       this.pushUserInfo(this.userInfo);
-      this.$router.push('/checkout/pay');
+      this.$router.push('/checkout/complete');
     },
   },
   created() {
