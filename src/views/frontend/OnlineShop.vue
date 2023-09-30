@@ -26,15 +26,14 @@
       <div class="hidden xl:block xl:w-1/3"></div>
       <ul
         class="flex flex-row justify-center w-full gap-2 pl-0 list-none sm:justify-start xl:justify-center md:gap-5 xl:w-2/3"
-        ref="sortTab"
       >
         <li role="presentation" class="w-full sm:w-auto">
           <a
             href="#pills-all"
             class="my-2 block text-center rounded px-1 sm:px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500"
             :class="{
-              'bg-brown-100 text-white': sortStatus === 'all' || (cacheSearch === '' && sortStatus === 'search'),
-              'bg-neutral-100': sortStatus !== 'all' && filteredProducts.search.length !== productList.length,
+              'bg-brown-100 text-white': sortStatus === 'all' || (searchKeyword === '' && sortStatus === 'search'),
+              'bg-neutral-100': sortStatus !== 'all' && !(searchKeyword === '' && sortStatus === 'search'),
             }"
             @click.prevent="changeSort('all')"
           >
@@ -89,22 +88,21 @@
       </ul>
       <!--Search-->
       <div class="w-full md:block sm:w-7/12 md:w-1/2 xl:w-1/3">
-        <div class="relative flex flex-wrap items-stretch w-full ml-auto card-img xl:w-4/5" ref="searchInput">
+        <div class="relative flex flex-wrap items-stretch w-full ml-auto card-img xl:w-4/5">
           <input
             type="search"
             class="relative m-0 -mr-0.5 block w-[1px] min-w-0 flex-auto rounded-l border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-3 text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:border focus:border-r-0 focus:border-brown-100 focus:outline-none"
             placeholder="搜尋商品"
             aria-label="Search"
             aria-describedby="button-addon1"
-            @change="changeSort('search')"
-            @keyup.enter="changeSort('search')"
+            @keyup.enter="searchProducts()"
             v-model="cacheSearch"
           />
           <!--Search button-->
           <button
             class="relative z-[2] flex items-center rounded-r bg-brown-300 px-4 py-2.5 text-xs font-medium uppercase leading-tight text-white transition duration-150 ease-in-out hover:bg-brown-100 focus:bg-primary-700 focus:outline-none focus:ring-0 active:bg-primary-800"
             type="button"
-            @click.prevent="changeSort('search')"
+            @click.prevent="searchProducts()"
           >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
               <path
@@ -216,7 +214,7 @@
             d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
             clip-rule="evenodd"
           /></svg
-        >{{ cacheSearch }}<br />&emsp;查無資料</p
+        >{{ searchKeyword }}<br />&emsp;查無資料</p
       >
     </div>
   </main>
@@ -225,9 +223,9 @@
 </template>
 
 <script>
-  import { mapActions } from 'pinia';
-  import cartStore from '../../stores/cartStore';
-  import Pagination from '../../components/frontend/PaginationFrontend.vue';
+import { mapActions } from 'pinia';
+import cartStore from '../../stores/cartStore';
+import Pagination from '../../components/frontend/PaginationFrontend.vue';
 
 export default {
   data() {
@@ -240,6 +238,7 @@ export default {
       },
       sortStatus: 'all',
       cacheSearch: '',
+      searchKeyword: '',
     };
   },
   computed: {
@@ -249,7 +248,7 @@ export default {
         toast: this.productList.filter((product) => product.category === '吐司'),
         cake: this.productList.filter((product) => product.category === '蛋糕'),
         cookie: this.productList.filter((product) => product.category === '餅乾'),
-        search: this.productList.filter((item) => item.title.match(this.cacheSearch)),
+        search: this.productList.filter((item) => item.title.match(this.searchKeyword)),
       };
     },
   },
@@ -287,19 +286,13 @@ export default {
     changeSort(status) {
       this.sortStatus = status;
     },
-    clickAwaySearch(clickEvent) {
-      if (
-        !this.$refs.searchInput.contains(clickEvent.target) &&
-        this.cacheSearch === '' &&
-        !this.$refs.sortTab.contains(clickEvent.target)
-      ) {
-        this.sortStatus = 'all';
-      }
+    searchProducts() {
+      this.sortStatus = 'search';
+      this.searchKeyword = this.cacheSearch;
     },
   },
   mounted() {
     this.getCartList();
-    document.addEventListener('click', this.clickAwaySearch);
   },
   created() {
     this.getProductList();
