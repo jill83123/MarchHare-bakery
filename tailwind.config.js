@@ -14,7 +14,6 @@ module.exports = {
         sans: ['Noto Sans TC', ...defaultTheme.fontFamily.sans],
         'noto-serif': ['Noto Serif TC', 'serif'],
         maru: ['Zen Maru Gothic', 'sans'],
-        chenyuluoyan: ['chenyuluoyan', 'sans'],
         montserrat: ['Montserrat', 'sans-serif'],
       },
       colors: {

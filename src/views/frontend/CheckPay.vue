@@ -1,10 +1,10 @@
 <template>
   <div class="container w-full mb-12 xl:10/12 2xl:w-7/12">
-    <router-link to="/checkout/information" class="inline-block mb-4">
+    <RouterLink to="/checkout/information" class="inline-block mb-4">
       <div class="flex items-center">
-        <span class="mr-1 material-symbols-outlined"> keyboard_double_arrow_left </span>返回上一步修改
+        <span class="mr-1 material-symbols-outlined"> keyboard_double_arrow_left </span>返回修改
       </div>
-    </router-link>
+    </RouterLink>
     <div class="flex flex-col-reverse gap-8 lg:flex-row lg:gap-0">
       <div class="relative w-full lg:pr-2 lg:w-1/2">
         <img class="absolute -top-3 right-10" src="../../assets/images/double-tail-clip.svg" alt="tail-clip" />

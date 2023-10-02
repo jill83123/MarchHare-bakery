@@ -129,8 +129,19 @@
               <!-- image -->
               <div class="relative overflow-hidden card-img aspect-square">
                 <img class="relative w-full h-full" :src="product.imageUrl" :alt="product.title" />
-                <button class="absolute top-0 right-0 z-10 p-4">
-                  <span class="text-3xl text-red-400 material-symbols-outlined"> favorite </span>
+                <button class="absolute top-0 right-0 z-10 p-4" @click.prevent="favoriteStore.toggleFavorite(product)">
+                  <span
+                    class="text-3xl text-red-400 material-symbols-outlined"
+                    style="
+                      font-variation-settings:
+                        'FILL' 1,
+                        'opsz' 24;
+                    "
+                    v-if="favoriteStore.favoriteId.includes(product.id)"
+                  >
+                    favorite
+                  </span>
+                  <span class="text-3xl text-red-400 material-symbols-outlined" v-else> favorite </span>
                 </button>
                 <div class="absolute -translate-y-1/4 -translate-x-1/2 z-[5] left-1/2 top-1/2 view-detail hidden">
                   <p
@@ -190,10 +201,10 @@
                   </button>
                 </div>
               </div>
-              <a
+              <RouterLink
+                :to="'product/' + product.id"
                 class="after:z-[9] after:top-0 after:left-0 after:right-0 after:absolute after:inset-0"
-                href="/link"
-              ></a>
+              ></RouterLink>
             </div>
           </li>
         </ul>
@@ -223,9 +234,10 @@
 </template>
 
 <script>
-import { mapActions } from 'pinia';
+import { mapActions, mapStores } from 'pinia';
 import cartStore from '../../stores/cartStore';
 import Pagination from '../../components/frontend/PaginationFrontend.vue';
+import favoriteStore from '../../stores/favoriteStore';
 
 export default {
   data() {
@@ -242,6 +254,8 @@ export default {
     };
   },
   computed: {
+    ...mapStores(favoriteStore),
+
     filteredProducts() {
       return {
         all: this.productList,
@@ -254,6 +268,8 @@ export default {
   },
   methods: {
     ...mapActions(cartStore, ['getCartList']),
+    ...mapActions(favoriteStore, ['toggleFavorite']),
+
     getProductList(page = 1) {
       this.state.isLoading = true;
       const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/products?page=${page}`;

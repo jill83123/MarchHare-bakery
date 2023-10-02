@@ -224,23 +224,16 @@
               </div>
               <div class="mb-4">
                 <label for="description" class="block mb-1">商品描述</label>
-                <textarea
-                  type="text"
-                  class="m-0 block w-full rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
-                  placeholder="請輸入商品描述"
-                  id="description"
+                <ckeditor
+                  :editor="editor"
                   v-model="tempProduct.description"
-                />
+                  :config="editorConfig"
+                  id="description"
+                ></ckeditor>
               </div>
               <div class="mb-4">
                 <label for="content" class="block mb-1">商品內容</label>
-                <textarea
-                  type="text"
-                  class="m-0 block w-full rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
-                  placeholder="請輸入商品內容"
-                  id="content"
-                  v-model="tempProduct.content"
-                />
+                <ckeditor :editor="editor" v-model="tempProduct.content" :config="editorConfig" id="content"></ckeditor>
               </div>
               <div>
                 <input
@@ -284,9 +277,34 @@
 </template>
 
 <script>
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import CKEditor from '@ckeditor/ckeditor5-vue';
 import modalMixin from '../../mixins/modalMixin';
 
 export default {
+  data() {
+    return {
+      tempProduct: {},
+      loadingIcon: false,
+      editor: ClassicEditor,
+      editorConfig: {
+        toolbar: [
+          'heading',
+          '|',
+          'bold',
+          'italic',
+          'link',
+          'bulletedList',
+          'numberedList',
+          '|',
+          'imageUpload',
+          'blockQuote',
+          'undo',
+          'redo',
+        ],
+      },
+    };
+  },
   props: {
     product: {
       type: Object,
@@ -304,12 +322,6 @@ export default {
     product() {
       this.tempProduct = this.product;
     },
-  },
-  data() {
-    return {
-      tempProduct: {},
-      loadingIcon: false,
-    };
   },
   methods: {
     uploadPhoto(way) {
@@ -367,5 +379,14 @@ export default {
     },
   },
   mixins: [modalMixin],
+  components: {
+    ckeditor: CKEditor.component,
+  },
 };
 </script>
+
+<style>
+.ck-content ul {
+  list-style-position: inside;
+}
+</style>

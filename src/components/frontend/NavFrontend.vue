@@ -127,7 +127,11 @@
               >
                 favorite
               </span>
-              <span class="absolute -top-[15%] -right-[30%] rounded-full w-[15px] h-[15px] bg-red-400"></span>
+              <span
+                class="text-xs p-1 absolute -top-[15%] -right-[30%] rounded-full w-[16px] h-[16px] bg-red-400 flex justify-center items-center text-white"
+                v-if="favoriteStore.isFavorite"
+                >{{ favoriteStore.favorite.length }}</span
+              >
             </a>
           </li>
           <li :class="{ 'cursor-not-allowed': currentStep >= 2 && $route.matched[1].path === '/checkout' }">
@@ -273,20 +277,21 @@
 
 <script>
 import { Collapse, initTE } from 'tw-elements';
-import { mapState, mapActions } from 'pinia';
+import { mapState, mapActions, mapStores } from 'pinia';
 import cartStore from '../../stores/cartStore';
+import favoriteStore from '../../stores/favoriteStore';
 
 export default {
   data() {
     return {
       state: {
         isLoading: false,
-        // updateIcon: '',
       },
     };
   },
   computed: {
     ...mapState(cartStore, ['cartList', 'cartTotalPrice', 'status', 'currentStep']),
+    ...mapStores(favoriteStore),
   },
   methods: {
     ...mapActions(cartStore, ['delCartItem', 'updateCart']),

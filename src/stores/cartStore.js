@@ -75,7 +75,6 @@ export default defineStore('cartStore', {
       });
     },
     finishOrder() {
-      console.log(this.userInfo);
       const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/order`;
       axios.post(api, { data: this.userInfo }).then((res) => {
         // console.log(res);

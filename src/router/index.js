@@ -15,12 +15,10 @@ const router = createRouter({
         {
           path: '/shop',
           component: () => import('../views/frontend/OnlineShop.vue'),
-          children: [
-            {
-              path: 'product-details',
-              component: () => import('../views/frontend/ProductDetails.vue'),
-            },
-          ],
+        },
+        {
+          path: '/product/:id',
+          component: () => import('../views/frontend/ProductDetails.vue'),
         },
         {
           path: '/checkout',
