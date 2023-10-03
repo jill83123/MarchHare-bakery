@@ -128,12 +128,7 @@ export default {
     ...mapState(cartStore, ['cartList', 'cartTotalPrice', 'status', 'currentStep']),
   },
   methods: {
-    ...mapActions(cartStore, ['delCartItem', 'updateCart', 'getCartList', 'updateCurrentStep']),
-    checkCartList() {
-      if (this.cartList.length !== 0) {
-        this.$router.push('/checkout/information');
-      }
-    },
+    ...mapActions(cartStore, ['delCartItem', 'updateCart', 'getCartList', 'updateCurrentStep','checkCartList']),
   },
   created() {
     this.getCartList();

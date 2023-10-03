@@ -48,7 +48,7 @@
           >
           <button
             class="border-2 rounded-full w-[40px] h-[40px] ml-auto inline-block border-brown-100"
-            :class="favoriteStore.favoriteId.includes(productDetails.id) ? 'border-danger' : 'border-brown-100'"
+            :class="favoriteStore.favorite.some((item) => item.id === productDetails.id) ? 'border-danger' : 'border-brown-100'"
             title="加入收藏"
             @click.prevent="favoriteStore.toggleFavorite(productDetails)"
             ><span
@@ -58,7 +58,7 @@
                   'FILL' 1,
                   'opsz' 24;
               "
-              v-if="favoriteStore.favoriteId.includes(productDetails.id)"
+              v-if="favoriteStore.favorite.some((item) => item.id === productDetails.id)"
             >
               favorite
             </span>

@@ -194,9 +194,14 @@
               v-if="cartList && cartList.length >= 1"
             >
               <li class="flex gap-2 py-3 pl-4" v-for="cartItem in cartList" :key="cartItem.id">
-                <a class="flex items-center w-1/4 aspect-square grow">
-                  <img class="object-cover" :src="cartItem.product.imageUrl" :alt="cartItem.product.title" />
-                </a>
+                <RouterLink :to="'/product/' + cartItem.id" class="flex items-center w-1/4 aspect-square grow">
+                  <img
+                    class="object-cover"
+                    :src="cartItem.product.imageUrl"
+                    :alt="cartItem.product.title"
+                    title="查看詳細資訊"
+                  />
+                </RouterLink>
                 <!-- content -->
                 <div class="flex flex-col justify-between w-3/4 px-2 grow">
                   <div class="flex flex-col justify-between">
@@ -234,7 +239,11 @@
                       <span class="text-xs text-gray-400">NT {{ $filters.currency(cartItem.product.price) }} 元</span>
                       <span>小計 NT {{ $filters.currency(cartItem.final_total) }} 元</span>
                     </div>
-                    <button class="self-end hover:text-danger" @click.prevent="delCartItem('one', cartItem.id)">
+                    <button
+                      class="self-end hover:text-danger"
+                      id="delBtn"
+                      @click.prevent="delCartItem('one', cartItem.id)"
+                    >
                       <span class="align-bottom material-symbols-outlined"> delete </span>
                     </button>
                   </div>
@@ -256,8 +265,9 @@
               <p>共 NT {{ $filters.currency(cartTotalPrice) }} 元</p>
               <div class="flex gap-2 ml-auto">
                 <button
-                  class="z-10 flex items-center px-8 py-2 ml-auto text-sm font-medium leading-normal tracking-wider text-gray-500 uppercase transition duration-150 ease-in-out border rounded-full focus:outline-none focus:ring-0 active:bg-cerulean-700 hover:opacity-80"
+                  class="z-10 flex items-center px-8 py-2 ml-auto text-sm font-medium leading-normal tracking-wider text-gray-500 uppercase transition duration-150 ease-in-out border rounded-full focus:outline-none focus:ring-0 active:bg-cerulean-700 hover:opacity-80 disabled:text-gray-300 disabled:hover:opacity-100"
                   @click.prevent="delCartItem('all')"
+                  :disabled="cartList.length <= 0"
                   >清空購物車</button
                 >
                 <button
@@ -320,8 +330,12 @@ export default {
       this.$router.push('/checkout');
     },
     clickAwayHideCart(clickEvent) {
-      const isCollapsed = this.$refs.collapse.hasAttribute('data-te-collapse-show');
-      if (isCollapsed && !this.$refs.collapse.contains(clickEvent.target)) {
+      if (
+        this.$refs.collapse &&
+        this.$refs.collapse.hasAttribute('data-te-collapse-show') &&
+        !this.$refs.collapse.contains(clickEvent.target) &&
+        clickEvent.target.id.includes('delBtn')
+      ) {
         this.hideCollapse();
       }
     },
@@ -339,7 +353,7 @@ export default {
   @apply text-brown-300;
 }
 
-a {
+a:not(:has(img)) {
   transition: all 0.3s;
   &:hover {
     transform: translateY(-5%);

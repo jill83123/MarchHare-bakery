@@ -163,7 +163,7 @@
               <h4 class="mr-1">購物車列表</h4>
             </div>
             <ul
-              class="flex flex-col pb-3 mb-2 cart-list max-h-[473px] overflow-y-auto"
+              class="flex flex-col pb-3 mb-2 cart-list h-[473px] overflow-y-auto"
               v-if="cartList && cartList.length >= 1"
             >
               <li class="flex gap-2 py-3 pl-4" v-for="cartItem in cartList" :key="cartItem.id">
@@ -239,6 +239,7 @@
     </div>
   </div>
   <rulesModal></rulesModal>
+  <button @click="look()">點我取得列表（測試用，待刪）</button>
 </template>
 
 <script>
@@ -248,15 +249,19 @@ import cartStore from '../../stores/cartStore';
 
 export default {
   data() {
-    return {
-
-    };
+    return {};
   },
   computed: {
     ...mapState(cartStore, ['cartList', 'cartTotalPrice', 'status', 'finalTotalPrice', 'userInfo']),
   },
   methods: {
     ...mapActions(cartStore, ['getCartList', 'updateCurrentStep', 'pushUserInfo', 'useCoupon']),
+    look() {
+      const api2 = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/cart`;
+      this.$http.get(api2).then((res) => {
+        console.log('取得購物列表', res);
+      });
+    },
 
     isTel(value) {
       const number = /^(09[0-9]{8}|0[0-9]{9})$/;

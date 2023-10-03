@@ -133,8 +133,11 @@
         >{{ searchKeyword }}<br />&emsp;查無資料</p
       >
     </div>
-    <div v-else-if="filteredProducts.search.length >= 0 && sortStatus === 'search'" class="text-center mb-7">
-      <p>
+    <div
+      v-else-if="filteredProducts.search.length >= 0 && sortStatus === 'search' && searchKeyword !== ''"
+      class="mb-7"
+    >
+      <p class="flex items-center justify-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
@@ -146,7 +149,7 @@
             d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
             clip-rule="evenodd"
           /></svg
-        >「{{ searchKeyword }}」的搜尋結果</p
+        >「 {{ searchKeyword }} 」的搜尋結果</p
       >
     </div>
 
@@ -171,7 +174,7 @@
                         'FILL' 1,
                         'opsz' 24;
                     "
-                    v-if="favoriteStore.favoriteId.includes(product.id)"
+                    v-if="favoriteStore.favorite.some((item) => item.id === product.id)"
                   >
                     favorite
                   </span>
@@ -221,14 +224,14 @@
                   <button
                     type="button"
                     class="z-10 flex items-center py-2 text-sm font-medium leading-normal tracking-wider text-white uppercase transition duration-150 ease-in-out rounded-full px-7 bg-brown-300 focus:outline-none focus:ring-0 active:bg-cerulean-700 hover:opacity-80"
-                    :class="{ 'bg-gray-300': state.loadingIcon === product.id }"
-                    :disabled="state.loadingIcon === product.id"
+                    :class="{ 'bg-gray-300': status.loadingIcon === product.id }"
+                    :disabled="status.loadingIcon === product.id"
                     @click.prevent="addToCart(product, 1)"
                   >
                     <div
                       class="inline-block h-4 w-4 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite] mr-2"
                       role="status"
-                      v-if="state.loadingIcon === product.id"
+                      v-if="status.loadingIcon === product.id"
                     >
                       <span
                         class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
@@ -254,7 +257,7 @@
 </template>
 
 <script>
-import { mapActions, mapStores } from 'pinia';
+import { mapActions, mapState, mapStores } from 'pinia';
 import cartStore from '../../stores/cartStore';
 import Pagination from '../../components/frontend/PaginationFrontend.vue';
 import favoriteStore from '../../stores/favoriteStore';
@@ -266,7 +269,6 @@ export default {
       pagination: {},
       state: {
         isLoading: false,
-        loadingIcon: '',
       },
       sortStatus: 'all',
       cacheSearch: '',
@@ -275,6 +277,7 @@ export default {
   },
   computed: {
     ...mapStores(favoriteStore),
+    ...mapState(cartStore, ['status']),
 
     filteredProducts() {
       return {
@@ -287,8 +290,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(cartStore, ['getCartList']),
-    ...mapActions(favoriteStore, ['toggleFavorite']),
+    ...mapActions(cartStore, ['getCartList', 'addToCart']),
 
     getProductList(page = 1) {
       this.state.isLoading = true;
@@ -299,24 +301,6 @@ export default {
           this.pagination = res.data.pagination;
           this.state.isLoading = false;
         }
-      });
-    },
-    addToCart(product, quantity = 1) {
-      this.state.loadingIcon = product.id;
-
-      const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/cart`;
-      const data = {
-        data: {
-          product_id: product.id,
-          qty: quantity,
-        },
-      };
-      this.$http.post(api, data).then((res) => {
-        if (res.data.success) {
-          const cart = cartStore();
-          cart.getCartList();
-        }
-        this.state.loadingIcon = '';
       });
     },
     changeSort(status) {
