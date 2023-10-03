@@ -2,19 +2,19 @@
   <Navbar></Navbar>
   <RouterView></RouterView>
   <FooterFrontend></FooterFrontend>
-  <Toast></Toast>
+  <SweetAlertBox></SweetAlertBox>
 </template>
 
 <script>
 import Navbar from '../../components/frontend/NavFrontend.vue';
 import FooterFrontend from '../../components/frontend/FooterFrontend.vue';
-import Toast from '../../components/ToastBox.vue';
+import SweetAlertBox from '../../components/frontend/SweetAlertBox.vue';
 
 export default {
   components: {
     Navbar,
-    Toast,
     FooterFrontend,
+    SweetAlertBox
   },
 };
 </script>

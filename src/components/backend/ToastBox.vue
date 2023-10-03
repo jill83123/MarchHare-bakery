@@ -6,7 +6,7 @@
 
 <script>
 import ToastMessage from './ToastMessage.vue';
-import statesStore from '../stores/statesStore';
+import statesStore from '../../stores/statesStore';
 
 export default {
   data() {

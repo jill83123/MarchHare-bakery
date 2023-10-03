@@ -53,7 +53,7 @@
             @click.prevent="changeSort('toast')"
           >
             <span class="mb-1 material-symbols-outlined"> breakfast_dining </span>
-            <p>吐司</p>
+            <p>麵包</p>
           </a>
         </li>
         <li role="presentation" class="w-full sm:w-auto">
@@ -116,6 +116,40 @@
       </div>
     </div>
 
+    <!-- Search results -->
+    <div v-if="filteredProducts.search.length === 0 && sortStatus === 'search'" class="text-center">
+      <p>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          class="inline-block w-5 h-5 mr-2"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
+            clip-rule="evenodd"
+          /></svg
+        >{{ searchKeyword }}<br />&emsp;查無資料</p
+      >
+    </div>
+    <div v-else-if="filteredProducts.search.length >= 0 && sortStatus === 'search'" class="text-center mb-7">
+      <p>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          class="inline-block w-5 h-5 mr-2"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
+            clip-rule="evenodd"
+          /></svg
+        >「{{ searchKeyword }}」的搜尋結果</p
+      >
+    </div>
+
     <!-- list -->
     <div class="mb-6">
       <div class="transition-opacity duration-150 ease-linear opacity-100">
@@ -154,16 +188,20 @@
               <!-- content -->
               <div class="p-5 min-h-[150px] flex flex-col justify-between grow">
                 <div>
-                  <h3 class="mb-1 text-lg lg:text-2xl">{{ product.title }}</h3>
-                  <div class="flex gap-1 text-sm text-gray-400">
-                    <span class="z-10 hover:bg-gray-200"># {{ product.category }}</span>
+                  <h3 class="mb-1 text-lg font-medium text-black lg:text-2xl">{{ product.title }}</h3>
+                  <div class="flex gap-1 -ml-1 text-sm text-gray-400">
+                    <span
+                      class="z-10 py-[1px] px-1 hover:bg-brown-100 hover:text-white"
+                      @click.prevent="tagSearch(product.category)"
+                      ># {{ product.category }}</span
+                    >
                   </div>
                 </div>
                 <div class="flex items-center justify-between">
                   <div class="flex flex-col">
                     <div>
                       <span
-                        class="text-xl font-medium"
+                        class="text-xl font-medium text-black-light"
                         :class="{ 'text-success': product.price !== product.origin_price }"
                         >NT {{ $filters.currency(product.price) }}</span
                       >
@@ -210,24 +248,6 @@
         </ul>
       </div>
     </div>
-
-    <!-- Search results -->
-    <div v-if="filteredProducts.search.length === 0 && sortStatus === 'search'">
-      <p class="text-center">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-          class="inline-block w-5 h-5 mr-2"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
-            clip-rule="evenodd"
-          /></svg
-        >{{ searchKeyword }}<br />&emsp;查無資料</p
-      >
-    </div>
   </main>
 
   <Pagination :pages="pagination"></Pagination>
@@ -259,7 +279,7 @@ export default {
     filteredProducts() {
       return {
         all: this.productList,
-        toast: this.productList.filter((product) => product.category === '吐司'),
+        toast: this.productList.filter((product) => product.category === '麵包'),
         cake: this.productList.filter((product) => product.category === '蛋糕'),
         cookie: this.productList.filter((product) => product.category === '餅乾'),
         search: this.productList.filter((item) => item.title.match(this.searchKeyword)),
@@ -305,6 +325,10 @@ export default {
     searchProducts() {
       this.sortStatus = 'search';
       this.searchKeyword = this.cacheSearch;
+    },
+    tagSearch(word) {
+      this.searchKeyword = word;
+      this.sortStatus = 'search';
     },
   },
   mounted() {

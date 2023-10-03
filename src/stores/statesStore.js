@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 
-export default defineStore('statesStore', {
+const statesStore = defineStore('states', {
   state: () => ({
     messages: [],
     state: {
@@ -17,5 +17,15 @@ export default defineStore('statesStore', {
         this.messages.push({ title, message: content.join(' 、 '), style: 'bg-danger' });
       }
     },
+    pushAlertMessage(res, title, message) {
+      if (res) {
+        this.messages.push({ title, icon: 'success' });
+      } else {
+        const content = typeof message === 'string' ? [message] : message;
+        this.messages.push({ title, message: content.join(' 、 '), icon: 'error' });
+      }
+    },
   },
 });
+
+export default statesStore;

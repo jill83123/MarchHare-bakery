@@ -12,6 +12,7 @@
           :src="currentImages"
           :alt="productDetails.title"
           class="object-cover w-full mb-4 rounded-lg aspect-square"
+          :style="{ opacity: currentImageOpacity, transition: 'opacity 0.15s' }"
         />
         <div class="flex gap-3">
           <a href="#">
@@ -23,10 +24,8 @@
               @click.prevent="changeCurrentImage(productDetails.imageUrl)"
             />
           </a>
-          <a href="#">
+          <a href="#" v-for="(img, i) in productDetails.imagesUrl" :key="img">
             <img
-              v-for="(img, i) in productDetails.imagesUrl"
-              :key="img"
               :src="img"
               :alt="productDetails.title + (i + 2)"
               class="w-[100px] object-cover aspect-square rounded-lg"
@@ -39,16 +38,17 @@
       <!-- content -->
       <div class="w-5/12 pt-10">
         <div class="flex mb-2">
-          <h2 class="inline-block text-4xl font-bold tracking-wide text-black font-noto-serif">{{
-            productDetails.title
-          }}</h2>
-          <span
-            class="self-end px-2 ml-2 text-xs text-white rounded-full font-montserrat bg-success"
-            v-if="productDetails.origin_price !== productDetails.price"
-            >SALE</span
+          <div class="inline-block w-11/12 text-4xl font-bold tracking-wide text-black font-noto-serif"
+            ><h2 class="inline-block">{{ productDetails.title }}</h2
+            ><span
+              class="self-end px-2 ml-2 text-xs text-white rounded-full font-montserrat bg-success"
+              v-if="productDetails.origin_price !== productDetails.price"
+              >SALE</span
+            ></div
           >
           <button
             class="border-2 rounded-full w-[40px] h-[40px] ml-auto inline-block border-brown-100"
+            :class="favoriteStore.favoriteId.includes(productDetails.id) ? 'border-danger' : 'border-brown-100'"
             title="加入收藏"
             @click.prevent="favoriteStore.toggleFavorite(productDetails)"
             ><span
@@ -195,6 +195,7 @@ export default {
     return {
       productDetails: {},
       currentImages: '',
+      currentImageOpacity: 1,
       buyNum: 1,
       cachePrice: 0,
       state: {
@@ -224,7 +225,11 @@ export default {
       });
     },
     changeCurrentImage(img) {
-      this.currentImages = img;
+      this.currentImageOpacity = 0;
+      setTimeout(() => {
+        this.currentImages = img;
+        this.currentImageOpacity = 1;
+      }, 150);
     },
     updateBuyNum(num) {
       if (num === 1 || num === -1) {

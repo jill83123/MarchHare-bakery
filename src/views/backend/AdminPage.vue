@@ -6,7 +6,7 @@
 
 <script>
 import Navbar from '../../components/backend/NavBackend.vue';
-import Toast from '../../components/ToastBox.vue';
+import Toast from '../../components/backend/ToastBox.vue';
 
 export default {
   created() {

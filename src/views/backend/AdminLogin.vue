@@ -80,7 +80,7 @@
 <script>
 import { Input, initTE } from 'tw-elements';
 import statesStore from '../../stores/statesStore';
-import Toast from '../../components/ToastBox.vue';
+import Toast from '../../components/backend/ToastBox.vue';
 
 export default {
   data() {

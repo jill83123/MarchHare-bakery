@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import statesStore from './statesStore';
 
 const favoriteStore = defineStore('favorite', {
   state: () => ({
@@ -17,9 +18,11 @@ const favoriteStore = defineStore('favorite', {
       if (favoriteIndex === -1) {
         this.favorite.push(product);
         this.favoriteId.push(product.id);
+        statesStore().pushAlertMessage(true, '收藏成功');
       } else {
         this.favorite.splice(favoriteIndex, 1);
         this.favoriteId.splice(favoriteIndex, 1);
+        statesStore().pushAlertMessage(true, '取消收藏');
       }
 
       this.saveFavoriteInLocal();

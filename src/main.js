@@ -11,6 +11,9 @@ import { required, email } from '@vee-validate/rules';
 import { localize, setLocale } from '@vee-validate/i18n';
 import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json';
 
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
+
 import Loading from 'vue3-loading-overlay';
 import 'vue3-loading-overlay/dist/vue3-loading-overlay.css';
 import LoadingAnimation from './components/LoadingAnimation.vue';
@@ -37,6 +40,7 @@ app.component('VForm', Form);
 app.component('VField', Field);
 app.component('ErrorMessage', ErrorMessage);
 
+app.use(VueSweetalert2);
 app.use(VueAxios, axios);
 app.use(createPinia());
 app.use(router);

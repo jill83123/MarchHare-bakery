@@ -28,7 +28,7 @@
                       :alt="cartItem.product.title"
                     />
                     <div class="flex flex-col justify-center">
-                      <div>
+                      <div class="mb-2">
                         <h4 class="inline-block mb-1 mr-1 font-medium text-black lg:text-xl">
                           {{ cartItem.product.title }} </h4
                         ><br />
@@ -36,11 +36,13 @@
                           >NT {{ $filters.currency(cartItem.product.price) }} 元</span
                         >
                       </div>
-                      <p>{{ cartItem.product.description }}</p>
+                      <div v-html="cartItem.product.description" class="hidden lg:block"></div>
                     </div>
                   </div>
                 </td>
-                <td class="px-2 py-4 text-xs tracking-wider max-[450px]:text-center sm:text-left sm:text-sm md:px-4 lg:px-6">
+                <td
+                  class="px-2 py-4 text-xs tracking-wider max-[450px]:text-center sm:text-left sm:text-sm md:px-4 lg:px-6"
+                >
                   <span
                     ><span class="hidden sm:inline-block">NT</span>
                     {{ $filters.currency(cartItem.final_total) }} 元</span
