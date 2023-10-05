@@ -85,15 +85,41 @@
             </tbody>
 
             <tfoot class="text-base font-bold tracking-wider border-t border-gray-200 text-brown-500">
-              <td class="px-1 py-4 md:px-4 lg:px-6" colspan="2">{{ cartList.length }} 個商品</td>
-              <td class="px-1 py-4 md:px-4 lg:px-6" colspan="3">共 NT {{ $filters.currency(cartTotalPrice) }} 元</td>
+              <td class="px-1 py-4 md:px-4 lg:px-6" colspan="2">
+                <div class="flex items-center justify-between">
+                  {{ cartList.length }} 個商品
+                  <div class="w-[170px] text-gray-500">
+                    <select
+                      data-te-select-init
+                      data-te-class-select-Label="data-[te-input-state-active]:scale-1 absolute top-[18%] left-[5%] pointer-events-none"
+                      v-model="pickupMethod"
+                      ref="pickupMethodSelect"
+                    >
+                      <option disabled selected>請選擇取貨方式</option>
+                      <option value="delivery">宅配</option>
+                      <option value="self">到店自取</option>
+                    </select>
+                  </div>
+                </div>
+              </td>
+              <td class="px-1 py-4 md:px-4 lg:px-6" colspan="3">
+                共 NT
+                {{
+                  pickupMethod === 'delivery'
+                    ? `${$filters.currency(cartTotalPrice + 80)}（含運費 $80）`
+                    : $filters.currency(cartTotalPrice)
+                }}
+                元
+              </td>
             </tfoot>
           </table>
 
+          <div class="flex justify-center"> </div>
           <button
             type="button"
-            class="z-10 flex items-center px-8 py-2 mx-auto mb-2 font-medium leading-normal tracking-wider text-white uppercase transition duration-150 ease-in-out rounded-full text to-check bg-brown-300 focus:outline-none focus:ring-0 hover:opacity-80"
-            @click.prevent="checkCartList()"
+            class="z-10 flex items-center px-8 py-2 mx-auto mb-2 font-medium leading-normal tracking-wider text-white uppercase transition duration-150 ease-in-out rounded-full text to-check bg-brown-300 focus:outline-none focus:ring-0 hover:opacity-80 disabled:bg-gray-300"
+            @click.prevent="checkCartList(this.pickupMethod)"
+            :disabled="!pickupMethod"
             >確認商品
           </button>
           <button
@@ -120,19 +146,44 @@
 </template>
 
 <script>
+import { Select, initTE } from 'tw-elements';
 import { mapState, mapActions } from 'pinia';
 import cartStore from '../../stores/cartStore';
 
 export default {
+  data() {
+    return {
+      pickupMethod: '',
+    };
+  },
   computed: {
-    ...mapState(cartStore, ['cartList', 'cartTotalPrice', 'status', 'currentStep']),
+    ...mapState(cartStore, ['cartList', 'cartTotalPrice', 'status', 'currentStep', 'userInfo']),
   },
   methods: {
-    ...mapActions(cartStore, ['delCartItem', 'updateCart', 'getCartList', 'updateCurrentStep','checkCartList']),
+    ...mapActions(cartStore, ['delCartItem', 'updateCart', 'getCartList', 'updateCurrentStep', 'checkCartList']),
   },
   created() {
     this.getCartList();
     this.updateCurrentStep(1);
+  },
+  mounted() {
+    // initTE({ Select });
+
+    const selectEl = this.$refs.pickupMethodSelect;
+    Select.getOrCreateInstance(selectEl);
+
+    if (this.pickupMethod === '') {
+      const cartIndex = this.cartList.findIndex((item) => item.id === '-Nfviy3OLgcT7GnSUqUV');
+      if (cartIndex > -1) {
+        this.cartList.splice(cartIndex, 1);
+      }
+    }
+  },
+  beforeUnmount() {
+    if (this.$refs.pickupMethodSelect) {
+      const select = new Select(this.$refs.pickupMethodSelect);
+      select.dispose();
+    }
   },
 };
 </script>

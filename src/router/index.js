@@ -78,6 +78,11 @@ const router = createRouter({
           key: 'CouponDashboard',
           component: () => import('../views/backend/CouponDashboard.vue'),
         },
+        {
+          path: 'order',
+          key: 'OrderDashboard',
+          component: () => import('../views/backend/OrderDashboard.vue'),
+        },
       ],
     },
   ],

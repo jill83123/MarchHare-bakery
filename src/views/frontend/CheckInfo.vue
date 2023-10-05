@@ -87,13 +87,14 @@
             <label for="address" class="block mb-1">地址<span class="text-danger"> *</span></label>
             <VField
               type="text"
-              class="m-0 block w-full rounded border border-solid bg-neutral-50 bg-clip-padding px-3 py-[6px] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
+              class="m-0 block w-full rounded border border-solid bg-neutral-50 bg-clip-padding px-3 py-[6px] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none disabled:bg-neutral-100 disabled:text-gray-600"
               :class="{ 'border-danger': errors['地址'], 'border-neutral-300': !errors['地址'] }"
               placeholder="請輸入地址"
               name="地址"
               id="address"
               rules="required"
               v-model="userInfo.user.address"
+              :disabled="userInfo.user.pickupMethod === 'self'"
             ></VField>
             <ErrorMessage class="absolute right-0 text-sm text-danger" name="地址"></ErrorMessage>
             <span class="absolute bottom-[12%] right-2 material-symbols-outlined text-danger" v-if="errors['地址']">
@@ -176,7 +177,7 @@
                     <h4 class="inline-block font-medium text-lg truncate max-w-[90%]">
                       {{ cartItem.product.title }}
                     </h4>
-                    <p class="inline-block text-sm">{{ cartItem.qty }} {{ cartItem.product.unit }}</p>
+                    <p class="inline-block text-sm">x {{ cartItem.qty }} {{ cartItem.product.unit }}</p>
                   </div>
 
                   <div class="flex items-center justify-between">
@@ -276,6 +277,10 @@ export default {
   created() {
     this.updateCurrentStep(2);
     this.getCartList();
+
+    if (this.userInfo.user.pickupMethod === undefined) {
+      this.$router.replace('/checkout/cart');
+    }
   },
   components: {
     rulesModal,

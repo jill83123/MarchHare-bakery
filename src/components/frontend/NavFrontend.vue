@@ -210,7 +210,7 @@
                   <div class="flex items-center">
                     <button
                       class="pr-1"
-                      @click.prevent="updateCart(cartItem.id, cartItem.qty > 1 ? cartItem.qty - 1 : 1)"
+                      @click.prevent.stop="updateCart(cartItem.id, cartItem.qty > 1 ? cartItem.qty - 1 : 1)"
                       :disabled="status.updateIcon === cartItem.id || cartItem.qty === 1"
                     >
                       <span
@@ -227,7 +227,7 @@
                     />
                     <span class="pl-2 text-sm text-gray-400"> {{ cartItem.product.unit }}</span>
                     <button
-                      @click.prevent="updateCart(cartItem.id, cartItem.qty + 1)"
+                      @click.prevent.stop="updateCart(cartItem.id, cartItem.qty + 1)"
                       :disabled="status.updateIcon === cartItem.id"
                     >
                       <span class="pl-1 text-xl align-bottom text-brown-300 material-symbols-outlined">add</span>
@@ -239,11 +239,7 @@
                       <span class="text-xs text-gray-400">NT {{ $filters.currency(cartItem.product.price) }} 元</span>
                       <span>小計 NT {{ $filters.currency(cartItem.final_total) }} 元</span>
                     </div>
-                    <button
-                      class="self-end hover:text-danger"
-                      id="delBtn"
-                      @click.prevent="delCartItem('one', cartItem.id)"
-                    >
+                    <button class="self-end hover:text-danger" @click.prevent.stop="delCartItem('one', cartItem.id)">
                       <span class="align-bottom material-symbols-outlined"> delete </span>
                     </button>
                   </div>
@@ -255,7 +251,7 @@
               <button
                 type="button"
                 class="z-10 items-center inline-block mx-1 font-medium leading-normal tracking-wider uppercase transition duration-150 ease-in-out border-b text-brown-300 border-brown-300 hover:opacity-80"
-                @click.prevent="goToShopping()"
+                @click.prevent.stop="goToShopping()"
                 >點我</button
               >
               進行選購吧！</p
@@ -332,9 +328,9 @@ export default {
     clickAwayHideCart(clickEvent) {
       if (
         this.$refs.collapse &&
-        this.$refs.collapse.hasAttribute('data-te-collapse-show') &&
-        !this.$refs.collapse.contains(clickEvent.target) &&
-        clickEvent.target.id.includes('delBtn')
+        this.$refs.collapse.hasAttribute &&
+        this.$refs.collapse.hasAttribute('data-te-collapse-show') === true &&
+        !this.$refs.collapse.contains(clickEvent.target)
       ) {
         this.hideCollapse();
       }
@@ -344,6 +340,14 @@ export default {
     initTE({ Collapse, initTE });
     window.addEventListener('scroll', this.stickyNav);
     document.addEventListener('click', this.clickAwayHideCart);
+  },
+  beforeUnmount() {
+    document.removeEventListener('click', this.clickAwayHideCart);
+
+    if (this.$refs.collapse) {
+      const myCollapse = new Collapse(this.$refs.collapse);
+      myCollapse.dispose();
+    }
   },
 };
 </script>

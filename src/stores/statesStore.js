@@ -17,12 +17,11 @@ const statesStore = defineStore('states', {
         this.messages.push({ title, message: content.join(' 、 '), style: 'bg-danger' });
       }
     },
-    pushAlertMessage(res, title, message) {
+    pushAlertMessage(res, title) {
       if (res) {
         this.messages.push({ title, icon: 'success' });
       } else {
-        const content = typeof message === 'string' ? [message] : message;
-        this.messages.push({ title, message: content.join(' 、 '), icon: 'error' });
+        this.messages.push({ title, icon: 'error' });
       }
     },
   },

@@ -19,7 +19,7 @@
               <input
                 disabled
                 type="text"
-                class="m-0 block w-full border-b border-solid border-neutral-300 bg-neutral-50 bg-clip-padding px-3 py-[6px] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-brown-300 focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
+                class="m-0 block w-full border-b border-solid rounded border-neutral-200 bg-neutral-50 bg-clip-padding px-3 py-[6px] text-base font-normal leading-[1.6] text-neutral-500 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-brown-300 focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
                 id="name"
                 v-model="userInfo.user.name"
               />
@@ -29,7 +29,7 @@
               <input
                 disabled
                 type="tel"
-                class="m-0 block w-full border-b border-solid border-neutral-300 bg-neutral-50 bg-clip-padding px-3 py-[6px] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-brown-300 focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
+                class="m-0 block w-full border-b border-solid rounded border-neutral-200 bg-neutral-50 bg-clip-padding px-3 py-[6px] text-base font-normal leading-[1.6] text-neutral-500 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-brown-300 focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
                 id="tel"
                 v-model="userInfo.user.tel"
               />
@@ -40,7 +40,7 @@
             <input
               disabled
               type="email"
-              class="m-0 block w-full border-b border-solid border-neutral-300 bg-neutral-50 bg-clip-padding px-3 py-[6px] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-brown-300 focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
+              class="m-0 block w-full border-b border-solid rounded border-neutral-200 bg-neutral-50 bg-clip-padding px-3 py-[6px] text-base font-normal leading-[1.6] text-neutral-500 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-brown-300 focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
               id="mail"
               v-model="userInfo.user.email"
             />
@@ -50,7 +50,7 @@
             <input
               disabled
               type="text"
-              class="m-0 block w-full border-b border-solid border-neutral-300 bg-neutral-50 bg-clip-padding px-3 py-[6px] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-brown-300 focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
+              class="m-0 block w-full border-b border-solid rounded border-neutral-200 bg-neutral-50 bg-clip-padding px-3 py-[6px] text-base font-normal leading-[1.6] text-neutral-500 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-brown-300 focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
               id="address"
               v-model="userInfo.user.address"
             />
@@ -60,7 +60,7 @@
             <textarea
               disabled
               type="text"
-              class="min-h-[100px] resize-none m-0 block w-full rounded border border-solid border-neutral-300 bg-neutral-50 bg-clip-padding px-3 py-[6px] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-brown-300 focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
+              class="min-h-[100px] resize-none m-0 block w-full rounded border-b border-solid border-neutral-200 bg-neutral-50 bg-clip-padding px-3 py-[6px] text-base font-normal leading-[1.6] text-neutral-500 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-brown-300 focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
               id="message"
               v-model="userInfo.message"
             />
@@ -74,11 +74,11 @@
                   type="radio"
                   name="payWay"
                   id="cash-on-delivery"
-                  value="onDelivery"
-                  v-model="userInfo.payWay"
+                  value="cashOnDelivery"
+                  v-model="userInfo.user.payWay"
                 />
                 <label class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" for="cash-on-delivery">
-                  貨到付款
+                  貨到付款 / 到店付款
                 </label>
               </div>
               <div class="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
@@ -88,7 +88,7 @@
                   name="payWay"
                   id="other"
                   value="other"
-                  v-model="userInfo.payWay"
+                  v-model="userInfo.user.payWay"
                 />
                 <label class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" for="other">
                   其他方式
@@ -101,9 +101,9 @@
             <button
               type="button"
               class="z-10 flex items-center self-end px-8 py-2 ml-auto text-sm font-medium leading-normal tracking-wider text-white uppercase transition duration-150 ease-in-out rounded-full to-check bg-brown-300 focus:outline-none focus:ring-0 hover:opacity-80 disabled:bg-gray-300"
-              :disabled="!userInfo.payWay"
+              :disabled="!userInfo.user.payWay"
               @click.prevent="finishOrder()"
-              >確認付款
+              >確認購買
             </button>
           </div>
         </div>
@@ -206,9 +206,11 @@ export default {
   methods: {
     ...mapActions(cartStore, ['getCartList', 'updateCurrentStep', 'pushUserInfo', 'useCoupon', 'finishOrder']),
   },
-  created() {
-    if (Object.keys(this.userInfo).length === 0) {
+  mounted() {
+    if (this.userInfo.user.name === '') {
       this.$router.replace('/checkout/information');
+    } else if (this.cartList.length <= 0) {
+      this.$router.replace('/checkout/cart');
     }
     this.updateCurrentStep(3);
     this.getCartList();

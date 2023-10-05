@@ -389,4 +389,8 @@ export default {
 .ck-content ul {
   list-style-position: inside;
 }
+
+.ck-content {
+  min-height: 80px;
+}
 </style>

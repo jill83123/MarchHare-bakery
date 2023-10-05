@@ -6,7 +6,6 @@ import statesStore from './statesStore';
 const cartStore = defineStore('cart', {
   state: () => ({
     cartList: JSON.parse(localStorage.getItem('cartList')) || [],
-    cartListAPI: [],
     cartTotalPrice: 0,
     finalTotalPrice: 0,
     status: {
@@ -46,6 +45,7 @@ const cartStore = defineStore('cart', {
         cartItem.qty += quantity;
       } else {
         this.cartList.push({ product, id: product.id, qty: quantity, final_total: product.price });
+        console.log({ product, id: product.id, qty: quantity, final_total: product.price });
       }
       statesStore().pushAlertMessage(true, '加入購物車');
       this.getCartList();
@@ -115,8 +115,9 @@ const cartStore = defineStore('cart', {
       // });
     },
     // check out
-    checkCartList() {
+    checkCartList(pickupMethod) {
       this.status.isLoading = true;
+      this.userInfo.user.pickupMethod = pickupMethod;
 
       const delApi = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/carts`;
       axios.delete(delApi).then((res) => {
@@ -134,12 +135,31 @@ const cartStore = defineStore('cart', {
             };
 
             axios.post(api, data).then((response) => {
+              // console.log(response);
               if (response.data.success) {
                 count += 1;
               }
               if (count === this.cartList.length) {
                 router.push('/checkout/information');
                 this.status.isLoading = false;
+                if (pickupMethod === 'self') {
+                  this.userInfo.user.address = '到店自取';
+                } else if (pickupMethod === 'delivery') {
+                  const deliveryFee = {
+                    final_total: 80,
+                    id: '-Nfviy3OLgcT7GnSUqUV',
+                    qty: 1,
+                    price: 80,
+                    category: '運費',
+                    imageUrl:
+                      'https://storage.googleapis.com/vue-course-api.appspot.com/yu-api/1696471229222.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=coobBweHW0lLquqGySO4Ejimw22pG%2F2BEi9pheRmVm2xkZRWtRYzDORK6UiyoBqMMsfBWXmTcLmJFWayWVqXe44V0xsA%2FsvpmTaOrmYdlzGlrefhGsPjpjsOIP8LbbnDqCVnszWeZU3Dh2s0%2F%2FNP43OE8xL5h%2B3c5QHKf0Z3vVkd3a8BHu4H08keCoO%2FbIZfWCKlGWV3JhnkBokpJV0IEwKQmr9BJ%2FdrwdG%2BHe5BfsOeBM9AO4HgZrKztXLDwyXkysk6mkupr5a74mMXDTyGU%2BMgCdSnrEsLQzKsjXr2kzsEsTIf0KxD6AaPfiZXgdO22GXyWFy%2BPzRwYB11CLNobA%3D%3D',
+                    num: 1,
+                    origin_price: 80,
+                    title: '運費',
+                    unit: '運費',
+                  };
+                  this.addToCart(deliveryFee, 1);
+                }
               }
             });
           });
@@ -159,23 +179,32 @@ const cartStore = defineStore('cart', {
       this.status.isLoading = true;
       const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/coupon`;
       axios.post(api, { data: { code: couponCode } }).then((res) => {
-        console.log(res);
         if (res.data.success) {
           this.status.coupon = true;
           this.finalTotalPrice = res.data.data.final_total;
+          statesStore().pushAlertMessage(true, '套用成功');
+        } else {
+          statesStore().pushAlertMessage(false, res.data.message);
         }
         this.status.isLoading = false;
       });
     },
     finishOrder() {
+      this.status.isLoading = true;
       const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/order`;
       axios.post(api, { data: this.userInfo }).then((res) => {
-        // console.log(res);
         if (res.data.success) {
           this.OrderData = res.data;
+          this.cartList = [];
+          localStorage.setItem('cartList', JSON.stringify(this.cartList));
           router.replace('/checkout/complete');
+          this.status.isLoading = false;
         }
       });
+    },
+    shoppingMore() {
+      router.replace('/shop');
+      this.userInfo = { user: { name: '', email: '', tel: '', address: '' }, message: '' };
     },
   },
 });

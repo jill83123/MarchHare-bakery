@@ -185,3 +185,9 @@ export default {
   mixins: [modalMixin],
 };
 </script>
+
+<style>
+.group[data-te-datepicker-cell-selected] .group-\[\[data-te-datepicker-cell-selected\]\]\:font-black {
+  @apply border border-cerulean text-cerulean;
+}
+</style>

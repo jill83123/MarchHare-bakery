@@ -113,7 +113,9 @@
             <td class="py-4 pr-1 sm:tracking-wider sm:pr-4"
               >{{ OrderData.orderId }}
               <button>
-                <span class="text-lg material-symbols-outlined"> file_copy </span>
+                <span class="text-lg cursor-pointer material-symbols-outlined" @click.prevent="copy(OrderData.orderId)">
+                  file_copy
+                </span>
               </button>
               <br /><span class="text-xs text-danger">※ 請詳記訂單編號，方便查詢訂單資訊</span></td
             >
@@ -140,9 +142,11 @@
           </tr>
           <tr class="border-b-2 border-dashed border-brown-100">
             <td class="py-4 pr-1 sm:tracking-wider sm:pr-4">是否付款</td>
-            <td class="py-4 pr-1 sm:tracking-wider sm:pr-4">{{
-              userInfo.payWay === 'other' ? '已付款' : '尚未付款'
-            }}</td>
+            <td
+              class="py-4 pr-1 font-medium sm:tracking-wider sm:pr-4"
+              :class="userInfo.user.payWay === 'other' ? 'text-success' : 'text-danger'"
+              >{{ userInfo.user.payWay === 'other' ? '已付款' : '尚未付款' }}</td
+            >
           </tr>
           <tr class="border-b-2 border-dashed border-brown-100">
             <td class="py-4 pr-1 sm:tracking-wider sm:pr-4">留言</td>
@@ -171,18 +175,20 @@
 <script>
 import { mapState, mapActions } from 'pinia';
 import cartStore from '../../stores/cartStore';
+import statesStore from '../../stores/statesStore';
 
 export default {
   computed: {
     ...mapState(cartStore, ['OrderData', 'userInfo']),
   },
   methods: {
-    ...mapActions(cartStore, ['updateCurrentStep']),
+    ...mapActions(cartStore, ['updateCurrentStep', 'shoppingMore']),
 
-    shoppingMore(){
-      this.$router.replace('/shop')
-      this.userInfo = { user: { name: '', email: '', tel: '', address: '' }, message: '' };
-    }
+    copy(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        statesStore().pushAlertMessage(true, '複製成功');
+      });
+    },
   },
   created() {
     this.updateCurrentStep(4);
