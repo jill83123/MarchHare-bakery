@@ -28,7 +28,7 @@
       <div class="flex items-center">
         <ul class="flex items-center gap-4 lg:hidden">
           <li>
-            <a href="#" class="block">
+            <RouterLink to="/favorite" class="block">
               <span
                 class="align-middle material-symbols-outlined"
                 style="
@@ -41,7 +41,7 @@
               >
                 favorite
               </span>
-            </a>
+            </RouterLink>
           </li>
           <li>
             <a href="#">
@@ -114,7 +114,7 @@
         </ul>
         <ul class="items-center hidden lg:gap-8 ml-11 lg:flex">
           <li>
-            <a href="#" class="relative block">
+            <RouterLink to="/favorite" class="relative block favoriteIcon">
               <span
                 class="align-middle material-symbols-outlined"
                 style="
@@ -132,7 +132,7 @@
                 v-if="favoriteStore.isFavorite"
                 >{{ favoriteStore.favorite.length }}</span
               >
-            </a>
+            </RouterLink>
           </li>
           <li :class="{ 'cursor-not-allowed': currentStep >= 2 && $route.matched[1].path === '/checkout' }">
             <a
@@ -353,7 +353,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.router-link-active:not(.to-check) {
+.router-link-active:not(.to-check):not(.favoriteIcon) {
   @apply text-brown-300;
 }
 

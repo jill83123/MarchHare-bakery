@@ -6,7 +6,7 @@ const router = createRouter({
     {
       path: '/',
       redirect: '/index',
-      component: () => import('../views/frontend/UserPages.vue'),
+      component: () => import('../views/frontend/UserPage.vue'),
       children: [
         {
           path: '/index',
@@ -19,6 +19,32 @@ const router = createRouter({
         {
           path: '/product/:id',
           component: () => import('../views/frontend/ProductDetails.vue'),
+        },
+        {
+          path: '/favorite',
+          component: () => import('../views/frontend/FavoriteProducts.vue'),
+        },
+        {
+          path: '/order-details',
+          component: () => import('../views/frontend/OrderDetails.vue'),
+        },
+        {
+          path: '/faq',
+          component: () => import('../views/frontend/FaqPage.vue'),
+        },
+        {
+          path: '/blog',
+          redirect: '/blog/',
+          children: [
+            {
+              path: '/blog/',
+              component: () => import('../views/frontend/ArticleList.vue'),
+            },
+            {
+              path: 'article',
+              component: () => import('../views/frontend/ArticlePage.vue'),
+            },
+          ],
         },
         {
           path: '/checkout',
@@ -43,20 +69,6 @@ const router = createRouter({
             },
           ],
         },
-        // {
-        //   path: '/blog',
-        //   component: () => import('../views/frontend/OnlineShop.vue'),
-        //   children: [
-        //     {
-        //       path: 'article',
-        //       component: () => import('../views/frontend/ProductDetails.vue'),
-        //     },
-        //   ],
-        // },
-        // {
-        //   path: '/faq',
-        //   component: () => import('../views/frontend/OnlineShop.vue'),
-        // },
       ],
     },
     {

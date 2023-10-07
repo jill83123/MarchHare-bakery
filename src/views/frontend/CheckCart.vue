@@ -8,7 +8,7 @@
               <tr>
                 <th scope="col" class="w-[5%] px-1 py-4 md:px-4 lg:px-6">#</th>
                 <th scope="col" class="md:w-[55%] px-1 py-4 md:px-4 lg:px-6">清單</th>
-                <th scope="col" class="max-[450px]:w-[20%] md:w-[15%] px-1 py-4 md:px-4 lg:px-6">小計</th>
+                <th scope="col" class="max-[480px]:w-[20%] md:w-[15%] px-1 py-4 md:px-4 lg:px-6">小計</th>
                 <th scope="col" class="w-[15%] px-1 py-4 md:px-4 lg:px-6">編輯</th>
                 <th scope="col" class="w-[10%] px-0 py-4 md:px-4 lg:px-6">刪除</th>
               </tr>
@@ -20,20 +20,40 @@
                 :key="cartItem.id"
               >
                 <td class="px-2 py-4 font-medium md:px-4 lg:px-6">{{ index + 1 }}</td>
-                <td class="px-1 py-4 md:px-4 lg:px-6">
-                  <div class="flex flex-col gap-2 md:gap-8 min-[450px]:flex-row">
+                <td class="px-2 py-4 md:px-4 lg:px-6">
+                  <div class="flex flex-col gap-2 md:gap-8 min-[480px]:flex-row">
                     <img
-                      class="w-full min-[450px]:w-[130px] object-cover"
+                      class="w-full min-[480px]:w-[130px] object-cover"
                       :src="cartItem.product.imageUrl"
                       :alt="cartItem.product.title"
                     />
                     <div class="flex flex-col justify-center">
                       <div class="mb-2">
                         <h4 class="inline-block mb-1 mr-1 font-medium text-black lg:text-xl">
-                          {{ cartItem.product.title }} </h4
-                        ><br />
-                        <span class="text-xs tracking-wider text-gray-500"
-                          >NT {{ $filters.currency(cartItem.product.price) }} 元</span
+                          {{ cartItem.product.title }}
+                          <span
+                            class="px-2 ml-2 text-xs text-white rounded-full font-montserrat op bg-success"
+                            v-if="cartItem.product.price !== cartItem.product.origin_price"
+                            >SALE</span
+                          >
+                        </h4>
+                        <br />
+                        <span
+                          class="text-xs tracking-wider text-gray-500"
+                          :class="{ 'line-through': cartItem.product.price !== cartItem.product.origin_price }"
+                          >NT
+                          <span>{{ $filters.currency(cartItem.product.origin_price) }}</span>
+                          元</span
+                        >
+                        <span
+                          v-if="cartItem.product.price !== cartItem.product.origin_price"
+                          class="text-xs tracking-wider text-gray-500"
+                          :class="{
+                            ' text-success font-bold ml-2': cartItem.product.price !== cartItem.product.origin_price,
+                          }"
+                          >NT
+                          <span>{{ $filters.currency(cartItem.product.price) }}</span>
+                          元</span
                         >
                       </div>
                       <div v-html="cartItem.product.description" class="hidden lg:block"></div>
@@ -41,7 +61,7 @@
                   </div>
                 </td>
                 <td
-                  class="px-2 py-4 text-xs tracking-wider max-[450px]:text-center sm:text-left sm:text-sm md:px-4 lg:px-6"
+                  class="px-0 sm:px-2 py-4 text-xs tracking-wider max-[480px]:text-center sm:text-left sm:text-sm md:px-4 lg:px-6"
                 >
                   <span
                     ><span class="hidden sm:inline-block">NT</span>
@@ -86,8 +106,8 @@
 
             <tfoot class="text-base font-bold tracking-wider border-t border-gray-200 text-brown-500">
               <td class="px-1 py-4 md:px-4 lg:px-6" colspan="2">
-                <div class="flex items-center justify-between">
-                  {{ cartList.length }} 個商品
+                <div class="flex justify-between first-letter:items-start">
+                  <span class="hidden sm:block"> {{ cartList.length }} 個商品 </span>
                   <div class="w-[170px] text-gray-500">
                     <select
                       data-te-select-init
@@ -102,14 +122,15 @@
                   </div>
                 </div>
               </td>
-              <td class="px-1 py-4 md:px-4 lg:px-6" colspan="3">
+              <td class="px-1 py-4 max-[480px]:text-center md:px-4 lg:px-6" colspan="3">
                 共 NT
                 {{
                   pickupMethod === 'delivery'
-                    ? `${$filters.currency(cartTotalPrice + 80)}（含運費 $80）`
+                    ? `${$filters.currency(cartTotalPrice + 80)}`
                     : $filters.currency(cartTotalPrice)
                 }}
                 元
+                <p class="-ml-2 text-sm">{{ pickupMethod === 'delivery' ? `（含運費 80 元）` : '' }}</p>
               </td>
             </tfoot>
           </table>
@@ -146,7 +167,7 @@
 </template>
 
 <script>
-import { Select, initTE } from 'tw-elements';
+import { Select } from 'tw-elements';
 import { mapState, mapActions } from 'pinia';
 import cartStore from '../../stores/cartStore';
 
@@ -167,8 +188,6 @@ export default {
     this.updateCurrentStep(1);
   },
   mounted() {
-    // initTE({ Select });
-
     const selectEl = this.$refs.pickupMethodSelect;
     Select.getOrCreateInstance(selectEl);
 

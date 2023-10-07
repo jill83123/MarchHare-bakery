@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-cream">
+  <footer class="bg-cream">
     <div class="container relative flex flex-col justify-between py-8 sm:py-10 sm:flex-row">
       <div>
         <!-- social -->
@@ -61,7 +61,7 @@
         alt="bread"
       />
     </div>
-  </div>
+  </footer>
 </template>
 
 <script></script>

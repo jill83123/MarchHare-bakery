@@ -43,9 +43,9 @@ const cartStore = defineStore('cart', {
       const cartItem = this.cartList.find((item) => item.product.id === product.id);
       if (cartItem) {
         cartItem.qty += quantity;
+        cartItem.final_total = product.price * cartItem.qty;
       } else {
-        this.cartList.push({ product, id: product.id, qty: quantity, final_total: product.price });
-        console.log({ product, id: product.id, qty: quantity, final_total: product.price });
+        this.cartList.push({ product, id: product.id, qty: quantity, final_total: product.price * quantity });
       }
       statesStore().pushAlertMessage(true, '加入購物車');
       this.getCartList();

@@ -151,14 +151,15 @@
               >總計 <span class="mx-1 text-lg font-bold tracking-wider font-noto-serif">{{ cachePrice }}</span> 元
             </p>
             <div class="flex gap-4">
-              <button
+              <RouterLink to="/checkout/cart"
                 type="button"
                 class="z-10 flex items-center px-8 py-2 text-sm font-medium leading-normal tracking-wider uppercase transition duration-150 ease-in-out border rounded-full border-brown-300 focus:outline-none focus:ring-1 hover:opacity-80 text-brown-300"
-                >前往結帳</button
+                >前往結帳</RouterLink
               >
               <button
                 type="button"
                 class="z-10 flex items-center px-8 py-2 text-sm font-medium leading-normal tracking-wider text-white uppercase transition duration-150 ease-in-out rounded-full bg-brown-300 focus:outline-none focus:ring-0 hover:opacity-80"
+                @click.prevent="addToCart(productDetails, buyNum)"
                 >加入購物車
               </button>
             </div>
@@ -209,7 +210,7 @@ export default {
     ...mapStores(favoriteStore),
   },
   methods: {
-    ...mapActions(cartStore, ['delCartItem', 'updateCart', 'getCartList', 'updateCurrentStep']),
+    ...mapActions(cartStore, ['delCartItem', 'updateCart', 'getCartList', 'updateCurrentStep','addToCart']),
 
     getProductDetails() {
       const { id } = this.$route.params;
