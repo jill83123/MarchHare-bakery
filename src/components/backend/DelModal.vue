@@ -18,9 +18,7 @@
           class="flex items-center justify-between flex-shrink-0 p-4 border-b-2 border-opacity-100 rounded-t-md border-neutral-100 dark:border-opacity-50 bg-danger"
         >
           <!--Modal title-->
-          <h5
-            class="flex items-center text-xl leading-normal text-white font-base"
-            id="exampleModalLabel"
+          <h5 class="flex items-center text-xl leading-normal text-white font-base" id="exampleModalLabel"
             ><span
               class="mr-2 material-symbols-outlined"
               style="
@@ -58,11 +56,8 @@
         <!--Modal body-->
         <div class="relative flex-auto p-4" data-te-modal-body-ref>
           <p class="py-3"
-            >真的要刪除
-            <span class="font-bold text-danger">{{ item.title }}</span> 嗎？（刪除後將會<span
-              class="font-bold"
-              >無法復原</span
-            >）</p
+            >真的要刪除<span class="font-bold text-danger" v-if="item.title">&ensp;{{ item.title }}&ensp;</span
+            >嗎？（刪除後將會<span class="font-bold">無法復原</span>）</p
           >
         </div>
 

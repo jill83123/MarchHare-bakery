@@ -49,7 +49,7 @@
             <RouterLink class="relative block py-3 transition px-9" to="/admin/coupon">優惠券</RouterLink>
           </li>
           <li class="leading-9" data-te-nav-item-ref>
-            <RouterLink class="relative block py-3 transition px-9" to="/">部落格文章</RouterLink>
+            <RouterLink class="relative block py-3 transition px-9" to="/">部落格</RouterLink>
           </li>
         </ul>
         <div class="px-9">

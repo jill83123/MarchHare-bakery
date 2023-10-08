@@ -240,7 +240,6 @@
     </div>
   </div>
   <rulesModal></rulesModal>
-  <button @click="look()">點我取得列表（測試用，待刪）</button>
 </template>
 
 <script>
@@ -257,12 +256,6 @@ export default {
   },
   methods: {
     ...mapActions(cartStore, ['getCartList', 'updateCurrentStep', 'pushUserInfo', 'useCoupon']),
-    look() {
-      const api2 = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/cart`;
-      this.$http.get(api2).then((res) => {
-        console.log('取得購物列表', res);
-      });
-    },
 
     isTel(value) {
       const number = /^(09[0-9]{8}|0[0-9]{9})$/;
@@ -278,7 +271,7 @@ export default {
     this.updateCurrentStep(2);
     this.getCartList();
 
-    if (this.userInfo.user.pickupMethod === undefined) {
+    if (this.userInfo.user.order.pickupMethod === undefined) {
       this.$router.replace('/checkout/cart');
     }
   },
@@ -288,4 +281,3 @@ export default {
 };
 </script>
 
-<style></style>

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="mt-16 mb-14">
+    <div class="mt-14 mb-9">
       <div class="flex items-center justify-center gap-2 mb-5">
         <svg width="80" height="64" viewBox="0 0 80 64" fill="none" xmlns="http://www.w3.org/2000/svg">
           <!-- 108 -->
@@ -38,20 +38,22 @@
     </div>
 
     <div class="mb-14">
-      <div class="flex items-center justify-center gap-2 mb-2">
-        <h4 class="inline-block mr-1 text-xl tracking-wide text-center">訂單編號</h4
-        ><span
-          class="text-xl after:-z-[1] relative leading-4 after:-left-[2px] after:-right-[2px] after:bg-warning after:absolute after:top-1/2 after:-bottom-1 align-top"
-          >{{ OrderData.orderId }}</span
-        >
-        <button>
+      <div class="flex flex-col items-center justify-center gap-2 mb-2">
+        <h4 class="inline-block mr-1 text-xl tracking-wide text-center">訂單編號</h4>
+        <div class="-mr-7">
           <span
-            class="text-xl text-black cursor-pointer material-symbols-outlined"
-            @click.prevent="copy(OrderData.orderId)"
+            class="mr-2 text-xl after:-z-[1] relative leading-4 after:-left-[2px] after:-right-[2px] after:bg-warning after:absolute after:top-1/2 after:-bottom-[1px] align-top"
+            >{{ OrderData.orderId }}</span
           >
-            file_copy
-          </span>
-        </button>
+          <button>
+            <span
+              class="text-xl text-black cursor-pointer material-symbols-outlined"
+              @click.prevent="copy(OrderData.orderId)"
+            >
+              file_copy
+            </span>
+          </button>
+        </div>
       </div>
       <p class="text-sm text-center text-danger">※ 請詳記訂單編號，方便查詢詳細資訊</p>
     </div>

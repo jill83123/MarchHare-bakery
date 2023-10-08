@@ -15,7 +15,10 @@ const cartStore = defineStore('cart', {
       coupon: false,
     },
     currentStep: 1,
-    userInfo: { user: { name: '', email: '', tel: '', address: '' }, message: '' },
+    userInfo: {
+      user: { name: '', email: '', tel: '', address: '', order: { is_paid: false, status: '', pickup: '' } },
+      message: '',
+    },
     OrderData: {},
   }),
 
@@ -26,18 +29,6 @@ const cartStore = defineStore('cart', {
         this.cartTotalPrice += item.final_total;
       });
       localStorage.setItem('cartList', JSON.stringify(this.cartList));
-
-      // 分隔線
-
-      // this.status.isLoading = true;
-      // const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/cart`;
-      // axios.get(api).then((res) => {
-      //   if (res.data.success) {
-      //     this.cartList = res.data.data.carts;
-      //     this.cartTotalPrice = res.data.data.total;
-      //     this.status.isLoading = false;
-      //   }
-      // });
     },
     addToCart(product, quantity = 1) {
       const cartItem = this.cartList.find((item) => item.product.id === product.id);
@@ -49,25 +40,6 @@ const cartStore = defineStore('cart', {
       }
       statesStore().pushAlertMessage(true, '加入購物車');
       this.getCartList();
-
-      // 分隔線
-
-      // this.status.loadingIcon = product.id;
-
-      // const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/cart`;
-      // const data = {
-      //   data: {
-      //     product_id: product.id,
-      //     qty: quantity,
-      //   },
-      // };
-      // axios.post(api, data).then((res) => {
-      //   if (res.data.success) {
-      //     statesStore().pushAlertMessage(true, '加入購物車');
-      //     this.getCartList();
-      //   }
-      //   this.status.loadingIcon = '';
-      // });
     },
     updateCart(id, quantity) {
       const cartItem = this.cartList.find((item) => item.id === id);
@@ -77,19 +49,6 @@ const cartStore = defineStore('cart', {
 
       statesStore().pushAlertMessage(true, '更新購物車');
       this.getCartList();
-
-      // 分隔線
-
-      // this.status.updateIcon = id;
-      // const num = parseInt(quantity, 10);
-      // const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/cart/${id}`;
-      // const data = { product_id: id, qty: num };
-      // axios.put(api, { data }).then((res) => {
-      //   if (res.data.success) {
-      //     this.getCartList();
-      //   }
-      //   this.status.updateIcon = '';
-      // });
     },
     delCartItem(status, id) {
       const cartIndex = this.cartList.findIndex((item) => item.id === id);
@@ -101,23 +60,11 @@ const cartStore = defineStore('cart', {
         statesStore().pushAlertMessage(true, '已刪除商品');
       }
       this.getCartList();
-
-      // 分隔線
-
-      // let api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/cart/${id}`;
-      // if (status === 'all') {
-      //   api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/carts`;
-      // }
-      // axios.delete(api).then((res) => {
-      //   if (res.data.success) {
-      //     this.getCartList();
-      //   }
-      // });
     },
     // check out
     checkCartList(pickupMethod) {
       this.status.isLoading = true;
-      this.userInfo.user.pickupMethod = pickupMethod;
+      this.userInfo.user.order.pickupMethod = pickupMethod;
 
       const delApi = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/carts`;
       axios.delete(delApi).then((res) => {
@@ -135,7 +82,6 @@ const cartStore = defineStore('cart', {
             };
 
             axios.post(api, data).then((response) => {
-              // console.log(response);
               if (response.data.success) {
                 count += 1;
               }
@@ -191,6 +137,8 @@ const cartStore = defineStore('cart', {
     },
     finishOrder() {
       this.status.isLoading = true;
+      this.userInfo.user.order.status = '收到訂單';
+
       const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/order`;
       axios.post(api, { data: this.userInfo }).then((res) => {
         if (res.data.success) {

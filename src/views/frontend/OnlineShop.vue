@@ -223,7 +223,7 @@
                   </div>
                   <button
                     type="button"
-                    class="z-10 flex items-center py-2 text-sm font-medium leading-normal tracking-wider text-white uppercase transition duration-150 ease-in-out rounded-full px-7 bg-brown-300 focus:outline-none focus:ring-0 active:bg-cerulean-700 hover:opacity-80"
+                    class="z-10 flex items-center px-6 py-2 text-sm font-medium leading-normal tracking-wider text-white uppercase transition duration-150 ease-in-out rounded-full bg-brown-300 focus:outline-none focus:ring-0 active:bg-cerulean-700 hover:opacity-80"
                     :class="{ 'bg-gray-300': status.loadingIcon === product.id }"
                     :disabled="status.loadingIcon === product.id"
                     @click.prevent="addToCart(product, 1)"

@@ -146,6 +146,7 @@
           <button
             type="button"
             class="z-10 flex items-center px-8 py-2 mx-auto mb-10 text-sm font-medium leading-normal tracking-wider text-gray-500 uppercase transition duration-150 ease-in-out rounded-full focus:outline-none focus:ring-1 hover:opacity-80"
+            @click.prevent="cancelOrder()"
             >取消購買</button
           >
         </div>
@@ -182,6 +183,11 @@ export default {
   },
   methods: {
     ...mapActions(cartStore, ['delCartItem', 'updateCart', 'getCartList', 'updateCurrentStep', 'checkCartList']),
+
+    cancelOrder() {
+      this.delCartItem('all');
+      this.$router.push('/shop')
+    },
   },
   created() {
     this.getCartList();

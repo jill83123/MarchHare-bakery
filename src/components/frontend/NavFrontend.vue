@@ -338,6 +338,7 @@ export default {
   },
   mounted() {
     initTE({ Collapse, initTE });
+
     window.addEventListener('scroll', this.stickyNav);
     document.addEventListener('click', this.clickAwayHideCart);
   },
@@ -375,12 +376,6 @@ a:not(:has(img)) {
   h1 {
     @apply text-brown-300;
   }
-
-  // a {
-  //   &:not(.router-link-active) {
-  //     @apply text-gray-500;
-  //   }
-  // }
 
   .hamburger-icon {
     @apply text-gray-500;
