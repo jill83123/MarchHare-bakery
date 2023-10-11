@@ -83,18 +83,19 @@ const router = createRouter({
       children: [
         {
           path: 'product',
-          key: 'ProductDashboard',
           component: () => import('../views/backend/ProductDashboard.vue'),
         },
         {
           path: 'coupon',
-          key: 'CouponDashboard',
           component: () => import('../views/backend/CouponDashboard.vue'),
         },
         {
           path: 'order',
-          key: 'OrderDashboard',
           component: () => import('../views/backend/OrderDashboard.vue'),
+        },
+        {
+          path: 'blog',
+          component: () => import('../views/backend/BlogDashboard.vue'),
         },
       ],
     },

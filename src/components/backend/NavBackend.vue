@@ -1,5 +1,5 @@
 <template>
-  <button class="fixed top-0 left-0 p-3 lg:hidden" type="button" data-te-offcanvas-toggle data-te-target="#offcanvasNav"
+  <button class="p-3  lg:hidden" type="button" data-te-offcanvas-toggle data-te-target="#offcanvasNav"
     ><svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
@@ -49,7 +49,7 @@
             <RouterLink class="relative block py-3 transition px-9" to="/admin/coupon">優惠券</RouterLink>
           </li>
           <li class="leading-9" data-te-nav-item-ref>
-            <RouterLink class="relative block py-3 transition px-9" to="/">部落格</RouterLink>
+            <RouterLink class="relative block py-3 transition px-9" to="/admin/blog">部落格</RouterLink>
           </li>
         </ul>
         <div class="px-9">

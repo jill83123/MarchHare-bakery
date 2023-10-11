@@ -51,7 +51,7 @@
           <div class="flex-col min-[1200px]:flex-row flex pt-4 pb-6">
             <!-- info -->
             <div class="min-[1200px]:w-1/3">
-              <div class="h-full px-5">
+              <div class="h-full px-2">
                 <div class="flex gap-2 mb-4">
                   <div class="w-1/2">
                     <label for="name" class="block mb-1">收件人姓名</label>
@@ -139,7 +139,7 @@
 
               <!-- table -->
               <div class="overflow-x-auto max-h-[calc(100vh_-_280px)]">
-                <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+                <div class="inline-block min-w-full py-2 sm:px-3">
                   <div class="overflow-hidden">
                     <table class="min-w-full overflow-y-scroll text-sm text-left">
                       <thead class="font-medium text-black border-b border-gray-400">

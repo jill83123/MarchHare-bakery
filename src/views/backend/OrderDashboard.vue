@@ -1,7 +1,7 @@
 <template>
   <LoadingAnimation :active="isLoading"></LoadingAnimation>
   <main class="ml-0 lg:ml-[310px]">
-    <div class="container flex justify-between py-4 mt-10 lg:text-right">
+    <div class="container flex justify-between py-4 lg:mt-10 lg:text-right">
       <h2 class="flex items-center text-3xl text-black font-noto-serif"
         ><span class="mr-2 text-4xl text-black-light material-symbols-outlined"> Contract_Edit </span>訂單管理</h2
       >

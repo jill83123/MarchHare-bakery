@@ -20,7 +20,4 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['vue'],
-  alias: {
-    map: [['@']],
-  },
 };

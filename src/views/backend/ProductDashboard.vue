@@ -1,7 +1,7 @@
 <template>
   <LoadingAnimation :active="isLoading"></LoadingAnimation>
   <main class="ml-0 lg:ml-[310px]">
-    <div class="container flex justify-between py-4 mt-10 lg:text-right">
+    <div class="container flex justify-between py-4 lg:mt-10 lg:text-right">
       <h2 class="flex items-center text-3xl text-black font-noto-serif"
         ><span class="mr-2 text-4xl material-symbols-outlined text-black-light"> Lists </span>商品列表</h2
       >
@@ -35,6 +35,7 @@
                   v-for="item in products"
                   :key="item.id"
                   class="transition duration-300 ease-in-out border-b hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600"
+                  :class="{ 'bg-[#f2f2f2] ': !item.is_enabled }"
                 >
                   <th class="px-6 py-4 whitespace-nowrap">{{ item.category }}</th>
                   <td class="px-6 py-4 font-normal whitespace-nowrap">
@@ -47,6 +48,11 @@
                       />
                       <span class="mr-2 material-symbols-outlined text-[28px]" v-else> image </span>
                       {{ item.title }}
+                      <span
+                        class="px-2 ml-2 text-xs text-white rounded-full font-montserrat bg-success"
+                        v-if="item.origin_price !== item.price"
+                        >SALE</span
+                      >
                     </div>
                   </td>
                   <td class="px-6 py-4 font-normal text-gray-400 whitespace-nowrap"
