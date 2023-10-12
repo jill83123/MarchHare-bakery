@@ -1,14 +1,14 @@
 <template>
   <LoadingAnimation :active="status.isLoading"></LoadingAnimation>
   <main class="container mt-[106px] min-h-[calc(100vh_-_280px)] pb-10">
-    <div class="text-center mb-7">
+    <div class="mb-5 text-center">
       <p class="-mb-2 font-montserrat text-2xl tracking-[0.2rem] font-bold text-brown-100">Order Search</p>
       <h2 class="text-[64px] font-medium tracking-widest text-brown-300 font-maru">訂單査詢</h2>
     </div>
 
-    <div class="mx-auto mb-6 text-black sm:w-7/12 md:w-1/2 xl:w-1/3">
+    <div class="mx-auto mb-10 text-center text-black sm:w-7/12 md:w-1/2 xl:w-1/3">
       <p
-        >親愛的顧客，您好：<br />請輸入
+        >親愛的顧客<br />請輸入
         <span class="font-semibold text-brown-500">訂單編號</span> 查詢您的訂單狀態<br /><br />若有任何問題請
         <a href="" class="font-semibold border-b border-info text-info">聯繫我們</a> ，謝謝</p
       >

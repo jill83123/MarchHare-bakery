@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import axios from 'axios';
 import router from '../router/index';
-import statesStore from './statesStore';
+import swalMixin from '../mixins/swalMixin';
 
 const cartStore = defineStore('cart', {
   state: () => ({
@@ -38,7 +38,7 @@ const cartStore = defineStore('cart', {
       } else {
         this.cartList.push({ product, id: product.id, qty: quantity, final_total: product.price * quantity });
       }
-      statesStore().pushAlertMessage(true, '加入購物車');
+      swalMixin.methods.showSwalToast('success', '加入購物車');
       this.getCartList();
     },
     updateCart(id, quantity) {
@@ -47,17 +47,17 @@ const cartStore = defineStore('cart', {
       cartItem.qty = num;
       cartItem.final_total = cartItem.product.price * cartItem.qty;
 
-      statesStore().pushAlertMessage(true, '更新購物車');
+      swalMixin.methods.showSwalToast('success', '更新購物車');
       this.getCartList();
     },
     delCartItem(status, id) {
       const cartIndex = this.cartList.findIndex((item) => item.id === id);
       if (status === 'all') {
         this.cartList = [];
-        statesStore().pushAlertMessage(true, '已清空購物車');
+        swalMixin.methods.showSwalToast('success', '已清空購物車');
       } else if (status === 'one') {
         this.cartList.splice(cartIndex, 1);
-        statesStore().pushAlertMessage(true, '已刪除商品');
+        swalMixin.methods.showSwalToast('success', '已刪除商品');
       }
       this.getCartList();
     },
@@ -128,9 +128,9 @@ const cartStore = defineStore('cart', {
         if (res.data.success) {
           this.status.coupon = true;
           this.finalTotalPrice = res.data.data.final_total;
-          statesStore().pushAlertMessage(true, '套用成功');
+          swalMixin.methods.showSwalToast('success', '套用成功');
         } else {
-          statesStore().pushAlertMessage(false, res.data.message);
+          swalMixin.methods.showSwalToast('error', res.data.message);
         }
         this.status.isLoading = false;
       });

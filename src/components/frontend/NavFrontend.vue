@@ -239,7 +239,12 @@
                       <span class="text-xs text-gray-400">NT {{ $filters.currency(cartItem.product.price) }} 元</span>
                       <span>小計 NT {{ $filters.currency(cartItem.final_total) }} 元</span>
                     </div>
-                    <button class="self-end hover:text-danger" @click.prevent.stop="delCartItem('one', cartItem.id)">
+                    <button
+                      class="self-end hover:text-danger"
+                      @click.prevent.stop="
+                        showSwalCheck('warning', '真的要刪除嗎', () => delCartItem('one', cartItem.id))
+                      "
+                    >
                       <span class="align-bottom material-symbols-outlined"> delete </span>
                     </button>
                   </div>
@@ -262,7 +267,7 @@
               <div class="flex gap-2 ml-auto">
                 <button
                   class="z-10 flex items-center px-8 py-2 ml-auto text-sm font-medium leading-normal tracking-wider text-gray-500 uppercase transition duration-150 ease-in-out border rounded-full focus:outline-none focus:ring-0 active:bg-cerulean-700 hover:opacity-80 disabled:text-gray-300 disabled:hover:opacity-100"
-                  @click.prevent="delCartItem('all')"
+                  @click.prevent.stop="showSwalCheck('warning', '真的要清空嗎', () => delCartItem('all'))"
                   :disabled="cartList.length <= 0"
                   >清空購物車</button
                 >
@@ -286,6 +291,7 @@ import { Collapse, initTE } from 'tw-elements';
 import { mapState, mapActions, mapStores } from 'pinia';
 import cartStore from '../../stores/cartStore';
 import favoriteStore from '../../stores/favoriteStore';
+import swalMixin from '../../mixins/swalMixin';
 
 export default {
   data() {
@@ -326,6 +332,19 @@ export default {
       this.$router.push('/checkout');
     },
     clickAwayHideCart(clickEvent) {
+      const allowedClasses = [
+        'swal-btn-check',
+        'swal-btn-cancel',
+        'swal2-title',
+        'swal2-icon',
+        'swal2-modal',
+        'swal2-container',
+        'btn-add-cart',
+      ];
+
+      if (allowedClasses.some((className) => clickEvent.target.classList.contains(className))) {
+        return;
+      }
       if (
         this.$refs.collapse &&
         this.$refs.collapse.hasAttribute &&
@@ -350,6 +369,7 @@ export default {
       myCollapse.dispose();
     }
   },
+  mixins: [swalMixin],
 };
 </script>
 

@@ -15,3 +15,15 @@ input[type='number']::-webkit-outer-spin-button {
 .group[data-te-datepicker-cell-selected] .group-\[\[data-te-datepicker-cell-selected\]\]\:font-black {
   @apply border border-cerulean text-cerulean;
 }
+
+.swal-btn-cancel {
+  @apply mx-1 my-0 text-sm rounded-full h-full px-8 focus:ring-4 focus:ring-brown-100 focus:ring-opacity-[.6] focus:shadow-none bg-brown-300 hover:bg-none hover:opacity-80 !important;
+}
+
+.swal-btn-check {
+  @apply my-0 border-2 border-brown-300 border-solid mx-1 focus:ring-4 focus:ring-gray-200 focus:ring-opacity-[.6] focus:shadow-none text-sm text-brown-300 hover:bg-none hover:opacity-80  rounded-full px-8 bg-transparent !important;
+}
+
+.swal2-center{
+  @apply pb-[15%]
+}

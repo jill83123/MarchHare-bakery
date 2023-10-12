@@ -97,7 +97,12 @@
                   </div>
                 </td>
                 <td class="px-1 py-4 md:px-4 lg:px-6">
-                  <button class="self-end hover:text-danger" @click.prevent="delCartItem('one', cartItem.id)">
+                  <button
+                    class="self-end hover:text-danger"
+                    @click.prevent.stop="
+                      showSwalCheck('warning', '真的要刪除嗎', () => delCartItem('one', cartItem.id))
+                    "
+                  >
                     <span class="align-bottom material-symbols-outlined"> delete </span>
                   </button>
                 </td>
@@ -171,6 +176,7 @@
 import { Select } from 'tw-elements';
 import { mapState, mapActions } from 'pinia';
 import cartStore from '../../stores/cartStore';
+import swalMixin from '../../mixins/swalMixin';
 
 export default {
   data() {
@@ -186,7 +192,7 @@ export default {
 
     cancelOrder() {
       this.delCartItem('all');
-      this.$router.push('/shop')
+      this.$router.push('/shop');
     },
   },
   created() {
@@ -194,8 +200,10 @@ export default {
     this.updateCurrentStep(1);
   },
   mounted() {
-    const selectEl = this.$refs.pickupMethodSelect;
-    Select.getOrCreateInstance(selectEl);
+    this.$nextTick(() => {
+      const selectEl = this.$refs.pickupMethodSelect;
+      Select.getOrCreateInstance(selectEl);
+    });
 
     if (this.pickupMethod === '') {
       const cartIndex = this.cartList.findIndex((item) => item.id === '-Nfviy3OLgcT7GnSUqUV');
@@ -210,5 +218,6 @@ export default {
       select.dispose();
     }
   },
+  mixins: [swalMixin],
 };
 </script>
