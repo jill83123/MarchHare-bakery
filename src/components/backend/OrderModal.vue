@@ -289,24 +289,20 @@ export default {
         user: { order: {} },
         products: {},
       },
+      selectEl: {},
     };
   },
   watch: {
     item() {
       this.tempOrder = this.item;
+      Select.getOrCreateInstance(this.selectEl).setValue(this.tempOrder.user.order.status);
     },
   },
   props: ['item'],
   mixins: [modalMixin],
   mounted() {
-    const selectEl = this.$refs.statusSelect;
-    Select.getOrCreateInstance(selectEl);
-  },
-  beforeUnmount() {
-    if (this.$refs.statusSelect) {
-      const select = new Select(this.$refs.statusSelect);
-      select.dispose();
-    }
+    this.selectEl = this.$refs.statusSelect;
+    Select.getOrCreateInstance(this.selectEl);
   },
 };
 </script>

@@ -50,8 +50,8 @@
                   }}</td>
                   <td
                     class="px-6 py-4 font-bold whitespace-nowrap"
-                    :class="item.user.payWay === 'other' ? 'text-success' : 'text-danger'"
-                    >{{ item.user.payWay === 'other' ? '已付款' : '未付款' }}</td
+                    :class="item.user.order.is_paid ? 'text-success' : 'text-danger'"
+                    >{{ item.user.order.is_paid ? '已付款' : '未付款' }}</td
                   >
                   <td class="px-6 py-4 whitespace-nowrap"
                     ><p v-if="item.lastEditDate">{{ $filters.date(item.lastEditDate) }}</p></td
