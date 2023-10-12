@@ -195,8 +195,15 @@
                   <div class="flex gap-1 -ml-1 text-sm text-gray-400">
                     <span
                       class="z-10 py-[1px] px-1 hover:bg-brown-100 hover:text-white"
-                      @click.prevent="tagSearch(product.category)"
+                      @click.prevent="changeSort(product.category)"
                       ># {{ product.category }}</span
+                    >
+                    <span
+                      class="z-10 py-[1px] px-1 hover:bg-brown-100 hover:text-white"
+                      @click.prevent="tagSearch(tag)"
+                      v-for="tag in product.tag"
+                      :key="tag"
+                      ># {{ tag }}</span
                     >
                   </div>
                 </div>
@@ -285,7 +292,10 @@ export default {
         toast: this.productList.filter((product) => product.category === '麵包'),
         cake: this.productList.filter((product) => product.category === '蛋糕'),
         cookie: this.productList.filter((product) => product.category === '餅乾'),
-        search: this.productList.filter((item) => item.title.match(this.searchKeyword)),
+        search: this.productList.filter(
+          (item) =>
+            item.title.match(this.searchKeyword) || (Array.isArray(item.tag) && item.tag.includes(this.searchKeyword))
+        ),
       };
     },
   },
@@ -304,7 +314,15 @@ export default {
       });
     },
     changeSort(status) {
-      this.sortStatus = status;
+      if (status === '餅乾') {
+        this.sortStatus = 'cookie';
+      } else if (status === '蛋糕') {
+        this.sortStatus = 'cake';
+      } else if (status === '麵包') {
+        this.sortStatus = 'toast';
+      } else {
+        this.sortStatus = status;
+      }
     },
     searchProducts() {
       this.sortStatus = 'search';

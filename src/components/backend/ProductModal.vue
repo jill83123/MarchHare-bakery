@@ -235,7 +235,43 @@
                 <label for="content" class="block mb-1">商品內容</label>
                 <ckeditor :editor="editor" v-model="tempProduct.content" :config="editorConfig" id="content"></ckeditor>
               </div>
+              <div class="mb-4">
+                <label for="tag" class="block mb-1">＃ tag 標籤</label>
+                <input
+                  type="text"
+                  class="m-0 block w-full rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
+                  placeholder="不用加前綴「＃」，直接輸入名稱即可"
+                  id="tag"
+                  v-model="tempTag"
+                  @keydown.enter="pushTag()"
+                />
+              </div>
+              <div class="mb-4">
+                <div class="font-semibold text-cerulean">
+                  <div class="flex flex-wrap items-center gap-2">
+                    <button
+                      href="#"
+                      class="px-2 py-2 text-sm leading-3 border rounded-full border-cerulean hover:bg-cerulean hover:text-white"
+                      v-for="tag in allTags"
+                      :key="tag"
+                      @click.prevent="selectTag(tag)"
+                      :class="{ 'text-white  bg-cerulean': tempProduct.tag && tempProduct.tag.includes(tag) }"
+                      >＃<span class="ml-[2px]">{{ tag }}</span></button
+                    >
+                    <button
+                      href="#"
+                      class="px-2 py-2 text-sm leading-3 text-white rounded-full bg-cerulean"
+                      :class="{ ' hidden ': allTags.some((item) => item === tag) }"
+                      v-for="tag in tempProduct.tag"
+                      :key="tag"
+                      @click.prevent="selectTag(tag)"
+                      >＃<span class="ml-[2px]">{{ tag }}</span></button
+                    >
+                  </div>
+                </div>
+              </div>
               <div>
+                <p class="mb-1">是否上架</p>
                 <input
                   class="mr-2 mt-[0.3rem] h-3.5 w-8 appearance-none rounded-[0.4375rem] bg-neutral-300 before:pointer-events-none before:absolute before:h-3.5 before:w-3.5 before:rounded-full before:bg-transparent before:content-[''] after:absolute after:z-[2] after:-mt-[0.1875rem] after:h-5 after:w-5 after:rounded-full after:border-none after:bg-neutral-100 after:shadow-[0_0px_3px_0_rgb(0_0_0_/_7%),_0_2px_2px_0_rgb(0_0_0_/_4%)] after:transition-[background-color_0.2s,transform_0.2s] after:content-[''] checked:bg-success checked:after:absolute checked:after:z-[2] checked:after:-mt-[3px] checked:after:ml-[1.0625rem] checked:after:h-5 checked:after:w-5 checked:after:rounded-full checked:after:border-none checked:after:bg-neutral-100 checked:after:shadow-[0_3px_1px_-2px_rgba(0,0,0,0.2),_0_2px_2px_0_rgba(0,0,0,0.14),_0_1px_5px_0_rgba(0,0,0,0.12)] checked:after:transition-[background-color_0.2s,transform_0.2s] checked:after:content-[''] hover:cursor-pointer focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[3px_-1px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-5 focus:after:w-5 focus:after:rounded-full focus:after:content-[''] checked:focus:border-success checked:focus:bg-success checked:focus:before:ml-[1.0625rem] checked:focus:before:scale-100 checked:focus:before:shadow-[3px_-1px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s]"
                   type="checkbox"
@@ -244,8 +280,11 @@
                   :checked="tempProduct.is_enabled"
                   v-model="tempProduct.is_enabled"
                 />
-                <label class="inline-block pl-[0.15rem] hover:cursor-pointer" for="flexSwitchCheckDefault"
-                  >是否上架</label
+                <label
+                  class="inline-block pl-[0.15rem] hover:cursor-pointer"
+                  for="flexSwitchCheckDefault"
+                  :class="tempProduct.is_enabled ? ' text-success' : ' text-gray-400'"
+                  >{{ tempProduct.is_enabled ? '上架中' : '未上架' }}</label
                 >
               </div>
             </div>
@@ -285,6 +324,7 @@ export default {
   data() {
     return {
       tempProduct: {},
+      tempTag: '',
       loadingIcon: false,
       editor: ClassicEditor,
       editorConfig: {
@@ -316,6 +356,9 @@ export default {
     },
     state: {
       type: String,
+    },
+    allTags: {
+      type: Array,
     },
   },
   watch: {
@@ -377,6 +420,25 @@ export default {
         this.tempProduct.imagesUrl.splice(item, 1);
       }
     },
+    pushTag() {
+      if (!this.tempProduct.tag) {
+        this.tempProduct.tag = [];
+      }
+      this.tempProduct.tag.push(this.tempTag);
+      this.tempTag = '';
+    },
+    selectTag(tag) {
+      if (!this.tempProduct.tag) {
+        this.tempProduct.tag = [];
+      }
+
+      const tagIndex = this.tempProduct.tag.indexOf(tag);
+      if (tagIndex < 0) {
+        this.tempProduct.tag.push(tag);
+      } else {
+        this.tempProduct.tag.splice(tagIndex, 1);
+      }
+    },
   },
   mixins: [modalMixin],
   components: {
@@ -384,4 +446,3 @@ export default {
   },
 };
 </script>
-

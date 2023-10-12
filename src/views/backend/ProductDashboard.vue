@@ -97,6 +97,7 @@
     <ProductModal
       :product="tempProduct"
       :state="productModalState"
+      :allTags="allTags"
       @update-products="updateProduct"
       ref="productModal"
     ></ProductModal>
@@ -120,6 +121,7 @@ export default {
       tempProduct: {},
       productModalState: 'edit',
       pagination: {},
+      allTags: [],
       isLoading: false,
     };
   },
@@ -132,9 +134,19 @@ export default {
         if (res.data.success) {
           this.products = res.data.products;
           this.pagination = res.data.pagination;
+          this.getTags();
           this.isLoading = false;
         }
       });
+    },
+    getTags() {
+      this.allTags = [];
+      this.products.forEach((obj) => {
+        if (Object.prototype.hasOwnProperty.call(obj, 'tag')) {
+          this.allTags.push(...obj.tag);
+        }
+      });
+      this.allTags = this.allTags.filter((value, index, self) => self.indexOf(value) === index);
     },
     updateProduct(item) {
       const lastEditDate = Math.floor(new Date().getTime() / 1000);

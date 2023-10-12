@@ -26,8 +26,8 @@
                   <th scope="col" class="px-6 py-4 w-[1%]">#</th>
                   <th scope="col" class="px-6 py-4 w-[5%]">建立時間</th>
                   <th scope="col" class="px-6 py-4">標題</th>
-                  <th scope="col" class="px-6 py-4 w-[20%]">標籤</th>
-                  <th scope="col" class="px-6 py-4 w-[10%]">作者</th>
+                  <th scope="col" class="px-6 py-4 w-[25%]">標籤</th>
+                  <th scope="col" class="px-6 py-4 w-[5%]">作者</th>
                   <th scope="col" class="px-6 py-4 w-[5%]">是否公開</th>
                   <th scope="col" class="px-6 py-4 w-[10%]">最後更新時間</th>
                   <th scope="col" class="px-6 py-4 w-[10%]">編輯</th>
@@ -44,7 +44,7 @@
                   <td class="px-6 py-4 whitespace-nowrap">
                     {{ item.title }}
                   </td>
-                  <td class="px-6 py-4 whitespace-nowrap">
+                  <td class="px-6 py-4">
                     <p v-if="item.tag">{{ item.tag.join('、') }}</p></td
                   >
                   <td class="px-6 py-4 whitespace-nowrap">{{ item.author }}</td>
@@ -153,17 +153,19 @@ export default {
         if (res.data.success) {
           this.articleList = res.data.articles;
           this.pagination = res.data.pagination;
+          this.getTags();
           this.isLoading = false;
         }
-
-        this.allTags = [];
-        this.articleList.forEach((obj) => {
-          if (Object.prototype.hasOwnProperty.call(obj, 'tag')) {
-            this.allTags.push(...obj.tag);
-          }
-        });
-        this.allTags = this.allTags.filter((value, index, self) => self.indexOf(value) === index);
       });
+    },
+    getTags() {
+      this.allTags = [];
+      this.articleList.forEach((obj) => {
+        if (Object.prototype.hasOwnProperty.call(obj, 'tag')) {
+          this.allTags.push(...obj.tag);
+        }
+      });
+      this.allTags = this.allTags.filter((value, index, self) => self.indexOf(value) === index);
     },
     updateArticle(item) {
       this.isLoading = true;

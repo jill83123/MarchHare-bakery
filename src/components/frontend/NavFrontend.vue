@@ -205,7 +205,14 @@
                 <!-- content -->
                 <div class="flex flex-col justify-between w-3/4 px-2 grow">
                   <div class="flex flex-col justify-between">
-                    <h4 class="text-lg truncate"> {{ cartItem.product.title }} </h4>
+                    <h4 class="inline text-lg truncate">
+                      {{ cartItem.product.title
+                      }}<span
+                        class="px-2 ml-2 text-xs text-white rounded-full font-montserrat op bg-success"
+                        v-if="cartItem.product.price !== cartItem.product.origin_price"
+                        >SALE</span
+                      ></h4
+                    >
                   </div>
                   <div class="flex items-center">
                     <button
