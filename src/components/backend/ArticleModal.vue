@@ -288,18 +288,22 @@ export default {
     },
   },
   watch: {
-    article: {
-      handler() {
-        this.tempArticle = { ...this.article };
+    article() {
+      this.tempArticle = { ...this.article };
 
-        if (!this.tempArticle.create) {
-          const today = new Date();
-          const year = today.getFullYear();
-          const month = String(today.getMonth() + 1).padStart(2, '0');
-          const day = String(today.getDate()).padStart(2, '0');
-          const formattedDate = `${year}-${month}-${day}`;
-          this.tempArticle.create_at = formattedDate;
-        }
+      let date = new Date(this.tempArticle.create_at * 1000);
+      if (!this.tempArticle.create_at) {
+        date = new Date();
+      }
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      const formattedDate = `${year}-${month}-${day}`;
+      this.tempArticle.create_at = formattedDate;
+    },
+    'article.content': {
+      handler() {
+        this.tempArticle.content = this.article.content;
       },
       deep: true,
     },

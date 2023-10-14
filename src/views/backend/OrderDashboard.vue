@@ -46,7 +46,7 @@
                   <td class="px-6 py-4 whitespace-nowrap">{{ item.user.name }}</td>
                   <td class="px-6 py-4 whitespace-nowrap">{{ item.user.tel }}</td>
                   <td class="px-6 py-4 whitespace-nowrap">{{
-                    item.user.pickupMethod === 'self' ? '到店取貨' : '宅配'
+                    item.user.order.pickupMethod === 'self' ? '到店自取' : '宅配'
                   }}</td>
                   <td
                     class="px-6 py-4 font-bold whitespace-nowrap"

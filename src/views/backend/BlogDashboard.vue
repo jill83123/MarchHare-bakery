@@ -178,9 +178,11 @@ export default {
       const lastEditDate = Math.floor(new Date().getTime() / 1000);
       this.tempArticle.lastEditDate = lastEditDate;
 
-      const dateTimeString = this.tempArticle.create_at;
-      const dateTime = new Date(`${dateTimeString}T00:00:00Z`);
-      this.tempArticle.create_at = Math.floor(dateTime.getTime() / 1000);
+      if (typeof(this.tempArticle.create_at) ==='string') {
+        const dateTimeString = this.tempArticle.create_at;
+        const dateTime = new Date(`${dateTimeString}T00:00:00Z`);
+        this.tempArticle.create_at = Math.floor(dateTime.getTime() / 1000);
+      }
 
       let api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/admin/article`;
       let httpMethod = 'post';

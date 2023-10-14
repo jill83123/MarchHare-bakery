@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
-import cartStore from '@/stores/cartStore';
+import cartStore from '../stores/cartStore';
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -42,7 +42,7 @@ const router = createRouter({
               component: () => import('../views/frontend/ArticleList.vue'),
             },
             {
-              path: 'article',
+              path: 'article/:id',
               component: () => import('../views/frontend/ArticlePage.vue'),
             },
           ],

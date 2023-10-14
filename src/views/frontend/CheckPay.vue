@@ -102,7 +102,7 @@
               type="button"
               class="z-10 flex items-center self-end px-8 py-2 ml-auto text-sm font-medium leading-normal tracking-wider text-white uppercase transition duration-150 ease-in-out rounded-full to-check bg-brown-300 focus:outline-none focus:ring-0 hover:opacity-80 disabled:bg-gray-300"
               :disabled="userInfo.user.order.is_paid === undefined"
-              @click.prevent.stop="showSwalCheck('warning', '確認資料並且送出', () => finishOrder())"
+              @click.prevent.stop="showSwalCheck('warning', '確認資料並送出', () => finishOrder())"
               >確認購買
             </button>
           </div>
