@@ -2,7 +2,7 @@
   <LoadingAnimation :active="isLoading"></LoadingAnimation>
   <header class="pt-[106px] pb-10 sm:pb-12 lg:pb-20 text-center">
     <span class="-mb-2 font-montserrat text-2xl tracking-[0.2rem] font-bold text-brown-100">Blog</span>
-    <h3 class="text-[64px] font-medium tracking-widest text-brown-300 font-maru mb-3">部落格</h3>
+    <h3 class="-mt-1 text-[64px] font-medium tracking-widest text-brown-300 font-maru mb-3">部落格</h3>
     <p class="font-bold tracking-widest text-black-light">快來看看我們最新的消息 👀</p>
   </header>
   <main class="min-h-[calc(100vh_-_554px)]">
