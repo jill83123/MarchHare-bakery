@@ -6,11 +6,17 @@
       <h2 class="text-[64px] font-medium tracking-widest text-brown-300 font-maru">訂單査詢</h2>
     </div>
 
-    <div class="mx-auto mb-10 text-center text-black sm:w-7/12 md:w-1/2 xl:w-1/3">
+    <div class="mx-auto mb-10 font-semibold text-center text-black-light sm:w-7/12 md:w-1/2 xl:w-1/3">
       <p
         >親愛的顧客<br />請輸入
         <span class="font-semibold text-brown-500">訂單編號</span> 查詢您的訂單狀態<br /><br />若有任何問題請
-        <a href="" class="font-semibold border-b border-info text-info">聯繫我們</a> ，謝謝</p
+        <button
+          data-te-toggle="modal"
+          data-te-target="#contactUsModal"
+          class="font-semibold border-b border-info text-info"
+          >聯繫我們</button
+        >
+        ，謝謝</p
       >
     </div>
 
@@ -343,12 +349,14 @@
       </div>
     </div>
   </main>
+  <ContactUsModal></ContactUsModal>
 </template>
 
 <script>
 import { mapState } from 'pinia';
 import statesStore from '../../stores/statesStore';
 import cartStore from '../../stores/cartStore';
+import ContactUsModal from '../../components/frontend/ContactUsModal.vue';
 
 export default {
   data() {
@@ -405,6 +413,9 @@ export default {
       this.orderId = this.OrderData.orderId;
       this.getOrderDetails();
     }
+  },
+  components: {
+    ContactUsModal,
   },
 };
 </script>

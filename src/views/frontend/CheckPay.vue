@@ -165,36 +165,14 @@
         </div>
       </div>
     </div>
-    <div class="mt-6 sm:w-4/5 lg:w-full">
-      <h4
-        class="relative inline-block text-lg after:-z-[1] after:-left-1 after:-right-1 mb-2 after:bg-warning after:absolute after:top-1/2 after:bottom-0"
-        >購買須知</h4
-      >
-      <ul class="text-sm">
-        <li>※ 商品皆為下單後製作，依據訂單量製作期需保留約 5 - 7 天。</li>
-        <li>※ 當包裹出貨完成未被領取或拒收退回（出貨後7日計算），若達三次將列為交易黑名單。</li>
-        <li>※ 國內配送時間約 3 - 5 個工作天，若遲遲未收到商品，請盡速與客服連絡。</li>
-        <li
-          >※ 提醒您，若您無故或惡意違反
-          <button
-            type="button"
-            class="border-b cursor-pointer text-info"
-            data-te-toggle="modal"
-            data-te-target="#exampleModalCenteredScrollable"
-          >
-            訂購與退貨相關規則 </button
-          >，本公司有權拒絕您使用本服務，同時列為交易黑名單。</li
-        >
-      </ul>
-    </div>
+    <OrderRules></OrderRules>
   </div>
-  <rulesModal></rulesModal>
 </template>
 
 <script>
 import { mapState, mapActions } from 'pinia';
 import cartStore from '../../stores/cartStore';
-import rulesModal from '../../components/frontend/OrderRulesModal.vue';
+import OrderRules from '../../components/frontend/OrderRules.vue';
 import swalMixin from '../../mixins/swalMixin';
 
 export default {
@@ -217,7 +195,7 @@ export default {
     this.getCartList();
   },
   components: {
-    rulesModal,
+    OrderRules,
   },
   mixins: [swalMixin],
 };

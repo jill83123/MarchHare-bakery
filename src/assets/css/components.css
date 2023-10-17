@@ -21,6 +21,10 @@
   @apply my-0 border-2 border-brown-300 border-solid py-2 mx-1 focus:ring-4 focus:ring-gray-200 focus:ring-opacity-[.6] focus:shadow-none text-sm text-brown-300 hover:bg-none hover:opacity-80  rounded-full px-8 bg-transparent !important;
 }
 
+.swal2-top {
+  @apply pt-[1%];
+}
+
 .swal2-center {
   @apply pb-[15%];
 }

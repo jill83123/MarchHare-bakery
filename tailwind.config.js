@@ -29,6 +29,7 @@ module.exports = {
         info: '#9AB8DC',
         brown: {
           100: '#ebcbad',
+          200: '#DCB48E',
           300: '#D4A373',
           500: '#b07d62',
         },
