@@ -1,5 +1,5 @@
 <template>
-  <LoadingAnimation :active="state.isLoading"></LoadingAnimation>
+  <LoadingAnimation :active="isLoading"></LoadingAnimation>
   <!-- banner -->
   <div class="relative">
     <video
@@ -166,7 +166,7 @@
               <!-- image -->
               <div class="relative overflow-hidden card-img aspect-square">
                 <img class="relative w-full h-full" :src="product.imageUrl" :alt="product.title" />
-                <button class="absolute top-0 right-0 z-10 p-4" @click.prevent="favoriteStore.toggleFavorite(product)">
+                <button class="absolute top-0 right-0 z-10 p-4" @click.prevent="toggleFavorite(product)">
                   <span
                     class="text-3xl text-red-400 material-symbols-outlined"
                     style="
@@ -174,7 +174,7 @@
                         'FILL' 1,
                         'opsz' 24;
                     "
-                    v-if="favoriteStore.favorite.some((item) => item.id === product.id)"
+                    v-if="favorite.some((item) => item.id === product.id)"
                   >
                     favorite
                   </span>
@@ -264,27 +264,24 @@
 </template>
 
 <script>
-import { mapActions, mapState, mapStores } from 'pinia';
+import { mapActions, mapState } from 'pinia';
 import cartStore from '../../stores/cartStore';
 import Pagination from '../../components/frontend/PaginationFrontend.vue';
 import favoriteStore from '../../stores/favoriteStore';
+import productStore from '../../stores/productStore';
 
 export default {
   data() {
     return {
-      productList: [],
-      pagination: {},
-      state: {
-        isLoading: false,
-      },
       sortStatus: 'all',
       cacheSearch: '',
       searchKeyword: '',
     };
   },
   computed: {
-    ...mapStores(favoriteStore),
+    ...mapState(favoriteStore, ['favorite']),
     ...mapState(cartStore, ['status']),
+    ...mapState(productStore, ['productList', 'pagination', 'isLoading']),
 
     filteredProducts() {
       return {
@@ -300,19 +297,10 @@ export default {
     },
   },
   methods: {
+    ...mapActions(favoriteStore, ['toggleFavorite']),
     ...mapActions(cartStore, ['getCartList', 'addToCart']),
+    ...mapActions(productStore, ['getProducts']),
 
-    getProductList(page = 1) {
-      this.state.isLoading = true;
-      const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/products?page=${page}`;
-      this.$http.get(api).then((res) => {
-        if (res.data.success) {
-          this.productList = res.data.products;
-          this.pagination = res.data.pagination;
-          this.state.isLoading = false;
-        }
-      });
-    },
     changeSort(status) {
       if (status === '餅乾') {
         this.sortStatus = 'cookie';
@@ -337,36 +325,10 @@ export default {
     this.getCartList();
   },
   created() {
-    this.getProductList();
+    this.getProducts();
   },
   components: {
     Pagination,
   },
 };
 </script>
-
-<style lang="scss">
-.productCard {
-  img {
-    transition: 0.3s all;
-  }
-  &:hover {
-    cursor: pointer;
-    .card-img::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      background-color: rgb(0, 0, 0, 0.5);
-    }
-    .view-detail {
-      display: block !important;
-    }
-    img {
-      transform: scale(1.15);
-    }
-  }
-}
-</style>

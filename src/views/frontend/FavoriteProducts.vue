@@ -20,7 +20,7 @@
     </div>
   </header>
 
-  <main class="container my-16 min-h-[calc(100vh_-_674px)]">
+  <main class="container mt-16 mb-20 min-h-[calc(100vh_-_674px)]">
     <ul class="flex flex-wrap -mx-3 gap-y-5">
       {{
         favoriteStore.cartList
@@ -65,6 +65,13 @@
                   class="z-10 py-[1px] px-1 hover:bg-brown-100 hover:text-white"
                   @click.prevent="tagSearch(product.category)"
                   ># {{ product.category }}</span
+                >
+                <span
+                  class="z-10 py-[1px] px-1 hover:bg-brown-100 hover:text-white"
+                  @click.prevent="tagSearch(tag)"
+                  v-for="tag in product.tag"
+                  :key="tag"
+                  ># {{ tag }}</span
                 >
               </div>
             </div>

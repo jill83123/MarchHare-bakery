@@ -15,7 +15,11 @@
               v-for="item in filteredArticle"
               :key="item.id"
             >
-              <img class="max-w-[160px] sm:max-w-[200px] sm:max-h-[200px] object-cover" :src="item.image" :alt="item.title" />
+              <img
+                class="max-w-[160px] sm:max-w-[200px] sm:max-h-[200px] object-cover"
+                :src="item.image"
+                :alt="item.title"
+              />
 
               <div class="flex flex-col flex-grow px-4 py-4 sm:px-6">
                 <div class="flex items-center mb-2 text-sm text-gray-500">
@@ -83,19 +87,19 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'pinia';
 import Pagination from '../../components/frontend/PaginationFrontend.vue';
+import articleStore from '../../stores/articleStore';
 
 export default {
   data() {
     return {
-      articleList: [],
-      pagination: [],
-      allTags: [],
       currentTag: 'all',
-      isLoading: false,
     };
   },
   computed: {
+    ...mapState(articleStore, ['articleList', 'pagination', 'allTags', 'isLoading']),
+
     filteredArticle() {
       if (this.currentTag === 'all') {
         return this.articleList;
@@ -104,35 +108,7 @@ export default {
     },
   },
   methods: {
-    getArticles(page = 1) {
-      this.isLoading = true;
-      const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/articles?page=${page}`;
-
-      this.$http.get(api).then((res) => {
-        if (res.data.success) {
-          this.articleList = res.data.articles;
-
-          this.articleList.sort((a, b) => {
-            const dateA = new Date(a.create_at);
-            const dateB = new Date(b.create_at);
-            return dateB - dateA;
-          });
-
-          this.pagination = res.data.pagination;
-          this.getTags();
-        }
-        this.isLoading = false;
-      });
-    },
-    getTags() {
-      this.allTags = [];
-      this.articleList.forEach((obj) => {
-        if (Object.prototype.hasOwnProperty.call(obj, 'tag')) {
-          this.allTags.push(...obj.tag);
-        }
-      });
-      this.allTags = this.allTags.filter((value, index, self) => self.indexOf(value) === index);
-    },
+    ...mapActions(articleStore, ['getArticles']),
   },
   mounted() {
     this.getArticles();

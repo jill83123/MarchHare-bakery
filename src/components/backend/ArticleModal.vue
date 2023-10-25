@@ -201,6 +201,20 @@
 
             <div class="w-2/3">
               <div class="flex gap-2">
+                <div class="w-[120px]">
+                  <label for="statusSelect" class="block mb-1">種類</label>
+                  <select
+                    data-te-select-init
+                    data-te-class-select-Label="data-[te-input-state-active]:scale-1 absolute top-[18%] left-[5%] pointer-events-none"
+                    id="categorySelect"
+                    v-model="tempArticle.category"
+                    ref="categorySelect"
+                  >
+                    <option value="重要" selected>重要</option>
+                    <option value="通知">通知</option>
+                    <option value="分享">分享</option>
+                  </select>
+                </div>
                 <div class="w-3/4">
                   <label for="title" class="block mb-1">標題<span class="text-danger"> *</span></label>
                   <input
@@ -266,7 +280,7 @@
 <script>
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import CKEditor from '@ckeditor/ckeditor5-vue';
-import { Datepicker, Input, initTE } from 'tw-elements';
+import { Datepicker, Input, initTE, Select } from 'tw-elements';
 import modalMixin from '../../mixins/modalMixin';
 import statesStore from '../../stores/statesStore';
 
@@ -300,6 +314,8 @@ export default {
       const day = String(date.getDate()).padStart(2, '0');
       const formattedDate = `${year}-${month}-${day}`;
       this.tempArticle.create_at = formattedDate;
+
+      Select.getOrCreateInstance(this.selectEl).setValue(this.tempArticle.category);
     },
     'article.content': {
       handler() {
@@ -331,6 +347,7 @@ export default {
       },
       datepicker: {},
       loadingIcon: false,
+      selectEl: {},
     };
   },
   methods: {
@@ -387,8 +404,11 @@ export default {
     },
   },
   mounted() {
-    initTE({ Datepicker, Input });
+    initTE({ Datepicker, Input, Select });
     this.datepicker = new Datepicker(this.$refs.create_date);
+
+    this.selectEl = this.$refs.categorySelect;
+    Select.getOrCreateInstance(this.selectEl);
   },
   created() {},
   mixins: [modalMixin],

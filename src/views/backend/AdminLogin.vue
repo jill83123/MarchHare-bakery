@@ -1,5 +1,5 @@
 <template>
-  <div class="" style="background: url(/images/cloud-bg.png) no-repeat center / cover">
+  <div style="background: url(/images/cloud-bg.png) no-repeat center / cover">
     <div class="container flex flex-col h-screen">
       <div
         class="w-full p-10 mx-auto my-auto rounded-lg shadow-md md:w-2/3 lg:w-[40%] backdrop-blur-sm"

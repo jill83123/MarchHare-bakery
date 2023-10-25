@@ -18,11 +18,15 @@ module.exports = {
       },
       colors: {
         cream: '#F6E7C9',
+        matcha: '#B7BA8F',
         black: {
           light: '#525252',
           DEFAULT: '#303030',
         },
-        cerulean: '#859FAF',
+        cerulean: {
+          300: '#97afbe',
+          DEFAULT: '#859FAF',
+        },
         danger: '#E76565',
         success: '#A1BE84',
         warning: '#FFE486',

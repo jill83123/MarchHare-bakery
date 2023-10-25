@@ -21,6 +21,7 @@
     "gh-pages": "^6.0.0",
     "pinia": "^2.1.6",
     "sweetalert2": "^11.7.31",
+    "swiper": "^10.3.1",
     "tailwindcss": "^3.3.3",
     "tw-elements": "^1.0.0",
     "vee-validate": "^4.11.7",

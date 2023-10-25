@@ -48,7 +48,11 @@
           >
           <button
             class="border-2 rounded-full w-[40px] h-[40px] ml-auto inline-block border-brown-100"
-            :class="favoriteStore.favorite.some((item) => item.id === productDetails.id) ? 'border-danger' : 'border-brown-100'"
+            :class="
+              favoriteStore.favorite.some((item) => item.id === productDetails.id)
+                ? 'border-danger'
+                : 'border-brown-100'
+            "
             title="加入收藏"
             @click.prevent="favoriteStore.toggleFavorite(productDetails)"
             ><span
@@ -151,7 +155,8 @@
               >總計 <span class="mx-1 text-lg font-bold tracking-wider font-noto-serif">{{ cachePrice }}</span> 元
             </p>
             <div class="flex gap-4">
-              <RouterLink to="/checkout/cart"
+              <RouterLink
+                to="/checkout/cart"
                 type="button"
                 class="z-10 flex items-center px-8 py-2 text-sm font-medium leading-normal tracking-wider uppercase transition duration-150 ease-in-out border rounded-full border-brown-300 focus:outline-none focus:ring-1 hover:opacity-80 text-brown-300"
                 >前往結帳</RouterLink
@@ -171,10 +176,10 @@
             <p class="text-sm text-black-light"
               >[付款] 信用卡(一次付清)、貨到付款、ATM 轉帳<br />[運送] 黑貓低溫宅配、工作室自取</p
             >
-            <a href="#" class="self-end text-sm">
+            <RouterLink to="/faq" target="_blank" class="self-end text-sm">
               <span class="mr-1 text-xl align-middle rotate-45 material-symbols-outlined text-info"> link </span>
-              <p class="inline-block leading-6 border-b text-info">常見問題</p>
-            </a>
+              <p class="inline-block font-bold leading-[22px] border-b border-info text-info">常見問題</p>
+            </RouterLink>
           </div>
         </div>
       </div>
@@ -210,7 +215,7 @@ export default {
     ...mapStores(favoriteStore),
   },
   methods: {
-    ...mapActions(cartStore, ['delCartItem', 'updateCart', 'getCartList', 'updateCurrentStep','addToCart']),
+    ...mapActions(cartStore, ['delCartItem', 'updateCart', 'getCartList', 'updateCurrentStep', 'addToCart']),
 
     getProductDetails() {
       const { id } = this.$route.params;

@@ -15,18 +15,13 @@
       class="pointer-events-none relative flex min-h-[calc(100%-1rem)] w-auto translate-y-[-50px] items-center opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:min-h-[calc(100%-3.5rem)] min-[576px]:max-w-[500px]"
     >
       <div
-        class="relative flex flex-col w-full text-current bg-white border-none rounded-md shadow-lg outline-none pointer-events-auto bg-clip-padding dark:bg-neutral-600"
+        class="relative flex flex-col w-full text-current bg-white border-none rounded-md shadow-lg outline-none pointer-events-auto bg-clip-padding"
       >
         <div
           class="flex items-center justify-between flex-shrink-0 p-4 border-b-2 border-opacity-100 rounded-t-md border-neutral-100"
         >
           <!--Modal title-->
-          <h5
-            class="text-xl font-medium leading-normal text-neutral-800 dark:text-neutral-200"
-            id="contactUsModalTitle"
-          >
-            聯繫我們
-          </h5>
+          <h5 class="text-xl font-semibold leading-normal text-black-light" id="contactUsModalTitle"> 聯繫我們 </h5>
           <!--Close button-->
           <button
             type="button"
@@ -49,11 +44,31 @@
 
         <!--Modal body-->
         <div class="relative">
-          <div class="px-4 py-8 font-semibold text-center text-black-light">
-            <p>我們將會在 48 小時內與您聯繫 💬</p>
+          <div class="px-4 pt-5 pb-3 font-semibold text-center text-black-light">
+            <span class="block mb-1 material-symbols-outlined text-brown-300"> forum </span>
+            <p class="mb-2">我們將會在 ４８ 小時內與您聯繫</p>
+
+            <span
+              class="block relative text-gray-400 z-10 mb-2 text-xs bg-white before:border-b before:absolute before:left-[10%] before:right-[55%] before:translate-y-1/2 before:top-1/2 after:border-b after:absolute after:left-[55%] after:right-[10%] after:translate-y-1/2 after:top-1/2"
+              >o r</span
+            >
+            <ul class="flex flex-col items-center justify-center mb-4 -ml-6 text-black sm:mb-0 md:mb-0">
+              <li
+                ><a href="tel:+" class="flex items-center text-sm font-medium tracking-wider text-gray-700">
+                  <span class="mr-2 text-xl font-semibold material-symbols-outlined text-brown-300"> call </span
+                  >0976123456
+                </a>
+              </li>
+              <li
+                ><a href="#" class="flex items-center text-sm font-medium tracking-wider text-gray-700">
+                  <span class="mr-1 text-xl font-semibold material-symbols-outlined text-brown-300"> location_on </span
+                  >台中市北區一中街123-54號
+                </a>
+              </li>
+            </ul>
           </div>
 
-          <VForm v-slot="{ errors }" @submit="toPay()">
+          <VForm v-slot="{ errors }" @submit="toPay()" ref="contactForm">
             <div class="px-4 mb-10">
               <div class="relative mb-4">
                 <label for="name" class="block mb-1"
@@ -140,7 +155,6 @@
                     placeholder="請輸入您的留言或是問題"
                     id="message"
                     name="留言"
-
                     v-model="userContactInfo.message"
                   ></textarea>
                 </VField>
@@ -204,7 +218,7 @@ export default {
     },
     sendOut() {
       this.hideModal();
-      this.userContactInfo = {};
+      this.$refs.contactForm.resetForm();
       this.showSwalToast('success', '成功送出');
     },
   },

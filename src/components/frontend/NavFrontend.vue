@@ -44,7 +44,7 @@
             </RouterLink>
           </li>
           <li>
-            <a href="#">
+            <RouterLink to="/checkout/cart">
               <span
                 class="align-middle material-symbols-outlined"
                 style="
@@ -57,7 +57,7 @@
               >
                 shopping_cart
               </span>
-            </a>
+            </RouterLink>
           </li>
         </ul>
         <!-- Hamburger menu button -->
@@ -160,7 +160,7 @@
                 class="p-1 absolute -top-[15%] -right-[30%] rounded-full w-[16px] h-[16px] bg-red-400 flex justify-center items-center text-white"
                 v-if="cartList && cartList.length >= 1"
               >
-                <span class="text-[4px]">{{ cartList.length }}</span>
+                <span class="text-xs">{{ cartList.length }}</span>
               </span>
             </a>
           </li>

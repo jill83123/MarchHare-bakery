@@ -1,6 +1,6 @@
 <template>
   <LoadingAnimation :active="status.isLoading"></LoadingAnimation>
-  <main class="container mt-[106px] min-h-[calc(100vh_-_280px)] pb-10">
+  <main class="container mt-[106px] min-h-[calc(100vh_-_310px)] pb-10">
     <div class="mb-5 text-center">
       <p class="-mb-2 font-montserrat text-2xl tracking-[0.2rem] font-bold text-brown-100">Order Search</p>
       <h2 class="text-[64px] font-medium tracking-widest text-brown-300 font-maru">訂單査詢</h2>

@@ -5,6 +5,8 @@
 @import 'base.css';
 @import 'components.css';
 
+@import '../../../node_modules/swiper/swiper-bundle.min.css';
+
 /* tailwind */
 @tailwind base;
 
