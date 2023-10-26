@@ -56,8 +56,8 @@
         <p class="font-medium tracking-widest text-gray-600">2023 @ 此網頁僅作為練習使用，非商業用途</p>
       </div>
       <img
-        class="absolute top-0 -translate-y-1/2 right-2 w-[120px] sm:w-auto"
-        src="../../assets/images/pan_bread_set 1.png"
+        class="absolute top-0 -translate-y-1/2 right-2 w-[120px] sm:w-auto z-[9999]"
+        src="../../assets/images/pan_bread_set.png"
         alt="bread"
       />
     </div>

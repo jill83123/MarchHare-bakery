@@ -203,7 +203,7 @@
 <script>
 import { mapState, mapActions } from 'pinia';
 import cartStore from '../../stores/cartStore';
-import statesStore from '../../stores/statesStore';
+import swalMixin from '../../mixins/swalMixin';
 
 export default {
   computed: {
@@ -214,7 +214,7 @@ export default {
 
     copy(text) {
       navigator.clipboard.writeText(text).then(() => {
-        statesStore().pushAlertMessage(true, '複製成功');
+        this.showSwalToast('success', '複製成功');
       });
     },
   },
@@ -226,5 +226,6 @@ export default {
       this.$router.replace('/');
     }
   },
+  mixins: [swalMixin],
 };
 </script>

@@ -22,11 +22,19 @@
 }
 
 .swal2-top {
-  @apply pt-[1%];
+  @apply pt-[5%] lg:pt-[1%];
 }
 
 .swal2-center {
   @apply pb-[15%];
+}
+
+.swal2-title {
+  @apply whitespace-nowrap;
+}
+
+body.swal2-toast-shown .swal2-container {
+  @apply min-w-[220px] sm:w-auto !important;
 }
 
 .productCard img {

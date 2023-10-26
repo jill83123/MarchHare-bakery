@@ -308,7 +308,9 @@
           ></iframe>
 
           <div class="self-center w-full sm:w-1/2">
-            <h3 class="leading-4 tracking-widest text-center text-brown-200 opacity-60 font-montserrat">Subscribe Us</h3>
+            <h3 class="leading-4 tracking-widest text-center text-brown-200 opacity-60 font-montserrat"
+              >Subscribe Us</h3
+            >
             <h2 class="text-[44px] leading-snug font-medium text-center tracking-widest font-maru text-brown-300"
               >訂<span class="font-sans font-medium">閱</span>我們</h2
             >
@@ -365,8 +367,8 @@
       </div>
     </section>
     <section
-      class="relative py-20 after:bg-[#ffffff10] after:absolute after:right-0 after:left-0 after:bottom-0 after:top-0 after:backdrop-blur-[2px]"
-      style="background: url(/images/index-contact-bg.jpg) no-repeat 50% 50% / cover; background-attachment: fixed"
+      class="relative py-20 after:bg-[#ffffff10] after:absolute after:right-0 after:left-0 after:bottom-0 after:top-0 after:backdrop-blur-[1px]"
+      style="background: url(./images/index-contact-bg.jpg) no-repeat 50% 50% / cover; background-attachment: fixed"
     >
       <p class="relative z-10 my-4 font-bold tracking-wider text-center text-black-light"
         >有想要詢問的事情嗎？來
@@ -381,6 +383,7 @@
     </section>
   </main>
   <ContactUsModal></ContactUsModal>
+  <CurrentCouponModal></CurrentCouponModal>
 </template>
 
 <script>
@@ -392,13 +395,9 @@ import articleStore from '../../stores/articleStore';
 import productStore from '../../stores/productStore';
 import swalMixin from '../../mixins/swalMixin';
 import ContactUsModal from '../../components/frontend/ContactUsModal.vue';
+import CurrentCouponModal from '../../components/frontend/CurrentCouponModal.vue';
 
 export default {
-  components: {
-    Swiper,
-    SwiperSlide,
-    ContactUsModal,
-  },
   data() {
     return {
       modules: [Autoplay, Navigation],
@@ -429,6 +428,7 @@ export default {
     this.getProducts();
   },
   mixins: [swalMixin],
+  components: { Swiper, SwiperSlide, ContactUsModal, CurrentCouponModal },
 };
 </script>
 

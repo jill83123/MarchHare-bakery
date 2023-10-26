@@ -183,7 +183,7 @@
                 <div class="absolute -translate-y-1/4 -translate-x-1/2 z-[5] left-1/2 top-1/2 view-detail hidden">
                   <p
                     href="#"
-                    class="flex items-center py-2 pl-8 pr-6 text-sm font-medium leading-normal tracking-wider text-white uppercase z-5"
+                    class="flex items-center py-2 pl-8 pr-6 text-sm font-medium leading-normal tracking-wider text-white uppercase whitespace-nowrap z-5"
                     >查看商品資訊<span class="ml-1 material-symbols-outlined"> keyboard_double_arrow_right </span>
                   </p>
                 </div>
@@ -261,6 +261,7 @@
   </main>
 
   <Pagination :pages="pagination"></Pagination>
+  <CurrentCouponModal></CurrentCouponModal>
 </template>
 
 <script>
@@ -269,6 +270,7 @@ import cartStore from '../../stores/cartStore';
 import Pagination from '../../components/frontend/PaginationFrontend.vue';
 import favoriteStore from '../../stores/favoriteStore';
 import productStore from '../../stores/productStore';
+import CurrentCouponModal from '../../components/frontend/CurrentCouponModal.vue';
 
 export default {
   data() {
@@ -329,6 +331,7 @@ export default {
   },
   components: {
     Pagination,
+    CurrentCouponModal,
   },
 };
 </script>

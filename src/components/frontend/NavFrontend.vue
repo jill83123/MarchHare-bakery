@@ -69,6 +69,10 @@
           aria-controls="navbarSupportedContentY"
           aria-expanded="false"
           aria-label="Toggle navigation"
+          @click.prevent="
+            collapseToggle = !collapseToggle;
+            stickyNav();
+          "
         >
           <!-- Hamburger menu icon -->
           <span class="[&>svg]:w-5 hamburger-icon">
@@ -91,6 +95,7 @@
         class="!visible hidden basis-[100%] lg:!flex lg:basis-auto font-medium relative"
         id="navbarSupportedContentY"
         data-te-collapse-item
+        ref="collapseItem"
       >
         <ul class="flex flex-col mr-auto lg:flex-row" data-te-navbar-nav-ref>
           <li class="leading-9 lg:my-0" data-te-nav-item-ref>
@@ -305,6 +310,7 @@ export default {
     return {
       state: {
         isLoading: false,
+        collapseToggle: false,
       },
     };
   },
@@ -319,7 +325,7 @@ export default {
       const { nav } = this.$refs;
 
       if (nav) {
-        if (window.scrollY >= 76) {
+        if (window.scrollY >= 76 || this.collapseToggle) {
           nav.classList.add('fixed-nav');
         } else {
           nav.classList.remove('fixed-nav');
@@ -359,6 +365,12 @@ export default {
         !this.$refs.collapse.contains(clickEvent.target)
       ) {
         this.hideCollapse();
+      }
+
+      if (this.$refs.collapse && this.$refs.collapseItem.hasAttribute('data-te-collapse-show') === true) {
+        const collapseItem = new Collapse(this.$refs.collapseItem);
+        collapseItem.hide();
+        this.collapseToggle = false;
       }
     },
   },
