@@ -70,6 +70,10 @@ const router = createRouter({
             },
           ],
         },
+        {
+          path: '/:pathMatch(.*)*',
+          component: () => import('../views/PageNotFound.vue'),
+        },
       ],
     },
     {
@@ -96,6 +100,10 @@ const router = createRouter({
         {
           path: 'blog',
           component: () => import('../views/backend/BlogDashboard.vue'),
+        },
+        {
+          path: '/admin/:pathMatch(.*)*',
+          redirect: '/admin',
         },
       ],
     },

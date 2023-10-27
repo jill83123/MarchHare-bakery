@@ -368,7 +368,7 @@
     </section>
     <section
       class="relative py-20 after:bg-[#ffffff10] after:absolute after:right-0 after:left-0 after:bottom-0 after:top-0 after:backdrop-blur-[1px]"
-      style="background: url(./images/index-contact-bg.jpg) no-repeat 50% 50% / cover; background-attachment: fixed"
+      style="background: url(index-contact-bg.jpg) no-repeat 50% 50% / cover; background-attachment: fixed"
     >
       <p class="relative z-10 my-4 font-bold tracking-wider text-center text-black-light"
         >有想要詢問的事情嗎？來
