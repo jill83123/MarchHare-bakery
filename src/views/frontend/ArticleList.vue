@@ -114,7 +114,7 @@
       </aside>
     </div>
 
-    <Pagination :pages="pagination"></Pagination>
+    <Pagination :pages="pagination" @change-page="getArticles"></Pagination>
   </main>
 </template>
 
