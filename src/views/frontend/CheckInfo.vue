@@ -1,5 +1,10 @@
 <template>
-  <div class="container w-full mb-12 xl:10/12 2xl:w-7/12">
+  <div
+    data-aos="fade-up"
+    data-aos-duration="800"
+    data-aos-once="true"
+    class="container w-full mb-16 sm:mb-12 xl:10/12 2xl:w-7/12"
+  >
     <RouterLink to="/checkout" class="inline-block mb-4">
       <div class="flex items-center">
         <span class="mr-1 material-symbols-outlined"> keyboard_double_arrow_left </span>返回上一步
@@ -94,7 +99,7 @@
               id="address"
               rules="required"
               v-model="userInfo.user.address"
-              :disabled="userInfo.user.pickupMethod === 'self'"
+              :disabled="userInfo.user.order.pickupMethod === 'self'"
             ></VField>
             <ErrorMessage class="absolute right-0 text-sm text-danger" name="地址"></ErrorMessage>
             <span class="absolute bottom-[12%] right-2 material-symbols-outlined text-danger" v-if="errors['地址']">
@@ -134,13 +139,13 @@
                 >點我套用</button
               >
               <span
-                class="absolute mr-1 text-success material-symbols-outlined z-10 right-[22%] top-[20%]"
+                class="absolute mr-1 text-success material-symbols-outlined z-10 right-[105px] lg:right-[22%] top-[20%]"
                 v-if="status.coupon && userInfo.couponCode"
               >
                 check_circle
               </span>
               <p
-                class="absolute text-danger z-10 right-[22%] top-[20%] flex items-center text-sm"
+                class="absolute text-danger z-10 right-[110px] top-[20%] flex items-center text-sm"
                 v-else-if="userInfo.couponCode"
               >
                 <span class="mr-1 material-symbols-outlined"> info </span>
@@ -151,7 +156,13 @@
           <button
             type="submit"
             class="z-10 flex items-center px-8 py-2 ml-auto text-sm font-medium leading-normal tracking-wider text-white uppercase transition duration-150 ease-in-out rounded-full to-check bg-brown-300 focus:outline-none focus:ring-0 hover:opacity-80 disabled:bg-gray-300"
-            :disabled="Object.keys(errors).length !== 0 || Object.keys(userInfo.user).length < 4"
+            :disabled="
+              Object.keys(errors).length !== 0 ||
+              userInfo.user.address === '' ||
+              userInfo.user.email === '' ||
+              userInfo.user.name === '' ||
+              userInfo.user.tel === ''
+            "
             >前往結帳
           </button>
         </VForm>
@@ -174,7 +185,7 @@
                 <!-- content -->
                 <div class="flex flex-col justify-between w-3/4 px-2 grow">
                   <div class="flex items-center justify-between">
-                    <h4 class="inline-block font-medium text-lg truncate max-w-[90%]">
+                    <h4 class="inline-block font-medium text-base sm:text-lg truncate max-w-[90%]">
                       {{ cartItem.product.title }}
                     </h4>
                     <p class="inline-block text-sm">x {{ cartItem.qty }} {{ cartItem.product.unit }}</p>
@@ -184,7 +195,7 @@
                     <span class="text-xs text-gray-400"
                       >單價 NT {{ $filters.currency(cartItem.product.price) }} 元</span
                     >
-                    <span>NT {{ $filters.currency(cartItem.final_total) }} 元</span>
+                    <span class="text-sm sm:text-base">NT {{ $filters.currency(cartItem.final_total) }} 元</span>
                   </div>
                 </div>
               </li>
@@ -241,6 +252,7 @@ export default {
     },
 
     toPay() {
+      this.userInfo.user.order.is_paid = undefined;
       this.pushUserInfo(this.userInfo);
       this.$router.replace('/checkout/pay');
     },

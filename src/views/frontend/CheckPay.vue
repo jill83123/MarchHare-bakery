@@ -1,5 +1,10 @@
 <template>
-  <div class="container w-full mb-12 xl:10/12 2xl:w-7/12">
+  <div
+    data-aos="fade-up"
+    data-aos-duration="800"
+    data-aos-once="true"
+    class="container w-full mb-12 xl:10/12 2xl:w-7/12"
+  >
     <RouterLink to="/checkout/information" class="inline-block mb-4">
       <div class="flex items-center">
         <span class="mr-1 material-symbols-outlined"> keyboard_double_arrow_left </span>返回修改
@@ -65,12 +70,12 @@
               v-model="userInfo.message"
             />
           </div>
-          <div class="flex justify-between">
-            <div>
+          <div class="flex flex-col justify-between sm:flex-row">
+            <div class="mb-3 sm:mb-0">
               <p class="block mb-2">請選擇付款方式<span class="text-danger"> *</span></p>
               <div class="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
                 <input
-                  class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-brown-300 checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-brown-300 checked:after:bg-brown-300 checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-brown-300 checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-brown-300 dark:checked:after:border-brown-300 dark:checked:after:bg-brown-300 dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-brown-300 dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
+                  class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-brown-300 checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-brown-300 checked:after:bg-brown-300 checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-brown-300 checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s]"
                   type="radio"
                   name="payWay"
                   id="self"
@@ -83,7 +88,7 @@
               </div>
               <div class="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
                 <input
-                  class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-brown-300 checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-brown-300 checked:after:bg-brown-300 checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-brown-300 checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-brown-300 dark:checked:after:border-brown-300 dark:checked:after:bg-brown-300 dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-brown-300 dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
+                  class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-brown-300 checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-brown-300 checked:after:bg-brown-300 checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-brown-300 checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s]"
                   type="radio"
                   name="payWay"
                   id="other"
@@ -126,7 +131,7 @@
                 <!-- content -->
                 <div class="flex flex-col justify-between w-3/4 px-2 grow">
                   <div class="flex items-center justify-between">
-                    <h4 class="inline-block font-medium text-lg truncate max-w-[90%]">
+                    <h4 class="inline-block font-medium text-base sm:text-lg truncate max-w-[90%]">
                       {{ cartItem.product.title }}
                     </h4>
                     <p class="inline-block text-sm">{{ cartItem.qty }} {{ cartItem.product.unit }}</p>
@@ -136,7 +141,7 @@
                     <span class="text-xs text-gray-400"
                       >單價 NT {{ $filters.currency(cartItem.product.price) }} 元</span
                     >
-                    <span>NT {{ $filters.currency(cartItem.final_total) }} 元</span>
+                    <span class="text-sm sm:text-base">NT {{ $filters.currency(cartItem.final_total) }} 元</span>
                   </div>
                 </div>
               </li>

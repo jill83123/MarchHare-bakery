@@ -1,10 +1,20 @@
 /* CKEditor */
-.ck-content ul {
+.ck-content ul,
+.ck-content ol {
   list-style-position: inside;
+  margin-left: 0.5rem;
 }
 
 .ck-content {
   min-height: 80px;
+}
+
+.ck-content a {
+  @apply border-b text-info border-info;
+}
+
+.ck-balloon-panel {
+  z-index: 9999 !important;
 }
 
 /* tailwind-elements date picker */

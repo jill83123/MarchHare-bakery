@@ -1,5 +1,11 @@
 <template>
-  <div class="container flex flex-col" v-if="cartList.length > 0">
+  <div
+    data-aos="fade-up"
+    data-aos-duration="800"
+    data-aos-once="true"
+    class="container flex flex-col"
+    v-if="cartList.length > 0"
+  >
     <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
         <div class="overflow-hidden">
@@ -8,7 +14,7 @@
               <tr>
                 <th scope="col" class="w-[5%] px-1 py-4 md:px-4 lg:px-6">#</th>
                 <th scope="col" class="md:w-[55%] px-1 py-4 md:px-4 lg:px-6">清單</th>
-                <th scope="col" class="max-[480px]:w-[20%] md:w-[15%] px-1 py-4 md:px-4 lg:px-6">小計</th>
+                <th scope="col" class="max-[479px]:w-[20%] md:w-[15%] px-1 py-4 md:px-4 lg:px-6">小計</th>
                 <th scope="col" class="w-[15%] px-1 py-4 md:px-4 lg:px-6">編輯</th>
                 <th scope="col" class="w-[10%] px-0 py-4 md:px-4 lg:px-6">刪除</th>
               </tr>
@@ -19,7 +25,7 @@
                 v-for="(cartItem, index) in cartList"
                 :key="cartItem.id"
               >
-                <td class="px-2 py-4 font-medium md:px-4 lg:px-6">{{ index + 1 }}</td>
+                <td class="pl-2 min-w-[480px]:px-2 py-4 font-medium md:px-4 lg:px-6">{{ index + 1 }}</td>
                 <td class="px-2 py-4 md:px-4 lg:px-6">
                   <div class="flex flex-col gap-2 md:gap-8 min-[480px]:flex-row">
                     <img
@@ -29,31 +35,30 @@
                     />
                     <div class="flex flex-col justify-center">
                       <div class="mb-2">
-                        <h4 class="inline-block mb-1 mr-1 font-medium text-black lg:text-xl">
+                        <h4 class="block mr-1 font-medium text-black lg:text-xl">
                           {{ cartItem.product.title }}
                           <span
-                            class="px-2 ml-2 text-xs text-white rounded-full font-montserrat op bg-success"
+                            class="text-[8px] sm:text-[10px] px-2 ml-1 text-white rounded-full font-montserrat op bg-success"
                             v-if="cartItem.product.price !== cartItem.product.origin_price"
                             >SALE</span
                           >
                         </h4>
-                        <br />
-                        <span
-                          class="text-xs tracking-wider text-gray-500"
-                          :class="{ 'line-through': cartItem.product.price !== cartItem.product.origin_price }"
+                        <p
+                          class="inline-block text-xs tracking-wider text-gray-500"
+                          :class="{ 'line-through mr-2': cartItem.product.price !== cartItem.product.origin_price }"
                           >NT
                           <span>{{ $filters.currency(cartItem.product.origin_price) }}</span>
-                          元</span
+                          元</p
                         >
-                        <span
+                        <p
                           v-if="cartItem.product.price !== cartItem.product.origin_price"
-                          class="text-xs tracking-wider text-gray-500"
+                          class="inline-block text-xs tracking-wider text-gray-500"
                           :class="{
-                            ' text-success font-bold ml-2': cartItem.product.price !== cartItem.product.origin_price,
+                            ' text-success font-bold': cartItem.product.price !== cartItem.product.origin_price,
                           }"
                           >NT
                           <span>{{ $filters.currency(cartItem.product.price) }}</span>
-                          元</span
+                          元</p
                         >
                       </div>
                       <div v-html="cartItem.product.description" class="hidden lg:block"></div>
@@ -61,14 +66,14 @@
                   </div>
                 </td>
                 <td
-                  class="px-0 sm:px-2 py-4 text-xs tracking-wider max-[480px]:text-center sm:text-left sm:text-sm md:px-4 lg:px-6"
+                  class="px-0 sm:px-2 py-4 text-xs tracking-wider max-[480px]:text-center sm:text-left sm:text-sm md:px-4 lg:px-6 whitespace-nowrap"
                 >
                   <span
                     ><span class="hidden sm:inline-block">NT</span>
                     {{ $filters.currency(cartItem.final_total) }} 元</span
                   >
                 </td>
-                <td class="px-2 py-4 md:px-4 lg:px-6">
+                <td class="min-w-[480px]:px-2 py-4 md:px-4 lg:px-6">
                   <div class="flex items-center">
                     <button
                       class="pr-1"

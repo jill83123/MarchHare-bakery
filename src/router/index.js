@@ -1,5 +1,4 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
-import cartStore from '../stores/cartStore';
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -113,16 +112,6 @@ const router = createRouter({
       top: 0,
     };
   },
-});
-
-router.beforeEach((to, from, next) => {
-  if (to.path.indexOf('checkout') === -1) {
-    const cartIndex = cartStore().cartList.findIndex((item) => item.id === '-Nfviy3OLgcT7GnSUqUV');
-    if (cartIndex > -1) {
-      cartStore().cartList.splice(cartIndex, 1);
-    }
-  }
-  next();
 });
 
 export default router;

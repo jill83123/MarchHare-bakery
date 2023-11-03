@@ -201,7 +201,7 @@
 
             <div class="w-2/3">
               <div class="flex gap-2">
-                <div class="w-[120px]">
+                <div class="w-[170px]">
                   <label for="statusSelect" class="block mb-1">種類</label>
                   <select
                     data-te-select-init
@@ -210,7 +210,8 @@
                     v-model="tempArticle.category"
                     ref="categorySelect"
                   >
-                    <option value="重要" selected>重要</option>
+                    <option value="尚未選擇" selected>尚未選擇</option>
+                    <option value="重要">重要</option>
                     <option value="通知">通知</option>
                     <option value="分享">分享</option>
                   </select>
@@ -315,7 +316,11 @@ export default {
       const formattedDate = `${year}-${month}-${day}`;
       this.tempArticle.create_at = formattedDate;
 
-      Select.getOrCreateInstance(this.selectEl).setValue(this.tempArticle.category);
+      if (!this.tempArticle.category) {
+        Select.getOrCreateInstance(this.selectEl).setValue([0]);
+      } else {
+        Select.getOrCreateInstance(this.selectEl).setValue(this.tempArticle.category);
+      }
     },
     'article.content': {
       handler() {
@@ -339,12 +344,15 @@ export default {
           'bulletedList',
           'numberedList',
           '|',
-          'imageUpload',
           'blockQuote',
           'undo',
           'redo',
         ],
+        link: {
+          addTargetToExternalLinks: true,
+        },
       },
+
       datepicker: {},
       loadingIcon: false,
       selectEl: {},

@@ -1,6 +1,6 @@
 <!-- eslint-disable import/no-unresolved -->
 <template>
-  <LoadingAnimation :active="isLoading"></LoadingAnimation>
+  <LoadingAnimation :active="isLoading" :lock-scroll="true"></LoadingAnimation>
 
   <main class="ml-0 lg:ml-[310px]">
     <div class="container flex justify-between py-4 lg:mt-10 lg:text-right">
@@ -45,8 +45,10 @@
                     {{ item.title }}
                   </td>
                   <td class="px-6 py-4">
-                    <p v-if="item.tag">{{ item.tag.join('、') }}</p></td
-                  >
+                    <div class="flex flex-wrap gap-1">
+                      <p v-for="tag in item.tag" :key="tag" class=" whitespace-nowrap">＃{{ tag }}</p>
+                    </div>
+                  </td>
                   <td class="px-6 py-4 whitespace-nowrap">{{ item.author }}</td>
                   <td class="px-6 py-4 whitespace-nowrap">
                     <p class="text-success" v-if="item.isPublic">公開</p>
@@ -156,6 +158,11 @@ export default {
           this.getTags();
           this.isLoading = false;
         }
+        this.articleList.sort((a, b) => {
+          const dateA = new Date(a.create_at);
+          const dateB = new Date(b.create_at);
+          return dateB - dateA;
+        });
       });
     },
     getTags() {
@@ -178,7 +185,7 @@ export default {
       const lastEditDate = Math.floor(new Date().getTime() / 1000);
       this.tempArticle.lastEditDate = lastEditDate;
 
-      if (typeof(this.tempArticle.create_at) ==='string') {
+      if (typeof this.tempArticle.create_at === 'string') {
         const dateTimeString = this.tempArticle.create_at;
         const dateTime = new Date(`${dateTimeString}T00:00:00Z`);
         this.tempArticle.create_at = Math.floor(dateTime.getTime() / 1000);

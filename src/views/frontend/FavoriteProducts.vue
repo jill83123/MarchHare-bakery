@@ -1,5 +1,5 @@
 <template>
-  <header class="pt-[96px]">
+  <header class="pt-[96px]" data-aos="fade-up" data-aos-duration="800" data-aos-once="true">
     <div class="text-center">
       <button
         class="p-2 mb-4 border-2 rounded-full w-[46px] h-[46px]"
@@ -14,18 +14,20 @@
           favorite
         </span>
       </button>
-      <p class="-mb-2 font-montserrat text-2xl tracking-[0.2rem] font-bold text-brown-100">Favorite List</p>
-      <h3 class="text-[64px] font-medium tracking-widest text-brown-300 font-maru mb-3">收藏清單</h3>
-      <p class="font-bold tracking-widest text-black-light">心動不如馬上行動！<br />&ensp;快把喜歡的商品帶回家吧～</p>
+      <h3 class="mb-2 sm:mb-0 font-montserrat text-2xl tracking-[0.2rem] font-bold text-brown-100">Favorite List</h3>
+      <h2 class="text-5xl md:text-[64px] font-medium tracking-widest text-brown-300 font-maru mb-5">收藏清單</h2>
+      <p class="font-bold tracking-[0.12em] text-black-light">心動不如馬上行動！<br />&ensp;快把喜歡的商品帶回家吧～</p>
     </div>
   </header>
 
-  <main class="container mt-16 mb-20 min-h-[calc(100vh_-_674px)]">
+  <main class="container mt-12 sm:mt-16 mb-20 min-h-[calc(100vh_-_674px)]">
     <ul class="flex flex-wrap -mx-3 gap-y-5">
       {{
         favoriteStore.cartList
       }}
       <li
+        data-aos="fade-up"
+        data-aos-duration="800"
         class="w-full px-3 productCard sm:w-1/2 lg:w-1/3 xl:w-1/4"
         v-for="product in favoriteStore.favorite"
         :key="product.id"
@@ -60,7 +62,7 @@
           <div class="p-5 min-h-[150px] flex flex-col justify-between grow">
             <div>
               <h3 class="mb-1 text-lg font-medium text-black lg:text-2xl">{{ product.title }}</h3>
-              <div class="flex gap-1 -ml-1 text-sm text-gray-400">
+              <div class="flex gap-1 mb-2 -ml-1 text-sm text-gray-400">
                 <span
                   class="z-10 py-[1px] px-1 hover:bg-brown-100 hover:text-white"
                   @click.prevent="tagSearch(product.category)"

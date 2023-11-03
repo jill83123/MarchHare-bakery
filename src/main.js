@@ -14,6 +14,8 @@ import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json';
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 
+import AOS from 'aos';
+
 import Loading from 'vue3-loading-overlay';
 import 'vue3-loading-overlay/dist/vue3-loading-overlay.css';
 import LoadingAnimation from './components/LoadingAnimation.vue';
@@ -46,3 +48,5 @@ app.use(createPinia());
 app.use(router);
 
 app.mount('#app');
+
+AOS.init();

@@ -14,18 +14,13 @@
       class="pointer-events-none relative w-auto translate-y-[-50px] opacity-0 transition-all duration-300 ease-in-out mx-auto mt-7 max-w-[500px] min-[992px]:max-w-[800px] min-[1200px]:max-w-[1180px]"
     >
       <div
-        class="max-h-[calc(100vh_-_56px)] relative flex flex-col w-full text-current bg-white border-none rounded-md shadow-lg outline-none pointer-events-auto bg-clip-padding dark:bg-neutral-600"
+        class="max-h-[calc(100vh_-_56px)] relative flex flex-col w-full text-current bg-white border-none rounded-md shadow-lg outline-none pointer-events-auto bg-clip-padding"
       >
         <div
-          class="flex items-center justify-between flex-shrink-0 p-4 border-b-2 border-opacity-100 rounded-t-md border-neutral-100 dark:border-opacity-50"
+          class="flex items-center justify-between flex-shrink-0 p-4 border-b-2 border-opacity-100 rounded-t-md border-neutral-100"
         >
           <!--Modal title-->
-          <h5
-            class="text-xl font-medium leading-normal text-neutral-800 dark:text-neutral-200"
-            id="exampleModalXlLabel"
-          >
-            編輯訂單
-          </h5>
+          <h5 class="text-xl font-medium leading-normal text-neutral-800" id="exampleModalXlLabel"> 編輯訂單 </h5>
           <!--Close button-->
           <button
             type="button"

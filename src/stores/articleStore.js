@@ -4,6 +4,7 @@ import axios from 'axios';
 const articleStore = defineStore('article', {
   state: () => ({
     articleList: [],
+    asideList: [],
     pagination: [],
     allTags: [],
     isLoading: false,
@@ -26,6 +27,8 @@ const articleStore = defineStore('article', {
 
           this.pagination = res.data.pagination;
           this.getTags();
+
+          this.asideList = this.articleList.slice(0, 5);
         }
         this.isLoading = false;
       });

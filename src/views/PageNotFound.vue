@@ -19,12 +19,12 @@ export default {
       let number = 10;
       this.timerId = setInterval(() => {
         number -= 1;
+        timer.innerText = number;
         if (number <= 0) {
           number = 0;
           this.$router.replace('/');
           clearInterval(this.timerId);
         }
-        timer.innerText = number;
       }, 1000);
     },
   },

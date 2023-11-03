@@ -1,6 +1,6 @@
 <template>
-  <LoadingAnimation :active="status.isLoading"></LoadingAnimation>
-  <main class="mt-[76px] min-h-[calc(100vh_-_280px)] pt-10">
+  <LoadingAnimation :active="status.isLoading" :lock-scroll="true"></LoadingAnimation>
+  <main class="mt-[76px] min-h-[calc(100vh_-_280px)] pt-9 sm:pt-10">
     <Stepper></Stepper>
     <router-view></router-view>
   </main>

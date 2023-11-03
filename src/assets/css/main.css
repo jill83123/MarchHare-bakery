@@ -6,6 +6,7 @@
 @import 'components.css';
 
 @import '../../../node_modules/swiper/swiper-bundle.min.css';
+@import 'aos/dist/aos.css';
 
 /* tailwind */
 @tailwind base;

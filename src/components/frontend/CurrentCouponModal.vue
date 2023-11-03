@@ -17,7 +17,11 @@
         class="relative flex flex-col w-full text-current border-none rounded-md shadow-lg outline-none pointer-events-auto bg-clip-padding"
       >
         <div class="rounded-md">
-          <img src="../../assets/images/coupon-bg.png" alt="coupon-bg" class="min-h-[336px] object-[70%] object-cover" />
+          <img
+            src="../../assets/images/coupon-bg.png"
+            alt="coupon-bg"
+            class="min-h-[336px] object-[70%] object-cover"
+          />
           <!--Close button-->
           <button
             type="button"
@@ -85,7 +89,21 @@ export default {
   },
   mounted() {
     initTE({ Modal });
-    this.showModal();
+
+    const currentTime = Date.now();
+    const lastPopupTime = localStorage.getItem('lastPopupCouponModal');
+
+    if (!lastPopupTime) {
+      this.showModal();
+      localStorage.setItem('lastPopupCouponModal', currentTime);
+    } else {
+      const diffInMinutes = Math.floor((currentTime - lastPopupTime) / (1000 * 60));
+
+      if (diffInMinutes >= 15) {
+        this.showModal();
+        localStorage.setItem('lastPopupCouponModal', currentTime);
+      }
+    }
   },
   mixins: [modalMixin, swalMixin],
 };

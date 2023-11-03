@@ -1,9 +1,15 @@
 <template>
-  <LoadingAnimation :active="status.isLoading"></LoadingAnimation>
-  <main class="container mt-[106px] min-h-[calc(100vh_-_310px)] pb-10">
+  <LoadingAnimation :active="status.isLoading" :lock-scroll="true"></LoadingAnimation>
+
+  <main
+    data-aos="fade-up"
+    data-aos-duration="800"
+    data-aos-once="true"
+    class="container mt-[126px] min-h-[calc(100vh_-_330px)] pb-10 overflow-x-hidden overflow-y-hidden"
+  >
     <div class="mb-5 text-center">
-      <p class="-mb-2 font-montserrat text-2xl tracking-[0.2rem] font-bold text-brown-100">Order Search</p>
-      <h2 class="text-[64px] font-medium tracking-widest text-brown-300 font-maru">訂單査詢</h2>
+      <h3 class="font-montserrat mb-2 text-2xl tracking-[0.2rem] font-bold text-brown-100">Order Search</h3>
+      <h2 class="text-5xl md:text-[64px] font-medium tracking-widest text-brown-300 font-maru">訂單査詢</h2>
     </div>
 
     <div class="mx-auto mb-10 font-semibold text-center text-black-light sm:w-7/12 md:w-1/2 xl:w-1/3">
@@ -21,7 +27,7 @@
     </div>
 
     <!-- search -->
-    <div class="w-full mx-auto mb-10 md:block sm:w-7/12 md:w-1/2 xl:w-1/3">
+    <div class="w-full mx-auto mb-10 md:block sm:w-8/12 md:w-2/3 lg:w-1/2 xl:w-1/3">
       <div class="relative flex flex-wrap items-stretch w-full ml-auto card-img">
         <input
           type="search"
@@ -48,8 +54,8 @@
       </div>
     </div>
 
-    <div v-if="Object.keys(this.orderDetails).length !== 0">
-      <ul class="flex justify-between w-full mx-auto mb-16 sm:w-7/12 md:w-1/2 xl:w-2/5">
+    <div v-if="Object.keys(this.orderDetails).length !== 0" data-aos="fade-up" data-aos-duration="800">
+      <ul class="flex justify-between w-full mx-auto mb-16 text-sm lg:w-2/3 xl:w-1/2 sm:text-base">
         <li class="flex justify-around w-1/4">
           <p
             class="inline-block"
@@ -57,7 +63,7 @@
             >收到訂單</p
           >
           <span
-            class="material-symbols-outlined"
+            class="text-base material-symbols-outlined sm:text-2xl"
             :class="
               orderDetails.user.order.status === '收到訂單' ? 'text-brown-300 font-semibold move' : ' text-gray-300'
             "
@@ -72,7 +78,7 @@
             >準備中</p
           >
           <span
-            class="material-symbols-outlined"
+            class="text-base material-symbols-outlined sm:text-xl"
             :class="
               orderDetails.user.order.status === '準備中' ? 'text-brown-300 font-semibold move' : ' text-gray-300'
             "
@@ -82,13 +88,14 @@
         </li>
         <li class="flex justify-around w-1/4">
           <p
+            class="whitespace-nowrap"
             :class="
               orderDetails.user.order.status === '已完成（寄出）' ? ' text-brown-300 font-bold' : ' text-gray-300'
             "
-            >已完成（寄出）</p
+            >已完成 / 寄出</p
           >
           <span
-            class="material-symbols-outlined"
+            class="w-1/4 text-base material-symbols-outlined sm:text-xl"
             :class="
               orderDetails.user.order.status === '已完成（寄出）'
                 ? 'text-brown-300 font-semibold move'
@@ -100,7 +107,7 @@
         </li>
 
         <li
-          class="inline-block"
+          class="inline-block text-center sm:w-1/6"
           :class="orderDetails.user.order.status === '已取貨' ? ' text-brown-300 font-bold' : ' text-gray-300'"
           >已取貨</li
         >
@@ -178,40 +185,40 @@
             <rect x="0.5" y="513.5" width="26" height="26" rx="13" stroke="#DDDDDD" />
           </svg>
 
-          <table class="w-4/5 mx-auto">
+          <table class="w-4/5 mx-auto break-all">
             <tbody>
               <thead>
                 <th class="w-[30%] min-[500px]:w-[25%]"></th>
                 <th class="w-[70%] min-[500px]:w-[75%]"></th>
               </thead>
               <tr class="align-text-top border-b-2 border-dashed border-brown-100">
-                <td class="pt-2 pb-4 pr-1 sm:tracking-wider sm:pr-4">下訂時間</td>
+                <td class="pt-2 pb-4 pr-1 sm:tracking-wider sm:pr-4 min-w-[74px] sm:min-w-[86px]">下訂時間</td>
                 <td class="pt-2 pb-4 pr-1 sm:tracking-wider sm:pr-4">{{ $filters.date(orderDetails.create_at) }}</td>
               </tr>
               <tr class="border-b-2 border-dashed border-brown-100">
-                <td class="py-4 pr-1 sm:tracking-wider sm:pr-4">姓名</td>
+                <td class="py-4 pr-1 sm:tracking-wider sm:pr-4 min-w-[74px] sm:min-w-[86px]">姓名</td>
                 <td class="py-4 pr-1 sm:tracking-wider sm:pr-4">{{ orderDetails.user.name }}</td>
               </tr>
               <tr class="border-b-2 border-dashed border-brown-100">
-                <td class="py-4 pr-1 sm:tracking-wider sm:pr-4">電話</td>
+                <td class="py-4 pr-1 sm:tracking-wider sm:pr-4 min-w-[74px] sm:min-w-[86px]">電話</td>
                 <td class="py-4 pr-1 sm:tracking-wider sm:pr-4">{{ orderDetails.user.tel }}</td>
               </tr>
               <tr class="border-b-2 border-dashed border-brown-100">
-                <td class="py-4 pr-1 sm:tracking-wider sm:pr-4">E-mail</td>
+                <td class="py-4 pr-1 sm:tracking-wider sm:pr-4 min-w-[74px] sm:min-w-[86px]">E-mail</td>
                 <td class="py-4 pr-1 sm:tracking-wider sm:pr-4">{{ orderDetails.user.email }}</td>
               </tr>
               <tr class="border-b-2 border-dashed border-brown-100">
-                <td class="py-4 pr-1 sm:tracking-wider sm:pr-4">取貨方式</td>
+                <td class="py-4 pr-1 sm:tracking-wider sm:pr-4 min-w-[74px] sm:min-w-[86px]">取貨方式</td>
                 <td class="py-4 pr-1 sm:tracking-wider sm:pr-4">{{
                   orderDetails.user.order.pickupMethod === 'delivery' ? '宅配' : '到店自取'
                 }}</td>
               </tr>
               <tr class="border-b-2 border-dashed border-brown-100">
-                <td class="py-4 pr-1 sm:tracking-wider sm:pr-4">地址</td>
+                <td class="py-4 pr-1 sm:tracking-wider sm:pr-4 min-w-[74px] sm:min-w-[86px]">地址</td>
                 <td class="py-4 pr-1 sm:tracking-wider sm:pr-4">{{ orderDetails.user.address }}</td>
               </tr>
               <tr class="border-b-2 border-dashed border-brown-100">
-                <td class="py-4 pr-1 sm:tracking-wider sm:pr-4">是否付款</td>
+                <td class="py-4 pr-1 sm:tracking-wider sm:pr-4 min-w-[74px] sm:min-w-[86px]">是否付款</td>
                 <td
                   class="py-4 pr-1 font-medium sm:tracking-wider sm:pr-4"
                   :class="orderDetails.user.order.is_paid ? 'text-success' : 'text-danger'"
@@ -219,7 +226,7 @@
                 >
               </tr>
               <tr class="border-b-2 border-dashed border-brown-100">
-                <td class="py-4 pr-1 sm:tracking-wider sm:pr-4">留言</td>
+                <td class="py-4 pr-1 sm:tracking-wider sm:pr-4 min-w-[74px] sm:min-w-[86px]">留言</td>
                 <td class="py-4 pr-1 sm:tracking-wider sm:pr-4">{{
                   orderDetails.message === '' ? '無' : orderDetails.message
                 }}</td>
@@ -229,7 +236,7 @@
         </div>
       </div>
 
-      <div class="mb-10">
+      <div class="mb-10" data-aos="fade-up" data-aos-duration="800" data-aos-offset="200">
         <h3 class="mb-2 text-3xl font-bold text-center text-black font-noto-serif">訂單明細</h3>
         <div class="container flex flex-col">
           <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -242,16 +249,16 @@
                       <th scope="col" class="max-[500px]:w-[45%] px-1 py-4 md:px-4 lg:px-6">清單</th>
                       <th scope="col" class="max-[500px]:w-[35%] w-[25%] px-1 py-4 md:px-4 lg:px-6"
                         >小計
-                        <span
+                        <p
                           v-if="Object.values(orderDetails.products).some((product) => product.coupon)"
-                          class="block -ml-2 text-xs text-success"
+                          class="-ml-2 text-xs text-success"
                           >{{
                             Object.values(orderDetails.products).some((product) => product.coupon)
                               ? '（已使用優惠券）'
                               : ''
                           }}
-                        </span></th
-                      >
+                        </p>
+                      </th>
                       <th scope="col" class="w-[10%] px-0 py-4 md:px-4 lg:px-6">數量</th>
                     </tr>
                   </thead>
@@ -271,29 +278,29 @@
                           />
                           <div class="flex flex-col justify-center">
                             <div class="mb-2">
-                              <h4 class="inline-block mb-1 mr-1 font-medium text-black lg:text-xl">
+                              <h4 class="mb-1 mr-1 font-medium text-black lg:text-xl">
                                 {{ item.product.title }}
+                                <span
+                                  class="px-2 ml-2 text-[8px] sm:text-[10px] text-white rounded-full font-montserrat op bg-success"
+                                  v-if="item.product.price !== item.product.origin_price"
+                                  >SALE</span
+                                >
                               </h4>
-                              <span
-                                class="px-2 ml-2 text-xs text-white rounded-full font-montserrat op bg-success"
-                                v-if="item.product.price !== item.product.origin_price"
-                                >SALE</span
-                              >
-                              <br />
-                              <span
-                                class="text-xs tracking-wider text-gray-500"
+                              <p
+                                class="inline-block text-xs tracking-wider text-gray-500"
                                 :class="{ 'line-through': item.product.price !== item.product.origin_price }"
-                                >NT {{ $filters.currency(item.product.origin_price) }} 元</span
-                              ><span
+                                >NT {{ $filters.currency(item.product.origin_price) }} 元
+                              </p>
+                              <p
                                 v-if="item.product.price !== item.product.origin_price"
-                                class="text-xs tracking-wider text-gray-500"
+                                class="inline-block text-xs tracking-wider text-gray-500"
                                 :class="{
                                   ' text-success font-bold ml-2': item.product.price !== item.product.origin_price,
                                 }"
                                 >NT
                                 <span>{{ $filters.currency(item.product.price) }}</span>
-                                元</span
-                              >
+                                元
+                              </p>
                             </div>
                             <div v-html="item.product.description" class="hidden lg:block"></div>
                           </div>
@@ -302,25 +309,25 @@
                       <td
                         class="px-2 py-4 text-xs tracking-wider max-[500px]:text-center sm:text-left sm:text-sm md:px-4 lg:px-6"
                       >
-                        <span :class="{ 'text-success font-bold': item.total !== item.final_total }"
-                          ><span class="hidden mr-[2px] sm:inline-block">NT </span>
+                        <p :class="{ 'text-success font-bold': item.total !== item.final_total }">
+                          <span class="hidden mr-[2px] sm:inline-block">NT </span>
                           <span>
                             {{
                               item.total === item.final_total
                                 ? $filters.currency(item.total * item.qty)
                                 : $filters.currency(item.final_total)
-                            }}</span
-                          >
+                            }}
+                          </span>
                           元
-                        </span>
+                        </p>
                       </td>
                       <td class="px-2 py-4 md:px-4 lg:px-6">
-                        <div class="flex items-center">
+                        <p class="flex items-center">
                           {{ item.product.qty ? item.product.qty : 1 }}
                           <span class="hidden pl-2 text-sm text-gray-400 sm:inline-block">
                             {{ item.product.unit }}</span
                           >
-                        </div>
+                        </p>
                       </td>
                     </tr>
                   </tbody>
@@ -328,17 +335,17 @@
                   <tfoot class="text-base font-bold tracking-wider border-t border-gray-200 text-brown-500">
                     <td class="px-1 py-4 md:px-4 lg:px-6" colspan="2">
                       <div class="flex items-center justify-between">
-                        {{ Object.keys(orderDetails.products).length }} 個商品
-                        <div class="text-gray-500">
+                        <p>{{ Object.keys(orderDetails.products).length }} 個商品</p>
+                        <p class="text-gray-500">
                           {{ orderDetails.user.order.pickupMethod === 'delivery' ? '宅配' : '到店自取' }}
-                        </div>
+                        </p>
                       </div>
                     </td>
                     <td class="px-1 py-4 text-center md:text-start md:px-4 lg:px-6" colspan="3">
-                      共 NT {{ $filters.currency(orderDetails.total) }} 元
-                      <p class="-ml-2 text-sm">{{
-                        orderDetails.user.order.pickupMethod === 'delivery' ? `（含運費 80 元）` : ''
-                      }}</p>
+                      <p>共 NT {{ $filters.currency(orderDetails.total) }} 元</p>
+                      <p class="-ml-2 text-sm"
+                        >{{ orderDetails.user.order.pickupMethod === 'delivery' ? `（含運費 80 元）` : '' }}
+                      </p>
                     </td>
                   </tfoot>
                 </table>
@@ -349,14 +356,15 @@
       </div>
     </div>
   </main>
+
   <ContactUsModal></ContactUsModal>
 </template>
 
 <script>
 import { mapState } from 'pinia';
-import statesStore from '../../stores/statesStore';
 import cartStore from '../../stores/cartStore';
 import ContactUsModal from '../../components/frontend/ContactUsModal.vue';
+import swalMixin from '../../mixins/swalMixin';
 
 export default {
   data() {
@@ -377,14 +385,14 @@ export default {
 
       if (this.orderId === '') {
         this.status.isLoading = false;
-        statesStore().pushAlertMessage(false, '請輸入訂單編號');
+        this.showSwalToast('error', '請輸入訂單編號');
         return;
       }
 
       const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/order/${this.orderId}`;
       this.$http.get(api).then((res) => {
         if (res.data.order === null) {
-          statesStore().pushAlertMessage(false, '請輸入正確的編號');
+          this.showSwalToast('error', '請輸入正確的編號');
         } else if (res.data.success) {
           this.orderDetails = res.data.order;
 
@@ -401,8 +409,10 @@ export default {
             '*'.repeat(this.orderDetails.user.tel.length - 5) +
             this.orderDetails.user.tel.slice(-3);
 
-          this.orderDetails.user.address =
-            this.orderDetails.user.address.slice(0, 6) + '*'.repeat(this.orderDetails.user.address.length - 6);
+          if (this.orderDetails.user.address !== '到店自取') {
+            this.orderDetails.user.address =
+              this.orderDetails.user.address.slice(0, 6) + '*'.repeat(this.orderDetails.user.address.length - 6);
+          }
         }
         this.status.isLoading = false;
       });
@@ -417,6 +427,7 @@ export default {
   components: {
     ContactUsModal,
   },
+  mixins: [swalMixin],
 };
 </script>
 

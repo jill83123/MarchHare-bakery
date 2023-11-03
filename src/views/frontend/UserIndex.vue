@@ -1,11 +1,12 @@
 <template>
-  <LoadingAnimation :active="isLoading"></LoadingAnimation>
+  <LoadingAnimation :active="isLoading" :lock-scroll="true"></LoadingAnimation>
+
   <header class="pt-[76px]">
     <div class="relative">
       <swiper
         dir="rtl"
         :slidesPerView="5"
-        :spaceBetween="24"
+        :spaceBetween="18"
         :autoplay="{
           delay: 0,
           disableOnInteraction: false,
@@ -16,7 +17,7 @@
         :modules="modules"
         :breakpoints="{
           0: { slidesPerView: 1 },
-          430: { slidesPerView: 2 },
+          420: { slidesPerView: 2 },
           600: { slidesPerView: 3 },
           1150: { slidesPerView: 4 },
           1200: { slidesPerView: 5 },
@@ -27,86 +28,89 @@
           <img
             src="../../assets/images/index-header-0.jpg"
             alt="product-photo"
-            class="rounded-3xl h-[540px] w-full sm:max-w-[350px] object-cover hover:scale-[1.05] transition-all"
+            class="rounded-3xl h-[560px] w-full sm:max-w-[378px] object-cover hover:scale-[1.05] transition-all"
           />
         </swiper-slide>
         <swiper-slide>
           <img
             src="../../assets/images/index-header-1.jpg"
             alt="product-photo"
-            class="rounded-3xl h-[540px] w-full sm:max-w-[350px] object-cover hover:scale-[1.05] transition-all"
+            class="rounded-3xl h-[560px] w-full sm:max-w-[378px] object-cover hover:scale-[1.05] transition-all"
           />
         </swiper-slide>
         <swiper-slide>
           <img
             src="../../assets/images/index-header-2.jpg"
             alt="product-photo"
-            class="rounded-3xl h-[540px] w-full sm:max-w-[350px] object-cover hover:scale-[1.05] transition-all"
+            class="rounded-3xl h-[560px] w-full sm:max-w-[378px] object-cover hover:scale-[1.05] transition-all"
           />
         </swiper-slide>
         <swiper-slide>
           <img
             src="../../assets/images/index-header-3.jpg"
             alt="product-photo"
-            class="rounded-3xl h-[540px] w-full sm:max-w-[350px] object-cover hover:scale-[1.05] transition-all"
+            class="rounded-3xl h-[560px] w-full sm:max-w-[378px] object-cover hover:scale-[1.05] transition-all"
           />
         </swiper-slide>
         <swiper-slide>
           <img
             src="../../assets/images/index-header-4.jpg"
             alt="product-photo"
-            class="rounded-3xl h-[540px] w-full sm:max-w-[350px] object-cover hover:scale-[1.05] transition-all"
+            class="rounded-3xl h-[560px] w-full sm:max-w-[378px] object-cover hover:scale-[1.05] transition-all"
           />
         </swiper-slide>
         <swiper-slide>
           <img
             src="../../assets/images/index-header-5.jpg"
             alt="product-photo"
-            class="rounded-3xl h-[540px] w-full sm:max-w-[350px] object-cover hover:scale-[1.05] transition-all"
+            class="rounded-3xl h-[560px] w-full sm:max-w-[378px] object-cover hover:scale-[1.05] transition-all"
           />
         </swiper-slide>
         <swiper-slide>
           <img
             src="../../assets/images/index-header-6.jpg"
             alt="product-photo"
-            class="rounded-3xl h-[540px] w-full sm:max-w-[350px] object-cover hover:scale-[1.05] transition-all"
+            class="rounded-3xl h-[560px] w-full sm:max-w-[378px] object-cover hover:scale-[1.05] transition-all"
           />
         </swiper-slide>
         <swiper-slide>
           <img
             src="../../assets/images/index-header-7.jpg"
             alt="product-photo"
-            class="rounded-3xl h-[540px] w-full sm:max-w-[350px] object-cover hover:scale-[1.05] transition-all"
+            class="rounded-3xl h-[560px] w-full sm:max-w-[378px] object-cover hover:scale-[1.05] transition-all"
           />
         </swiper-slide>
         <swiper-slide>
           <img
             src="../../assets/images/index-header-8.jpg"
             alt="product-photo"
-            class="rounded-3xl h-[540px] w-full sm:max-w-[350px] object-cover hover:scale-[1.05] transition-all"
+            class="rounded-3xl h-[560px] w-full sm:max-w-[378px] object-cover hover:scale-[1.05] transition-all"
           />
         </swiper-slide>
         <swiper-slide>
           <img
             src="../../assets/images/index-header-9.jpg"
             alt="product-photo"
-            class="rounded-3xl h-[540px] w-full sm:max-w-[350px] object-cover hover:scale-[1.05] transition-all"
+            class="rounded-3xl h-[560px] w-full sm:max-w-[378px] object-cover hover:scale-[1.05] transition-all"
           />
         </swiper-slide>
       </swiper>
+      <!-- gradient -->
       <div
-        class="absolute top-0 bottom-0 left-[10%] sm:left-[40%] xl:left-[50%] right-[0%] z-50 from-20% sm:from-40% xl:from-[42%] to-100% bg-gradient-to-l from-neutral-50"
+        class="absolute top-0 bottom-0 left-[10%] sm:left-[40%] xl:left-[50%] right-[0%] z-50 from-10% sm:from-20% xl:from-[42%] to-100% bg-gradient-to-l from-neutral-50"
       >
         <div
           class="absolute top-0 bottom-0 flex flex-col justify-center left-0 right-[5%] sm:right-[14%] lg:right-[20%] xl:right-[35%] z-[100]"
         >
           <h2
+            data-aos="fade-left"
+            data-aos-duration="1200"
             class="w-fit ml-auto font-maru relative text-3xl sm:text-4xl text-black-light leading-[44px] sm:leading-[48px] tracking-[0.25em] font-semibold"
             style="-webkit-writing-mode: vertical-rl"
           >
             讓甜點的魔法，<br />&emsp;&emsp;<span class="text-brown-500">療癒</span>毎一天。
             <span
-              class="absolute -left-[20%] sm:-left-[20%] top-[29%] tracking-[0.5em] text-brown-500 text-sm material-symbols-outlined"
+              class="header-title-animate absolute -left-[20%] sm:-left-[20%] top-[29%] tracking-[0.45em] md:tracking-[0.5em] text-brown-500 text-sm material-symbols-outlined"
               style="
                 font-variation-settings:
                   'FILL' 1,
@@ -130,10 +134,11 @@
       </div>
     </div>
   </header>
-  <main>
-    <section class="overflow-hidden bg-matcha py-14">
+
+  <main class="overflow-x-hidden">
+    <section class="py-16 overflow-hidden bg-matcha">
       <div class="container flex flex-col justify-center gap-6 lg:flex-row">
-        <div class="self-center xl:w-2/12">
+        <div data-aos="fade-right" data-aos-duration="800" class="self-center xl:w-2/12">
           <h3 class="leading-4 tracking-widest text-center text-white opacity-60 font-montserrat">Latest news</h3>
           <h2 class="text-[44px] leading-snug font-medium text-center tracking-widest font-maru text-neutral-50"
             >最新消息</h2
@@ -141,7 +146,7 @@
         </div>
 
         <div
-          class="relative w-full mr-0 xl:w-6/12 px-5 sm:px-10 md:px-20 pb-10 shadow-md bg-neutral-50 pt-9 rounded-[20px] lg:mr-20"
+          class="relative w-full mr-0 xl:w-7/12 px-5 sm:px-10 md:px-20 pb-9 shadow-md bg-neutral-50 pt-9 rounded-[20px] lg:mr-20"
         >
           <svg
             class="absolute items-center hidden md:flex top-8 left-7"
@@ -165,7 +170,7 @@
           />
 
           <ul class="flex flex-col gap-5">
-            <li v-for="item in articles" :key="item.id">
+            <li data-aos="fade-up" data-aos-duration="1000" v-for="item in articles" :key="item.id">
               <RouterLink
                 :to="`blog/article/${item.id}`"
                 class="relative z-[1000] sm:z-0 sm:static flex max-[500px]:flex-col gap-2 md:gap-3 flex-row"
@@ -189,47 +194,76 @@
         </div>
       </div>
     </section>
-    <section>
-      <div class="container">
-        <div class="flex flex-col items-center justify-center gap-8 pt-16 pb-8 sm:pt-32 md:gap-16 md:flex-row sm:pb-14">
-          <img
-            src="../../assets/images/index-1.png"
-            alt="product-photo"
-            class="min-[420px]:w-7/12 md:w-5/12 lg:w-4/12"
-          />
-          <div class="flex flex-col items-center md:w-5/12 lg:w-4/12 md:block">
-            <h3
-              class="tracking-wide ml-2 text-3xl mb-5 md:mb-10 relative w-fit md:text-[40px] text-black font-semibold font-maru after:-z-[1] after:-left-2 after:-right-2 whitespace-nowrap after:bg-warning after:absolute after:top-1/2 after:-bottom-1 md:after:-bottom-2"
-              >療育可愛的造型</h3
-            >
-            <p class="min-[450px]:w-9/12 leading-relaxed md:w-auto"
-              >我們的麵包不僅僅是美味的食物，它們也是一種療癒的藝術。我們將每個麵包視為一幅畫布，精心設計獨特的造型，
-              使它們成為您每天生活中的小確幸。每個麵包都是一份療癒，為您帶來在繁忙的生活中享受片刻寧靜的機會。</p
-            >
-          </div>
-        </div>
 
-        <img src="../../assets/images/index_bread.png" alt="bread" class="mx-auto w-[100px] md:w-[150px]" />
-
+    <section class="container">
+      <div class="flex flex-col items-center justify-center gap-8 pt-16 pb-8 sm:pt-32 md:gap-16 md:flex-row sm:pb-14">
+        <img
+          data-aos="fade-up"
+          data-aos-duration="800"
+          data-aos-offset="200"
+          src="../../assets/images/index-1.png"
+          alt="product-photo"
+          class="min-[420px]:w-7/12 md:w-5/12 lg:w-4/12"
+        />
         <div
-          class="flex flex-col-reverse items-center justify-center gap-8 pt-8 pb-16 sm:pb-32 md:gap-16 md:flex-row sm:pt-14"
+          data-aos="fade-right"
+          data-aos-duration="800"
+          data-aos-offset="250"
+          data-aos-delay="300"
+          class="flex flex-col items-center md:w-5/12 lg:w-4/12 md:block"
         >
-          <div class="flex flex-col items-center md:w-5/12 lg:w-4/12 md:block">
-            <h3
-              class="tracking-wide ml-2 text-3xl mb-5 md:mb-10 relative text-black font-semibold w-fit md:text-[40px] font-maru after:-z-[1] after:-left-2 after:-right-2 whitespace-nowrap after:bg-warning after:absolute after:top-1/2 after:-bottom-1 md:after:-bottom-2"
-              >精選食材用心烹製</h3
-            >
-            <p class="min-[450px]:w-9/12 leading-relaxed md:w-auto"
-              >我們以頂級原材料，精心打造每一款甜點。 不論是新鮮的麵粉、香甜的水果，還是營養滿分的堅果，
-              我們只選用最優質的食材。每個甜點都是用心烹製的藝術品， 保證絕佳的質感和口味。</p
-            >
-          </div>
-          <img src="../../assets/images/index-2.png" alt="make-photo" class="min-[420px]:w-7/12 md:w-5/12 lg:w-4/12" />
+          <h3
+            class="tracking-wide ml-2 text-3xl mb-5 md:mb-10 relative w-fit md:text-[40px] text-black font-semibold font-maru after:-z-[1] after:-left-2 after:-right-2 whitespace-nowrap after:bg-warning after:absolute after:top-1/2 after:-bottom-1 md:after:-bottom-2"
+            >療育可愛的造型</h3
+          >
+          <p class="min-[450px]:w-9/12 leading-relaxed md:w-auto"
+            >&emsp;&emsp;我們的麵包不僅僅是美味的食物，它們也是一種療癒的藝術。我們將每個麵包視為一幅畫布，精心設計獨特的造型，
+            使它們成為您每天生活中的小確幸。每個麵包都是一份療癒，為您帶來在繁忙的生活中享受片刻寧靜的機會。</p
+          >
         </div>
       </div>
+
+      <img
+        data-aos="zoom-in"
+        data-aos-duration="1200"
+        data-aos-offset="350"
+        src="../../assets/images/index_bread.png"
+        alt="bread"
+        class="mx-auto w-[100px] md:w-[120px] lg:w-[150px]"
+      />
+
+      <div
+        class="flex flex-col-reverse items-center justify-center gap-8 pt-8 pb-16 sm:pb-32 md:gap-16 md:flex-row sm:pt-14"
+      >
+        <div
+          data-aos="fade-left"
+          data-aos-duration="800"
+          data-aos-offset="250"
+          data-aos-delay="300"
+          class="flex flex-col items-center md:w-5/12 lg:w-4/12 md:block"
+        >
+          <h3
+            class="tracking-wide ml-2 text-3xl mb-5 md:mb-10 relative text-black font-semibold w-fit md:text-[40px] font-maru after:-z-[1] after:-left-2 after:-right-2 whitespace-nowrap after:bg-warning after:absolute after:top-1/2 after:-bottom-1 md:after:-bottom-2"
+            >精選食材用心烹製</h3
+          >
+          <p class="min-[450px]:w-9/12 leading-relaxed md:w-auto"
+            >&emsp;&emsp;以頂級原材料，精心打造每一款甜點。 不論是新鮮的麵粉、香甜的水果，還是營養滿分的堅果，
+            我們只選用最優質的食材。每個甜點都是用心烹製的藝術品， 保證絕佳的質感和口味。</p
+          >
+        </div>
+        <img
+          data-aos="fade-up"
+          data-aos-duration="800"
+          data-aos-offset="300"
+          src="../../assets/images/index-2.png"
+          alt="make-photo"
+          class="min-[420px]:w-7/12 md:w-5/12 lg:w-4/12"
+        />
+      </div>
     </section>
-    <section class="pt-16 pb-[86px] overflow-x-hidden bg-white">
-      <div>
+
+    <section class="pt-16 pb-[86px] overflow-x-hidden bg-white overflow-y-hidden">
+      <div data-aos="fade-up" data-aos-duration="800" data-aos-offset="250">
         <h3 class="leading-4 tracking-widest text-center text-brown-200 opacity-60 font-montserrat">Online Shop</h3>
         <h2 class="text-[44px] leading-snug font-medium text-center tracking-widest font-maru text-brown-300"
           >線上商店</h2
@@ -246,6 +280,10 @@
         </div>
       </div>
       <swiper
+        data-aos="fade-up"
+        data-aos-duration="800"
+        data-aos-offset="300"
+        data-aos-delay="200"
         :navigation="true"
         :modules="modules"
         :slidesPerView="6"
@@ -253,10 +291,11 @@
         :loop="true"
         :breakpoints="{
           0: { slidesPerView: 1 },
-          430: { slidesPerView: 2 },
-          600: { slidesPerView: 3 },
-          1150: { slidesPerView: 4 },
-          1200: { slidesPerView: 5 },
+          460: { slidesPerView: 2 },
+          768: { slidesPerView: 3 },
+          992: { slidesPerView: 4 },
+          1200: { slidesPerView: 4 },
+          1300: { slidesPerView: 5 },
         }"
         class="px-3 pb-16 overflow-y-visible mySwiper"
       >
@@ -293,8 +332,9 @@
         </swiper-slide>
       </swiper>
     </section>
+
     <section>
-      <div class="container py-20">
+      <div data-aos="fade-up" data-aos-duration="900" data-aos-offset="400" class="container pt-20">
         <div class="flex flex-col-reverse gap-6 lg:flex-row">
           <iframe
             class="self-center w-full lg:w-1/2"
@@ -305,9 +345,10 @@
             allowfullscreen=""
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
-          ></iframe>
+          >
+          </iframe>
 
-          <div class="self-center w-full sm:w-1/2">
+          <div class="self-center w-full md:w-1/2">
             <h3 class="leading-4 tracking-widest text-center text-brown-200 opacity-60 font-montserrat"
               >Subscribe Us</h3
             >
@@ -334,8 +375,8 @@
                 rules="email|required"
                 v-model="subscribeEmail"
               ></VField>
-              <button type="submit" class="absolute top-0 right-0 p-4 bg-brown-300"
-                ><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <button type="submit" class="absolute top-0 right-0 p-4 bg-brown-300">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     fill-rule="evenodd"
                     clip-rule="evenodd"
@@ -347,8 +388,9 @@
                     clip-rule="evenodd"
                     d="M3.29303 14.7069C3.10556 14.5194 3.00024 14.2651 3.00024 13.9999C3.00024 13.7348 3.10556 13.4804 3.29303 13.2929L7.29303 9.29292C7.48163 9.11076 7.73423 9.00997 7.99643 9.01224C8.25863 9.01452 8.50944 9.11969 8.69485 9.3051C8.88026 9.49051 8.98543 9.74132 8.9877 10.0035C8.98998 10.2657 8.88919 10.5183 8.70703 10.7069L5.41403 13.9999L8.70703 17.2929C8.80254 17.3852 8.87872 17.4955 8.93113 17.6175C8.98354 17.7395 9.01113 17.8707 9.01228 18.0035C9.01344 18.1363 8.98813 18.268 8.93785 18.3909C8.88757 18.5138 8.81332 18.6254 8.71943 18.7193C8.62553 18.8132 8.51388 18.8875 8.39098 18.9377C8.26809 18.988 8.13641 19.0133 8.00363 19.0122C7.87085 19.011 7.73963 18.9834 7.61763 18.931C7.49562 18.8786 7.38528 18.8024 7.29303 18.7069L3.29303 14.7069Z"
                     fill="white"
-                  /></svg
-              ></button>
+                  />
+                </svg>
+              </button>
               <ErrorMessage class="absolute right-0 text-sm text-danger" name="E-mail"></ErrorMessage>
               <span
                 class="absolute bottom-[25%] right-[64px] material-symbols-outlined text-danger"
@@ -367,10 +409,13 @@
       </div>
     </section>
     <section
-      class="relative py-20 after:bg-[#ffffff10] after:absolute after:right-0 after:left-0 after:bottom-0 after:top-0 after:backdrop-blur-[1px]"
-      style="background: url(index-contact-bg.jpg) no-repeat 50% 50% / cover; background-attachment: fixed"
+      class="relative pt-24 pb-20 after:absolute after:right-0 after:left-0 after:bottom-0 after:top-0 after:backdrop-blur-[1px] after:bg-gradient-to-b after:from-neutral-50 after:from-[5%] after:to-50%"
+      style="background: url(index-contact-bg.png) no-repeat 50% 50% / cover; background-attachment: fixed"
     >
-      <p class="relative z-10 my-4 font-bold tracking-wider text-center text-black-light"
+      <p
+        data-aos="zoom-in"
+        data-aos-duration="800"
+        class="relative z-10 my-4 font-bold tracking-wider text-center text-black-light"
         >有想要詢問的事情嗎？來
         <button
           class="font-semibold border-b border-info text-info"
@@ -390,9 +435,11 @@
 // eslint-disable-next-line import/no-unresolved
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Autoplay, Navigation } from 'swiper/modules';
+
 import { mapState, mapActions } from 'pinia';
 import articleStore from '../../stores/articleStore';
 import productStore from '../../stores/productStore';
+
 import swalMixin from '../../mixins/swalMixin';
 import ContactUsModal from '../../components/frontend/ContactUsModal.vue';
 import CurrentCouponModal from '../../components/frontend/CurrentCouponModal.vue';
@@ -414,7 +461,7 @@ export default {
   },
   methods: {
     ...mapActions(articleStore, ['getArticles']),
-    ...mapActions(productStore, ['getProducts']),
+    ...mapActions(productStore, ['getAllProducts']),
 
     subscribe() {
       this.showSwalCheck('warning', '真的要訂閱嗎', () => {
@@ -425,7 +472,7 @@ export default {
   },
   mounted() {
     this.getArticles();
-    this.getProducts();
+    this.getAllProducts();
   },
   mixins: [swalMixin],
   components: { Swiper, SwiperSlide, ContactUsModal, CurrentCouponModal },
@@ -436,6 +483,7 @@ export default {
 .swiper-pagination-bullet {
   @apply bg-brown-300 w-[10px] h-[10px];
 }
+
 .swiper-pagination-bullet-active {
   @apply px-3 rounded-[40px];
   transition: 0.3s;
@@ -472,5 +520,18 @@ export default {
 .swiper-button-prev::after,
 .swiper-button-next::after {
   content: '';
+}
+
+@keyframes typing {
+  from {
+    height: 0;
+  }
+}
+
+.header-title-animate {
+  height: 7em;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typing 2s steps(7) infinite;
 }
 </style>

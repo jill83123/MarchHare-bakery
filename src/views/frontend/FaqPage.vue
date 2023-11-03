@@ -1,24 +1,25 @@
 <template>
-  <header class="pt-[106px] pb-10 sm:pb-12 lg:pb-20 text-center">
-    <span class="-mb-2 font-montserrat text-2xl tracking-[0.2rem] font-bold text-brown-100">FAQ</span
-    ><h3 class="-mt-1 text-[64px] font-medium tracking-widest text-brown-300 font-maru mb-3">常見問題</h3
-    ><p class="font-bold tracking-wide text-black-light"
-      >還是沒有解決問題嗎？來
+  <header class="pt-[106px] pb-10 sm:pb-12 lg:pb-20 text-center" data-aos="fade-up" data-aos-duration="800">
+    <h3 class="mb-2 font-montserrat text-2xl tracking-[0.2rem] font-bold text-brown-100">FAQ</h3>
+    <h2 class="-mt-1 text-5xl md:text-[64px] font-medium tracking-widest text-brown-300 font-maru mb-4">常見問題 </h2>
+    <p class="font-bold tracking-wide text-black-light">
+      還是沒有解決問題嗎？來
       <button
         class="font-semibold border-b border-info text-info"
         data-te-toggle="modal"
         data-te-target="#contactUsModal"
         >聯繫我們</button
       >
-      吧！</p
-    >
+      吧！
+    </p>
   </header>
-  <main class="mb-28">
+
+  <main class="mb-20 sm:mb-28" data-aos="fade-up" data-aos-duration="800">
     <div class="container">
       <div class="mx-auto lg:w-8/12">
         <div id="accordionExample5">
           <div class="mb-6 border-2 rounded-lg border-brown-200">
-            <h2 class="mb-0 font-semibold" id="headingOne5">
+            <h4 class="mb-0 font-semibold" id="headingOne5">
               <button
                 class="text-brown-300 group relative gap-1 flex w-full items-center border-0 px-5 py-4 text-left text-base transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none [&:not([data-te-collapse-collapsed])]:bg-brown-200 [&:not([data-te-collapse-collapsed])]:text-white [&:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(229,231,235)] [&:not([data-te-collapse-collapsed])]:gap-3"
                 type="button"
@@ -44,7 +45,7 @@
                   </svg>
                 </span>
               </button>
-            </h2>
+            </h4>
             <div id="collapseOne5" class="!visible hidden" data-te-collapse-item aria-labelledby="headingOne5">
               <div class="px-5 py-4 text-black">
                 <p
@@ -60,7 +61,7 @@
 
         <div id="accordionExample5">
           <div class="mb-6 border-2 rounded-lg border-brown-200">
-            <h2 class="mb-0 font-semibold" id="headingOne5">
+            <h4 class="mb-0 font-semibold" id="headingOne5">
               <button
                 class="text-brown-300 group relative gap-1 flex w-full items-center border-0 px-5 py-4 text-left text-base transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none [&:not([data-te-collapse-collapsed])]:bg-brown-200 [&:not([data-te-collapse-collapsed])]:text-white [&:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(229,231,235)] [&:not([data-te-collapse-collapsed])]:gap-3"
                 type="button"
@@ -86,7 +87,7 @@
                   </svg>
                 </span>
               </button>
-            </h2>
+            </h4>
             <div id="collapse2" class="!visible hidden" data-te-collapse-item aria-labelledby="headingOne5">
               <div class="px-5 py-4 text-black">
                 <p>有的，我們提供素食和無麩質的烘焙產品，以滿足各種特殊飲食需求。</p>
@@ -97,7 +98,7 @@
 
         <div id="accordionExample5">
           <div class="mb-6 border-2 rounded-lg border-brown-200">
-            <h2 class="mb-0 font-semibold" id="headingOne5">
+            <h4 class="mb-0 font-semibold" id="headingOne5">
               <button
                 class="text-brown-300 group relative gap-1 flex w-full items-center border-0 px-5 py-4 text-left text-base transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none [&:not([data-te-collapse-collapsed])]:bg-brown-200 [&:not([data-te-collapse-collapsed])]:text-white [&:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(229,231,235)] [&:not([data-te-collapse-collapsed])]:gap-3"
                 type="button"
@@ -123,7 +124,7 @@
                   </svg>
                 </span>
               </button>
-            </h2>
+            </h4>
             <div id="collapse3" class="!visible hidden" data-te-collapse-item aria-labelledby="headingOne5">
               <div class="px-5 py-4 text-black">
                 <p>我們會根據節慶來裝飾店內，同時也提供特殊的節慶禮品包裝選擇，若有需求也可以與我們聯繫做討論。</p>
@@ -134,7 +135,7 @@
 
         <div id="accordionExample5">
           <div class="mb-6 border-2 rounded-lg border-brown-200">
-            <h2 class="mb-0 font-semibold" id="headingOne5">
+            <h4 class="mb-0 font-semibold" id="headingOne5">
               <button
                 class="text-brown-300 group relative gap-1 flex w-full items-center border-0 px-5 py-4 text-left text-base transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none [&:not([data-te-collapse-collapsed])]:bg-brown-200 [&:not([data-te-collapse-collapsed])]:text-white [&:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(229,231,235)] [&:not([data-te-collapse-collapsed])]:gap-3"
                 type="button"
@@ -160,7 +161,7 @@
                   </svg>
                 </span>
               </button>
-            </h2>
+            </h4>
             <div id="collapse4" class="!visible hidden" data-te-collapse-item aria-labelledby="headingOne5">
               <div class="px-5 py-4 text-black">
                 <p
@@ -175,7 +176,7 @@
 
         <div id="accordionExample5">
           <div class="mb-6 border-2 rounded-lg border-brown-200">
-            <h2 class="mb-0 font-semibold" id="headingOne5">
+            <h4 class="mb-0 font-semibold" id="headingOne5">
               <button
                 class="text-brown-300 group relative gap-1 flex w-full items-center border-0 px-5 py-4 text-left text-base transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none [&:not([data-te-collapse-collapsed])]:bg-brown-200 [&:not([data-te-collapse-collapsed])]:text-white [&:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(229,231,235)] [&:not([data-te-collapse-collapsed])]:gap-3"
                 type="button"
@@ -201,7 +202,7 @@
                   </svg>
                 </span>
               </button>
-            </h2>
+            </h4>
             <div id="collapse5" class="!visible hidden" data-te-collapse-item aria-labelledby="headingOne5">
               <div class="px-5 py-4 text-black">
                 <p>我們會傳送簡訊提前告知您日期，訂購時請務必確認填寫正確的電話號碼。</p>
@@ -212,6 +213,7 @@
       </div>
     </div>
   </main>
+
   <ContactUsModal></ContactUsModal>
 </template>
 

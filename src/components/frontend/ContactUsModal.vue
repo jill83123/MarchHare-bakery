@@ -181,9 +181,12 @@
                 取消
               </button>
               <button
-                type="button"
                 class="px-8 py-2 text-sm font-medium leading-normal tracking-wider text-white uppercase transition duration-150 ease-in-out rounded-full to-check bg-brown-300 focus:outline-none focus:ring-0 hover:opacity-80 disabled:bg-gray-300"
-                :disabled="Object.keys(errors).length !== 0 || Object.keys(userContactInfo).length < 4"
+                :disabled="
+                  Object.keys(errors).length !== 0 ||
+                  Object.keys(userContactInfo).length < 4 ||
+                  Object.values(userContactInfo).includes(undefined)
+                "
                 @click.prevent="
                   showSwalCheck('warning', '確認資料並送出', () => {
                     sendOut();
@@ -217,8 +220,9 @@ export default {
       return number.test(value) ? true : '請填寫正確的電話號碼';
     },
     sendOut() {
-      this.hideModal();
+      this.userContactInfo = {};
       this.$refs.contactForm.resetForm();
+      this.hideModal();
       this.showSwalToast('success', '成功送出');
     },
   },

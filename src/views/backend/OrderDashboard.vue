@@ -1,5 +1,5 @@
 <template>
-  <LoadingAnimation :active="isLoading"></LoadingAnimation>
+  <LoadingAnimation :active="isLoading" :lock-scroll="true"></LoadingAnimation>
   <main class="ml-0 lg:ml-[310px]">
     <div class="container flex justify-between py-4 lg:mt-10 lg:text-right">
       <h2 class="flex items-center text-3xl text-black font-noto-serif"
