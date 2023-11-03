@@ -136,7 +136,12 @@ export default {
 
     filteredArticle() {
       if (this.currentTag.length > 0) {
-        return this.articleList.filter((item) => this.currentTag.every((tag) => item.tag.includes(tag)));
+        return this.articleList.filter((item) => {
+          if (item.tag) {
+            return this.currentTag.every((tag) => item.tag.includes(tag));
+          }
+          return false;
+        });
       }
 
       if (this.searchKeyword !== '') {
