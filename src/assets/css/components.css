@@ -47,6 +47,10 @@ body.swal2-toast-shown .swal2-container {
   @apply min-w-[220px] sm:w-auto !important;
 }
 
+.vld-overlay.is-full-page{
+  z-index: 9999 !important;
+}
+
 .productCard img {
   transition: 0.3s all;
 }
