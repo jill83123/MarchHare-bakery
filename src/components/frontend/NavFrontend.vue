@@ -1,7 +1,7 @@
 <template>
   <nav
     ref="nav"
-    class="fixed top-0 left-0 right-0 z-[999] flex items-center justify-between py-2 md:flex-wrap md:justify-start"
+    class="fixed top-0 left-0 right-0 z-[9999] flex items-center justify-between py-2 md:flex-wrap md:justify-start"
     data-te-navbar-ref
   >
     <div class="container flex flex-wrap items-center justify-between w-full px-3 text-gray-500">
