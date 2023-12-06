@@ -99,6 +99,7 @@ export default {
       this.$http.get(api).then((response) => {
         if (response.data.success) {
           this.articleDetails = response.data.article;
+          document.title = `${response.data.article.title}｜三月兔－MarchHare Bakery`;
         }
         this.isLoading = false;
       });

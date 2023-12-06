@@ -392,6 +392,7 @@ export default {
           this.currentImages = res.data.product.imageUrl;
           this.cachePrice = res.data.product.price;
           this.state.isLoading = false;
+          document.title = `${res.data.product.title}｜三月兔－MarchHare Bakery`;
         }
       });
     },
