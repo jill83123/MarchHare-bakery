@@ -1,37 +1,20 @@
-// FIXME: 樣式跑掉
 <template>
-  <LoadingOverlay class="loading">
-    <div class="loadingio-spinner w-[200px] h-[200px] inline-block relative overflow-hidden"
-      ><div class="ldio">
-        <LogoComponent :color="`#b07d62`" :size="{ width: 50, height: 50 }" />
-        <div
-          class="absolute font-extrabold text-center text-black-light translate-x-1/2 translate-y-[60%] loading-text font-montserrat"
-        >
-          <span class="inline-block mx-[0.1em]">L</span>
-          <span class="inline-block mx-[0.1em]">O</span>
-          <span class="inline-block mx-[0.1em]">A</span>
-          <span class="inline-block mx-[0.1em]">D</span>
-          <span class="inline-block mx-[0.1em]">I</span>
-          <span class="inline-block mx-[0.1em]">N</span>
-          <span class="inline-block mx-[0.1em]">G</span>
-        </div>
+  <LoadingOverlay>
+    <div class="loading__container flex h-[200px] w-[200px] flex-col items-center justify-center gap-4">
+      <LogoComponent :color="`#b07d62`" :size="{ width: 50, height: 50 }" />
+      <div class="loading__text font-montserrat font-extrabold tracking-[0.2em] text-black-light">
+        <span v-for="(alphabet, index) in 'LOADING'" :key="index" class="inline-block">{{ alphabet }}</span>
       </div>
     </div>
   </LoadingOverlay>
 </template>
 
-<script>
+<script setup>
 import LogoComponent from '@/components/LogoComponent.vue';
-
-export default {
-  components: {
-    LogoComponent,
-  },
-};
 </script>
 
 <style lang="scss">
-@keyframes ldio {
+@keyframes loading__logo--animation {
   0%,
   100% {
     animation-timing-function: cubic-bezier(0.45, 0, 0.9, 0.55);
@@ -47,27 +30,25 @@ export default {
     transform: translate(0, 0);
   }
 }
-
-.ldio svg {
-  animation: ldio 1s cubic-bezier(0.47, 0, 0.75, 0.72) infinite;
+.loading__container svg {
+  animation: loading__logo--animation 1s cubic-bezier(0.47, 0, 0.75, 0.72) infinite;
 }
 
-.loading-text span {
-  animation: loading04 0.7s infinite;
-  @for $i from 1 through 6 {
-    &:nth-child(#{$i + 1}) {
-      animation-delay: #{$i * 0.1}s;
-    }
-  }
-}
-
-@keyframes loading04 {
+@keyframes loading__text--animation {
   0%,
   100% {
     transform: translateY(0);
   }
   50% {
     transform: translateY(3px);
+  }
+}
+.loading__text span {
+  animation: loading__text--animation 0.7s infinite;
+  @for $i from 1 through 6 {
+    &:nth-child(#{$i + 1}) {
+      animation-delay: #{$i * 0.1}s;
+    }
   }
 }
 </style>
