@@ -16,8 +16,8 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 
 import AOS from 'aos';
 
-import Loading from 'vue3-loading-overlay';
-import 'vue3-loading-overlay/dist/vue3-loading-overlay.css';
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/css/index.css';
 import LoadingAnimation from './components/LoadingAnimation.vue';
 
 import { currency, date, onlyDate } from './methods/filters';
