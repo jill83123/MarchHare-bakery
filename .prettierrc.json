@@ -9,6 +9,10 @@
   "jsxSingleQuote": false,
   "arrowParens": "always",
   "proseWrap": "never",
-  "htmlWhitespaceSensitivity": "strict",
-  "endOfLine": "lf"
+  "htmlWhitespaceSensitivity": "ignore",
+  "bracketSameLine": true,
+  "endOfLine": "lf",
+  "plugins": [
+    "prettier-plugin-tailwindcss"
+  ]
 }

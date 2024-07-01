@@ -43,8 +43,9 @@
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-vue": "^9.17.0",
     "postcss": "^8.4.29",
-    "prettier": "^3.0.3",
+    "prettier": "^3.3.2",
     "prettier-eslint": "^15.0.1",
+    "prettier-plugin-tailwindcss": "^0.6.5",
     "sass": "^1.66.1"
   },
   "description": "This template should help get you started developing with Vue 3 in Vite.",
