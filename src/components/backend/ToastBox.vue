@@ -1,6 +1,6 @@
 <template>
-  <div class="fixed top-7 z-[9999] left-1/2 -translate-x-1/2 w-m-[340px]">
-    <ToastMessage v-for="(msg, index) in messages" :key="index" :msg="msg"></ToastMessage>
+  <div class="w-m-[340px] fixed left-1/2 top-7 z-[9999] -translate-x-1/2">
+    <ToastMessage v-for="(msg, index) in messages" :key="index" :msg="msg" />
   </div>
 </template>
 

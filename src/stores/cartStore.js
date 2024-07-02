@@ -16,7 +16,13 @@ const cartStore = defineStore('cart', {
     },
     currentStep: 1,
     userInfo: {
-      user: { name: '', email: '', tel: '', address: '', order: { is_paid: false, status: '', pickup: '' } },
+      user: {
+        name: '',
+        email: '',
+        tel: '',
+        address: '',
+        order: { is_paid: false, status: '', pickup: '' },
+      },
       message: '',
     },
     OrderData: {},
@@ -36,7 +42,12 @@ const cartStore = defineStore('cart', {
         cartItem.qty += quantity;
         cartItem.final_total = product.price * cartItem.qty;
       } else {
-        this.cartList.push({ product, id: product.id, qty: quantity, final_total: product.price * quantity });
+        this.cartList.push({
+          product,
+          id: product.id,
+          qty: quantity,
+          final_total: product.price * quantity,
+        });
       }
       swalMixin.methods.showSwalToast('success', '加入購物車');
       this.getCartList();
@@ -152,7 +163,15 @@ const cartStore = defineStore('cart', {
     },
     shoppingMore() {
       router.replace('/shop');
-      this.userInfo = { user: { name: '', email: '', tel: '', address: '' }, message: '' };
+      this.userInfo = {
+        user: {
+          name: '',
+          email: '',
+          tel: '',
+          address: '',
+        },
+        message: '',
+      };
     },
   },
 });

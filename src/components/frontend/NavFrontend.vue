@@ -1,15 +1,15 @@
 <template>
   <nav
     ref="nav"
-    class="fixed top-0 left-0 right-0 z-[1039] flex items-center justify-between py-2 md:flex-wrap md:justify-start"
-    data-te-navbar-ref
-  >
-    <div class="container flex flex-wrap items-center justify-between w-full px-3 text-gray-500">
+    class="fixed left-0 right-0 top-0 z-[1039] flex items-center justify-between py-2 md:flex-wrap md:justify-start"
+    data-te-navbar-ref>
+    <div class="container flex w-full flex-wrap items-center justify-between px-3 text-gray-500">
       <RouterLink to="/" class="flex items-center py-3">
         <LogoComponent :color="`#D4A373`" :size="{ width: 45, height: 36 }" />
-        <h1 class="ml-2 text-2xl font-medium font-maru text-brown-300"
-          >三月兔<span class="ml-2 text-sm">下午茶</span></h1
-        >
+        <h1 class="ml-2 font-maru text-2xl font-medium text-brown-300">
+          三月兔
+          <span class="ml-2 text-sm">下午茶</span>
+        </h1>
       </RouterLink>
 
       <div class="flex items-center">
@@ -17,15 +17,14 @@
           <li>
             <RouterLink to="/favorite" class="block">
               <span
-                class="align-middle material-symbols-outlined"
+                class="material-symbols-outlined align-middle"
                 style="
                   font-variation-settings:
                     'FILL' 1,
                     'wght' 400,
                     'GRAD' 0,
                     'opsz' 24;
-                "
-              >
+                ">
                 favorite
               </span>
             </RouterLink>
@@ -33,15 +32,14 @@
           <li>
             <RouterLink to="/checkout/cart">
               <span
-                class="align-middle material-symbols-outlined"
+                class="material-symbols-outlined align-middle"
                 style="
                   font-variation-settings:
                     'FILL' 1,
                     'wght' 400,
                     'GRAD' 0,
                     'opsz' 24;
-                "
-              >
+                ">
                 shopping_cart
               </span>
             </RouterLink>
@@ -49,7 +47,7 @@
         </ul>
         <!-- Hamburger menu button -->
         <button
-          class="px-2 ml-3 text-xl leading-none transition-shadow duration-150 ease-in-out bg-transparent border-0 lg:hidden"
+          class="ml-3 border-0 bg-transparent px-2 text-xl leading-none transition-shadow duration-150 ease-in-out lg:hidden"
           type="button"
           data-te-collapse-init
           data-te-target="#navbarSupportedContentY"
@@ -59,18 +57,16 @@
           @click.prevent="
             collapseToggle = !collapseToggle;
             stickyNav();
-          "
-        >
+          ">
           <!-- Hamburger menu icon -->
-          <span class="[&>svg]:w-5 hamburger-icon">
+          <span class="hamburger-icon [&>svg]:w-5">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="h-7 w-7"
-            >
+              class="h-7 w-7">
               <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
             </svg>
           </span>
@@ -79,51 +75,49 @@
 
       <!-- Navigation links -->
       <div
-        class="!visible hidden basis-[100%] lg:!flex lg:basis-auto font-medium relative"
+        class="!visible relative hidden basis-[100%] font-medium lg:!flex lg:basis-auto"
         id="navbarSupportedContentY"
         data-te-collapse-item
-        ref="collapseItem"
-      >
-        <ul class="flex flex-col mr-auto lg:flex-row" data-te-navbar-nav-ref>
+        ref="collapseItem">
+        <ul class="mr-auto flex flex-col lg:flex-row" data-te-navbar-nav-ref>
           <li class="leading-9 lg:my-0" data-te-nav-item-ref>
-            <RouterLink class="relative block p-4 transition lg:p-3" to="/shop" data-te-nav-link-ref
-              >線上商店</RouterLink
-            >
+            <RouterLink class="relative block p-4 transition lg:p-3" to="/shop" data-te-nav-link-ref>
+              線上商店
+            </RouterLink>
           </li>
           <li class="leading-9 lg:my-0" data-te-nav-item-ref>
-            <RouterLink class="relative block p-4 transition lg:p-3" to="/order-details" data-te-nav-link-ref
-              >查詢訂單</RouterLink
-            >
+            <RouterLink class="relative block p-4 transition lg:p-3" to="/order-details" data-te-nav-link-ref>
+              查詢訂單
+            </RouterLink>
           </li>
           <li class="leading-9 lg:mb-0" data-te-nav-item-ref>
             <RouterLink class="relative block p-4 transition lg:p-3" to="/blog" data-te-nav-link-ref>部落格</RouterLink>
           </li>
           <li class="leading-9 lg:mb-0" data-te-nav-item-ref>
-            <RouterLink class="relative block p-4 transition lg:p-3" to="/faq" data-te-nav-link-ref
-              >常見問題</RouterLink
-            >
+            <RouterLink class="relative block p-4 transition lg:p-3" to="/faq" data-te-nav-link-ref>
+              常見問題
+            </RouterLink>
           </li>
         </ul>
-        <ul class="items-center hidden lg:gap-8 ml-11 lg:flex">
+        <ul class="ml-11 hidden items-center lg:flex lg:gap-8">
           <li>
-            <RouterLink to="/favorite" class="relative block favoriteIcon">
+            <RouterLink to="/favorite" class="favoriteIcon relative block">
               <span
-                class="align-middle material-symbols-outlined"
+                class="material-symbols-outlined align-middle"
                 style="
                   font-variation-settings:
                     'FILL' 1,
                     'wght' 400,
                     'GRAD' 0,
                     'opsz' 24;
-                "
-              >
+                ">
                 favorite
               </span>
               <span
-                class="text-xs p-1 absolute -top-[15%] -right-[30%] rounded-full w-[16px] h-[16px] bg-red-400 flex justify-center items-center text-white"
-                v-if="favoriteStore.isFavorite"
-                >{{ favoriteStore.favorite.length }}</span
-              >
+                class="absolute -right-[30%] -top-[15%] flex h-[16px] w-[16px] items-center justify-center rounded-full bg-red-400 p-1 text-xs text-white"
+                v-if="favoriteStore.isFavorite">
+                {{ favoriteStore.favorite.length }}
+              </span>
             </RouterLink>
           </li>
           <li :class="{ 'cursor-not-allowed': currentStep >= 2 && $route.matched[1].path === '/checkout' }">
@@ -134,24 +128,21 @@
               role="button"
               aria-expanded="false"
               aria-controls="collapseWithScrollbar"
-              :class="{ 'pointer-events-none	': currentStep >= 2 && $route.matched[1].path === '/checkout' }"
-            >
+              :class="{ 'pointer-events-none': currentStep >= 2 && $route.matched[1].path === '/checkout' }">
               <span
-                class="align-middle material-symbols-outlined"
+                class="material-symbols-outlined align-middle"
                 style="
                   font-variation-settings:
                     'FILL' 1,
                     'wght' 400,
                     'GRAD' 0,
                     'opsz' 24;
-                "
-              >
+                ">
                 shopping_cart
               </span>
               <span
-                class="p-1 absolute -top-[15%] -right-[30%] rounded-full w-[16px] h-[16px] bg-red-400 flex justify-center items-center text-white"
-                v-if="cartList && cartList.length >= 1"
-              >
+                class="absolute -right-[30%] -top-[15%] flex h-[16px] w-[16px] items-center justify-center rounded-full bg-red-400 p-1 text-white"
+                v-if="cartList && cartList.length >= 1">
                 <span class="text-xs">{{ cartList.length }}</span>
               </span>
             </a>
@@ -159,77 +150,76 @@
         </ul>
         <!-- cart list -->
         <div
-          class="!visible hidden max-h-[500px] lg:min-w-[550px] mt-3 absolute right-0 top-[100%] bg-[rgb(255,255,255,0.95)] rounded-md border"
+          class="!visible absolute right-0 top-[100%] mt-3 hidden max-h-[500px] rounded-md border bg-[rgb(255,255,255,0.95)] lg:min-w-[550px]"
           data-te-collapse-item
           id="collapseWithScrollbar"
-          ref="collapse"
-        >
+          ref="collapse">
           <div class="py-4 pr-2 text-black-light">
-            <div class="flex pb-3 pl-4 mb-3 border-b-2 border-gray-300 border-dotted">
+            <div class="mb-3 flex border-b-2 border-dotted border-gray-300 pb-3 pl-4">
               <h3 class="mr-1">購物車列表</h3>
               <!-- icon -->
-              <div class="flex items-center gap-1 ml-1 text-gray-500" v-if="status.updateIcon !== ''">
+              <div class="ml-1 flex items-center gap-1 text-gray-500" v-if="status.updateIcon !== ''">
                 <div
                   class="inline-block h-3 w-3 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
-                  role="status"
-                >
+                  role="status">
                   <span
-                    class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
-                    >Loading...</span
-                  >
+                    class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+                    Loading...
+                  </span>
                 </div>
                 <p class="text-sm">更新中 ⋯</p>
               </div>
             </div>
             <ul
-              class="flex flex-col pb-3 mb-3 cart-list max-h-[338px] overflow-y-auto"
-              v-if="cartList && cartList.length >= 1"
-            >
+              class="cart-list mb-3 flex max-h-[338px] flex-col overflow-y-auto pb-3"
+              v-if="cartList && cartList.length >= 1">
               <li class="flex gap-2 py-3 pl-4" v-for="cartItem in cartList" :key="cartItem.id">
-                <RouterLink :to="'/product/' + cartItem.id" class="flex items-center w-1/4 aspect-square grow">
+                <RouterLink :to="`/product/${cartItem.id}`" class="flex aspect-square w-1/4 grow items-center">
                   <img
                     class="object-cover"
                     :src="cartItem.product.imageUrl"
                     :alt="cartItem.product.title"
-                    title="查看詳細資訊"
-                  />
+                    title="查看詳細資訊" />
                 </RouterLink>
                 <!-- content -->
-                <div class="flex flex-col justify-between w-3/4 px-2 grow">
+                <div class="flex w-3/4 grow flex-col justify-between px-2">
                   <div class="flex flex-col justify-between">
-                    <h4 class="inline text-lg truncate">
-                      {{ cartItem.product.title
-                      }}<span
-                        class="px-2 ml-2 text-xs text-white rounded-full font-montserrat op bg-success"
-                        v-if="cartItem.product.price !== cartItem.product.origin_price"
-                        >SALE</span
-                      ></h4
-                    >
+                    <h4 class="inline truncate text-lg">
+                      {{ cartItem.product.title }}
+                      <span
+                        class="op ml-2 rounded-full bg-success px-2 font-montserrat text-xs text-white"
+                        v-if="cartItem.product.price !== cartItem.product.origin_price">
+                        SALE
+                      </span>
+                    </h4>
                   </div>
                   <div class="flex items-center">
                     <button
+                      type="button"
                       class="pr-1"
-                      @click.prevent.stop="updateCart(cartItem.id, cartItem.qty > 1 ? cartItem.qty - 1 : 1)"
-                      :disabled="status.updateIcon === cartItem.id || cartItem.qty === 1"
-                    >
+                      @click.stop="updateCart(cartItem.id, cartItem.qty > 1 ? cartItem.qty - 1 : 1)"
+                      :disabled="status.updateIcon === cartItem.id || cartItem.qty === 1">
                       <span
-                        class="text-xl align-bottom text-brown-300 material-symbols-outlined"
-                        :style="{ color: cartItem.qty === 1 ? '#d1d5db' : '' }"
-                        >remove</span
-                      >
+                        class="material-symbols-outlined align-bottom text-xl text-brown-300"
+                        :style="{ color: cartItem.qty === 1 ? '#d1d5db' : '' }">
+                        remove
+                      </span>
                     </button>
-                    <input
-                      type="text"
-                      class="outline-none focus:outline-none max-w-[40px] bg-transparent border text-center"
-                      v-model="cartItem.qty"
-                      @change="updateCart(cartItem.id, cartItem.qty === 0 || cartItem.qty === '' ? 1 : cartItem.qty)"
-                    />
-                    <span class="pl-2 text-sm text-gray-400"> {{ cartItem.product.unit }}</span>
+                    <label>
+                      <input
+                        type="text"
+                        class="max-w-[40px] border bg-transparent text-center outline-none focus:outline-none"
+                        v-model="cartItem.qty"
+                        @change="
+                          updateCart(cartItem.id, cartItem.qty === 0 || cartItem.qty === '' ? 1 : cartItem.qty)
+                        " />
+                    </label>
+                    <span class="pl-2 text-sm text-gray-400">{{ cartItem.product.unit }}</span>
                     <button
-                      @click.prevent.stop="updateCart(cartItem.id, cartItem.qty + 1)"
-                      :disabled="status.updateIcon === cartItem.id"
-                    >
-                      <span class="pl-1 text-xl align-bottom text-brown-300 material-symbols-outlined">add</span>
+                      type="button"
+                      @click.stop="updateCart(cartItem.id, cartItem.qty + 1)"
+                      :disabled="status.updateIcon === cartItem.id">
+                      <span class="material-symbols-outlined pl-1 align-bottom text-xl text-brown-300">add</span>
                     </button>
                   </div>
 
@@ -239,42 +229,43 @@
                       <span>小計 NT {{ $filters.currency(cartItem.final_total) }} 元</span>
                     </div>
                     <button
+                      type="button"
                       class="self-end hover:text-danger"
-                      @click.prevent.stop="
-                        showSwalCheck('warning', '真的要刪除嗎', () => delCartItem('one', cartItem.id))
-                      "
-                    >
-                      <span class="align-bottom material-symbols-outlined"> delete </span>
+                      @click.stop="showSwalCheck('warning', '真的要刪除嗎', () => delCartItem('one', cartItem.id))">
+                      <span class="material-symbols-outlined align-bottom">delete</span>
                     </button>
                   </div>
                 </div>
               </li>
             </ul>
-            <p class="text-center" v-if="cartList.length === 0"
-              >目前購物車是空的<br />快來
+            <p class="text-center" v-if="cartList.length === 0">
+              目前購物車是空的
+              <br />
+              快來
               <button
                 type="button"
-                class="z-10 items-center inline-block mx-1 font-medium leading-normal tracking-wider uppercase transition duration-150 ease-in-out border-b text-brown-300 border-brown-300 hover:opacity-80"
-                @click.prevent.stop="goToShopping()"
-                >點我</button
-              >
-              進行選購吧！</p
-            >
+                class="z-10 mx-1 inline-block items-center border-b border-brown-300 font-medium uppercase leading-normal tracking-wider text-brown-300 transition duration-150 ease-in-out hover:opacity-80"
+                @click.prevent.stop="goToShopping()">
+                點我
+              </button>
+              進行選購吧！
+            </p>
             <!-- cart footer -->
-            <div class="flex items-center pt-4 pl-4 mt-3 border-t-2 border-gray-300 border-dotted">
+            <div class="mt-3 flex items-center border-t-2 border-dotted border-gray-300 pl-4 pt-4">
               <p>共 NT {{ $filters.currency(cartTotalPrice) }} 元</p>
-              <div class="flex gap-2 ml-auto">
-                <button
-                  class="z-10 flex items-center px-8 py-2 ml-auto text-sm font-medium leading-normal tracking-wider text-gray-500 uppercase transition duration-150 ease-in-out border rounded-full focus:outline-none focus:ring-0 active:bg-cerulean-700 hover:opacity-80 disabled:text-gray-300 disabled:hover:opacity-100"
-                  @click.prevent.stop="showSwalCheck('warning', '真的要清空嗎', () => delCartItem('all'))"
-                  :disabled="cartList.length <= 0"
-                  >清空購物車</button
-                >
+              <div class="ml-auto flex gap-2">
                 <button
                   type="button"
-                  class="z-10 flex items-center px-8 py-2 ml-auto text-sm font-medium leading-normal tracking-wider text-white uppercase transition duration-150 ease-in-out rounded-full to-check bg-brown-300 focus:outline-none focus:ring-0 active:bg-cerulean-700 hover:opacity-80"
-                  @click.prevent="goToCheckout()"
-                  >前往結帳
+                  class="active:bg-cerulean-700 z-10 ml-auto flex items-center rounded-full border px-8 py-2 text-sm font-medium uppercase leading-normal tracking-wider text-gray-500 transition duration-150 ease-in-out hover:opacity-80 focus:outline-none focus:ring-0 disabled:text-gray-300 disabled:hover:opacity-100"
+                  @click.stop="showSwalCheck('warning', '真的要清空嗎', () => delCartItem('all'))"
+                  :disabled="cartList.length <= 0">
+                  清空購物車
+                </button>
+                <button
+                  type="button"
+                  class="to-check active:bg-cerulean-700 z-10 ml-auto flex items-center rounded-full bg-brown-300 px-8 py-2 text-sm font-medium uppercase leading-normal tracking-wider text-white transition duration-150 ease-in-out hover:opacity-80 focus:outline-none focus:ring-0"
+                  @click="goToCheckout">
+                  前往結帳
                 </button>
               </div>
             </div>
@@ -347,10 +338,10 @@ export default {
         return;
       }
       if (
-        this.$refs.collapse &&
-        this.$refs.collapse.hasAttribute &&
-        this.$refs.collapse.hasAttribute('data-te-collapse-show') === true &&
-        !this.$refs.collapse.contains(clickEvent.target)
+        this.$refs.collapse
+        && this.$refs.collapse.hasAttribute
+        && this.$refs.collapse.hasAttribute('data-te-collapse-show') === true
+        && !this.$refs.collapse.contains(clickEvent.target)
       ) {
         this.hideCollapse();
       }

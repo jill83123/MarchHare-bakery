@@ -8,18 +8,14 @@
     aria-modal="true"
     role="dialog"
     data-te-backdrop="static"
-    ref="modal"
-  >
+    ref="modal">
     <div
       data-te-modal-dialog-ref
-      class="pointer-events-none relative w-auto translate-y-[-50px] opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto mt-7 min-[576px]:max-w-[800px] min-[1024px]:max-w-[1140px] px-2 sm:px-5"
-    >
+      class="pointer-events-none relative mt-7 w-auto translate-y-[-50px] px-2 opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:max-w-[800px] sm:px-5 min-[1024px]:max-w-[1140px]">
       <div
-        class="relative flex flex-col w-full text-current bg-white border-none rounded-md shadow-lg outline-none pointer-events-auto bg-clip-padding max-h-[94vh] lg:max-h-[90vh]"
-      >
+        class="pointer-events-auto relative flex max-h-[94vh] w-full flex-col rounded-md border-none bg-white bg-clip-padding text-current shadow-lg outline-none lg:max-h-[90vh]">
         <div
-          class="flex items-center justify-between flex-shrink-0 p-4 border-b-2 border-opacity-100 rounded-t-md border-neutral-100"
-        >
+          class="flex flex-shrink-0 items-center justify-between rounded-t-md border-b-2 border-neutral-100 border-opacity-100 p-4">
           <!--Modal title-->
           <h5 class="text-xl font-medium leading-normal text-neutral-800" id="exampleModalXlLabel">
             {{ state === 'new' ? '新增' : '編輯' }}商品
@@ -27,78 +23,72 @@
           <!--Close button-->
           <button
             type="button"
-            class="box-content border-none rounded-none hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
+            class="box-content rounded-none border-none hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
             data-te-modal-dismiss
-            aria-label="Close"
-          >
+            aria-label="Close">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="w-6 h-6"
-            >
+              class="h-6 w-6">
               <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
         </div>
 
         <!--Modal body-->
-        <div class="relative p-4 overflow-y-auto">
+        <div class="relative overflow-y-auto p-4">
           <div class="flex flex-col-reverse gap-5 lg:flex-row">
             <div class="border-t-2 lg:w-5/12 lg:border-0">
-              <div class="mt-4 mb-4 lg:mt-0">
-                <label for="formFile" class="flex gap-2 mb-1 text-neutral-700"
-                  >上傳圖片
+              <div class="mb-4 mt-4 lg:mt-0">
+                <label for="formFile" class="mb-1 flex gap-2 text-neutral-700">
+                  上傳圖片
                   <div class="flex items-center gap-2 text-gray-500" v-if="loadingIcon">
                     <div
                       class="inline-block h-4 w-4 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
-                      role="status"
-                    >
+                      role="status">
                       <span
-                        class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
-                        >Loading...</span
-                      >
+                        class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+                        Loading...
+                      </span>
                     </div>
                     <p>上傳中</p>
                   </div>
                 </label>
                 <input
-                  class="relative m-0 block w-full min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-neutral-700 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none"
+                  class="focus:border-primary focus:shadow-te-primary relative m-0 block w-full min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-neutral-700 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:text-neutral-700 focus:outline-none"
                   type="file"
                   id="formFile"
                   ref="imageFileInput"
                   @change.prevent="uploadPhoto('file')"
-                  :disabled="loadingIcon"
-                />
+                  :disabled="loadingIcon" />
               </div>
               <div class="mb-4">
-                <label for="imageUrl" class="block mb-1">或 輸入網址</label>
+                <label for="imageUrl" class="mb-1 block">或 輸入網址</label>
                 <div class="relative flex flex-wrap items-stretch">
                   <input
                     type="text"
-                    class="relative m-0 block w-[1px] min-w-0 flex-auto rounded-l border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none border-r-0"
+                    class="focus:border-primary relative m-0 block w-[1px] min-w-0 flex-auto rounded-l border border-r-0 border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
                     placeholder="https://"
                     id="imageUrl"
                     aria-label="Recipient's username"
                     aria-describedby="basic-addon2"
                     ref="imageUrlInput"
-                    :disabled="loadingIcon"
-                  />
+                    :disabled="loadingIcon" />
                   <button
                     type="button"
-                    class="rounded-r border border-solid border-neutral-300 px-3 py-[0.25rem] text-center text-base font-normal leading-[1.6] text-neutral-700 hover:bg-cerulean hover:text-white hover:border-cerulean"
+                    class="rounded-r border border-solid border-neutral-300 px-3 py-[0.25rem] text-center text-base font-normal leading-[1.6] text-neutral-700 hover:border-cerulean hover:bg-cerulean hover:text-white"
                     id="basic-addon2"
-                    @click.prevent="uploadPhoto('button')"
-                    >新增</button
-                  >
+                    @click.prevent="uploadPhoto('button')">
+                    新增
+                  </button>
                 </div>
               </div>
-              <div class="relative w-full p-1 aspect-square">
+              <div class="relative aspect-square w-full p-1">
                 <div
-                  class="absolute top-[1%] bottom-[1%] left-[1%] right-[1%] flex items-center justify-center border-2 border-dotted"
-                >
+                  class="absolute bottom-[1%] left-[1%] right-[1%] top-[1%] flex items-center justify-center border-2 border-dotted">
                   <div class="text-center text-gray-400">
                     <h6 class="text-2xl leading-10">主要圖片</h6>
                     <p>假如目前沒有主要圖片，上傳時會優先補上</p>
@@ -106,28 +96,25 @@
                 </div>
                 <div class="relative bg-white" v-if="tempProduct.imageUrl">
                   <img
-                    class="object-cover object-center w-full aspect-square"
+                    class="aspect-square w-full object-cover object-center"
                     :src="tempProduct.imageUrl"
                     :alt="`${tempProduct.title}-主要圖片`"
-                    :title="`${tempProduct.title}-主要圖片`"
-                  />
+                    :title="`${tempProduct.title}-主要圖片`" />
                   <button
-                    class="box-content absolute top-0 right-0 p-2 border-none rounded-none text-black-light material-symbols-outlined hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
+                    type="button"
+                    class="material-symbols-outlined absolute right-0 top-0 box-content rounded-none border-none p-2 text-black-light hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
                     title="刪除主要圖片"
-                    @click.prevent="delPhoto(tempProduct.imageUrl)"
-                  >
+                    @click="delPhoto(tempProduct.imageUrl)">
                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path
                         d="M3.4 16L2 14.6L7.6 9L2 3.4L3.4 2L9 7.6L14.6 2L16 3.4L10.4 9L16 14.6L14.6 16L9 10.4L3.4 16Z"
                         fill="white"
-                        fill-opacity="0.8"
-                      />
+                        fill-opacity="0.8" />
                       <path
                         d="M3.04645 16.3536L3.4 16.7071L3.75355 16.3536L9 11.1071L14.2464 16.3536L14.6 16.7071L14.9536 16.3536L16.3536 14.9536L16.7071 14.6L16.3536 14.2464L11.1071 9L16.3536 3.75355L16.7071 3.4L16.3536 3.04645L14.9536 1.64645L14.6 1.29289L14.2464 1.64645L9 6.89289L3.75355 1.64645L3.4 1.29289L3.04645 1.64645L1.64645 3.04645L1.29289 3.4L1.64645 3.75355L6.89289 9L1.64645 14.2464L1.29289 14.6L1.64645 14.9536L3.04645 16.3536Z"
                         stroke="#303030"
                         stroke-opacity="0.8"
-                        stroke-miterlimit="10"
-                      />
+                        stroke-miterlimit="10" />
                     </svg>
                   </button>
                 </div>
@@ -136,30 +123,26 @@
                 <li
                   class="relative w-1/3 p-1"
                   v-for="(images, index) in tempProduct.imagesUrl"
-                  :key="`${images.title}${index}`"
-                >
+                  :key="`${images.title}${index}`">
                   <img
-                    class="object-cover object-center w-full aspect-square"
+                    class="aspect-square w-full object-cover object-center"
                     :src="images"
-                    :alt="`${tempProduct.title}-圖片${index + 2}`"
-                  />
+                    :alt="`${tempProduct.title}-圖片${index + 2}`" />
                   <button
-                    class="box-content absolute top-0 right-0 p-2 border-none rounded-none text-black-light material-symbols-outlined hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
+                    type="button"
+                    class="material-symbols-outlined absolute right-0 top-0 box-content rounded-none border-none p-2 text-black-light hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
                     :title="`刪除圖片${index + 2}`"
-                    @click.prevent="delPhoto(index)"
-                  >
+                    @click="delPhoto(index)">
                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path
                         d="M3.4 16L2 14.6L7.6 9L2 3.4L3.4 2L9 7.6L14.6 2L16 3.4L10.4 9L16 14.6L14.6 16L9 10.4L3.4 16Z"
                         fill="white"
-                        fill-opacity="0.8"
-                      />
+                        fill-opacity="0.8" />
                       <path
                         d="M3.04645 16.3536L3.4 16.7071L3.75355 16.3536L9 11.1071L14.2464 16.3536L14.6 16.7071L14.9536 16.3536L16.3536 14.9536L16.7071 14.6L16.3536 14.2464L11.1071 9L16.3536 3.75355L16.7071 3.4L16.3536 3.04645L14.9536 1.64645L14.6 1.29289L14.2464 1.64645L9 6.89289L3.75355 1.64645L3.4 1.29289L3.04645 1.64645L1.64645 3.04645L1.29289 3.4L1.64645 3.75355L6.89289 9L1.64645 14.2464L1.29289 14.6L1.64645 14.9536L3.04645 16.3536Z"
                         stroke="#303030"
                         stroke-opacity="0.8"
-                        stroke-miterlimit="10"
-                      />
+                        stroke-miterlimit="10" />
                     </svg>
                   </button>
                 </li>
@@ -167,110 +150,116 @@
             </div>
             <div class="lg:w-7/12">
               <div class="mb-4">
-                <label for="name" class="block mb-1">商品名稱<span class="text-danger"> *</span></label>
+                <label for="name" class="mb-1 block">
+                  商品名稱
+                  <span class="text-danger">*</span>
+                </label>
                 <input
                   type="text"
-                  class="m-0 block w-full rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
+                  class="focus:border-primary m-0 block w-full rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
                   placeholder="請輸入商品名稱"
                   id="name"
-                  v-model="tempProduct.title"
-                />
+                  v-model="tempProduct.title" />
               </div>
-              <div class="flex gap-2 mb-4">
+              <div class="mb-4 flex gap-2">
                 <div class="w-1/2">
-                  <label for="category" class="block mb-1">分類<span class="text-danger"> *</span></label>
+                  <label for="category" class="mb-1 block">
+                    分類
+                    <span class="text-danger">*</span>
+                  </label>
                   <input
                     type="text"
-                    class="m-0 block w-full rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
+                    class="focus:border-primary m-0 block w-full rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
                     placeholder="請輸入分類"
                     id="category"
-                    v-model="tempProduct.category"
-                  />
+                    v-model="tempProduct.category" />
                 </div>
                 <div class="w-1/2">
-                  <label for="unit" class="block mb-1">單位<span class="text-danger"> *</span></label>
+                  <label for="unit" class="mb-1 block">
+                    單位
+                    <span class="text-danger">*</span>
+                  </label>
                   <input
                     type="text"
-                    class="m-0 block w-full rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
+                    class="focus:border-primary m-0 block w-full rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
                     placeholder="請輸入單位"
                     id="unit"
-                    v-model="tempProduct.unit"
-                  />
+                    v-model="tempProduct.unit" />
                 </div>
               </div>
-              <div class="flex gap-2 mb-4">
+              <div class="mb-4 flex gap-2">
                 <div class="w-1/2">
-                  <label for="origin" class="block mb-1">原價<span class="text-danger"> *</span></label>
+                  <label for="origin" class="mb-1 block">
+                    原價
+                    <span class="text-danger">*</span>
+                  </label>
                   <input
                     type="number"
                     min="0"
-                    class="m-0 block w-full rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
+                    class="focus:border-primary m-0 block w-full rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
                     placeholder="請輸入原價"
                     id="origin"
-                    v-model="tempProduct.origin_price"
-                  />
+                    v-model="tempProduct.origin_price" />
                 </div>
                 <div class="w-1/2">
-                  <label for="price" class="block mb-1 font-semibold">售價<span class="text-danger"> *</span></label>
+                  <label for="price" class="mb-1 block font-semibold">
+                    售價
+                    <span class="text-danger">*</span>
+                  </label>
                   <input
                     type="number"
                     min="0"
-                    class="m-0 block w-full rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
+                    class="focus:border-primary m-0 block w-full rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
                     placeholder="請輸入售價"
                     id="price"
-                    v-model="tempProduct.price"
-                  />
+                    v-model="tempProduct.price" />
                 </div>
               </div>
               <div class="mb-4">
-                <label for="description" class="block mb-1">商品描述</label>
-                <ckeditor
-                  :editor="editor"
-                  v-model="tempProduct.description"
-                  :config="editorConfig"
-                  id="description"
-                ></ckeditor>
+                <label for="description" class="mb-1 block">商品描述</label>
+                <ckeditor :editor="editor" v-model="tempProduct.description" :config="editorConfig" id="description" />
               </div>
               <div class="mb-4">
-                <label for="content" class="block mb-1">商品內容</label>
-                <ckeditor :editor="editor" v-model="tempProduct.content" :config="editorConfig" id="content"></ckeditor>
+                <label for="content" class="mb-1 block">商品內容</label>
+                <ckeditor :editor="editor" v-model="tempProduct.content" :config="editorConfig" id="content" />
               </div>
               <div class="mb-4">
-                <label for="tag" class="block mb-1">＃ tag 標籤</label>
+                <label for="tag" class="mb-1 block">＃ tag 標籤</label>
                 <input
                   type="text"
-                  class="m-0 block w-full rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
+                  class="focus:border-primary m-0 block w-full rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
                   placeholder="不用加前綴「＃」，直接輸入名稱即可"
                   id="tag"
                   v-model="tempTag"
-                  @keydown.enter="pushTag()"
-                />
+                  @keydown.enter="pushTag()" />
               </div>
               <div class="mb-4">
                 <div class="font-semibold text-cerulean">
                   <div class="flex flex-wrap items-center gap-2">
                     <button
-                      href="#"
-                      class="px-2 py-2 text-sm leading-3 border rounded-full border-cerulean hover:bg-cerulean hover:text-white"
+                      type="button"
+                      class="rounded-full border border-cerulean px-2 py-2 text-sm leading-3 hover:bg-cerulean hover:text-white"
                       v-for="tag in allTags"
                       :key="tag"
-                      @click.prevent="selectTag(tag)"
-                      :class="{ 'text-white  bg-cerulean': tempProduct.tag && tempProduct.tag.includes(tag) }"
-                      >＃<span class="ml-[2px]">{{ tag }}</span></button
-                    >
+                      @click="selectTag(tag)"
+                      :class="{ 'bg-cerulean text-white': tempProduct.tag && tempProduct.tag.includes(tag) }">
+                      ＃
+                      <span class="ml-[2px]">{{ tag }}</span>
+                    </button>
                     <button
-                      href="#"
-                      class="px-2 py-2 text-sm leading-3 text-white rounded-full bg-cerulean"
-                      :class="{ ' hidden ': allTags.some((item) => item === tag) }"
+                      type="button"
+                      class="rounded-full bg-cerulean px-2 py-2 text-sm leading-3 text-white"
+                      :class="{ hidden: allTags.some((item) => item === tag) }"
                       v-for="tag in tempProduct.tag"
                       :key="tag"
-                      @click.prevent="selectTag(tag)"
-                      >＃<span class="ml-[2px]">{{ tag }}</span></button
-                    >
+                      @click="selectTag(tag)">
+                      ＃
+                      <span class="ml-[2px]">{{ tag }}</span>
+                    </button>
                   </div>
                 </div>
               </div>
-              <div class="flex flex-col gap-4 mb-4">
+              <div class="mb-4 flex flex-col gap-4">
                 <div>
                   <p class="mb-1">是否上架</p>
                   <input
@@ -279,14 +268,13 @@
                     role="switch"
                     id="flexSwitchCheckDefault"
                     :checked="tempProduct.is_enabled"
-                    v-model="tempProduct.is_enabled"
-                  />
+                    v-model="tempProduct.is_enabled" />
                   <label
                     class="inline-block pl-[0.15rem] hover:cursor-pointer"
                     for="flexSwitchCheckDefault"
-                    :class="tempProduct.is_enabled ? ' text-success' : ' text-gray-400'"
-                    >{{ tempProduct.is_enabled ? '上架中' : '未上架' }}</label
-                  >
+                    :class="tempProduct.is_enabled ? 'text-success' : 'text-gray-400'">
+                    {{ tempProduct.is_enabled ? '上架中' : '未上架' }}
+                  </label>
                 </div>
                 <div>
                   <p class="mb-1">是否為推薦商品</p>
@@ -296,14 +284,13 @@
                     role="switch"
                     id="switchCheckRecommend"
                     :checked="tempProduct.is_recommend"
-                    v-model="tempProduct.is_recommend"
-                  />
+                    v-model="tempProduct.is_recommend" />
                   <label
                     class="inline-block pl-[0.15rem] hover:cursor-pointer"
                     for="switchCheckRecommend"
-                    :class="tempProduct.is_recommend ? ' text-success' : ' text-gray-400'"
-                    >{{ tempProduct.is_recommend ? '推薦' : '未開啟' }}</label
-                  >
+                    :class="tempProduct.is_recommend ? 'text-success' : 'text-gray-400'">
+                    {{ tempProduct.is_recommend ? '推薦' : '未開啟' }}
+                  </label>
                 </div>
               </div>
             </div>
@@ -312,20 +299,17 @@
 
         <!--Modal footer-->
         <div
-          class="flex flex-wrap items-center justify-end flex-shrink-0 gap-2 p-4 border-t-2 border-opacity-100 rounded-b-md border-neutral-100"
-        >
+          class="flex flex-shrink-0 flex-wrap items-center justify-end gap-2 rounded-b-md border-t-2 border-neutral-100 border-opacity-100 p-4">
           <button
             type="button"
-            class="inline-block px-[23px] py-[9px] text-sm font-medium leading-normal text-right text-black uppercase transition duration-150 ease-in-out bg-transparent border border-gray-300 rounded focus:outline-none focus:ring-0 active:bg-cerulean-700 hover:opacity-80 hover:bg-gray-100"
-            data-te-modal-dismiss
-          >
+            class="active:bg-cerulean-700 inline-block rounded border border-gray-300 bg-transparent px-[23px] py-[9px] text-right text-sm font-medium uppercase leading-normal text-black transition duration-150 ease-in-out hover:bg-gray-100 hover:opacity-80 focus:outline-none focus:ring-0"
+            data-te-modal-dismiss>
             取消
           </button>
           <button
             type="button"
-            class="inline-block rounded bg-cerulean px-6 py-2.5 text-sm font-medium uppercase leading-normal text-white transition duration-150 ease-in-out focus:outline-none focus:ring-0 active:bg-cerulean-700 hover:opacity-80 text-right"
-            @click.prevent="$emit('update-products', this.tempProduct)"
-          >
+            class="active:bg-cerulean-700 inline-block rounded bg-cerulean px-6 py-2.5 text-right text-sm font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:opacity-80 focus:outline-none focus:ring-0"
+            @click.prevent="$emit('update-products', this.tempProduct)">
             確認
           </button>
         </div>
@@ -376,9 +360,13 @@ export default {
     },
     state: {
       type: String,
+      default: '',
     },
     allTags: {
       type: Array,
+      default() {
+        return [];
+      },
     },
   },
   watch: {
@@ -420,7 +408,7 @@ export default {
               this.tempProduct.imageUrl = res.data.imageUrl;
               this.$refs.imageFileInput.value = '';
               this.loadingIcon = false;
-              statesStore().pushToastMessage(res.data.success, `上傳成功`);
+              statesStore().pushToastMessage(res.data.success, '上傳成功');
               return;
             }
 
@@ -430,9 +418,9 @@ export default {
             this.tempProduct.imagesUrl.push(res.data.imageUrl);
             this.$refs.imageFileInput.value = '';
             this.loadingIcon = false;
-            statesStore().pushToastMessage(res.data.success, `上傳成功`);
+            statesStore().pushToastMessage(res.data.success, '上傳成功');
           } else {
-            statesStore().pushToastMessage(res.data.success, `上傳失敗`, res.data.message);
+            statesStore().pushToastMessage(res.data.success, '上傳失敗', res.data.message);
           }
         });
       }

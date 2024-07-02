@@ -1,7 +1,7 @@
 <template>
-  <Navbar></Navbar>
-  <router-view></router-view>
-  <Toast></Toast>
+  <Navbar />
+  <router-view />
+  <Toast />
 </template>
 
 <script>
@@ -10,10 +10,7 @@ import Toast from '../../components/backend/ToastBox.vue';
 
 export default {
   created() {
-    const token = document.cookie.replace(
-      /(?:(?:^|.*;\s*)MarchHareToken\s*=\s*([^;]*).*$)|^.*$/,
-      '$1'
-    );
+    const token = document.cookie.replace(/(?:(?:^|.*;\s*)MarchHareToken\s*=\s*([^;]*).*$)|^.*$/, '$1');
     this.$http.defaults.headers.common.Authorization = `${token}`;
     const api = `${import.meta.env.VITE_APP_API}/api/user/check`;
     this.$http.post(api).then((res) => {

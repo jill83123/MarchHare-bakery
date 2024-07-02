@@ -8,18 +8,14 @@
     aria-modal="true"
     role="dialog"
     data-te-backdrop="static"
-    ref="modal"
-  >
+    ref="modal">
     <div
       data-te-modal-dialog-ref
-      class="pointer-events-none relative w-auto translate-y-[-50px] opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto mt-7 min-[576px]:max-w-[800px] px-2 sm:px-5"
-    >
+      class="pointer-events-none relative mt-7 w-auto translate-y-[-50px] px-2 opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:max-w-[800px] sm:px-5">
       <div
-        class="relative flex flex-col w-full text-current bg-white border-none rounded-md shadow-lg outline-none pointer-events-auto bg-clip-padding max-h-[94vh] lg:max-h-[90vh]"
-      >
+        class="pointer-events-auto relative flex max-h-[94vh] w-full flex-col rounded-md border-none bg-white bg-clip-padding text-current shadow-lg outline-none lg:max-h-[90vh]">
         <div
-          class="flex items-center justify-between flex-shrink-0 p-4 border-b-2 border-opacity-100 rounded-t-md border-neutral-100"
-        >
+          class="flex flex-shrink-0 items-center justify-between rounded-t-md border-b-2 border-neutral-100 border-opacity-100 p-4">
           <!--Modal title-->
           <h5 class="text-xl font-medium leading-normal text-neutral-800" id="exampleModalXlLabel">
             {{ state === 'new' ? '新增' : '編輯' }}優惠券
@@ -27,78 +23,83 @@
           <!--Close button-->
           <button
             type="button"
-            class="box-content border-none rounded-none hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
+            class="box-content rounded-none border-none hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
             data-te-modal-dismiss
-            aria-label="Close"
-          >
+            aria-label="Close">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="w-6 h-6"
-            >
+              class="h-6 w-6">
               <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
         </div>
 
         <!--Modal body-->
-        <div class="relative p-4 overflow-y-auto">
+        <div class="relative overflow-y-auto p-4">
           <div>
-            <div class="flex gap-2 mb-4">
+            <div class="mb-4 flex gap-2">
               <div class="w-1/2">
-                <label for="name" class="block mb-1">優惠名稱<span class="text-danger"> *</span></label>
+                <label for="name" class="mb-1 block">
+                  優惠名稱
+                  <span class="text-danger">*</span>
+                </label>
                 <input
                   type="text"
-                  class="m-0 block w-full rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
+                  class="focus:border-primary m-0 block w-full rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
                   placeholder="請輸入優惠名稱"
                   id="name"
-                  v-model="tempCoupon.title"
-                />
+                  v-model="tempCoupon.title" />
               </div>
               <div class="w-1/2">
-                <label for="number" class="block mb-1">優惠碼<span class="text-danger"> *</span></label>
+                <label for="number" class="mb-1 block">
+                  優惠碼
+                  <span class="text-danger">*</span>
+                </label>
                 <input
                   type="text"
-                  class="m-0 block w-full rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
+                  class="focus:border-primary m-0 block w-full rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
                   placeholder="請輸入優惠號碼"
                   id="number"
-                  v-model="tempCoupon.code"
-                />
+                  v-model="tempCoupon.code" />
               </div>
             </div>
-            <div class="flex gap-2 mb-4">
+            <div class="mb-4 flex gap-2">
               <div class="w-1/2">
-                <label for="discount" class="block mb-1">折扣百分比<span class="text-danger"> *</span></label>
+                <label for="discount" class="mb-1 block">
+                  折扣百分比
+                  <span class="text-danger">*</span>
+                </label>
                 <input
                   type="number"
                   min="0"
                   max="100"
-                  class="m-0 block w-full rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
+                  class="focus:border-primary m-0 block w-full rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
                   placeholder="請輸入數字，預設為 100"
                   id="discount"
-                  v-model="tempCoupon.percent"
-                />
+                  v-model="tempCoupon.percent" />
               </div>
               <div class="w-1/2">
-                <label for="date" class="block mb-1">到期日<span class="text-danger"> *</span></label>
+                <label for="date" class="mb-1 block">
+                  到期日
+                  <span class="text-danger">*</span>
+                </label>
                 <div
                   class="relative mb-3"
                   data-te-inline="true"
                   data-te-format="yyyy-mm-dd"
                   data-te-class-datepicker-cell-content="group-[[data-te-datepicker-cell-selected]]:font-black"
-                  ref="due_date"
-                >
+                  ref="due_date">
                   <input
                     type="text"
-                    class="m-0 border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none peer block min-h-[auto] w-full rounded leading-[1.6] focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none :placeholder:opacity-0"
+                    class="focus:border-primary peer-focus:text-primary :placeholder:opacity-0 peer m-0 block min-h-[auto] w-full rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none"
                     placeholder="請選擇到期日"
                     id="date"
                     v-model="tempCoupon.date"
-                    @click.prevent="date"
-                  />
+                    @click.prevent="date" />
                 </div>
               </div>
             </div>
@@ -109,31 +110,28 @@
                 role="switch"
                 id="flexSwitchCheckDefault"
                 :checked="tempCoupon.is_enabled"
-                v-model="tempCoupon.is_enabled"
-              />
-              <label class="inline-block pl-[0.15rem] hover:cursor-pointer" for="flexSwitchCheckDefault"
-                >是否啟用<span class="text-danger"> *</span></label
-              >
+                v-model="tempCoupon.is_enabled" />
+              <label class="inline-block pl-[0.15rem] hover:cursor-pointer" for="flexSwitchCheckDefault">
+                是否啟用
+                <span class="text-danger">*</span>
+              </label>
             </div>
           </div>
         </div>
 
         <!--Modal footer-->
         <div
-          class="flex flex-wrap items-center justify-end flex-shrink-0 gap-2 p-4 border-t-2 border-opacity-100 rounded-b-md border-neutral-100"
-        >
+          class="flex flex-shrink-0 flex-wrap items-center justify-end gap-2 rounded-b-md border-t-2 border-neutral-100 border-opacity-100 p-4">
           <button
             type="button"
-            class="inline-block px-[23px] py-[9px] text-sm font-medium leading-normal text-right text-black uppercase transition duration-150 ease-in-out bg-transparent border border-gray-300 rounded focus:outline-none focus:ring-0 active:bg-cerulean-700 hover:opacity-80 hover:bg-gray-100"
-            data-te-modal-dismiss
-          >
+            class="active:bg-cerulean-700 inline-block rounded border border-gray-300 bg-transparent px-[23px] py-[9px] text-right text-sm font-medium uppercase leading-normal text-black transition duration-150 ease-in-out hover:bg-gray-100 hover:opacity-80 focus:outline-none focus:ring-0"
+            data-te-modal-dismiss>
             取消
           </button>
           <button
             type="button"
-            class="inline-block rounded bg-cerulean px-6 py-2.5 text-sm font-medium uppercase leading-normal text-white transition duration-150 ease-in-out focus:outline-none focus:ring-0 active:bg-cerulean-700 hover:opacity-80 text-right"
-            @click.prevent="$emit('update-coupons', this.tempCoupon)"
-          >
+            class="active:bg-cerulean-700 inline-block rounded bg-cerulean px-6 py-2.5 text-right text-sm font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:opacity-80 focus:outline-none focus:ring-0"
+            @click.prevent="$emit('update-coupons', this.tempCoupon)">
             確認
           </button>
         </div>
@@ -158,6 +156,7 @@ export default {
     },
     state: {
       type: String,
+      default: '',
     },
   },
   watch: {
@@ -185,4 +184,3 @@ export default {
   mixins: [modalMixin],
 };
 </script>
-

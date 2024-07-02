@@ -4,17 +4,16 @@
     data-aos-duration="800"
     data-aos-once="true"
     class="container flex flex-col"
-    v-if="cartList.length > 0"
-  >
+    v-if="cartList.length > 0">
     <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
         <div class="overflow-hidden">
-          <table class="min-w-full mb-6 text-sm text-left">
-            <thead class="font-medium text-black border-b border-gray-400">
+          <table class="mb-6 min-w-full text-left text-sm">
+            <thead class="border-b border-gray-400 font-medium text-black">
               <tr>
                 <th scope="col" class="w-[5%] px-1 py-4 md:px-4 lg:px-6">#</th>
-                <th scope="col" class="md:w-[55%] px-1 py-4 md:px-4 lg:px-6">清單</th>
-                <th scope="col" class="max-[479px]:w-[20%] md:w-[15%] px-1 py-4 md:px-4 lg:px-6">小計</th>
+                <th scope="col" class="px-1 py-4 md:w-[55%] md:px-4 lg:px-6">清單</th>
+                <th scope="col" class="px-1 py-4 max-[479px]:w-[20%] md:w-[15%] md:px-4 lg:px-6">小計</th>
                 <th scope="col" class="w-[15%] px-1 py-4 md:px-4 lg:px-6">編輯</th>
                 <th scope="col" class="w-[10%] px-0 py-4 md:px-4 lg:px-6">刪除</th>
               </tr>
@@ -23,112 +22,111 @@
               <tr
                 class="border-b border-gray-200 hover:bg-neutral-100"
                 v-for="(cartItem, index) in cartList"
-                :key="cartItem.id"
-              >
-                <td class="pl-2 min-w-[480px]:px-2 py-4 font-medium md:px-4 lg:px-6">{{ index + 1 }}</td>
+                :key="cartItem.id">
+                <td class="min-w-[480px]:px-2 py-4 pl-2 font-medium md:px-4 lg:px-6">{{ index + 1 }}</td>
                 <td class="px-2 py-4 md:px-4 lg:px-6">
-                  <div class="flex flex-col gap-2 md:gap-8 min-[480px]:flex-row">
+                  <div class="flex flex-col gap-2 min-[480px]:flex-row md:gap-8">
                     <img
-                      class="w-full min-[480px]:w-[130px] object-cover"
+                      class="w-full object-cover min-[480px]:w-[130px]"
                       :src="cartItem.product.imageUrl"
-                      :alt="cartItem.product.title"
-                    />
+                      :alt="cartItem.product.title" />
                     <div class="flex flex-col justify-center">
                       <div class="mb-2">
-                        <h4 class="block mr-1 font-medium text-black lg:text-xl">
+                        <h4 class="mr-1 block font-medium text-black lg:text-xl">
                           {{ cartItem.product.title }}
                           <span
-                            class="text-[8px] sm:text-[10px] px-2 ml-1 text-white rounded-full font-montserrat op bg-success"
-                            v-if="cartItem.product.price !== cartItem.product.origin_price"
-                            >SALE</span
-                          >
+                            class="op ml-1 rounded-full bg-success px-2 font-montserrat text-[8px] text-white sm:text-[10px]"
+                            v-if="cartItem.product.price !== cartItem.product.origin_price">
+                            SALE
+                          </span>
                         </h4>
                         <p
                           class="inline-block text-xs tracking-wider text-gray-500"
-                          :class="{ 'line-through mr-2': cartItem.product.price !== cartItem.product.origin_price }"
-                          >NT
+                          :class="{ 'mr-2 line-through': cartItem.product.price !== cartItem.product.origin_price }">
+                          NT
                           <span>{{ $filters.currency(cartItem.product.origin_price) }}</span>
-                          元</p
-                        >
+                          元
+                        </p>
                         <p
                           v-if="cartItem.product.price !== cartItem.product.origin_price"
                           class="inline-block text-xs tracking-wider text-gray-500"
                           :class="{
-                            ' text-success font-bold': cartItem.product.price !== cartItem.product.origin_price,
-                          }"
-                          >NT
+                            'font-bold text-success': cartItem.product.price !== cartItem.product.origin_price,
+                          }">
+                          NT
                           <span>{{ $filters.currency(cartItem.product.price) }}</span>
-                          元</p
-                        >
+                          元
+                        </p>
                       </div>
-                      <div v-html="cartItem.product.description" class="hidden lg:block"></div>
+                      <div v-html="cartItem.product.description" class="hidden lg:block" />
                     </div>
                   </div>
                 </td>
                 <td
-                  class="px-0 sm:px-2 py-4 text-xs tracking-wider max-[480px]:text-center sm:text-left sm:text-sm md:px-4 lg:px-6 whitespace-nowrap"
-                >
-                  <span
-                    ><span class="hidden sm:inline-block">NT</span>
-                    {{ $filters.currency(cartItem.final_total) }} 元</span
-                  >
+                  class="whitespace-nowrap px-0 py-4 text-xs tracking-wider max-[480px]:text-center sm:px-2 sm:text-left sm:text-sm md:px-4 lg:px-6">
+                  <span>
+                    <span class="hidden sm:inline-block">NT</span>
+                    {{ $filters.currency(cartItem.final_total) }} 元
+                  </span>
                 </td>
                 <td class="min-w-[480px]:px-2 py-4 md:px-4 lg:px-6">
                   <div class="flex items-center">
                     <button
+                      type="button"
                       class="pr-1"
-                      @click.prevent="updateCart(cartItem.id, cartItem.qty > 1 ? cartItem.qty - 1 : 1)"
-                      :disabled="status.updateIcon === cartItem.id || cartItem.qty === 1"
-                    >
+                      @click="updateCart(cartItem.id, cartItem.qty > 1 ? cartItem.qty - 1 : 1)"
+                      :disabled="status.updateIcon === cartItem.id || cartItem.qty === 1">
                       <span
-                        class="text-xl align-bottom text-brown-300 material-symbols-outlined"
-                        :style="{ color: cartItem.qty === 1 ? '#d1d5db' : '' }"
-                        >remove</span
-                      >
+                        class="material-symbols-outlined align-bottom text-xl text-brown-300"
+                        :style="{ color: cartItem.qty === 1 ? '#d1d5db' : '' }">
+                        remove
+                      </span>
                     </button>
-                    <input
-                      type="text"
-                      class="outline-none focus:outline-none max-w-[40px] bg-transparent border text-center"
-                      v-model="cartItem.qty"
-                      @change="updateCart(cartItem.id, cartItem.qty === 0 || cartItem.qty === '' ? 1 : cartItem.qty)"
-                    />
-                    <span class="hidden pl-2 text-sm text-gray-400 sm:inline-block"> {{ cartItem.product.unit }}</span>
+                    <label>
+                      <input
+                        type="text"
+                        class="max-w-[40px] border bg-transparent text-center outline-none focus:outline-none"
+                        v-model="cartItem.qty"
+                        @change="
+                          updateCart(cartItem.id, cartItem.qty === 0 || cartItem.qty === '' ? 1 : cartItem.qty)
+                        " />
+                    </label>
+                    <span class="hidden pl-2 text-sm text-gray-400 sm:inline-block">{{ cartItem.product.unit }}</span>
                     <button
-                      @click.prevent="updateCart(cartItem.id, cartItem.qty + 1)"
-                      :disabled="status.updateIcon === cartItem.id"
-                    >
-                      <span class="pl-1 text-xl align-bottom text-brown-300 material-symbols-outlined">add</span>
+                      type="button"
+                      @click="updateCart(cartItem.id, cartItem.qty + 1)"
+                      :disabled="status.updateIcon === cartItem.id">
+                      <span class="material-symbols-outlined pl-1 align-bottom text-xl text-brown-300">add</span>
                     </button>
                   </div>
                 </td>
                 <td class="px-1 py-4 md:px-4 lg:px-6">
                   <button
+                    type="button"
                     class="self-end hover:text-danger"
-                    @click.prevent.stop="
-                      showSwalCheck('warning', '真的要刪除嗎', () => delCartItem('one', cartItem.id))
-                    "
-                  >
-                    <span class="align-bottom material-symbols-outlined"> delete </span>
+                    @click.stop="showSwalCheck('warning', '真的要刪除嗎', () => delCartItem('one', cartItem.id))">
+                    <span class="material-symbols-outlined align-bottom">delete</span>
                   </button>
                 </td>
               </tr>
             </tbody>
 
-            <tfoot class="text-base font-bold tracking-wider border-t border-gray-200 text-brown-500">
+            <tfoot class="border-t border-gray-200 text-base font-bold tracking-wider text-brown-500">
               <td class="px-1 py-4 md:px-4 lg:px-6" colspan="2">
                 <div class="flex justify-between first-letter:items-start">
-                  <span class="hidden sm:block"> {{ cartList.length }} 個商品 </span>
+                  <span class="hidden sm:block">{{ cartList.length }} 個商品</span>
                   <div class="w-[170px] text-gray-500">
-                    <select
-                      data-te-select-init
-                      data-te-class-select-Label="data-[te-input-state-active]:scale-1 absolute top-[18%] left-[5%] pointer-events-none"
-                      v-model="pickupMethod"
-                      ref="pickupMethodSelect"
-                    >
-                      <option disabled selected>請選擇取貨方式</option>
-                      <option value="delivery">宅配</option>
-                      <option value="self">到店自取</option>
-                    </select>
+                    <label>
+                      <select
+                        data-te-select-init
+                        data-te-class-select-Label="data-[te-input-state-active]:scale-1 absolute top-[18%] left-[5%] pointer-events-none"
+                        v-model="pickupMethod"
+                        ref="pickupMethodSelect">
+                        <option disabled selected>請選擇取貨方式</option>
+                        <option value="delivery">宅配</option>
+                        <option value="self">到店自取</option>
+                      </select>
+                    </label>
                   </div>
                 </div>
               </td>
@@ -145,35 +143,37 @@
             </tfoot>
           </table>
 
-          <div class="flex justify-center"> </div>
+          <div class="flex justify-center" />
           <button
             type="button"
-            class="z-10 flex items-center px-8 py-2 mx-auto mb-2 font-medium leading-normal tracking-wider text-white uppercase transition duration-150 ease-in-out rounded-full text to-check bg-brown-300 focus:outline-none focus:ring-0 hover:opacity-80 disabled:bg-gray-300"
+            class="text to-check z-10 mx-auto mb-2 flex items-center rounded-full bg-brown-300 px-8 py-2 font-medium uppercase leading-normal tracking-wider text-white transition duration-150 ease-in-out hover:opacity-80 focus:outline-none focus:ring-0 disabled:bg-gray-300"
             @click.prevent="checkCartList(this.pickupMethod)"
-            :disabled="!pickupMethod"
-            >確認商品
+            :disabled="!pickupMethod">
+            確認商品
           </button>
           <button
             type="button"
-            class="z-10 flex items-center px-8 py-2 mx-auto mb-10 text-sm font-medium leading-normal tracking-wider text-gray-500 uppercase transition duration-150 ease-in-out rounded-full focus:outline-none focus:ring-1 hover:opacity-80"
-            @click.prevent="cancelOrder()"
-            >取消購買</button
-          >
+            class="z-10 mx-auto mb-10 flex items-center rounded-full px-8 py-2 text-sm font-medium uppercase leading-normal tracking-wider text-gray-500 transition duration-150 ease-in-out hover:opacity-80 focus:outline-none focus:ring-1"
+            @click.prevent="cancelOrder()">
+            取消購買
+          </button>
         </div>
       </div>
     </div>
   </div>
   <div class="flex flex-col justify-center py-14" v-if="cartList.length === 0">
-    <p class="text-center"
-      >目前購物車是空的<br />快來
+    <p class="text-center">
+      目前購物車是空的
+      <br />
+      快來
       <RouterLink
         to="/shop"
         type="button"
-        class="z-10 items-center inline-block mx-1 font-medium leading-normal tracking-wider uppercase transition duration-150 ease-in-out border-b text-brown-300 border-brown-300 hover:opacity-80"
-        >點我</RouterLink
-      >
-      進行選購吧！</p
-    >
+        class="z-10 mx-1 inline-block items-center border-b border-brown-300 font-medium uppercase leading-normal tracking-wider text-brown-300 transition duration-150 ease-in-out hover:opacity-80">
+        點我
+      </RouterLink>
+      進行選購吧！
+    </p>
   </div>
 </template>
 

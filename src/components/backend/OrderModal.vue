@@ -7,92 +7,81 @@
     aria-labelledby="exampleModalXlLabel"
     aria-modal="true"
     role="dialog"
-    ref="modal"
-  >
+    ref="modal">
     <div
       data-te-modal-dialog-ref
-      class="pointer-events-none relative w-auto translate-y-[-50px] opacity-0 transition-all duration-300 ease-in-out mx-auto mt-7 max-w-[500px] min-[992px]:max-w-[800px] min-[1200px]:max-w-[1180px]"
-    >
+      class="pointer-events-none relative mx-auto mt-7 w-auto max-w-[500px] translate-y-[-50px] opacity-0 transition-all duration-300 ease-in-out min-[992px]:max-w-[800px] min-[1200px]:max-w-[1180px]">
       <div
-        class="max-h-[calc(100vh_-_56px)] relative flex flex-col w-full text-current bg-white border-none rounded-md shadow-lg outline-none pointer-events-auto bg-clip-padding"
-      >
+        class="pointer-events-auto relative flex max-h-[calc(100vh_-_56px)] w-full flex-col rounded-md border-none bg-white bg-clip-padding text-current shadow-lg outline-none">
         <div
-          class="flex items-center justify-between flex-shrink-0 p-4 border-b-2 border-opacity-100 rounded-t-md border-neutral-100"
-        >
+          class="flex flex-shrink-0 items-center justify-between rounded-t-md border-b-2 border-neutral-100 border-opacity-100 p-4">
           <!--Modal title-->
-          <h5 class="text-xl font-medium leading-normal text-neutral-800" id="exampleModalXlLabel"> 編輯訂單 </h5>
+          <h5 class="text-xl font-medium leading-normal text-neutral-800" id="exampleModalXlLabel">編輯訂單</h5>
           <!--Close button-->
           <button
             type="button"
-            class="box-content border-none rounded-none hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
+            class="box-content rounded-none border-none hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
             data-te-modal-dismiss
-            aria-label="Close"
-          >
+            aria-label="Close">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="w-6 h-6"
-            >
+              class="h-6 w-6">
               <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
         </div>
 
         <!--Modal body-->
-        <div class="relative p-4 overflow-y-scroll" v-if="tempOrder">
-          <div class="flex-col min-[1200px]:flex-row flex pt-4 pb-6">
+        <div class="relative overflow-y-scroll p-4" v-if="tempOrder">
+          <div class="flex flex-col pb-6 pt-4 min-[1200px]:flex-row">
             <!-- info -->
             <div class="min-[1200px]:w-1/3">
               <div class="h-full px-2">
-                <div class="flex gap-2 mb-4">
+                <div class="mb-4 flex gap-2">
                   <div class="w-1/2">
-                    <label for="name" class="block mb-1">收件人姓名</label>
+                    <label for="name" class="mb-1 block">收件人姓名</label>
                     <input
                       type="text"
-                      class="m-0 block w-full border border-solid rounded border-neutral-300 bg-clip-padding px-3 py-[6px] text-base font-normal leading-[1.6] text-black outline-none transition duration-200 ease-in-out focus:z-[3] focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
+                      class="m-0 block w-full rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[6px] text-base font-normal leading-[1.6] text-black outline-none transition duration-200 ease-in-out focus:z-[3] focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
                       id="name"
-                      v-model="tempOrder.user.name"
-                    />
+                      v-model="tempOrder.user.name" />
                   </div>
                   <div class="w-1/2">
-                    <label for="tel" class="block mb-1">收件人電話</label>
+                    <label for="tel" class="mb-1 block">收件人電話</label>
                     <input
                       type="tel"
-                      class="m-0 block w-full border border-solid rounded border-neutral-300 bg-clip-padding px-3 py-[6px] text-base font-normal leading-[1.6] text-black outline-none transition duration-200 ease-in-out focus:z-[3] focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
+                      class="m-0 block w-full rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[6px] text-base font-normal leading-[1.6] text-black outline-none transition duration-200 ease-in-out focus:z-[3] focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
                       id="tel"
-                      v-model="tempOrder.user.tel"
-                    />
+                      v-model="tempOrder.user.tel" />
                   </div>
                 </div>
                 <div class="mb-4">
-                  <label for="mail" class="block mb-1">E-mail</label>
+                  <label for="mail" class="mb-1 block">E-mail</label>
                   <input
                     type="email"
-                    class="m-0 block w-full border border-solid rounded border-neutral-300 bg-clip-padding px-3 py-[6px] text-base font-normal leading-[1.6] text-black outline-none transition duration-200 ease-in-out focus:z-[3] focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
+                    class="m-0 block w-full rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[6px] text-base font-normal leading-[1.6] text-black outline-none transition duration-200 ease-in-out focus:z-[3] focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
                     id="mail"
-                    v-model="tempOrder.user.email"
-                  />
+                    v-model="tempOrder.user.email" />
                 </div>
                 <div class="mb-4">
-                  <label for="address" class="block mb-1">地址</label>
+                  <label for="address" class="mb-1 block">地址</label>
                   <input
                     type="text"
-                    class="m-0 block w-full border border-solid rounded border-neutral-300 bg-clip-padding px-3 py-[6px] text-base font-normal leading-[1.6] text-black outline-none transition duration-200 ease-in-out focus:z-[3] focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
+                    class="m-0 block w-full rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[6px] text-base font-normal leading-[1.6] text-black outline-none transition duration-200 ease-in-out focus:z-[3] focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
                     id="address"
-                    v-model="tempOrder.user.address"
-                  />
+                    v-model="tempOrder.user.address" />
                 </div>
-                <div class="pb-4 mb-4">
-                  <label for="message" class="block mb-1">留言</label>
+                <div class="mb-4 pb-4">
+                  <label for="message" class="mb-1 block">留言</label>
                   <textarea
                     type="text"
-                    class="min-h-[100px] resize-none m-0 block w-full rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[6px] text-base font-normal leading-[1.6] text-black outline-none transition duration-200 ease-in-out focus:z-[3] focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
+                    class="m-0 block min-h-[100px] w-full resize-none rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[6px] text-base font-normal leading-[1.6] text-black outline-none transition duration-200 ease-in-out focus:z-[3] focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
                     id="message"
-                    v-model="tempOrder.message"
-                  />
+                    v-model="tempOrder.message" />
                 </div>
                 <div>
                   <input
@@ -101,20 +90,19 @@
                     role="switch"
                     id="flexSwitchCheckDefault"
                     :checked="tempOrder.user.order.is_paid"
-                    v-model="tempOrder.user.order.is_paid"
-                  />
+                    v-model="tempOrder.user.order.is_paid" />
                   <label
-                    class="inline-block pl-[0.15rem] hover:cursor-pointer ml-1 font-semibold"
-                    :class="tempOrder.user.order.is_paid ? ' text-success' : ' text-danger'"
-                    for="flexSwitchCheckDefault"
-                    >{{ tempOrder.user.order.is_paid ? '已付款' : '尚未付款' }}</label
-                  >
+                    class="ml-1 inline-block pl-[0.15rem] font-semibold hover:cursor-pointer"
+                    :class="tempOrder.user.order.is_paid ? 'text-success' : 'text-danger'"
+                    for="flexSwitchCheckDefault">
+                    {{ tempOrder.user.order.is_paid ? '已付款' : '尚未付款' }}
+                  </label>
                 </div>
               </div>
             </div>
             <!-- product -->
             <div class="min-[1200px]:w-2/3">
-              <div class="flex items-end justify-end mb-6">
+              <div class="mb-6 flex items-end justify-end">
                 <div class="w-[170px] text-gray-500">
                   <label for="statusSelect" class="text-sm">訂單狀態</label>
                   <select
@@ -122,8 +110,7 @@
                     data-te-class-select-Label="data-[te-input-state-active]:scale-1 absolute top-[18%] left-[5%] pointer-events-none"
                     id="statusSelect"
                     v-model="tempOrder.user.order.status"
-                    ref="statusSelect"
-                  >
+                    ref="statusSelect">
                     <option value="收到訂單" selected>收到訂單</option>
                     <option value="準備中">準備中</option>
                     <option value="已完成（寄出）">已完成（寄出）</option>
@@ -133,26 +120,20 @@
               </div>
 
               <!-- table -->
-              <div class="overflow-x-auto max-h-[calc(100vh_-_280px)]">
+              <div class="max-h-[calc(100vh_-_280px)] overflow-x-auto">
                 <div class="inline-block min-w-full py-2 sm:px-3">
                   <div class="overflow-hidden">
-                    <table class="min-w-full overflow-y-scroll text-sm text-left">
-                      <thead class="font-medium text-black border-b border-gray-400">
+                    <table class="min-w-full overflow-y-scroll text-left text-sm">
+                      <thead class="border-b border-gray-400 font-medium text-black">
                         <tr>
                           <th scope="col" class="w-[5%] px-1 py-4 md:px-4">#</th>
-                          <th scope="col" class="max-[500px]:w-[45%] px-1 py-4 md:px-4">清單</th>
-                          <th scope="col" class="max-[500px]:w-[35%] w-[25%] px-1 py-4 md:px-4"
-                            >小計
-                            <span
-                              v-if="Object.values(tempOrder.products).some((product) => product.coupon)"
-                              class="block -ml-2 text-xs text-success"
-                              >{{
-                                Object.values(tempOrder.products).some((product) => product.coupon)
-                                  ? '（已使用優惠券）'
-                                  : ''
-                              }}
-                            </span></th
-                          >
+                          <th scope="col" class="px-1 py-4 max-[500px]:w-[45%] md:px-4">清單</th>
+                          <th scope="col" class="w-[25%] px-1 py-4 max-[500px]:w-[35%] md:px-4">
+                            小計
+                            <span v-if="isUsedCoupon" class="-ml-2 block text-xs text-success">
+                              {{ isUsedCoupon ? '（已使用優惠券）' : '' }}
+                            </span>
+                          </th>
                           <th scope="col" class="w-[10%] px-0 py-4 md:px-4">數量</th>
                         </tr>
                       </thead>
@@ -160,57 +141,55 @@
                         <tr
                           class="border-b border-gray-200 hover:bg-neutral-100"
                           v-for="(item, key, index) in tempOrder.products"
-                          :key="item.id"
-                        >
+                          :key="item.id">
                           <td class="px-2 py-4 font-medium md:px-4">{{ index + 1 }}</td>
                           <td class="px-1 py-4 md:px-4">
-                            <div class="flex flex-col gap-2 md:gap-8 min-[500px]:flex-row">
+                            <div class="flex flex-col gap-2 min-[500px]:flex-row md:gap-8">
                               <img
-                                class="w-full min-[500px]:w-[130px] object-cover"
+                                class="w-full object-cover min-[500px]:w-[130px]"
                                 :src="item.product.imageUrl"
-                                :alt="item.product.title"
-                              />
+                                :alt="item.product.title" />
                               <div class="flex flex-col justify-center">
                                 <div class="mb-2">
-                                  <h4 class="inline-block mb-1 mr-1 font-medium text-black lg:text-xl">
+                                  <h4 class="mb-1 mr-1 inline-block font-medium text-black lg:text-xl">
                                     {{ item.product.title }}
                                   </h4>
                                   <span
-                                    class="px-2 ml-2 text-xs text-white rounded-full font-montserrat op bg-success"
-                                    v-if="item.product.price !== item.product.origin_price"
-                                    >SALE</span
-                                  >
+                                    class="op ml-2 rounded-full bg-success px-2 font-montserrat text-xs text-white"
+                                    v-if="item.product.price !== item.product.origin_price">
+                                    SALE
+                                  </span>
                                   <br />
                                   <span
                                     class="text-xs tracking-wider text-gray-500"
-                                    :class="{ 'line-through': item.product.price !== item.product.origin_price }"
-                                    >NT {{ $filters.currency(item.product.origin_price) }} 元</span
-                                  ><span
+                                    :class="{ 'line-through': item.product.price !== item.product.origin_price }">
+                                    NT {{ $filters.currency(item.product.origin_price) }} 元
+                                  </span>
+                                  <span
                                     v-if="item.product.price !== item.product.origin_price"
                                     class="text-xs tracking-wider text-gray-500"
                                     :class="{
-                                      ' text-success font-bold ml-2': item.product.price !== item.product.origin_price,
-                                    }"
-                                    >NT
+                                      'ml-2 font-bold text-success': item.product.price !== item.product.origin_price,
+                                    }">
+                                    NT
                                     <span>{{ $filters.currency(item.product.price) }}</span>
-                                    元</span
-                                  >
+                                    元
+                                  </span>
                                 </div>
                               </div>
                             </div>
                           </td>
                           <td
-                            class="px-2 py-4 text-xs tracking-wider max-[500px]:text-center sm:text-left sm:text-sm md:px-4"
-                          >
-                            <span :class="{ 'text-success font-bold': item.total !== item.final_total }"
-                              ><span class="hidden mr-[2px] sm:inline-block">NT </span>
+                            class="px-2 py-4 text-xs tracking-wider max-[500px]:text-center sm:text-left sm:text-sm md:px-4">
+                            <span :class="{ 'font-bold text-success': item.total !== item.final_total }">
+                              <span class="mr-[2px] hidden sm:inline-block">NT</span>
                               <span>
                                 {{
                                   item.total === item.final_total
                                     ? $filters.currency(item.total * item.qty)
                                     : $filters.currency(item.final_total)
-                                }}</span
-                              >
+                                }}
+                              </span>
                               元
                             </span>
                           </td>
@@ -218,14 +197,14 @@
                             <div class="flex items-center">
                               {{ item.product.qty ? item.product.qty : 1 }}
                               <span class="hidden pl-2 text-sm text-gray-400 sm:inline-block">
-                                {{ item.product.unit }}</span
-                              >
+                                {{ item.product.unit }}
+                              </span>
                             </div>
                           </td>
                         </tr>
                       </tbody>
 
-                      <tfoot class="text-base font-bold tracking-wider border-t border-gray-200 text-brown-500">
+                      <tfoot class="border-t border-gray-200 text-base font-bold tracking-wider text-brown-500">
                         <td class="px-1 py-4 md:px-4" colspan="2">
                           <div class="flex items-center justify-between">
                             {{ Object.keys(tempOrder.products).length }} 個商品
@@ -234,11 +213,11 @@
                             </div>
                           </div>
                         </td>
-                        <td class="px-1 py-4 text-center md:text-start md:px-4" colspan="3">
+                        <td class="px-1 py-4 text-center md:px-4 md:text-start" colspan="3">
                           共 NT {{ $filters.currency(tempOrder.total) }} 元
-                          <p class="-ml-2 text-sm">{{
-                            tempOrder.user.order.pickupMethod === 'delivery' ? `（含運費 80 元）` : ''
-                          }}</p>
+                          <p class="-ml-2 text-sm">
+                            {{ tempOrder.user.order.pickupMethod === 'delivery' ? `（含運費 80 元）` : '' }}
+                          </p>
                         </td>
                       </tfoot>
                     </table>
@@ -251,20 +230,17 @@
 
         <!--Modal footer-->
         <div
-          class="flex flex-wrap items-center justify-end flex-shrink-0 gap-2 p-4 border-t-2 border-opacity-100 rounded-b-md border-neutral-100"
-        >
+          class="flex flex-shrink-0 flex-wrap items-center justify-end gap-2 rounded-b-md border-t-2 border-neutral-100 border-opacity-100 p-4">
           <button
             type="button"
-            class="inline-block px-[23px] py-[9px] text-sm font-medium leading-normal text-right text-black uppercase transition duration-150 ease-in-out bg-transparent border border-gray-300 rounded focus:outline-none focus:ring-0 active:bg-cerulean-700 hover:opacity-80 hover:bg-gray-100"
-            data-te-modal-dismiss
-          >
+            class="active:bg-cerulean-700 inline-block rounded border border-gray-300 bg-transparent px-[23px] py-[9px] text-right text-sm font-medium uppercase leading-normal text-black transition duration-150 ease-in-out hover:bg-gray-100 hover:opacity-80 focus:outline-none focus:ring-0"
+            data-te-modal-dismiss>
             取消
           </button>
           <button
             type="button"
-            class="inline-block rounded bg-cerulean px-6 py-2.5 text-sm font-medium uppercase leading-normal text-white transition duration-150 ease-in-out focus:outline-none focus:ring-0 active:bg-cerulean-700 hover:opacity-80 text-right"
-            @click.prevent="$emit('update-order', this.tempOrder)"
-          >
+            class="active:bg-cerulean-700 inline-block rounded bg-cerulean px-6 py-2.5 text-right text-sm font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:opacity-80 focus:outline-none focus:ring-0"
+            @click.prevent="$emit('update-order', this.tempOrder)">
             確認
           </button>
         </div>
@@ -291,6 +267,11 @@ export default {
     item() {
       this.tempOrder = this.item;
       Select.getOrCreateInstance(this.selectEl).setValue(this.tempOrder.user.order.status);
+    },
+  },
+  computed: {
+    isUsedCoupon() {
+      return Object.values(this.tempOrder.products).some((product) => product.coupon);
     },
   },
   props: ['item'],

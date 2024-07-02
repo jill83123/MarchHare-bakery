@@ -1,65 +1,68 @@
 <!-- eslint-disable import/no-unresolved -->
 <template>
-  <LoadingAnimation :active="isLoading" :lock-scroll="true"></LoadingAnimation>
+  <LoadingAnimation :active="isLoading" :lock-scroll="true" />
 
   <main class="ml-0 lg:ml-[310px]">
     <div class="container flex justify-between py-4 lg:mt-10 lg:text-right">
-      <h2 class="flex items-center text-3xl text-black font-noto-serif"
-        ><span class="mr-2 text-4xl material-symbols-outlined text-black-light"> Feed </span>部落格</h2
-      >
+      <h2 class="flex items-center font-noto-serif text-3xl text-black">
+        <span class="material-symbols-outlined mr-2 text-4xl text-black-light">Feed</span>
+        部落格
+      </h2>
       <button
         type="button"
-        class="my-auto flex items-center rounded bg-cerulean px-6 py-2.5 text-sm font-medium uppercase leading-normal text-white transition duration-150 ease-in-out focus:outline-none focus:ring-0 active:bg-cerulean-700 hover:opacity-80"
-        @click.prevent="openModal('new')"
-      >
-        <span class="mr-1 -ml-2 material-symbols-outlined"> add </span>新增文章
+        class="active:bg-cerulean-700 my-auto flex items-center rounded bg-cerulean px-6 py-2.5 text-sm font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:opacity-80 focus:outline-none focus:ring-0"
+        @click.prevent="openModal('new')">
+        <span class="material-symbols-outlined -ml-2 mr-1">add</span>
+        新增文章
       </button>
     </div>
 
-    <div class="container flex flex-col mb-11 min-h-[679px]">
+    <div class="container mb-11 flex min-h-[679px] flex-col">
       <div class="overflow-x-auto">
         <div class="inline-block min-w-full py-2">
           <div class="overflow-hidden">
-            <table class="min-w-full text-sm font-light text-left">
-              <thead class="font-medium border-b border-gray-400 break-keep">
+            <table class="min-w-full text-left text-sm font-light">
+              <thead class="break-keep border-b border-gray-400 font-medium">
                 <tr>
-                  <th scope="col" class="px-6 py-4 w-[1%]">#</th>
-                  <th scope="col" class="px-6 py-4 w-[5%]">建立時間</th>
+                  <th scope="col" class="w-[1%] px-6 py-4">#</th>
+                  <th scope="col" class="w-[5%] px-6 py-4">建立時間</th>
                   <th scope="col" class="px-6 py-4">標題</th>
-                  <th scope="col" class="px-6 py-4 w-[25%]">標籤</th>
-                  <th scope="col" class="px-6 py-4 w-[5%]">作者</th>
-                  <th scope="col" class="px-6 py-4 w-[5%]">是否公開</th>
-                  <th scope="col" class="px-6 py-4 w-[10%]">最後更新時間</th>
-                  <th scope="col" class="px-6 py-4 w-[10%]">編輯</th>
+                  <th scope="col" class="w-[25%] px-6 py-4">標籤</th>
+                  <th scope="col" class="w-[5%] px-6 py-4">作者</th>
+                  <th scope="col" class="w-[5%] px-6 py-4">是否公開</th>
+                  <th scope="col" class="w-[10%] px-6 py-4">最後更新時間</th>
+                  <th scope="col" class="w-[10%] px-6 py-4">編輯</th>
                 </tr>
               </thead>
               <tbody>
                 <tr
                   v-for="(item, index) in articleList"
                   :key="item.id"
-                  class="font-normal transition duration-300 ease-in-out border-b hover:bg-neutral-100"
-                >
-                  <th class="px-6 py-4 whitespace-nowrap">{{ index + 1 }}</th>
-                  <td class="px-6 py-4 whitespace-nowrap">{{ $filters.onlyDate(item.create_at) }}</td>
-                  <td class="px-6 py-4 whitespace-nowrap">
+                  class="border-b font-normal transition duration-300 ease-in-out hover:bg-neutral-100">
+                  <th class="whitespace-nowrap px-6 py-4">{{ index + 1 }}</th>
+                  <td class="whitespace-nowrap px-6 py-4">{{ $filters.onlyDate(item.create_at) }}</td>
+                  <td class="whitespace-nowrap px-6 py-4">
                     {{ item.title }}
                   </td>
                   <td class="px-6 py-4">
                     <div class="flex flex-wrap gap-1">
-                      <p v-for="tag in item.tag" :key="tag" class=" whitespace-nowrap">＃{{ tag }}</p>
+                      <p v-for="tag in item.tag" :key="tag" class="whitespace-nowrap">＃{{ tag }}</p>
                     </div>
                   </td>
-                  <td class="px-6 py-4 whitespace-nowrap">{{ item.author }}</td>
-                  <td class="px-6 py-4 whitespace-nowrap">
+                  <td class="whitespace-nowrap px-6 py-4">{{ item.author }}</td>
+                  <td class="whitespace-nowrap px-6 py-4">
                     <p class="text-success" v-if="item.isPublic">公開</p>
                     <p class="text-gray-400" v-else>未公開</p>
                   </td>
-                  <td class="px-6 py-4 whitespace-nowrap">
+                  <td class="whitespace-nowrap px-6 py-4">
                     <p v-if="item.lastEditDate">{{ $filters.date(item.lastEditDate) }}</p>
                     <p v-else>無紀錄</p>
                   </td>
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <button class="inline-block pr-4 hover:text-cerulean" @click.prevent="openModal('edit', item)">
+                  <td class="whitespace-nowrap px-6 py-4">
+                    <button
+                      type="button"
+                      class="inline-block pr-4 hover:text-cerulean"
+                      @click="openModal('edit', item)">
                       <span
                         class="material-symbols-outlined"
                         style="
@@ -68,13 +71,12 @@
                             'wght' 400,
                             'GRAD' 0,
                             'opsz' 24;
-                        "
-                      >
+                        ">
                         edit
                       </span>
                     </button>
-                    <button class="inline-block px-4 hover:text-danger" @click.prevent="openModal('del', item)"
-                      ><span class="material-symbols-outlined">delete</span>
+                    <button type="button" class="inline-block px-4 hover:text-danger" @click="openModal('del', item)">
+                      <span class="material-symbols-outlined">delete</span>
                     </button>
                   </td>
                 </tr>
@@ -90,12 +92,11 @@
       :article="tempArticle"
       :state="articleModalState"
       :allTags="allTags"
-      @update-article="updateArticle"
-    ></ArticleModal>
+      @update-article="updateArticle" />
 
-    <DelModal ref="delModal" @del="delArticle" :item="tempArticle"></DelModal>
+    <DelModal ref="delModal" @del="delArticle" :item="tempArticle" />
 
-    <Pagination :pages="pagination" @change-page="getArticle"></Pagination>
+    <Pagination :pages="pagination" @change-page="getArticle" />
   </main>
 </template>
 
@@ -209,7 +210,7 @@ export default {
           statesStore().pushToastMessage(
             res.data.success,
             `${this.articleModalState === 'new' ? '新增' : '編輯'}失敗`,
-            res.data.message
+            res.data.message,
           );
         }
       });
@@ -220,9 +221,9 @@ export default {
         if (res.data.success) {
           this.$refs.delModal.hideModal();
           this.getArticle();
-          statesStore().pushToastMessage(res.data.success, `刪除成功`);
+          statesStore().pushToastMessage(res.data.success, '刪除成功');
         } else {
-          statesStore().pushToastMessage(res.data.success, `刪除失敗`, res.data.message);
+          statesStore().pushToastMessage(res.data.success, '刪除失敗', res.data.message);
         }
       });
     },

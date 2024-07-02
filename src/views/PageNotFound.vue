@@ -1,10 +1,11 @@
 <template>
-  <main class="container mt-[106px] min-h-[calc(100vh_-_310px)] pb-10 flex flex-col justify-center">
-    <h4 class="-mb-2 font-montserrat text-2xl tracking-[0.2rem] font-bold text-center text-brown-100">404 Error</h4>
-    <h3 class="text-[64px] font-medium tracking-widest text-brown-300 text-center font-maru mb-3">査無此頁</h3>
-    <p class="mb-20 font-bold tracking-widest text-center text-black-light"
-      ><span ref="timer">10</span> 秒後幫您導向首頁</p
-    >
+  <main class="container mt-[106px] flex min-h-[calc(100vh_-_310px)] flex-col justify-center pb-10">
+    <h4 class="-mb-2 text-center font-montserrat text-2xl font-bold tracking-[0.2rem] text-brown-100">404 Error</h4>
+    <h3 class="mb-3 text-center font-maru text-[64px] font-medium tracking-widest text-brown-300">査無此頁</h3>
+    <p class="mb-20 text-center font-bold tracking-widest text-black-light">
+      <span ref="timer">10</span>
+      秒後幫您導向首頁
+    </p>
   </main>
 </template>
 
