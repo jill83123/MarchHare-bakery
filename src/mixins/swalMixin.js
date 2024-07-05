@@ -1,13 +1,19 @@
 import Swal from 'sweetalert2';
 
+const toastTitleDefaultMsg = {
+  success: () => '成功',
+  error: () => '發生錯誤，請稍後再試',
+};
+
 const SwalMixin = {
   methods: {
     showSwalToast(icon, title) {
+      const processedTitle = (!title && toastTitleDefaultMsg[icon]()) || title;
       Swal.fire({
         toast: true,
         position: 'top',
         icon,
-        title,
+        title: processedTitle,
         showConfirmButton: false,
         timer: 1500,
         timerProgressBar: true,
