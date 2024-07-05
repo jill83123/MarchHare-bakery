@@ -100,7 +100,7 @@
               placeholder="請輸入地址"
               name="地址"
               id="address"
-              rules="required"
+              rules="required|min:9"
               v-model="userInfo.user.address"
               :disabled="userInfo.user.order.pickupMethod === 'self'" />
             <ErrorMessage class="absolute right-0 text-sm text-danger" name="地址" />
