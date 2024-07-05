@@ -1,17 +1,22 @@
 import { defineStore } from 'pinia';
-import axios from 'axios';
 import router from '@/router/index';
+import shippingFeeData from '@/stores/user/shippingFeeData';
+import { apiPostCartItem, apiDeleteAllCartItem } from '@/apis/user/cartApi';
+import { apiPostCoupon } from '@/apis/user/couponApi';
+import { apiPostOrder } from '@/apis/user/orderApi';
+import useLoadingStore from '@/stores/loadingStore';
 import swalMixin from '@/mixins/swalMixin';
+
+const { addLoadingItem, removeLoadingItem } = useLoadingStore();
 
 const cartStore = defineStore('cart', {
   state: () => ({
-    cartList: JSON.parse(localStorage.getItem('cartList')) || [],
+    cartList: [],
     cartTotalPrice: 0,
     finalTotalPrice: 0,
     status: {
       updateIcon: '',
       loadingIcon: '',
-      isLoading: false,
       coupon: false,
     },
     currentStep: 1,
@@ -30,139 +35,135 @@ const cartStore = defineStore('cart', {
 
   actions: {
     getCartList() {
+      this.cartList = JSON.parse(localStorage.getItem('cartList')) || [];
       this.cartTotalPrice = 0;
       this.cartList.forEach((item) => {
         this.cartTotalPrice += item.final_total;
       });
-      localStorage.setItem('cartList', JSON.stringify(this.cartList));
     },
+
     addToCart(product, quantity = 1) {
       const cartItem = this.cartList.find((item) => item.product.id === product.id);
       if (cartItem) {
         cartItem.qty += quantity;
         cartItem.final_total = product.price * cartItem.qty;
       } else {
-        this.cartList.push({
+        const newCartItem = {
           product,
           id: product.id,
           qty: quantity,
           final_total: product.price * quantity,
-        });
+        };
+        this.cartList.push(newCartItem);
       }
+      localStorage.setItem('cartList', JSON.stringify(this.cartList));
       swalMixin.methods.showSwalToast('success', '加入購物車');
       this.getCartList();
     },
+
     updateCart(id, quantity) {
       const cartItem = this.cartList.find((item) => item.id === id);
-      const num = parseInt(quantity, 10);
-      cartItem.qty = num;
+      cartItem.qty = quantity;
       cartItem.final_total = cartItem.product.price * cartItem.qty;
-
+      localStorage.setItem('cartList', JSON.stringify(this.cartList));
       swalMixin.methods.showSwalToast('success', '更新購物車');
       this.getCartList();
     },
+
     delCartItem(status, id) {
-      const cartIndex = this.cartList.findIndex((item) => item.id === id);
+      const itemIndex = this.cartList.findIndex((item) => item.id === id);
       if (status === 'all') {
         this.cartList = [];
         swalMixin.methods.showSwalToast('success', '已清空購物車');
-      } else if (status === 'one') {
-        this.cartList.splice(cartIndex, 1);
+      }
+      if (status === 'one') {
+        this.cartList.splice(itemIndex, 1);
         swalMixin.methods.showSwalToast('success', '已刪除商品');
       }
+      localStorage.setItem('cartList', JSON.stringify(this.cartList));
       this.getCartList();
     },
-    // check out
-    checkCartList(pickupMethod) {
-      this.status.isLoading = true;
-      this.userInfo.user.order.pickupMethod = pickupMethod;
 
-      const delApi = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/carts`;
-      axios.delete(delApi).then((res) => {
-        let count = 0;
+    async checkCartList(pickupMethod) {
+      addLoadingItem('checkCartList');
+      try {
+        await apiPostCartItem({
+          data: {
+            product_id: this.cartList[0].product.id,
+            qty: this.cartList[0].qty,
+          },
+        });
+        await apiDeleteAllCartItem();
 
-        if (res.data.success || res.data.success === false) {
-          const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/cart`;
-
-          this.cartList.forEach((item) => {
-            const data = {
-              data: {
-                product_id: item.product.id,
-                qty: item.qty,
-              },
-            };
-
-            axios.post(api, data).then((response) => {
-              if (response.data.success) {
-                count += 1;
-              }
-              if (count === this.cartList.length) {
-                router.push('/checkout/information');
-                this.status.isLoading = false;
-                if (pickupMethod === 'self') {
-                  this.userInfo.user.address = '到店自取';
-                } else if (pickupMethod === 'delivery') {
-                  const deliveryFee = {
-                    final_total: 80,
-                    id: '-Nfviy3OLgcT7GnSUqUV',
-                    qty: 1,
-                    price: 80,
-                    category: '運費',
-                    imageUrl:
-                      'https://storage.googleapis.com/vue-course-api.appspot.com/yu-api/1696471229222.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=coobBweHW0lLquqGySO4Ejimw22pG%2F2BEi9pheRmVm2xkZRWtRYzDORK6UiyoBqMMsfBWXmTcLmJFWayWVqXe44V0xsA%2FsvpmTaOrmYdlzGlrefhGsPjpjsOIP8LbbnDqCVnszWeZU3Dh2s0%2F%2FNP43OE8xL5h%2B3c5QHKf0Z3vVkd3a8BHu4H08keCoO%2FbIZfWCKlGWV3JhnkBokpJV0IEwKQmr9BJ%2FdrwdG%2BHe5BfsOeBM9AO4HgZrKztXLDwyXkysk6mkupr5a74mMXDTyGU%2BMgCdSnrEsLQzKsjXr2kzsEsTIf0KxD6AaPfiZXgdO22GXyWFy%2BPzRwYB11CLNobA%3D%3D',
-                    num: 1,
-                    origin_price: 80,
-                    title: '運費',
-                    unit: '運費',
-                  };
-                  this.addToCart(deliveryFee, 1);
-                }
-              }
-            });
-          });
+        this.userInfo.user.order.pickupMethod = pickupMethod;
+        if (pickupMethod === 'delivery') {
+          this.addToCart(shippingFeeData, 1);
         }
-      });
+        if (pickupMethod === 'self') {
+          this.userInfo.user.address = '到店自取';
+        }
+
+        let count = 0;
+        this.cartList.forEach(async (cartItem) => {
+          const data = {
+            data: {
+              product_id: cartItem.product.id,
+              qty: cartItem.qty,
+            },
+          };
+          await apiPostCartItem(data);
+
+          count += 1;
+          if (count === this.cartList.length) {
+            router.push('/checkout/information');
+            removeLoadingItem('checkCartList');
+          }
+        });
+      } catch (err) {
+        swalMixin.methods.showSwalToast('error', err.response?.data?.message);
+        removeLoadingItem('checkCartList');
+      }
     },
+
     updateCurrentStep(step) {
       if (step === 2) {
         this.status.coupon = false;
       }
       this.currentStep = step;
     },
+
     pushUserInfo(info) {
       this.userInfo = info;
     },
-    useCoupon(couponCode) {
-      this.status.isLoading = true;
-      const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/coupon`;
-      axios.post(api, { data: { code: couponCode } }).then((res) => {
-        if (res.data.success) {
-          this.status.coupon = true;
-          this.finalTotalPrice = res.data.data.final_total;
-          swalMixin.methods.showSwalToast('success', '套用成功');
-        } else {
-          swalMixin.methods.showSwalToast('error', res.data.message);
-        }
-        this.status.isLoading = false;
-      });
-    },
-    finishOrder() {
-      this.status.isLoading = true;
-      this.userInfo.user.order.status = '收到訂單';
 
-      const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/order`;
-      axios.post(api, { data: this.userInfo }).then((res) => {
-        if (res.data.success) {
-          this.OrderData = res.data;
-          this.cartList = [];
-          localStorage.setItem('cartList', JSON.stringify(this.cartList));
-          router.replace('/checkout/complete');
-          this.status.isLoading = false;
-        }
-      });
+    async useCoupon(couponCode) {
+      addLoadingItem('useCoupon');
+      try {
+        const couponData = await apiPostCoupon({ data: { code: couponCode } });
+        this.status.coupon = true;
+        this.finalTotalPrice = couponData.data.final_total;
+        swalMixin.methods.showSwalToast('success', '套用成功');
+      } catch (err) {
+        swalMixin.methods.showSwalToast('error', err.response?.data?.message);
+      }
+      removeLoadingItem('useCoupon');
     },
+
+    async submitOrder() {
+      addLoadingItem('submitOrder');
+      try {
+        this.userInfo.user.order.status = '收到訂單';
+        this.OrderData = await apiPostOrder({ data: this.userInfo });
+        this.cartList = [];
+        localStorage.setItem('cartList', JSON.stringify(this.cartList));
+        router.replace('/checkout/complete');
+      } catch (err) {
+        swalMixin.methods.showSwalToast('error', err.response?.data?.message);
+      }
+      removeLoadingItem('submitOrder');
+    },
+
     shoppingMore() {
-      router.replace('/shop');
       this.userInfo = {
         user: {
           name: '',
@@ -172,6 +173,7 @@ const cartStore = defineStore('cart', {
         },
         message: '',
       };
+      router.replace('/shop');
     },
   },
 });

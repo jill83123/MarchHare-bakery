@@ -1,51 +1,56 @@
 import { defineStore } from 'pinia';
-import axios from 'axios';
+import { apiGetProducts, apiGetAllProducts } from '@/apis/user/productApi';
+import useLoadingStore from '@/stores/loadingStore';
+import swalMixin from '@/mixins/swalMixin';
+
+const { addLoadingItem, removeLoadingItem } = useLoadingStore();
 
 const productStore = defineStore('product', {
   state: () => ({
     productList: [],
     pagination: [],
-    isLoading: false,
   }),
 
   actions: {
-    getProducts(page = 1) {
-      this.isLoading = true;
-      const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/products?page=${page}`;
-      const api2 = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/products?page=${page + 1}`;
-      axios.get(api).then((res) => {
-        if (res.data.success) {
-          this.productList = res.data.products;
-          this.pagination = res.data.pagination;
-          if (this.pagination.has_next) {
-            this.isLoading = true;
-            axios.get(api2).then((response) => {
-              if (response.data.success) {
-                const data = response.data.products.slice(0, 2);
-                this.productList.push(...data);
-                if (response.data.products.length <= 2) {
-                  this.pagination.has_next = false;
-                  this.pagination.total_pages = 1;
-                }
-                this.isLoading = false;
-              }
-            });
-          } else {
-            this.isLoading = false;
-          }
-          if (this.pagination.has_pre) this.productList.splice(0, 2);
+    async getProducts(page = 1) {
+      addLoadingItem('getProducts');
+      try {
+        this.productList = [];
+
+        const currentPageData = await apiGetProducts({ page });
+        let nextPageData = {};
+
+        this.pagination = currentPageData.pagination;
+        this.productList.push(...currentPageData.products);
+
+        if (this.pagination.has_pre) {
+          this.productList.splice(0, 2);
         }
-      });
+
+        if (this.pagination.has_next) {
+          nextPageData = await apiGetProducts({ page: page + 1 });
+          const lastProductsInList = nextPageData.products.slice(0, 2);
+          this.productList.push(...lastProductsInList);
+        }
+
+        if (!nextPageData.products?.length === 2) {
+          this.pagination.has_next = false;
+        }
+      } catch (err) {
+        swalMixin.methods.showSwalToast('error', err.response?.data?.message);
+      }
+      removeLoadingItem('getProducts');
     },
-    getAllProducts() {
-      this.isLoading = true;
-      const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/products/all`;
-      axios.get(api).then((res) => {
-        if (res.data.success) {
-          this.productList = res.data.products;
-          this.isLoading = false;
-        }
-      });
+
+    async getAllProducts() {
+      addLoadingItem('getAllProducts');
+      try {
+        const productsData = await apiGetAllProducts();
+        this.productList.push(...productsData.products);
+      } catch (err) {
+        swalMixin.methods.showSwalToast('error', err.response?.data?.message);
+      }
+      removeLoadingItem('getAllProducts');
     },
   },
 });

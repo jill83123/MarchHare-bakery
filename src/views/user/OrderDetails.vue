@@ -1,6 +1,4 @@
 <template>
-  <LoadingAnimation :active="status.isLoading" :lock-scroll="true" />
-
   <main
     data-aos="fade-up"
     data-aos-duration="800"
@@ -57,7 +55,7 @@
       </div>
     </div>
 
-    <div v-if="Object.keys(this.orderDetails).length !== 0" data-aos="fade-up" data-aos-duration="800">
+    <div v-if="orderDetails.id" data-aos="fade-up" data-aos-duration="800">
       <ul class="mx-auto mb-16 flex w-full justify-between text-sm sm:text-base lg:w-2/3 xl:w-1/2">
         <li class="flex w-1/4 justify-around">
           <p
@@ -115,6 +113,7 @@
 
       <div class="mb-20">
         <div class="relative mx-auto flex gap-2 rounded-lg border px-5 py-14 pr-3 sm:px-10 lg:w-2/3 xl:w-1/2">
+          <!-- TODO: 將 SVG 改用 img 顯示 -->
           <svg
             class="absolute -top-8 left-1/2 -translate-x-1/2"
             width="230"
@@ -340,18 +339,19 @@
 
 <script>
 import { mapState } from 'pinia';
+import { apiGetOrder } from '@/apis/user/orderApi';
+import useLoadingStore from '@/stores/loadingStore';
 import cartStore from '../../stores/user/cartStore';
 import ContactUsModal from '../../components/user/ContactUsModal.vue';
 import swalMixin from '../../mixins/swalMixin';
+
+const { addLoadingItem, removeLoadingItem } = useLoadingStore();
 
 export default {
   data() {
     return {
       orderId: '',
       orderDetails: {},
-      status: {
-        isLoading: false,
-      },
     };
   },
   computed: {
@@ -362,39 +362,42 @@ export default {
     },
   },
   methods: {
-    getOrderDetails() {
-      this.status.isLoading = true;
-
-      if (this.orderId === '') {
-        this.status.isLoading = false;
-        this.showSwalToast('error', '請輸入訂單編號');
-        return;
-      }
-
-      const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/order/${this.orderId}`;
-      this.$http.get(api).then((res) => {
-        if (res.data.order === null) {
-          this.showSwalToast('error', '請輸入正確的編號');
-        } else if (res.data.success) {
-          this.orderDetails = res.data.order;
-
-          this.orderDetails.user.name = `${this.orderDetails.user.name.slice(0, -2)}**`;
-
-          const index = this.orderDetails.user.email.indexOf('@');
-          this.orderDetails.user.email = this.orderDetails.user.email.slice(0, 3)
-            + '*'.repeat(index - 3)
-            + this.orderDetails.user.email.slice(index);
-
-          this.orderDetails.user.tel = this.orderDetails.user.tel.slice(0, 2)
-            + '*'.repeat(this.orderDetails.user.tel.length - 5)
-            + this.orderDetails.user.tel.slice(-3);
-
-          if (this.orderDetails.user.address !== '到店自取') {
-            this.orderDetails.user.address = this.orderDetails.user.address.slice(0, 6) + '*'.repeat(this.orderDetails.user.address.length - 6);
-          }
+    async getOrderDetails() {
+      try {
+        if (this.orderId === '') {
+          this.showSwalToast('error', '請輸入訂單編號');
+          return;
         }
-        this.status.isLoading = false;
-      });
+
+        addLoadingItem('getOrderDetails');
+        this.orderDetails = await apiGetOrder(this.orderId);
+
+        if (this.orderDetails === null) {
+          this.showSwalToast('error', '請輸入正確的編號');
+          return;
+        }
+
+        this.orderDetails.user = this.formatUserInfo(this.orderDetails.user);
+      } catch (err) {
+        swalMixin.methods.showSwalToast('error', err.response?.data?.message);
+      }
+      removeLoadingItem('getOrderDetails');
+    },
+
+    formatUserInfo(userData) {
+      const user = { ...userData };
+
+      user.name = `${user.name.slice(0, -2)}**`;
+
+      const index = user.email.indexOf('@');
+      user.email = `${user.email.slice(0, 3)}${'*'.repeat(index - 3)}${user.email.slice(index)}`;
+
+      user.tel = `${user.tel.slice(0, 2)}${'*'.repeat(user.tel.length - 5)}${user.tel.slice(-3)}`;
+
+      if (user.address !== '到店自取') {
+        user.address = `${user.address.slice(0, 6)}${'*'.repeat(user.address.length - 6)}`;
+      }
+      return user;
     },
   },
   mounted() {

@@ -103,7 +103,7 @@
               type="button"
               class="to-check z-10 ml-auto flex items-center self-end rounded-full bg-brown-300 px-8 py-2 text-sm font-medium uppercase leading-normal tracking-wider text-white transition duration-150 ease-in-out hover:opacity-80 focus:outline-none focus:ring-0 disabled:bg-gray-300"
               :disabled="userInfo.user.order.is_paid === undefined"
-              @click.prevent.stop="showSwalCheck('warning', '確認資料並送出', () => finishOrder())">
+              @click.stop="showSwalCheck('warning', '確認資料並送出', () => submitOrder())">
               確認購買
             </button>
           </div>
@@ -183,7 +183,7 @@ export default {
     ...mapState(cartStore, ['cartList', 'cartTotalPrice', 'status', 'finalTotalPrice', 'userInfo']),
   },
   methods: {
-    ...mapActions(cartStore, ['getCartList', 'updateCurrentStep', 'pushUserInfo', 'useCoupon', 'finishOrder']),
+    ...mapActions(cartStore, ['getCartList', 'updateCurrentStep', 'pushUserInfo', 'useCoupon', 'submitOrder']),
   },
   mounted() {
     if (this.userInfo.user.name === '') {

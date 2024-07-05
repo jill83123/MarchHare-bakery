@@ -1,6 +1,4 @@
 <template>
-  <LoadingAnimation :active="isLoading" :lock-scroll="true" />
-
   <main data-aos="fade-up" data-aos-duration="800" class="mt-24 min-h-[calc(100vh_-_330px)] sm:mt-[126px]">
     <div class="container font-medium text-black-light">
       <div class="flex flex-col justify-center lg:flex-row lg:gap-20">
@@ -47,7 +45,7 @@
             近期文章
           </h3>
           <ul class="mb-12 mt-6 flex flex-col gap-5 lg:mb-0">
-            <li v-for="item in asideList" :key="item.id">
+            <li v-for="item in recentArticles" :key="item.id">
               <RouterLink :to="`/blog/article/${item.id}`" class="flex gap-2">
                 <img :src="item.image" :alt="item.title" class="w-[100px] object-cover" />
                 <div>
@@ -68,45 +66,52 @@
 
 <script>
 import { mapState, mapActions } from 'pinia';
-import articleStore from '../../stores/user/articleStore';
+import { apiGetArticle } from '@/apis/user/articleApi';
+import loadingStore from '@/stores/loadingStore';
+import articleStore from '@/stores/user/articleStore';
+import SwalMixin from '@/mixins/swalMixin';
 
 export default {
   data() {
     return {
       articleDetails: {},
-      isLoading: false,
     };
   },
   computed: {
-    ...mapState(articleStore, ['articleList', 'asideList']),
+    ...mapState(articleStore, ['articleList']),
+
+    recentArticles() {
+      const currentArticleId = this.articleDetails.id;
+      return this.articleList.filter((article) => article.id !== currentArticleId).slice(0, 5);
+    },
   },
   watch: {
+    // TODO: 需修正
     $route() {
       window.location.reload();
     },
   },
   methods: {
     ...mapActions(articleStore, ['getArticles']),
+    ...mapActions(loadingStore, ['addLoadingItem', 'removeLoadingItem']),
 
-    getArticle() {
-      this.isLoading = true;
-
-      const { id } = this.$route.params;
-      const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/article/${id}`;
-
-      this.$http.get(api).then((response) => {
-        if (response.data.success) {
-          this.articleDetails = response.data.article;
-          document.title = `${response.data.article.title}｜三月兔－MarchHare Bakery`;
-        }
-        this.isLoading = false;
-      });
+    async getArticle(id) {
+      this.addLoadingItem('getArticle');
+      try {
+        this.articleDetails = await apiGetArticle(id);
+        document.title = `${this.articleDetails.title}｜三月兔－MarchHare Bakery`;
+      } catch (err) {
+        this.showSwalToast('error', err.response?.data?.message);
+      }
+      this.removeLoadingItem('getArticle');
     },
   },
   mounted() {
-    this.getArticle();
+    const { id: articleId } = this.$route.params;
+    this.getArticle(articleId);
     this.getArticles();
   },
+  mixins: [SwalMixin],
 };
 </script>
 

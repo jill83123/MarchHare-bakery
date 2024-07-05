@@ -1,6 +1,4 @@
 <template>
-  <LoadingAnimation :active="isLoading" :lock-scroll="true" />
-
   <!-- banner -->
   <header class="relative">
     <video
@@ -283,7 +281,7 @@ export default {
   computed: {
     ...mapState(favoriteStore, ['favorite']),
     ...mapState(cartStore, ['status']),
-    ...mapState(productStore, ['productList', 'pagination', 'isLoading']),
+    ...mapState(productStore, ['productList', 'pagination']),
 
     filteredProducts() {
       return {

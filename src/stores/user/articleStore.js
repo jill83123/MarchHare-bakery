@@ -1,46 +1,43 @@
 import { defineStore } from 'pinia';
-import axios from 'axios';
+import { apiGetArticles } from '@/apis/user/articleApi';
+import useLoadingStore from '@/stores/loadingStore';
+import swalMixin from '@/mixins/swalMixin';
+
+const { addLoadingItem, removeLoadingItem } = useLoadingStore();
 
 const articleStore = defineStore('article', {
   state: () => ({
     articleList: [],
-    asideList: [],
     pagination: [],
-    allTags: [],
-    isLoading: false,
+    articleDetails: {},
+    currentPageArticleTags: [],
   }),
 
   actions: {
-    getArticles(page = 1) {
-      this.isLoading = true;
-      const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/articles?page=${page}`;
-
-      axios.get(api).then((res) => {
-        if (res.data.success) {
-          this.articleList = res.data.articles;
-
-          this.articleList.sort((a, b) => {
-            const dateA = new Date(a.create_at);
-            const dateB = new Date(b.create_at);
-            return dateB - dateA;
-          });
-
-          this.pagination = res.data.pagination;
-          this.getTags();
-
-          this.asideList = this.articleList.slice(0, 5);
-        }
-        this.isLoading = false;
-      });
+    async getArticles(page = 1) {
+      addLoadingItem('getArticles');
+      try {
+        const articlesData = await apiGetArticles(page);
+        this.articleList = articlesData.articles;
+        this.pagination = articlesData.pagination;
+        this.getArticleTags();
+      } catch (err) {
+        swalMixin.methods.showSwalToast('error', err.response?.data?.message);
+      }
+      removeLoadingItem('getArticles');
     },
-    getTags() {
-      this.allTags = [];
-      this.articleList.forEach((obj) => {
-        if (Object.prototype.hasOwnProperty.call(obj, 'tag')) {
-          this.allTags.push(...obj.tag);
-        }
+
+    getArticleTags() {
+      this.currentPageArticleTags = [];
+
+      const tagsSet = new Set();
+      this.articleList.forEach((article) => {
+        article.tag?.forEach((tag) => {
+          tagsSet.add(tag);
+        });
       });
-      this.allTags = this.allTags.filter((value, index, self) => self.indexOf(value) === index);
+
+      this.currentPageArticleTags = tagsSet;
     },
   },
 });

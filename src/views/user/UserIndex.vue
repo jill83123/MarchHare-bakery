@@ -1,6 +1,4 @@
 <template>
-  <LoadingAnimation :active="isLoading" :lock-scroll="true" />
-
   <header class="pt-24">
     <div class="relative">
       <template v-if="headerImages.length">
@@ -344,8 +342,8 @@ export default {
     };
   },
   computed: {
-    ...mapState(articleStore, ['articleList', 'isLoading']),
-    ...mapState(productStore, ['productList', 'isLoading']),
+    ...mapState(articleStore, ['articleList']),
+    ...mapState(productStore, ['productList']),
 
     articles() {
       return this.articleList.slice(0, 3);

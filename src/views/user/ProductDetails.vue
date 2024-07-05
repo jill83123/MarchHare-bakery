@@ -1,6 +1,4 @@
 <template>
-  <LoadingAnimation :active="state.isLoading" :lock-scroll="true" />
-
   <main data-aos="fade-up" data-aos-duration="800" data-aos-once="true">
     <section class="container pb-14 pt-28">
       <div class="flex flex-col justify-center lg:flex-row">
@@ -313,13 +311,14 @@
 
 <script>
 import { Collapse, initTE } from 'tw-elements';
-// eslint-disable-next-line import/no-unresolved
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Navigation } from 'swiper/modules';
 import { mapState, mapActions } from 'pinia';
-import cartStore from '../../stores/user/cartStore';
-import favoriteStore from '../../stores/user/favoriteStore';
-import productStore from '../../stores/user/productStore';
+import { apiGetProduct } from '@/apis/user/productApi';
+import SwalMixin from '@/mixins/swalMixin';
+import cartStore from '@/stores/user/cartStore';
+import favoriteStore from '@/stores/user/favoriteStore';
+import productStore from '@/stores/user/productStore';
 
 export default {
   data() {
@@ -329,9 +328,6 @@ export default {
       currentImageOpacity: 1,
       buyNum: 1,
       cachePrice: 0,
-      state: {
-        isLoading: false,
-      },
       modules: [Navigation],
     };
   },
@@ -362,21 +358,19 @@ export default {
     ...mapActions(favoriteStore, ['toggleFavorite']),
     ...mapActions(productStore, ['getProducts']),
 
-    getProductDetails() {
-      this.state.isLoading = true;
+    async getProductDetails() {
+      try {
+        const { id } = this.$route.params;
+        const product = await apiGetProduct(id);
 
-      const { id } = this.$route.params;
-      const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/product/${id}`;
+        this.productDetails = product;
+        this.currentImages = product.imageUrl;
+        this.cachePrice = product.price;
 
-      this.$http.get(api).then((res) => {
-        if (res.data.success) {
-          this.productDetails = res.data.product;
-          this.currentImages = res.data.product.imageUrl;
-          this.cachePrice = res.data.product.price;
-          this.state.isLoading = false;
-          document.title = `${res.data.product.title}｜三月兔－MarchHare Bakery`;
-        }
-      });
+        document.title = `${product.title}｜三月兔－MarchHare Bakery`;
+      } catch (err) {
+        this.showSwalToast('error', err.response?.data?.message);
+      }
     },
     changeCurrentImage(img) {
       this.currentImageOpacity = 0;
@@ -406,6 +400,7 @@ export default {
     Swiper,
     SwiperSlide,
   },
+  mixins: [SwalMixin],
 };
 </script>
 

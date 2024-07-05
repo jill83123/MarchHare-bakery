@@ -1,6 +1,4 @@
 <template>
-  <LoadingAnimation :active="isLoading" :lock-scroll="true" />
-
   <header
     data-aos="fade-up"
     data-aos-duration="800"
@@ -92,7 +90,7 @@
         </div>
 
         <ul class="my-5 hidden flex-wrap gap-2 lg:flex">
-          <li v-for="tag in allTags" :key="tag">
+          <li v-for="tag in currentPageArticleTags" :key="tag">
             <button
               type="button"
               @click="selectTag(tag)"
@@ -126,7 +124,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(articleStore, ['articleList', 'pagination', 'allTags', 'isLoading']),
+    ...mapState(articleStore, ['articleList', 'pagination', 'currentPageArticleTags']),
 
     filteredArticle() {
       if (this.currentTag.length > 0) {

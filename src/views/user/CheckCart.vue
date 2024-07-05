@@ -180,8 +180,9 @@
 <script>
 import { Select } from 'tw-elements';
 import { mapState, mapActions } from 'pinia';
-import cartStore from '../../stores/user/cartStore';
-import swalMixin from '../../mixins/swalMixin';
+import shippingFeeData from '@/stores/user/shippingFeeData';
+import cartStore from '@/stores/user/cartStore';
+import swalMixin from '@/mixins/swalMixin';
 
 export default {
   data() {
@@ -201,21 +202,20 @@ export default {
     },
   },
   created() {
-    this.getCartList();
     this.updateCurrentStep(1);
   },
   mounted() {
+    this.getCartList();
+
     this.$nextTick(() => {
       const selectEl = this.$refs.pickupMethodSelect;
       Select.getOrCreateInstance(selectEl);
     });
 
-    if (this.pickupMethod === '') {
-      const cartIndex = this.cartList.findIndex((item) => item.id === '-Nfviy3OLgcT7GnSUqUV');
-      if (cartIndex > -1) {
-        this.cartList.splice(cartIndex, 1);
-      }
-    }
+    const cartIndex = this.cartList.findIndex((item) => item.id === shippingFeeData.id);
+    if (cartIndex !== -1) this.cartList.splice(cartIndex, 1);
+    localStorage.setItem('cartList', JSON.stringify(this.cartList));
+    this.getCartList();
   },
   beforeUnmount() {
     if (this.$refs.pickupMethodSelect) {
