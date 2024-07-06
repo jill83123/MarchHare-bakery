@@ -42,7 +42,7 @@
             class="relative mr-2 align-top text-xl leading-4 after:absolute after:-bottom-[1px] after:-left-[2px] after:-right-[2px] after:top-1/2 after:-z-[1] after:bg-warning">
             {{ OrderData.orderId }}
           </span>
-          <button type="button" @click.prevent="copy(OrderData.orderId)">
+          <button type="button" @click="copy(OrderData.orderId)">
             <span class="material-symbols-outlined cursor-pointer text-xl text-black">file_copy</span>
           </button>
         </div>
@@ -52,16 +52,15 @@
 
     <div class="text-center">
       <button
-        to="/shop"
         type="button"
         class="to-check z-10 mb-2 rounded-full bg-brown-300 px-8 py-2 text-sm font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:opacity-80 focus:outline-none focus:ring-0 disabled:bg-gray-300 sm:tracking-wider"
-        @click.prevent="shoppingMore()">
+        @click="shoppingMore()">
         繼續逛逛
       </button>
       <button
         type="button"
         class="z-10 mx-auto mb-10 flex items-center rounded-full px-8 py-2 text-sm font-medium uppercase leading-normal text-gray-500 transition duration-150 ease-in-out hover:opacity-80 focus:outline-none focus:ring-1 sm:tracking-wider"
-        @click.prevent="this.$router.replace('/order-details')">
+        @click="this.$router.replace('/order-details')">
         查看訂單細節
       </button>
     </div>

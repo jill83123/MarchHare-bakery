@@ -77,9 +77,9 @@
             v-model="cacheSearch" />
           <!--Search button-->
           <button
-            class="focus:bg-primary-700 active:bg-primary-800 relative z-[2] flex items-center rounded-r bg-brown-300 px-4 py-2.5 text-xs font-medium uppercase leading-tight text-white transition duration-150 ease-in-out hover:bg-brown-100 focus:outline-none focus:ring-0"
             type="button"
-            @click.prevent="searchArticles()">
+            class="focus:bg-primary-700 active:bg-primary-800 relative z-[2] flex items-center rounded-r bg-brown-300 px-4 py-2.5 text-xs font-medium uppercase leading-tight text-white transition duration-150 ease-in-out hover:bg-brown-100 focus:outline-none focus:ring-0"
+            @click="searchArticles()">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
               <path
                 fill-rule="evenodd"

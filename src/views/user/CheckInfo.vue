@@ -135,7 +135,7 @@
                 type="button"
                 class="rounded-r border-2 border-solid border-brown-300 bg-neutral-50 px-5 py-[6px] text-center text-sm font-normal leading-[1.6] text-brown-300 hover:border-brown-300 hover:bg-brown-300 hover:text-white"
                 id="coupon"
-                @click.prevent="useCoupon(userInfo.couponCode)">
+                @click="useCoupon(userInfo.couponCode)">
                 點我套用
               </button>
               <span

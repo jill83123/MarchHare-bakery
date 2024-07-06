@@ -99,7 +99,7 @@
                     placeholder="請選擇到期日"
                     id="date"
                     v-model="tempCoupon.date"
-                    @click.prevent="date" />
+                    @click="date" />
                 </div>
               </div>
             </div>
@@ -131,7 +131,7 @@
           <button
             type="button"
             class="active:bg-cerulean-700 inline-block rounded bg-cerulean px-6 py-2.5 text-right text-sm font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:opacity-80 focus:outline-none focus:ring-0"
-            @click.prevent="$emit('update-coupons', this.tempCoupon)">
+            @click="$emit('update-coupons', this.tempCoupon)">
             確認
           </button>
         </div>

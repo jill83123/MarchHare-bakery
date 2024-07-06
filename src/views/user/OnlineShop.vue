@@ -93,9 +93,9 @@
             v-model="cacheSearch" />
           <!--Search button-->
           <button
-            class="focus:bg-primary-700 active:bg-primary-800 relative z-[2] flex items-center rounded-r bg-brown-300 px-4 py-2.5 text-xs font-medium uppercase leading-tight text-white transition duration-150 ease-in-out hover:bg-brown-100 focus:outline-none focus:ring-0"
             type="button"
-            @click.prevent="searchProducts()">
+            class="focus:bg-primary-700 active:bg-primary-800 relative z-[2] flex items-center rounded-r bg-brown-300 px-4 py-2.5 text-xs font-medium uppercase leading-tight text-white transition duration-150 ease-in-out hover:bg-brown-100 focus:outline-none focus:ring-0"
+            @click="searchProducts()">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
               <path
                 fill-rule="evenodd"
@@ -234,7 +234,7 @@
                   class="btn-add-cart active:bg-cerulean-700 z-10 flex items-center rounded-full bg-brown-300 px-6 py-2 text-sm font-medium uppercase leading-normal tracking-wider text-white transition duration-150 ease-in-out hover:opacity-80 focus:outline-none focus:ring-0"
                   :class="{ 'bg-gray-300': status.loadingIcon === product.id }"
                   :disabled="status.loadingIcon === product.id"
-                  @click.prevent="addToCart(product, 1)">
+                  @click="addToCart(product, 1)">
                   <div
                     class="mr-2 inline-block h-4 w-4 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
                     role="status"

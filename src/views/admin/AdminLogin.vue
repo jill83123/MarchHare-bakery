@@ -10,7 +10,7 @@
             <span class="text-3xl">後台登入</span>
           </h1>
         </div>
-        <form @submit.prevent="signIn">
+        <form @submit="signIn">
           <div class="relative mb-5" data-te-input-wrapper-init>
             <input
               type="email"

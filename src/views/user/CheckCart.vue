@@ -147,14 +147,14 @@
           <button
             type="button"
             class="text to-check z-10 mx-auto mb-2 flex items-center rounded-full bg-brown-300 px-8 py-2 font-medium uppercase leading-normal tracking-wider text-white transition duration-150 ease-in-out hover:opacity-80 focus:outline-none focus:ring-0 disabled:bg-gray-300"
-            @click.prevent="checkCartList(this.pickupMethod)"
+            @click="checkCartList(this.pickupMethod)"
             :disabled="!pickupMethod">
             確認商品
           </button>
           <button
             type="button"
             class="z-10 mx-auto mb-10 flex items-center rounded-full px-8 py-2 text-sm font-medium uppercase leading-normal tracking-wider text-gray-500 transition duration-150 ease-in-out hover:opacity-80 focus:outline-none focus:ring-1"
-            @click.prevent="cancelOrder()">
+            @click="cancelOrder()">
             取消購買
           </button>
         </div>

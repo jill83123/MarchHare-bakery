@@ -62,7 +62,7 @@
                   type="file"
                   id="formFile"
                   ref="imageFileInput"
-                  @change.prevent="uploadPhoto('file')"
+                  @change="uploadPhoto('file')"
                   :disabled="loadingIcon" />
               </div>
               <div class="mb-4">
@@ -81,7 +81,7 @@
                     type="button"
                     class="rounded-r border border-solid border-neutral-300 px-3 py-[0.25rem] text-center text-base font-normal leading-[1.6] text-neutral-700 hover:border-cerulean hover:bg-cerulean hover:text-white"
                     id="basic-addon2"
-                    @click.prevent="uploadPhoto('button')">
+                    @click="uploadPhoto('button')">
                     新增
                   </button>
                 </div>
@@ -309,7 +309,7 @@
           <button
             type="button"
             class="active:bg-cerulean-700 inline-block rounded bg-cerulean px-6 py-2.5 text-right text-sm font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:opacity-80 focus:outline-none focus:ring-0"
-            @click.prevent="$emit('update-products', this.tempProduct)">
+            @click="$emit('update-products', this.tempProduct)">
             確認
           </button>
         </div>

@@ -9,7 +9,7 @@
       <button
         type="button"
         class="active:bg-cerulean-700 my-auto flex items-center rounded bg-cerulean px-6 py-2.5 text-sm font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:opacity-80 focus:outline-none focus:ring-0"
-        @click.prevent="openModal('new')">
+        @click="openModal('new')">
         <span class="material-symbols-outlined">add</span>
         新增優惠券
       </button>

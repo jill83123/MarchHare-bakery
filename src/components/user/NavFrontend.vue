@@ -47,14 +47,14 @@
         </ul>
         <!-- Hamburger menu button -->
         <button
-          class="ml-3 border-0 bg-transparent px-2 text-xl leading-none transition-shadow duration-150 ease-in-out lg:hidden"
           type="button"
+          class="ml-3 border-0 bg-transparent px-2 text-xl leading-none transition-shadow duration-150 ease-in-out lg:hidden"
           data-te-collapse-init
           data-te-target="#navbarSupportedContentY"
           aria-controls="navbarSupportedContentY"
           aria-expanded="false"
           aria-label="Toggle navigation"
-          @click.prevent="
+          @click="
             collapseToggle = !collapseToggle;
             stickyNav();
           ">
@@ -245,7 +245,7 @@
               <button
                 type="button"
                 class="z-10 mx-1 inline-block items-center border-b border-brown-300 font-medium uppercase leading-normal tracking-wider text-brown-300 transition duration-150 ease-in-out hover:opacity-80"
-                @click.prevent.stop="goToShopping()">
+                @click.stop="goToShopping()">
                 點我
               </button>
               進行選購吧！

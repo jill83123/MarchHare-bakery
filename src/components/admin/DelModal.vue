@@ -71,7 +71,7 @@
             class="active:bg-cerulean-700 inline-block rounded bg-danger px-6 py-2.5 text-right text-sm font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:opacity-80 focus:outline-none focus:ring-0"
             data-te-ripple-init
             data-te-ripple-color="light"
-            @click.prevent="$emit('del', item)">
+            @click="$emit('del', item)">
             確認刪除
           </button>
         </div>

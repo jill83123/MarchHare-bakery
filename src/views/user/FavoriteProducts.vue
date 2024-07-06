@@ -95,7 +95,7 @@
               <button
                 type="button"
                 class="active:bg-cerulean-700 z-10 flex items-center rounded-full bg-brown-300 px-7 py-2 text-sm font-medium uppercase leading-normal tracking-wider text-white transition duration-150 ease-in-out hover:opacity-80 focus:outline-none focus:ring-0"
-                @click.prevent="cartStore.addToCart(product, 1)">
+                @click="cartStore.addToCart(product, 1)">
                 <div
                   class="mr-2 inline-block h-4 w-4 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
                   role="status"

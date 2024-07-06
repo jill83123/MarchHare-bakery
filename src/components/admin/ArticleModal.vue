@@ -81,7 +81,7 @@
                       id="date"
                       ref="create_date_input"
                       v-model="tempArticle.create_at"
-                      @click.prevent="date" />
+                      @click="date" />
                   </div>
                 </div>
               </div>
@@ -107,7 +107,7 @@
                   type="file"
                   id="formFile"
                   ref="imageFileInput"
-                  @change.prevent="uploadPhoto('file')" />
+                  @change="uploadPhoto('file')" />
               </div>
               <div class="mb-6">
                 <label for="imageUrl" class="mb-1 block">或 輸入網址</label>
@@ -125,7 +125,7 @@
                     type="button"
                     class="rounded-r border border-solid border-neutral-300 px-3 py-[0.25rem] text-center text-base font-normal leading-[1.6] text-neutral-700 hover:border-cerulean hover:bg-cerulean hover:text-white"
                     id="basic-addon2"
-                    @click.prevent="uploadPhoto('button')">
+                    @click="uploadPhoto('button')">
                     新增
                   </button>
                 </div>
@@ -260,7 +260,7 @@
           <button
             type="button"
             class="active:bg-cerulean-700 inline-block rounded bg-cerulean px-6 py-2.5 text-right text-sm font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:opacity-80 focus:outline-none focus:ring-0"
-            @click.prevent="$emit('update-article', this.tempArticle)">
+            @click="$emit('update-article', this.tempArticle)">
             確認
           </button>
         </div>
