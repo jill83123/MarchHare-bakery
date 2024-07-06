@@ -280,9 +280,9 @@
 import { Collapse, initTE } from 'tw-elements';
 import { mapState, mapActions, mapStores } from 'pinia';
 import LogoComponent from '@/components/LogoComponent.vue';
-import cartStore from '../../stores/user/cartStore';
-import favoriteStore from '../../stores/user/favoriteStore';
-import swalMixin from '../../mixins/swalMixin';
+import cartStore from '@/stores/user/cartStore';
+import favoriteStore from '@/stores/user/favoriteStore';
+import swalMixin from '@/mixins/swalMixin';
 
 export default {
   data() {

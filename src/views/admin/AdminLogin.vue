@@ -60,8 +60,8 @@
 <script>
 import { Input, initTE } from 'tw-elements';
 import LogoComponent from '@/components/LogoComponent.vue';
-import statesStore from '../../stores/admin/statesStore';
-import Toast from '../../components/admin/ToastBox.vue';
+import statesStore from '@/stores/admin/statesStore';
+import Toast from '@/components/admin/ToastBox.vue';
 
 export default {
   data() {

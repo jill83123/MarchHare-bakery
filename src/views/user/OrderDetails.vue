@@ -341,9 +341,9 @@
 import { mapState } from 'pinia';
 import { apiGetOrder } from '@/apis/user/orderApi';
 import useLoadingStore from '@/stores/loadingStore';
-import cartStore from '../../stores/user/cartStore';
-import ContactUsModal from '../../components/user/ContactUsModal.vue';
-import swalMixin from '../../mixins/swalMixin';
+import cartStore from '@/stores/user/cartStore';
+import ContactUsModal from '@/components/user/ContactUsModal.vue';
+import swalMixin from '@/mixins/swalMixin';
 
 const { addLoadingItem, removeLoadingItem } = useLoadingStore();
 

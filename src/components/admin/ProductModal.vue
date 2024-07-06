@@ -321,8 +321,8 @@
 <script>
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import CKEditor from '@ckeditor/ckeditor5-vue';
-import modalMixin from '../../mixins/modalMixin';
-import statesStore from '../../stores/admin/statesStore';
+import modalMixin from '@/mixins/modalMixin';
+import statesStore from '@/stores/admin/statesStore';
 
 export default {
   data() {

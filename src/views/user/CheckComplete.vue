@@ -72,9 +72,9 @@
 
 <script>
 import { mapState, mapActions } from 'pinia';
-import cartStore from '../../stores/user/cartStore';
-import swalMixin from '../../mixins/swalMixin';
-import ContactUsModal from '../../components/user/ContactUsModal.vue';
+import cartStore from '@/stores/user/cartStore';
+import swalMixin from '@/mixins/swalMixin';
+import ContactUsModal from '@/components/user/ContactUsModal.vue';
 
 export default {
   computed: {

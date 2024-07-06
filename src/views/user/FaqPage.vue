@@ -207,7 +207,7 @@
 
 <script>
 import { Collapse, initTE } from 'tw-elements';
-import ContactUsModal from '../../components/user/ContactUsModal.vue';
+import ContactUsModal from '@/components/user/ContactUsModal.vue';
 
 export default {
   mounted() {

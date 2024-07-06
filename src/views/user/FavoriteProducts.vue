@@ -131,8 +131,8 @@
 
 <script>
 import { mapStores } from 'pinia';
-import favoriteStore from '../../stores/user/favoriteStore';
-import cartStore from '../../stores/user/cartStore';
+import favoriteStore from '@/stores/user/favoriteStore';
+import cartStore from '@/stores/user/cartStore';
 
 export default {
   data() {

@@ -275,8 +275,8 @@ import CKEditor from '@ckeditor/ckeditor5-vue';
 import {
   Datepicker, Input, initTE, Select,
 } from 'tw-elements';
-import modalMixin from '../../mixins/modalMixin';
-import statesStore from '../../stores/admin/statesStore';
+import modalMixin from '@/mixins/modalMixin';
+import statesStore from '@/stores/admin/statesStore';
 
 export default {
   props: {

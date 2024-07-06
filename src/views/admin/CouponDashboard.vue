@@ -90,10 +90,10 @@
 </template>
 
 <script>
-import statesStore from '../../stores/admin/statesStore';
-import CouponModal from '../../components/admin/CouponModal.vue';
-import DelModal from '../../components/admin/DelModal.vue';
-import Pagination from '../../components/admin/PaginationBackend.vue';
+import statesStore from '@/stores/admin/statesStore';
+import CouponModal from '@/components/admin/CouponModal.vue';
+import DelModal from '@/components/admin/DelModal.vue';
+import Pagination from '@/components/admin/PaginationBackend.vue';
 
 export default {
   data() {

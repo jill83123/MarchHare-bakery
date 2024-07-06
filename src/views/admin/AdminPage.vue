@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import Navbar from '../../components/admin/NavBackend.vue';
-import Toast from '../../components/admin/ToastBox.vue';
+import Navbar from '@/components/admin/NavBackend.vue';
+import Toast from '@/components/admin/ToastBox.vue';
 
 export default {
   created() {

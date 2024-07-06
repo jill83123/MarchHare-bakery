@@ -61,7 +61,7 @@
       </div>
       <img
         class="absolute right-2 top-0 z-[999] w-[120px] -translate-y-1/2 sm:w-auto"
-        src="../../assets/images/pan_bread_set.png"
+        src="@/assets/images/pan_bread_set.png"
         alt="bread" />
     </div>
   </footer>

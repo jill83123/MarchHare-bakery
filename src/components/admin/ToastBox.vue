@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import ToastMessage from './ToastMessage.vue';
-import statesStore from '../../stores/admin/statesStore';
+import statesStore from '@/stores/admin/statesStore';
+import ToastMessage from '@/components/admin/ToastMessage.vue';
 
 export default {
   data() {

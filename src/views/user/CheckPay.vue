@@ -12,7 +12,7 @@
     </RouterLink>
     <div class="flex flex-col-reverse gap-8 lg:flex-row lg:gap-0">
       <div class="relative w-full lg:w-1/2 lg:pr-2">
-        <img class="absolute -top-3 right-10" src="../../assets/images/double-tail-clip.svg" alt="tail-clip" />
+        <img class="absolute -top-3 right-10" src="@/assets/images/double-tail-clip.svg" alt="tail-clip" />
         <div class="h-full rounded-md border bg-neutral-100 px-5 py-7">
           <div class="mb-4">
             <h2 class="text-lg">以下為您所填寫的資料：</h2>
@@ -93,9 +93,9 @@
                   v-model="userInfo.user.order.is_paid" />
                 <label class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" for="other">
                   其他方式
-                  <img class="ml-1 inline h-[20px] object-cover" src="../../assets/images/linepay.svg" alt="linePay" />
-                  <img class="ml-1 inline h-[20px] object-cover" src="../../assets/images/pay.svg" alt="pay" />
-                  <img class="ml-1 inline h-[20px] object-cover" src="../../assets/images/visa.svg" alt="visa" />
+                  <img class="ml-1 inline h-[20px] object-cover" src="@/assets/images/linepay.svg" alt="linePay" />
+                  <img class="ml-1 inline h-[20px] object-cover" src="@/assets/images/pay.svg" alt="pay" />
+                  <img class="ml-1 inline h-[20px] object-cover" src="@/assets/images/visa.svg" alt="visa" />
                 </label>
               </div>
             </div>
@@ -171,9 +171,9 @@
 
 <script>
 import { mapState, mapActions } from 'pinia';
-import cartStore from '../../stores/user/cartStore';
-import OrderRules from '../../components/user/OrderRules.vue';
-import swalMixin from '../../mixins/swalMixin';
+import cartStore from '@/stores/user/cartStore';
+import OrderRules from '@/components/user/OrderRules.vue';
+import swalMixin from '@/mixins/swalMixin';
 
 export default {
   data() {

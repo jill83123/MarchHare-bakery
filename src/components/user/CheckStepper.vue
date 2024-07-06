@@ -132,7 +132,7 @@
 
 <script>
 import { mapState } from 'pinia';
-import cartStore from '../../stores/user/cartStore';
+import cartStore from '@/stores/user/cartStore';
 
 export default {
   computed: {

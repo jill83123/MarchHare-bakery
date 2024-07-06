@@ -112,8 +112,8 @@
 
 <script>
 import { mapState, mapActions } from 'pinia';
-import Pagination from '../../components/user/PaginationFrontend.vue';
-import articleStore from '../../stores/user/articleStore';
+import Pagination from '@/components/user/PaginationFrontend.vue';
+import articleStore from '@/stores/user/articleStore';
 
 export default {
   data() {

@@ -421,7 +421,7 @@ export default {
     left: var(--swiper-navigation-sides-offset, 10px);
     top: 50%;
     z-index: 100;
-    background: url('../../assets/images/swiper-button-prev.png') no-repeat;
+    background: url('@/assets/images/swiper-button-prev.png') no-repeat;
     @apply hidden lg:flex;
   }
 
@@ -431,7 +431,7 @@ export default {
     right: var(--swiper-navigation-sides-offset, 10px);
     top: 50%;
     z-index: 100;
-    background: url('../../assets/images/swiper-button-next.png') no-repeat;
+    background: url('@/assets/images/swiper-button-next.png') no-repeat;
     @apply hidden lg:flex;
   }
 }

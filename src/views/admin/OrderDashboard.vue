@@ -94,10 +94,10 @@
 
 <script>
 import { mapActions } from 'pinia';
-import statesStore from '../../stores/admin/statesStore';
-import Pagination from '../../components/admin/PaginationBackend.vue';
-import OrderModal from '../../components/admin/OrderModal.vue';
-import DelModal from '../../components/admin/DelModal.vue';
+import statesStore from '@/stores/admin/statesStore';
+import Pagination from '@/components/admin/PaginationBackend.vue';
+import OrderModal from '@/components/admin/OrderModal.vue';
+import DelModal from '@/components/admin/DelModal.vue';
 
 export default {
   data() {

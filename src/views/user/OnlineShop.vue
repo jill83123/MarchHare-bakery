@@ -3,7 +3,7 @@
   <header class="relative">
     <video
       class="h-[468px] w-full object-cover object-bottom"
-      src="../../assets/video/shop-banner.mp4"
+      src="@/assets/video/shop-banner.mp4"
       autoplay
       muted
       loop />
@@ -263,11 +263,11 @@
 
 <script>
 import { mapActions, mapState } from 'pinia';
-import cartStore from '../../stores/user/cartStore';
-import favoriteStore from '../../stores/user/favoriteStore';
-import productStore from '../../stores/user/productStore';
-import Pagination from '../../components/user/PaginationFrontend.vue';
-import CurrentCouponModal from '../../components/user/CurrentCouponModal.vue';
+import cartStore from '@/stores/user/cartStore';
+import favoriteStore from '@/stores/user/favoriteStore';
+import productStore from '@/stores/user/productStore';
+import Pagination from '@/components/user/PaginationFrontend.vue';
+import CurrentCouponModal from '@/components/user/CurrentCouponModal.vue';
 
 export default {
   data() {

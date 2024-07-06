@@ -142,7 +142,7 @@
 
 <script>
 import { Datepicker, Input, initTE } from 'tw-elements';
-import modalMixin from '../../mixins/modalMixin';
+import modalMixin from '@/mixins/modalMixin';
 
 export default {
   props: {

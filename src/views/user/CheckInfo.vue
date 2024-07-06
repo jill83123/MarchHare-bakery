@@ -12,7 +12,7 @@
     </RouterLink>
     <div class="flex flex-col-reverse gap-8 lg:flex-row lg:gap-0">
       <div class="relative w-full lg:w-1/2 lg:pr-2">
-        <img class="absolute -top-3 right-10" src="../../assets/images/double-tail-clip.svg" alt="tail-clip" />
+        <img class="absolute -top-3 right-10" src="@/assets/images/double-tail-clip.svg" alt="tail-clip" />
         <VForm class="rounded-md border bg-neutral-100 px-5 pb-7 pt-9" v-slot="{ errors }" @submit="toPay()">
           <div class="mb-4 flex gap-2">
             <div class="relative w-1/2">
@@ -231,8 +231,8 @@
 
 <script>
 import { mapState, mapActions } from 'pinia';
-import OrderRules from '../../components/user/OrderRules.vue';
-import cartStore from '../../stores/user/cartStore';
+import OrderRules from '@/components/user/OrderRules.vue';
+import cartStore from '@/stores/user/cartStore';
 
 export default {
   data() {
