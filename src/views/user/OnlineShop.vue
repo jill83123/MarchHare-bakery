@@ -6,7 +6,8 @@
       src="@/assets/video/shop-banner.mp4"
       autoplay
       muted
-      loop />
+      loop
+    />
     <div class="z-1 absolute bottom-0 left-0 right-0 top-0 h-full bg-[#ffffff60] backdrop-blur-md">
       <div class="absolute left-0 right-0 mx-auto flex h-full flex-col justify-center text-center">
         <h3 class="mb-2 font-montserrat text-2xl font-bold tracking-[0.2rem] text-neutral-100 opacity-70">
@@ -23,7 +24,8 @@
       <div class="hidden xl:block xl:w-1/3" />
 
       <ul
-        class="flex w-full list-none flex-row justify-center gap-2 pl-0 sm:justify-start md:gap-5 xl:w-2/3 xl:justify-center">
+        class="flex w-full list-none flex-row justify-center gap-2 pl-0 sm:justify-start md:gap-5 xl:w-2/3 xl:justify-center"
+      >
         <li role="presentation" class="w-full sm:w-auto">
           <a
             href="#pills-all"
@@ -32,7 +34,8 @@
               'bg-brown-100 text-white': sortStatus === 'all' || (searchKeyword === '' && sortStatus === 'search'),
               'bg-neutral-100': sortStatus !== 'all' && !(searchKeyword === '' && sortStatus === 'search'),
             }"
-            @click.prevent="changeSort('all')">
+            @click.prevent="changeSort('all')"
+          >
             <span class="material-symbols-outlined mb-1">package_2</span>
             <p>全部</p>
           </a>
@@ -46,7 +49,8 @@
               'bg-brown-100 text-white': sortStatus === 'toast',
               'bg-neutral-100': sortStatus !== 'toast',
             }"
-            @click.prevent="changeSort('toast')">
+            @click.prevent="changeSort('toast')"
+          >
             <span class="material-symbols-outlined mb-1">breakfast_dining</span>
             <p>麵包</p>
           </a>
@@ -59,7 +63,8 @@
               'bg-brown-100 text-white': sortStatus === 'cake',
               'bg-neutral-100': sortStatus !== 'cake',
             }"
-            @click.prevent="changeSort('cake')">
+            @click.prevent="changeSort('cake')"
+          >
             <span class="material-symbols-outlined mb-1">cake</span>
             <p>蛋糕</p>
           </a>
@@ -73,7 +78,8 @@
               'bg-brown-100 text-white': sortStatus === 'cookie',
               'bg-neutral-100': sortStatus !== 'cookie',
             }"
-            @click.prevent="changeSort('cookie')">
+            @click.prevent="changeSort('cookie')"
+          >
             <span class="material-symbols-outlined">cookie</span>
             <p>餅乾</p>
           </a>
@@ -90,17 +96,20 @@
             aria-label="Search"
             aria-describedby="button-addon1"
             @keyup.enter="searchProducts()"
-            v-model="cacheSearch" />
+            v-model="cacheSearch"
+          />
           <!--Search button-->
           <button
             type="button"
             class="focus:bg-primary-700 active:bg-primary-800 relative z-[2] flex items-center rounded-r bg-brown-300 px-4 py-2.5 text-xs font-medium uppercase leading-tight text-white transition duration-150 ease-in-out hover:bg-brown-100 focus:outline-none focus:ring-0"
-            @click="searchProducts()">
+            @click="searchProducts()"
+          >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
               <path
                 fill-rule="evenodd"
                 d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
-                clip-rule="evenodd" />
+                clip-rule="evenodd"
+              />
             </svg>
           </button>
         </div>
@@ -114,11 +123,13 @@
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
           fill="currentColor"
-          class="mr-2 inline-block h-5 w-5">
+          class="mr-2 inline-block h-5 w-5"
+        >
           <path
             fill-rule="evenodd"
             d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
-            clip-rule="evenodd" />
+            clip-rule="evenodd"
+          />
         </svg>
         {{ searchKeyword }}
         <br />
@@ -127,17 +138,20 @@
     </div>
     <div
       v-else-if="filteredProducts.search.length >= 0 && sortStatus === 'search' && searchKeyword !== ''"
-      class="mb-7">
+      class="mb-7"
+    >
       <p class="flex items-center justify-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
           fill="currentColor"
-          class="mr-2 inline-block h-5 w-5">
+          class="mr-2 inline-block h-5 w-5"
+        >
           <path
             fill-rule="evenodd"
             d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
-            clip-rule="evenodd" />
+            clip-rule="evenodd"
+          />
         </svg>
         「 {{ searchKeyword }} 」的搜尋結果
       </p>
@@ -146,14 +160,16 @@
     <!-- list -->
     <div
       class="mb-6 opacity-100 transition-opacity duration-150 ease-linear"
-      :class="{ 'pb-14': this.sortStatus !== 'all' }">
+      :class="{ 'pb-14': this.sortStatus !== 'all' }"
+    >
       <ul class="-mx-3 flex flex-wrap gap-y-5">
         <li
           data-aos="fade-up"
           data-aos-duration="800"
           class="productCard w-full px-3 sm:w-1/2 lg:w-1/3 xl:w-1/4"
           v-for="product in filteredProducts[sortStatus]"
-          :key="product.id">
+          :key="product.id"
+        >
           <div class="relative flex h-full flex-col overflow-hidden rounded-xl border">
             <!-- image -->
             <div class="card-img relative aspect-square overflow-hidden">
@@ -167,7 +183,8 @@
                       'FILL' 1,
                       'opsz' 24;
                   "
-                  v-if="favorite.some((item) => item.id === product.id)">
+                  v-if="favorite.some((item) => item.id === product.id)"
+                >
                   favorite
                 </span>
                 <span class="material-symbols-outlined text-3xl text-red-400" v-else>favorite</span>
@@ -175,14 +192,16 @@
               <!-- recommend -->
               <div class="absolute left-0 top-0 z-10 p-4" v-if="product.is_recommend">
                 <p
-                  class="flex h-[36px] w-[36px] items-center justify-center rounded-full bg-brown-300 text-sm font-medium text-white">
+                  class="flex h-[36px] w-[36px] items-center justify-center rounded-full bg-brown-300 text-sm font-medium text-white"
+                >
                   推
                 </p>
               </div>
               <div class="view-detail absolute left-1/2 top-1/2 z-[5] hidden -translate-x-1/2 -translate-y-1/4">
                 <p
                   href="#"
-                  class="z-5 flex items-center whitespace-nowrap py-2 pl-8 pr-6 text-sm font-medium uppercase leading-normal tracking-wider text-white">
+                  class="z-5 flex items-center whitespace-nowrap py-2 pl-8 pr-6 text-sm font-medium uppercase leading-normal tracking-wider text-white"
+                >
                   查看商品資訊
                   <span class="material-symbols-outlined ml-1">keyboard_double_arrow_right</span>
                 </p>
@@ -196,7 +215,8 @@
                   <button
                     type="button"
                     class="z-10 px-1 py-[1px] hover:bg-brown-100 hover:text-white"
-                    @click="changeSort(product.category)">
+                    @click="changeSort(product.category)"
+                  >
                     # {{ product.category }}
                   </button>
                   <button
@@ -204,7 +224,8 @@
                     class="z-10 px-1 py-[1px] hover:bg-brown-100 hover:text-white"
                     @click="tagSearch(tag)"
                     v-for="tag in product.tag"
-                    :key="tag">
+                    :key="tag"
+                  >
                     # {{ tag }}
                   </button>
                 </div>
@@ -214,18 +235,21 @@
                   <div>
                     <span
                       class="text-xl font-medium text-black-light"
-                      :class="{ 'text-success': product.price !== product.origin_price }">
+                      :class="{ 'text-success': product.price !== product.origin_price }"
+                    >
                       NT {{ $filters.currency(product.price) }}
                     </span>
                     <span
                       class="op ml-2 rounded-full bg-success px-2 font-montserrat text-xs text-white"
-                      v-if="product.price !== product.origin_price">
+                      v-if="product.price !== product.origin_price"
+                    >
                       SALE
                     </span>
                   </div>
                   <span
                     class="text-xs text-gray-500 line-through"
-                    :class="{ hidden: product.price === product.origin_price }">
+                    :class="{ hidden: product.price === product.origin_price }"
+                  >
                     NT {{ $filters.currency(product.origin_price) }}
                   </span>
                 </div>
@@ -234,13 +258,16 @@
                   class="btn-add-cart active:bg-cerulean-700 z-10 flex items-center rounded-full bg-brown-300 px-6 py-2 text-sm font-medium uppercase leading-normal tracking-wider text-white transition duration-150 ease-in-out hover:opacity-80 focus:outline-none focus:ring-0"
                   :class="{ 'bg-gray-300': status.loadingIcon === product.id }"
                   :disabled="status.loadingIcon === product.id"
-                  @click="addToCart(product, 1)">
+                  @click="addToCart(product, 1)"
+                >
                   <div
                     class="mr-2 inline-block h-4 w-4 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
                     role="status"
-                    v-if="status.loadingIcon === product.id">
+                    v-if="status.loadingIcon === product.id"
+                  >
                     <span
-                      class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+                      class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+                    >
                       Loading...
                     </span>
                   </div>
@@ -250,7 +277,8 @@
             </div>
             <RouterLink
               :to="`product/${product.id}`"
-              class="after:absolute after:inset-0 after:left-0 after:right-0 after:top-0 after:z-[9]" />
+              class="after:absolute after:inset-0 after:left-0 after:right-0 after:top-0 after:z-[9]"
+            />
           </div>
         </li>
       </ul>

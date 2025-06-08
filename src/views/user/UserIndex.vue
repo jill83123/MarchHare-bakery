@@ -23,24 +23,29 @@
           }"
           :observer="true"
           :observeParents="true"
-          class="px-6 pb-20 pt-7">
+          class="px-6 pb-20 pt-7"
+        >
           <SwiperSlide v-for="src in headerImages" :key="src">
             <img
               :src="src"
               alt="product-photo"
-              class="h-[560px] w-full rounded-3xl object-cover transition-all hover:scale-[1.05] sm:max-w-[378px]" />
+              class="h-[560px] w-full rounded-3xl object-cover transition-all hover:scale-[1.05] sm:max-w-[378px]"
+            />
           </SwiperSlide>
         </Swiper>
       </template>
       <div
-        class="absolute bottom-0 left-[10%] right-[0%] top-0 z-50 bg-gradient-to-l from-neutral-50 from-10% to-100% sm:left-[40%] sm:from-20% lg:min-h-[668px] xl:left-[50%] xl:from-[42%]">
+        class="absolute bottom-0 left-[10%] right-[0%] top-0 z-50 bg-gradient-to-l from-neutral-50 from-10% to-100% sm:left-[40%] sm:from-20% lg:min-h-[668px] xl:left-[50%] xl:from-[42%]"
+      >
         <div
-          class="absolute bottom-0 left-0 right-[5%] top-0 z-[100] flex flex-col justify-center sm:right-[14%] lg:right-[20%] xl:right-[35%]">
+          class="absolute bottom-0 left-0 right-[5%] top-0 z-[100] flex flex-col justify-center sm:right-[14%] lg:right-[20%] xl:right-[35%]"
+        >
           <h2
             data-aos="fade-left"
             data-aos-duration="1200"
             class="ml-auto w-fit font-maru text-3xl font-semibold leading-[44px] tracking-[0.25em] text-black-light sm:text-4xl sm:leading-[48px]"
-            style="writing-mode: vertical-rl">
+            style="writing-mode: vertical-rl"
+          >
             讓甜點的魔法，
             <br />
             &emsp;&emsp;
@@ -55,7 +60,8 @@
           </h2>
           <RouterLink
             to="/shop"
-            class="btn-add-cart active:bg-cerulean-700 z-10 ml-auto flex w-fit items-center rounded-full bg-brown-300 px-6 py-2 text-sm font-medium uppercase leading-normal tracking-wider text-white transition duration-150 ease-in-out hover:opacity-80 focus:outline-none focus:ring-0">
+            class="btn-add-cart active:bg-cerulean-700 z-10 ml-auto flex w-fit items-center rounded-full bg-brown-300 px-6 py-2 text-sm font-medium uppercase leading-normal tracking-wider text-white transition duration-150 ease-in-out hover:opacity-80 focus:outline-none focus:ring-0"
+          >
             立即選購
             <span class="material-symbols-outlined ml-1 pt-[1px] text-xl leading-5">keyboard_double_arrow_right</span>
           </RouterLink>
@@ -74,23 +80,27 @@
           </div>
         </h2>
         <div
-          class="relative mr-0 w-full rounded-[20px] bg-neutral-50 px-5 py-9 shadow-md sm:px-10 md:px-20 lg:mr-20 lg:min-h-[223px] lg:pb-11 lg:pt-12 xl:w-7/12">
+          class="relative mr-0 w-full rounded-[20px] bg-neutral-50 px-5 py-9 shadow-md sm:px-10 md:px-20 lg:mr-20 lg:min-h-[223px] lg:pb-11 lg:pt-12 xl:w-7/12"
+        >
           <ul class="flex flex-col gap-5">
             <li v-for="item in articles" :key="item.id" data-aos="fade-up" data-aos-duration="1000">
               <RouterLink
                 :to="`blog/article/${item.id}`"
-                class="relative z-[1000] flex flex-row gap-2 max-[500px]:flex-col sm:static sm:z-0 md:gap-3">
+                class="relative z-[1000] flex flex-row gap-2 max-[500px]:flex-col sm:static sm:z-0 md:gap-3"
+              >
                 <p
                   class="self-start whitespace-nowrap rounded-md px-7 py-[6px] text-xs text-white md:text-sm"
                   :class="{
                     'bg-info': item.category === '通知',
                     'bg-danger': item.category === '重要',
                     'bg-success': item.category === '分享',
-                  }">
+                  }"
+                >
                   {{ item.category }}
                 </p>
                 <h4
-                  class="grow border-dashed border-gray-400 text-sm font-semibold text-black-light md:self-end md:border-b md:text-base md:leading-9">
+                  class="grow border-dashed border-gray-400 text-sm font-semibold text-black-light md:self-end md:border-b md:text-base md:leading-9"
+                >
                   {{ item.title }}
                 </h4>
               </RouterLink>
@@ -99,11 +109,13 @@
           <img
             src="@/assets/images/index_news_circles.svg"
             alt="decoration circles"
-            class="absolute left-7 top-8 hidden items-center md:flex" />
+            class="absolute left-7 top-8 hidden items-center md:flex"
+          />
           <img
             src="@/assets/images/index-cake.png"
             alt="cupcake"
-            class="absolute -bottom-[20%] -right-[2%] w-[120px] rotate-12 drop-shadow-md sm:-right-[5%] sm:w-[160px] lg:-right-[9%] lg:w-[180px]" />
+            class="absolute -bottom-[20%] -right-[2%] w-[120px] rotate-12 drop-shadow-md sm:-right-[5%] sm:w-[160px] lg:-right-[9%] lg:w-[180px]"
+          />
         </div>
       </div>
     </section>
@@ -116,15 +128,18 @@
           data-aos-offset="300"
           src="@/assets/images/index-1.png"
           alt="product-photo"
-          class="min-[420px]:w-7/12 md:w-5/12 lg:w-4/12" />
+          class="min-[420px]:w-7/12 md:w-5/12 lg:w-4/12"
+        />
         <div
           data-aos="fade-right"
           data-aos-duration="800"
           data-aos-offset="350"
           data-aos-delay="300"
-          class="flex flex-col items-center md:block md:w-5/12 lg:w-4/12">
+          class="flex flex-col items-center md:block md:w-5/12 lg:w-4/12"
+        >
           <h3
-            class="relative mb-5 ml-2 w-fit whitespace-nowrap font-maru text-3xl font-semibold tracking-wide text-black after:absolute after:-bottom-1 after:-left-2 after:-right-2 after:top-1/2 after:-z-[1] after:bg-warning md:mb-10 md:text-[40px] md:after:-bottom-2">
+            class="relative mb-5 ml-2 w-fit whitespace-nowrap font-maru text-3xl font-semibold tracking-wide text-black after:absolute after:-bottom-1 after:-left-2 after:-right-2 after:top-1/2 after:-z-[1] after:bg-warning md:mb-10 md:text-[40px] md:after:-bottom-2"
+          >
             療育可愛的造型
           </h3>
           <p class="leading-relaxed min-[450px]:w-9/12 md:w-auto">
@@ -140,18 +155,22 @@
         data-aos-offset="350"
         src="@/assets/images/index_bread.png"
         alt="bread"
-        class="mx-auto w-[100px] md:w-[120px] lg:w-[150px]" />
+        class="mx-auto w-[100px] md:w-[120px] lg:w-[150px]"
+      />
 
       <div
-        class="flex flex-col-reverse items-center justify-center gap-8 pb-16 pt-8 sm:pb-32 sm:pt-14 md:flex-row md:gap-16">
+        class="flex flex-col-reverse items-center justify-center gap-8 pb-16 pt-8 sm:pb-32 sm:pt-14 md:flex-row md:gap-16"
+      >
         <div
           data-aos="fade-left"
           data-aos-duration="800"
           data-aos-offset="250"
           data-aos-delay="300"
-          class="flex flex-col items-center md:block md:w-5/12 lg:w-4/12">
+          class="flex flex-col items-center md:block md:w-5/12 lg:w-4/12"
+        >
           <h3
-            class="relative mb-5 ml-2 w-fit whitespace-nowrap font-maru text-3xl font-semibold tracking-wide text-black after:absolute after:-bottom-1 after:-left-2 after:-right-2 after:top-1/2 after:-z-[1] after:bg-warning md:mb-10 md:text-[40px] md:after:-bottom-2">
+            class="relative mb-5 ml-2 w-fit whitespace-nowrap font-maru text-3xl font-semibold tracking-wide text-black after:absolute after:-bottom-1 after:-left-2 after:-right-2 after:top-1/2 after:-z-[1] after:bg-warning md:mb-10 md:text-[40px] md:after:-bottom-2"
+          >
             精選食材用心烹製
           </h3>
           <p class="leading-relaxed min-[450px]:w-9/12 md:w-auto">
@@ -165,7 +184,8 @@
           data-aos-offset="300"
           src="@/assets/images/index-2.png"
           alt="make-photo"
-          class="min-[420px]:w-7/12 md:w-5/12 lg:w-4/12" />
+          class="min-[420px]:w-7/12 md:w-5/12 lg:w-4/12"
+        />
       </div>
     </section>
 
@@ -183,7 +203,8 @@
         <div class="flex justify-center pt-3">
           <RouterLink
             to="/shop"
-            class="flex items-center rounded-full border border-brown-300 px-8 py-2 font-montserrat text-sm font-medium uppercase leading-normal tracking-wider text-brown-300 transition duration-150 ease-in-out hover:bg-brown-300 hover:text-white hover:opacity-80 focus:outline-none focus:ring-1">
+            class="flex items-center rounded-full border border-brown-300 px-8 py-2 font-montserrat text-sm font-medium uppercase leading-normal tracking-wider text-brown-300 transition duration-150 ease-in-out hover:bg-brown-300 hover:text-white hover:opacity-80 focus:outline-none focus:ring-1"
+          >
             SEE MORE
           </RouterLink>
         </div>
@@ -206,19 +227,23 @@
           1200: { slidesPerView: 4 },
           1300: { slidesPerView: 5 },
         }"
-        class="index-product-swiper overflow-y-visible px-3 pb-16">
+        class="index-product-swiper overflow-y-visible px-3 pb-16"
+      >
         <SwiperSlide v-for="product in productList" :key="product.id" class="w-full pt-8">
           <div class="productCard w-full">
             <div class="relative flex h-full flex-col overflow-hidden rounded-t-full bg-cerulean-300 p-3">
               <!-- image -->
               <div
-                class="card-img relative aspect-square overflow-hidden rounded-t-full border-4 border-white border-opacity-90">
+                class="card-img relative aspect-square overflow-hidden rounded-t-full border-4 border-white border-opacity-90"
+              >
                 <img class="relative h-full w-full" :src="product.imageUrl" :alt="product.title" />
                 <div
-                  class="view-detail absolute left-1/2 top-1/2 z-[5] hidden -translate-x-1/2 -translate-y-1/4 whitespace-nowrap">
+                  class="view-detail absolute left-1/2 top-1/2 z-[5] hidden -translate-x-1/2 -translate-y-1/4 whitespace-nowrap"
+                >
                   <p
                     href="#"
-                    class="z-5 flex items-center py-2 pl-8 pr-6 text-sm font-medium uppercase leading-normal tracking-wider text-white">
+                    class="z-5 flex items-center py-2 pl-8 pr-6 text-sm font-medium uppercase leading-normal tracking-wider text-white"
+                  >
                     查看商品資訊
                     <span class="material-symbols-outlined ml-1">keyboard_double_arrow_right</span>
                   </p>
@@ -232,7 +257,8 @@
               </div>
               <RouterLink
                 :to="`product/${product.id}`"
-                class="after:absolute after:inset-0 after:left-0 after:right-0 after:top-0 after:z-[9]" />
+                class="after:absolute after:inset-0 after:left-0 after:right-0 after:top-0 after:z-[9]"
+              />
             </div>
           </div>
         </SwiperSlide>
@@ -251,7 +277,8 @@
             style="border: 0"
             allowfullscreen=""
             loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade" />
+            referrerpolicy="no-referrer-when-downgrade"
+          />
           <div class="w-full self-center md:w-1/2">
             <h2>
               <div class="text-center font-montserrat leading-4 tracking-widest text-brown-200 opacity-60">
@@ -269,7 +296,8 @@
               v-slot="{ errors }"
               @submit="subscribe"
               class="relative mx-auto lg:max-w-[450px]"
-              ref="subscribeForm">
+              ref="subscribeForm"
+            >
               <VField
                 type="email"
                 class="m-0 mb-1 block min-h-[56px] w-full rounded border border-solid bg-clip-padding px-3 py-[6px] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none lg:mb-0"
@@ -278,19 +306,22 @@
                 name="E-mail"
                 id="mail"
                 rules="email|required"
-                v-model="subscribeEmail" />
+                v-model="subscribeEmail"
+              />
               <button type="submit" class="absolute right-0 top-0 bg-brown-300 p-4">
                 <img src="@/assets/images/enter_arrow.svg" alt="enter arrow" />
               </button>
               <ErrorMessage class="absolute right-0 text-sm text-danger" name="E-mail" />
               <span
                 class="material-symbols-outlined absolute bottom-[25%] right-[64px] text-danger"
-                v-if="errors['E-mail']">
+                v-if="errors['E-mail']"
+              >
                 error
               </span>
               <span
                 class="material-symbols-outlined absolute bottom-[25%] right-[64px] text-success"
-                v-else-if="!errors['E-mail'] && subscribeEmail">
+                v-else-if="!errors['E-mail'] && subscribeEmail"
+              >
                 check_circle
               </span>
             </VForm>
@@ -301,17 +332,20 @@
 
     <section
       class="relative pb-20 pt-24 after:absolute after:bottom-0 after:left-0 after:right-0 after:top-0 after:bg-gradient-to-b after:from-neutral-50 after:from-[5%] after:to-50% after:backdrop-blur-[1px]"
-      style="background: url(index-contact-bg.png) no-repeat 50% 50% / cover; background-attachment: fixed">
+      style="background: url(index-contact-bg.png) no-repeat 50% 50% / cover; background-attachment: fixed"
+    >
       <p
         data-aos="zoom-in"
         data-aos-duration="800"
-        class="relative z-10 my-4 text-center font-bold tracking-wider text-black-light">
+        class="relative z-10 my-4 text-center font-bold tracking-wider text-black-light"
+      >
         有想要詢問的事情嗎？來
         <button
           type="button"
           class="border-b border-info font-semibold text-info"
           data-te-toggle="modal"
-          data-te-target="#contactUsModal">
+          data-te-target="#contactUsModal"
+        >
           聯繫我們
         </button>
         吧！

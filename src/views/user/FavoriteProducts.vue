@@ -5,11 +5,13 @@
         type="button"
         class="mb-4 h-[46px] w-[46px] rounded-full border-2 p-2"
         :class="favoriteToggle ? 'border-danger' : 'border-brown-100'"
-        @click="favoriteToggle = !favoriteToggle">
+        @click="favoriteToggle = !favoriteToggle"
+      >
         <span
           class="material-symbols-outlined align-middle text-[26px]"
           :class="favoriteToggle ? 'text-danger' : 'text-brown-100'"
-          :style="favoriteToggle ? 'font-variation-settings: \'FILL\' 1, \'wght\' 400, \'GRAD\' 0, \'opsz\' 24;' : ''">
+          :style="favoriteToggle ? 'font-variation-settings: \'FILL\' 1, \'wght\' 400, \'GRAD\' 0, \'opsz\' 24;' : ''"
+        >
           favorite
         </span>
       </button>
@@ -33,7 +35,8 @@
         data-aos-duration="800"
         class="productCard w-full px-3 sm:w-1/2 lg:w-1/3 xl:w-1/4"
         v-for="product in favoriteStore.favorite"
-        :key="product.id">
+        :key="product.id"
+      >
         <div class="relative flex h-full flex-col overflow-hidden rounded-xl border">
           <!-- image -->
           <div class="card-img relative aspect-square overflow-hidden">
@@ -41,7 +44,8 @@
             <button
               type="button"
               class="absolute right-0 top-0 z-10 p-4"
-              @click="favoriteStore.toggleFavorite(product)">
+              @click="favoriteStore.toggleFavorite(product)"
+            >
               <span
                 class="material-symbols-outlined text-3xl text-red-400"
                 style="
@@ -49,7 +53,8 @@
                     'FILL' 1,
                     'opsz' 24;
                 "
-                v-if="favoriteStore.favorite.some((item) => item.id === product.id)">
+                v-if="favoriteStore.favorite.some((item) => item.id === product.id)"
+              >
                 favorite
               </span>
               <span class="material-symbols-outlined text-3xl text-red-400" v-else>favorite</span>
@@ -57,7 +62,8 @@
             <div class="view-detail absolute left-1/2 top-1/2 z-[5] hidden -translate-x-1/2 -translate-y-1/4">
               <p
                 href="#"
-                class="z-5 flex items-center py-2 pl-8 pr-6 text-sm font-medium uppercase leading-normal tracking-wider text-white">
+                class="z-5 flex items-center py-2 pl-8 pr-6 text-sm font-medium uppercase leading-normal tracking-wider text-white"
+              >
                 查看商品資訊
                 <span class="material-symbols-outlined ml-1">keyboard_double_arrow_right</span>
               </p>
@@ -77,31 +83,36 @@
                 <div>
                   <span
                     class="text-xl font-medium text-black-light"
-                    :class="{ 'text-success': product.price !== product.origin_price }">
+                    :class="{ 'text-success': product.price !== product.origin_price }"
+                  >
                     NT {{ $filters.currency(product.price) }}
                   </span>
                   <span
                     class="op ml-2 rounded-full bg-success px-2 font-montserrat text-xs text-white"
-                    v-if="product.price !== product.origin_price">
-                    SALE
+                    v-if="product.price !== product.origin_price"
+                  >SALE
                   </span>
                 </div>
                 <span
                   class="text-xs text-gray-500 line-through"
-                  :class="{ hidden: product.price === product.origin_price }">
+                  :class="{ hidden: product.price === product.origin_price }"
+                >
                   NT {{ $filters.currency(product.origin_price) }}
                 </span>
               </div>
               <button
                 type="button"
                 class="active:bg-cerulean-700 z-10 flex items-center rounded-full bg-brown-300 px-7 py-2 text-sm font-medium uppercase leading-normal tracking-wider text-white transition duration-150 ease-in-out hover:opacity-80 focus:outline-none focus:ring-0"
-                @click="cartStore.addToCart(product, 1)">
+                @click="cartStore.addToCart(product, 1)"
+              >
                 <div
                   class="mr-2 inline-block h-4 w-4 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
                   role="status"
-                  v-if="cartStore.status.loadingIcon === product.id">
+                  v-if="cartStore.status.loadingIcon === product.id"
+                >
                   <span
-                    class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+                    class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+                  >
                     Loading...
                   </span>
                 </div>
@@ -111,7 +122,8 @@
           </div>
           <RouterLink
             :to="`product/${product.id}`"
-            class="after:absolute after:inset-0 after:left-0 after:right-0 after:top-0 after:z-[9]" />
+            class="after:absolute after:inset-0 after:left-0 after:right-0 after:top-0 after:z-[9]"
+          />
         </div>
       </li>
     </ul>
@@ -121,7 +133,8 @@
       <br />
       <RouterLink
         to="/shop"
-        class="z-10 mx-1 inline-block items-center border-b border-brown-300 font-medium uppercase leading-normal tracking-wider text-brown-300 transition duration-150 ease-in-out hover:opacity-80">
+        class="z-10 mx-1 inline-block items-center border-b border-brown-300 font-medium uppercase leading-normal tracking-wider text-brown-300 transition duration-150 ease-in-out hover:opacity-80"
+      >
         點我
       </RouterLink>
       來逛逛！

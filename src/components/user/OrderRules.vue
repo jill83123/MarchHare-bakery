@@ -1,7 +1,8 @@
 <template>
   <div class="mt-6 sm:w-4/5 lg:w-full">
     <h4
-      class="relative mb-2 inline-block text-lg after:absolute after:-left-1 after:-right-1 after:bottom-0 after:top-1/2 after:-z-[1] after:bg-warning">
+      class="relative mb-2 inline-block text-lg after:absolute after:-left-1 after:-right-1 after:bottom-0 after:top-1/2 after:-z-[1] after:bg-warning"
+    >
       購買須知
     </h4>
     <ul class="text-sm">
@@ -14,7 +15,8 @@
           type="button"
           class="cursor-pointer border-b text-info"
           data-te-toggle="modal"
-          data-te-target="#exampleModalCenteredScrollable">
+          data-te-target="#exampleModalCenteredScrollable"
+        >
           訂購與退貨相關規則
         </button>
         ，本公司有權拒絕您使用本服務，同時列為交易黑名單。
@@ -29,14 +31,18 @@
     tabindex="-1"
     aria-labelledby="exampleModalCenteredScrollableLabel"
     aria-modal="true"
-    role="dialog">
+    role="dialog"
+  >
     <div
       data-te-modal-dialog-ref
-      class="pointer-events-none relative flex min-h-[calc(100%-1rem)] w-auto translate-y-[-50px] items-center opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:min-h-[calc(100%-3.5rem)] min-[576px]:max-w-[500px]">
+      class="pointer-events-none relative flex min-h-[calc(100%-1rem)] w-auto translate-y-[-50px] items-center opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:min-h-[calc(100%-3.5rem)] min-[576px]:max-w-[500px]"
+    >
       <div
-        class="pointer-events-auto relative flex w-full flex-col rounded-md border-none bg-white bg-clip-padding text-current shadow-lg outline-none">
+        class="pointer-events-auto relative flex w-full flex-col rounded-md border-none bg-white bg-clip-padding text-current shadow-lg outline-none"
+      >
         <div
-          class="flex flex-shrink-0 items-center justify-between rounded-t-md border-b-2 border-neutral-100 border-opacity-100 p-4">
+          class="flex flex-shrink-0 items-center justify-between rounded-t-md border-b-2 border-neutral-100 border-opacity-100 p-4"
+        >
           <!--Modal title-->
           <h5 class="text-xl font-medium leading-normal text-neutral-800" id="exampleModalCenteredScrollableLabel">
             訂購與退貨相關規則
@@ -46,14 +52,16 @@
             type="button"
             class="box-content rounded-none border-none hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
             data-te-modal-dismiss
-            aria-label="Close">
+            aria-label="Close"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="h-6 w-6">
+              class="h-6 w-6"
+            >
               <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>

@@ -27,11 +27,13 @@
           <img
             :src="articleDetails.image"
             :alt="articleDetails.title"
-            class="mb-6 sm:float-right sm:ml-6 sm:w-[300px]" />
+            class="mb-6 sm:float-right sm:ml-6 sm:w-[300px]"
+          />
 
           <div
             v-html="articleDetails.content"
-            class="article-content mb-2 min-h-[330px] border-b-2 border-dashed border-brown-100 pb-10 tracking-wide text-black-light lg:mb-7 lg:pb-7" />
+            class="article-content mb-2 min-h-[330px] border-b-2 border-dashed border-brown-100 pb-10 tracking-wide text-black-light lg:mb-7 lg:pb-7"
+          />
 
           <RouterLink to="/blog" class="hidden text-brown-500 lg:inline-block">
             <span class="material-symbols-outlined mr-1 pb-1 align-middle">undo</span>
@@ -41,7 +43,8 @@
 
         <aside class="lg:mb-16 lg:w-4/12 xl:w-3/12">
           <h3
-            class="border-b-2 border-dashed border-brown-100 pb-2 text-center text-lg font-semibold tracking-widest text-brown-500">
+            class="border-b-2 border-dashed border-brown-100 pb-2 text-center text-lg font-semibold tracking-widest text-brown-500"
+          >
             近期文章
           </h3>
           <ul class="mb-12 mt-6 flex flex-col gap-5 lg:mb-0">

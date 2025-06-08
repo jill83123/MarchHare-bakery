@@ -4,7 +4,8 @@
     data-aos-duration="800"
     data-aos-once="true"
     class="container flex flex-col"
-    v-if="cartList.length > 0">
+    v-if="cartList.length > 0"
+  >
     <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
         <div class="overflow-hidden">
@@ -22,27 +23,31 @@
               <tr
                 class="border-b border-gray-200 hover:bg-neutral-100"
                 v-for="(cartItem, index) in cartList"
-                :key="cartItem.id">
+                :key="cartItem.id"
+              >
                 <td class="min-w-[480px]:px-2 py-4 pl-2 font-medium md:px-4 lg:px-6">{{ index + 1 }}</td>
                 <td class="px-2 py-4 md:px-4 lg:px-6">
                   <div class="flex flex-col gap-2 min-[480px]:flex-row md:gap-8">
                     <img
                       class="w-full object-cover min-[480px]:w-[130px]"
                       :src="cartItem.product.imageUrl"
-                      :alt="cartItem.product.title" />
+                      :alt="cartItem.product.title"
+                    />
                     <div class="flex flex-col justify-center">
                       <div class="mb-2">
                         <h4 class="mr-1 block font-medium text-black lg:text-xl">
                           {{ cartItem.product.title }}
                           <span
                             class="op ml-1 rounded-full bg-success px-2 font-montserrat text-[8px] text-white sm:text-[10px]"
-                            v-if="cartItem.product.price !== cartItem.product.origin_price">
+                            v-if="cartItem.product.price !== cartItem.product.origin_price"
+                          >
                             SALE
                           </span>
                         </h4>
                         <p
                           class="inline-block text-xs tracking-wider text-gray-500"
-                          :class="{ 'mr-2 line-through': cartItem.product.price !== cartItem.product.origin_price }">
+                          :class="{ 'mr-2 line-through': cartItem.product.price !== cartItem.product.origin_price }"
+                        >
                           NT
                           <span>{{ $filters.currency(cartItem.product.origin_price) }}</span>
                           元
@@ -52,7 +57,8 @@
                           class="inline-block text-xs tracking-wider text-gray-500"
                           :class="{
                             'font-bold text-success': cartItem.product.price !== cartItem.product.origin_price,
-                          }">
+                          }"
+                        >
                           NT
                           <span>{{ $filters.currency(cartItem.product.price) }}</span>
                           元
@@ -63,7 +69,8 @@
                   </div>
                 </td>
                 <td
-                  class="whitespace-nowrap px-0 py-4 text-xs tracking-wider max-[480px]:text-center sm:px-2 sm:text-left sm:text-sm md:px-4 lg:px-6">
+                  class="whitespace-nowrap px-0 py-4 text-xs tracking-wider max-[480px]:text-center sm:px-2 sm:text-left sm:text-sm md:px-4 lg:px-6"
+                >
                   <span>
                     <span class="hidden sm:inline-block">NT</span>
                     {{ $filters.currency(cartItem.final_total) }} 元
@@ -75,10 +82,12 @@
                       type="button"
                       class="pr-1"
                       @click="updateCart(cartItem.id, cartItem.qty > 1 ? cartItem.qty - 1 : 1)"
-                      :disabled="status.updateIcon === cartItem.id || cartItem.qty === 1">
+                      :disabled="status.updateIcon === cartItem.id || cartItem.qty === 1"
+                    >
                       <span
                         class="material-symbols-outlined align-bottom text-xl text-brown-300"
-                        :style="{ color: cartItem.qty === 1 ? '#d1d5db' : '' }">
+                        :style="{ color: cartItem.qty === 1 ? '#d1d5db' : '' }"
+                      >
                         remove
                       </span>
                     </button>
@@ -87,15 +96,15 @@
                         type="text"
                         class="max-w-[40px] border bg-transparent text-center outline-none focus:outline-none"
                         v-model="cartItem.qty"
-                        @change="
-                          updateCart(cartItem.id, cartItem.qty === 0 || cartItem.qty === '' ? 1 : cartItem.qty)
-                        " />
+                        @change="updateCart(cartItem.id, cartItem.qty === 0 || cartItem.qty === '' ? 1 : cartItem.qty)"
+                      />
                     </label>
                     <span class="hidden pl-2 text-sm text-gray-400 sm:inline-block">{{ cartItem.product.unit }}</span>
                     <button
                       type="button"
                       @click="updateCart(cartItem.id, cartItem.qty + 1)"
-                      :disabled="status.updateIcon === cartItem.id">
+                      :disabled="status.updateIcon === cartItem.id"
+                    >
                       <span class="material-symbols-outlined pl-1 align-bottom text-xl text-brown-300">add</span>
                     </button>
                   </div>
@@ -104,7 +113,8 @@
                   <button
                     type="button"
                     class="self-end hover:text-danger"
-                    @click.stop="showSwalCheck('warning', '真的要刪除嗎', () => delCartItem('one', cartItem.id))">
+                    @click.stop="showSwalCheck('warning', '真的要刪除嗎', () => delCartItem('one', cartItem.id))"
+                  >
                     <span class="material-symbols-outlined align-bottom">delete</span>
                   </button>
                 </td>
@@ -121,7 +131,8 @@
                         data-te-select-init
                         data-te-class-select-Label="data-[te-input-state-active]:scale-1 absolute top-[18%] left-[5%] pointer-events-none"
                         v-model="pickupMethod"
-                        ref="pickupMethodSelect">
+                        ref="pickupMethodSelect"
+                      >
                         <option disabled selected>請選擇取貨方式</option>
                         <option value="delivery">宅配</option>
                         <option value="self">到店自取</option>
@@ -148,13 +159,15 @@
             type="button"
             class="text to-check z-10 mx-auto mb-2 flex items-center rounded-full bg-brown-300 px-8 py-2 font-medium uppercase leading-normal tracking-wider text-white transition duration-150 ease-in-out hover:opacity-80 focus:outline-none focus:ring-0 disabled:bg-gray-300"
             @click="checkCartList(this.pickupMethod)"
-            :disabled="!pickupMethod">
+            :disabled="!pickupMethod"
+          >
             確認商品
           </button>
           <button
             type="button"
             class="z-10 mx-auto mb-10 flex items-center rounded-full px-8 py-2 text-sm font-medium uppercase leading-normal tracking-wider text-gray-500 transition duration-150 ease-in-out hover:opacity-80 focus:outline-none focus:ring-1"
-            @click="cancelOrder()">
+            @click="cancelOrder()"
+          >
             取消購買
           </button>
         </div>
@@ -169,7 +182,8 @@
       <RouterLink
         to="/shop"
         type="button"
-        class="z-10 mx-1 inline-block items-center border-b border-brown-300 font-medium uppercase leading-normal tracking-wider text-brown-300 transition duration-150 ease-in-out hover:opacity-80">
+        class="z-10 mx-1 inline-block items-center border-b border-brown-300 font-medium uppercase leading-normal tracking-wider text-brown-300 transition duration-150 ease-in-out hover:opacity-80"
+      >
         點我
       </RouterLink>
       進行選購吧！

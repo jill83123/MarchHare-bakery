@@ -7,7 +7,8 @@
           href="#"
           aria-label="Previous"
           :class="{ disabled: pages.has_pre === false }"
-          @click.prevent="changePage(pages.has_pre, 'pre')">
+          @click.prevent="changePage(pages.has_pre, 'pre')"
+        >
           <span class="material-symbols-outlined align-middle">chevron_left</span>
         </a>
       </li>
@@ -16,7 +17,8 @@
           class="relative flex h-full w-full items-center justify-center border-2 border-brown-300 bg-transparent text-brown-300 transition-all duration-300 hover:bg-neutral-100"
           href="#"
           :class="{ active: page === pages.current_page }"
-          @click.prevent="changePage(page)">
+          @click.prevent="changePage(page)"
+        >
           <p class="pb-[2px]">{{ page }}</p>
         </a>
       </li>
@@ -26,7 +28,8 @@
           href="#"
           aria-label="Next"
           :class="{ disabled: pages.has_next === false }"
-          @click.prevent="changePage(pages.has_next, 'next')">
+          @click.prevent="changePage(pages.has_next, 'next')"
+        >
           <span class="material-symbols-outlined align-middle">chevron_right</span>
         </a>
       </li>

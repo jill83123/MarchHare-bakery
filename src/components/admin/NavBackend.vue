@@ -6,14 +6,16 @@
       viewBox="0 0 24 24"
       stroke-width="1.5"
       stroke="#859FAF"
-      class="h-7 w-7">
+      class="h-7 w-7"
+    >
       <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
     </svg>
   </button>
   <nav
     class="invisible fixed bottom-0 left-0 right-0 top-0 z-[1045] w-[300px] -translate-x-full bg-cerulean py-10 text-white shadow-sm transition duration-300 ease-in-out lg:visible lg:block lg:translate-x-0 [&[data-te-offcanvas-show]]:transform-none"
     id="offcanvasNav"
-    data-te-offcanvas-init>
+    data-te-offcanvas-init
+  >
     <div class="flex h-full flex-col gap-4">
       <RouterLink to="/" class="flex items-center px-9 py-3">
         <LogoComponent :color="`#ffffff`" :size="{ width: 45, height: 36 }" />
@@ -44,7 +46,8 @@
             type="button"
             class="mb-2 block rounded border border-neutral-50 px-[22px] py-3 align-middle text-sm uppercase leading-none text-neutral-50 transition duration-150 ease-in-out hover:border-neutral-100 hover:bg-neutral-100 hover:text-cerulean focus:border-neutral-100 focus:outline-none focus:ring-0 active:border-neutral-300 lg:mb-0"
             data-te-ripple-init
-            @click="signOut">
+            @click="signOut"
+          >
             登出
           </button>
         </div>

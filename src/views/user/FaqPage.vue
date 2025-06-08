@@ -8,7 +8,8 @@
         type="button"
         class="border-b border-info font-semibold text-info"
         data-te-toggle="modal"
-        data-te-target="#contactUsModal">
+        data-te-target="#contactUsModal"
+      >
         聯繫我們
       </button>
       吧！
@@ -28,17 +29,20 @@
                 data-te-collapse-collapsed
                 data-te-target="#collapseOne5"
                 aria-expanded="true"
-                aria-controls="collapseOne5">
+                aria-controls="collapseOne5"
+              >
                 Q：是否接受客製訂單？
                 <span
-                  class="-mr-1 ml-auto shrink-0 rotate-[-180deg] self-start fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-0 group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:fill-[#212529] motion-reduce:transition-none">
+                  class="-mr-1 ml-auto shrink-0 rotate-[-180deg] self-start fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-0 group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:fill-[#212529] motion-reduce:transition-none"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke-width="2.5"
                     stroke="currentColor"
-                    class="h-6 w-6">
+                    class="h-6 w-6"
+                  >
                     <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                   </svg>
                 </span>
@@ -66,17 +70,20 @@
                 data-te-collapse-collapsed
                 data-te-target="#collapse2"
                 aria-expanded="true"
-                aria-controls="collapse2">
+                aria-controls="collapse2"
+              >
                 Q：是否有素食或無麩質的選擇？
                 <span
-                  class="-mr-1 ml-auto shrink-0 rotate-[-180deg] self-start fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-0 group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:fill-[#212529] motion-reduce:transition-none">
+                  class="-mr-1 ml-auto shrink-0 rotate-[-180deg] self-start fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-0 group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:fill-[#212529] motion-reduce:transition-none"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke-width="2.5"
                     stroke="currentColor"
-                    class="h-6 w-6">
+                    class="h-6 w-6"
+                  >
                     <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                   </svg>
                 </span>
@@ -100,17 +107,20 @@
                 data-te-collapse-collapsed
                 data-te-target="#collapse3"
                 aria-expanded="true"
-                aria-controls="collapse3">
+                aria-controls="collapse3"
+              >
                 Q：是否有特殊的節慶裝飾或禮品包裝？
                 <span
-                  class="-mr-1 ml-auto shrink-0 rotate-[-180deg] self-start fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-0 group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:fill-[#212529] motion-reduce:transition-none">
+                  class="-mr-1 ml-auto shrink-0 rotate-[-180deg] self-start fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-0 group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:fill-[#212529] motion-reduce:transition-none"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke-width="2.5"
                     stroke="currentColor"
-                    class="h-6 w-6">
+                    class="h-6 w-6"
+                  >
                     <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                   </svg>
                 </span>
@@ -134,17 +144,20 @@
                 data-te-collapse-collapsed
                 data-te-target="#collapse4"
                 aria-expanded="true"
-                aria-controls="collapse4">
+                aria-controls="collapse4"
+              >
                 Q：臨時無法至門市領貨，可以保留改天再領嗎？
                 <span
-                  class="-mr-1 ml-auto shrink-0 rotate-[-180deg] self-start fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-0 group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:fill-[#212529] motion-reduce:transition-none">
+                  class="-mr-1 ml-auto shrink-0 rotate-[-180deg] self-start fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-0 group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:fill-[#212529] motion-reduce:transition-none"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke-width="2.5"
                     stroke="currentColor"
-                    class="h-6 w-6">
+                    class="h-6 w-6"
+                  >
                     <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                   </svg>
                 </span>
@@ -175,17 +188,20 @@
                 data-te-collapse-collapsed
                 data-te-target="#collapse5"
                 aria-expanded="true"
-                aria-controls="collapse5">
+                aria-controls="collapse5"
+              >
                 Q：要怎麼知道訂購的商品已完成？
                 <span
-                  class="-mr-1 ml-auto shrink-0 rotate-[-180deg] self-start fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-0 group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:fill-[#212529] motion-reduce:transition-none">
+                  class="-mr-1 ml-auto shrink-0 rotate-[-180deg] self-start fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-0 group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:fill-[#212529] motion-reduce:transition-none"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke-width="2.5"
                     stroke="currentColor"
-                    class="h-6 w-6">
+                    class="h-6 w-6"
+                  >
                     <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                   </svg>
                 </span>

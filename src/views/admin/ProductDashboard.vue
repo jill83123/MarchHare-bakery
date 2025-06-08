@@ -9,7 +9,8 @@
       <button
         type="button"
         class="active:bg-cerulean-700 my-auto flex items-center rounded bg-cerulean px-6 py-2.5 text-sm font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:opacity-80 focus:outline-none focus:ring-0"
-        @click="openModal('new')">
+        @click="openModal('new')"
+      >
         <span class="material-symbols-outlined">add</span>
         新增商品
       </button>
@@ -36,7 +37,8 @@
                   v-for="item in products"
                   :key="item.id"
                   class="border-b transition duration-300 ease-in-out hover:bg-neutral-100"
-                  :class="{ 'bg-[#f2f2f2]': !item.is_enabled }">
+                  :class="{ 'bg-[#f2f2f2]': !item.is_enabled }"
+                >
                   <th class="whitespace-nowrap px-6 py-4">{{ item.category }}</th>
                   <td class="whitespace-nowrap px-6 py-4 font-normal">
                     <div class="flex items-center">
@@ -44,13 +46,14 @@
                         :src="item.imageUrl"
                         alt=""
                         class="mr-2 h-[28px] w-[28px] object-cover"
-                        v-if="item.imageUrl" />
+                        v-if="item.imageUrl"
+                      />
                       <span class="material-symbols-outlined mr-2 text-[28px]" v-else>image</span>
                       {{ item.title }}
                       <span
                         class="ml-2 rounded-full bg-success px-2 font-montserrat text-[8px] leading-3 text-white"
-                        v-if="item.origin_price !== item.price">
-                        SALE
+                        v-if="item.origin_price !== item.price"
+                      >SALE
                       </span>
                     </div>
                   </td>
@@ -70,7 +73,8 @@
                     <button
                       type="button"
                       class="inline-block pr-4 hover:text-cerulean"
-                      @click="openModal('edit', item)">
+                      @click="openModal('edit', item)"
+                    >
                       <span
                         class="material-symbols-outlined"
                         style="
@@ -79,7 +83,8 @@
                             'wght' 400,
                             'GRAD' 0,
                             'opsz' 24;
-                        ">
+                        "
+                      >
                         edit
                       </span>
                     </button>
@@ -100,7 +105,8 @@
       :state="productModalState"
       :allTags="allTags"
       @update-products="updateProduct"
-      ref="productModal" />
+      ref="productModal"
+    />
 
     <DelModal ref="delModal" @del="delProduct" :item="tempProduct" />
 

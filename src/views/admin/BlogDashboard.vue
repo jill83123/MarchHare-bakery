@@ -11,7 +11,8 @@
       <button
         type="button"
         class="active:bg-cerulean-700 my-auto flex items-center rounded bg-cerulean px-6 py-2.5 text-sm font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:opacity-80 focus:outline-none focus:ring-0"
-        @click="openModal('new')">
+        @click="openModal('new')"
+      >
         <span class="material-symbols-outlined -ml-2 mr-1">add</span>
         新增文章
       </button>
@@ -38,7 +39,8 @@
                 <tr
                   v-for="(item, index) in articleList"
                   :key="item.id"
-                  class="border-b font-normal transition duration-300 ease-in-out hover:bg-neutral-100">
+                  class="border-b font-normal transition duration-300 ease-in-out hover:bg-neutral-100"
+                >
                   <th class="whitespace-nowrap px-6 py-4">{{ index + 1 }}</th>
                   <td class="whitespace-nowrap px-6 py-4">{{ $filters.onlyDate(item.create_at) }}</td>
                   <td class="whitespace-nowrap px-6 py-4">
@@ -62,7 +64,8 @@
                     <button
                       type="button"
                       class="inline-block pr-4 hover:text-cerulean"
-                      @click="openModal('edit', item)">
+                      @click="openModal('edit', item)"
+                    >
                       <span
                         class="material-symbols-outlined"
                         style="
@@ -71,7 +74,8 @@
                             'wght' 400,
                             'GRAD' 0,
                             'opsz' 24;
-                        ">
+                        "
+                      >
                         edit
                       </span>
                     </button>
@@ -92,7 +96,8 @@
       :article="tempArticle"
       :state="articleModalState"
       :allTags="allTags"
-      @update-article="updateArticle" />
+      @update-article="updateArticle"
+    />
 
     <DelModal ref="delModal" @del="delArticle" :item="tempArticle" />
 

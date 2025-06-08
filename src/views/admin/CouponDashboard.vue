@@ -9,7 +9,8 @@
       <button
         type="button"
         class="active:bg-cerulean-700 my-auto flex items-center rounded bg-cerulean px-6 py-2.5 text-sm font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:opacity-80 focus:outline-none focus:ring-0"
-        @click="openModal('new')">
+        @click="openModal('new')"
+      >
         <span class="material-symbols-outlined">add</span>
         新增優惠券
       </button>
@@ -35,7 +36,8 @@
                 <tr
                   v-for="item in coupons"
                   :key="item.id"
-                  class="border-b transition duration-300 ease-in-out hover:bg-neutral-100">
+                  class="border-b transition duration-300 ease-in-out hover:bg-neutral-100"
+                >
                   <th class="whitespace-nowrap px-6 py-4">{{ item.title }}</th>
                   <td class="whitespace-nowrap px-6 py-4 font-normal">
                     <div class="flex items-center">
@@ -56,7 +58,8 @@
                     <button
                       type="button"
                       class="inline-block pr-4 hover:text-cerulean"
-                      @click="openModal('edit', item)">
+                      @click="openModal('edit', item)"
+                    >
                       <span
                         class="material-symbols-outlined"
                         style="
@@ -65,7 +68,8 @@
                             'wght' 400,
                             'GRAD' 0,
                             'opsz' 24;
-                        ">
+                        "
+                      >
                         edit
                       </span>
                     </button>

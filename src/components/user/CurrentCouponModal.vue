@@ -8,12 +8,15 @@
     aria-labelledby="couponModal"
     aria-modal="true"
     role="dialog"
-    ref="modal">
+    ref="modal"
+  >
     <div
       data-te-modal-dialog-ref
-      class="pointer-events-none relative flex min-h-[calc(100%-1rem)] w-auto translate-y-[-50px] items-center px-3 opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:min-h-[calc(100%-3.5rem)] min-[576px]:max-w-[570px] min-[768px]:max-w-[760px] min-[920px]:max-w-[910px]">
+      class="pointer-events-none relative flex min-h-[calc(100%-1rem)] w-auto translate-y-[-50px] items-center px-3 opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:min-h-[calc(100%-3.5rem)] min-[576px]:max-w-[570px] min-[768px]:max-w-[760px] min-[920px]:max-w-[910px]"
+    >
       <div
-        class="pointer-events-auto relative flex w-full flex-col rounded-md border-none bg-clip-padding text-current shadow-lg outline-none">
+        class="pointer-events-auto relative flex w-full flex-col rounded-md border-none bg-clip-padding text-current shadow-lg outline-none"
+      >
         <section class="rounded-md">
           <img src="@/assets/images/coupon-bg.png" alt="coupon-bg" class="min-h-[336px] object-cover object-[70%]" />
           <!-- Close button -->
@@ -21,14 +24,16 @@
             type="button"
             class="absolute right-0 top-0 z-[100] box-content rounded-none border-none p-4 hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
             data-te-modal-dismiss
-            aria-label="Close">
+            aria-label="Close"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="#414141"
-              class="h-6 w-6">
+              class="h-6 w-6"
+            >
               <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
@@ -43,7 +48,8 @@
                   2px -2px 0 #ffffff,
                   -2px 2px 0 #ffffff,
                   2px 2px 0 #ffffff;
-              ">
+              "
+            >
               75%Off
             </p>
             <div class="mb-3 flex gap-3 rounded-lg bg-neutral-50 px-5 py-1 opacity-80">

@@ -3,7 +3,8 @@
     data-aos="fade-up"
     data-aos-duration="800"
     data-aos-once="true"
-    class="xl:10/12 container mb-12 w-full 2xl:w-7/12">
+    class="xl:10/12 container mb-12 w-full 2xl:w-7/12"
+  >
     <RouterLink to="/checkout/information" class="mb-4 inline-block">
       <div class="flex items-center">
         <span class="material-symbols-outlined mr-1">keyboard_double_arrow_left</span>
@@ -26,7 +27,8 @@
                 type="text"
                 class="m-0 block w-full rounded border-b border-solid border-neutral-200 bg-neutral-50 bg-clip-padding px-3 py-[6px] text-base font-normal leading-[1.6] text-neutral-500 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-brown-300 focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
                 id="name"
-                v-model="userInfo.user.name" />
+                v-model="userInfo.user.name"
+              />
             </div>
             <div class="w-1/2">
               <label for="tel" class="mb-1 block">收件人電話</label>
@@ -35,7 +37,8 @@
                 type="tel"
                 class="m-0 block w-full rounded border-b border-solid border-neutral-200 bg-neutral-50 bg-clip-padding px-3 py-[6px] text-base font-normal leading-[1.6] text-neutral-500 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-brown-300 focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
                 id="tel"
-                v-model="userInfo.user.tel" />
+                v-model="userInfo.user.tel"
+              />
             </div>
           </div>
           <div class="mb-4">
@@ -45,7 +48,8 @@
               type="email"
               class="m-0 block w-full rounded border-b border-solid border-neutral-200 bg-neutral-50 bg-clip-padding px-3 py-[6px] text-base font-normal leading-[1.6] text-neutral-500 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-brown-300 focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
               id="mail"
-              v-model="userInfo.user.email" />
+              v-model="userInfo.user.email"
+            />
           </div>
           <div class="mb-4">
             <label for="address" class="mb-1 block">地址</label>
@@ -54,7 +58,8 @@
               type="text"
               class="m-0 block w-full rounded border-b border-solid border-neutral-200 bg-neutral-50 bg-clip-padding px-3 py-[6px] text-base font-normal leading-[1.6] text-neutral-500 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-brown-300 focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
               id="address"
-              v-model="userInfo.user.address" />
+              v-model="userInfo.user.address"
+            />
           </div>
           <div class="mb-4 border-b-2 border-dashed border-gray-300 pb-4">
             <label for="message" class="mb-1 block">留言</label>
@@ -63,7 +68,8 @@
               type="text"
               class="m-0 block min-h-[100px] w-full resize-none rounded border-b border-solid border-neutral-200 bg-neutral-50 bg-clip-padding px-3 py-[6px] text-base font-normal leading-[1.6] text-neutral-500 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-brown-300 focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
               id="message"
-              v-model="userInfo.message" />
+              v-model="userInfo.message"
+            />
           </div>
           <div class="flex flex-col justify-between sm:flex-row">
             <div class="mb-3 sm:mb-0">
@@ -78,7 +84,8 @@
                   name="payWay"
                   id="self"
                   :value="false"
-                  v-model="userInfo.user.order.is_paid" />
+                  v-model="userInfo.user.order.is_paid"
+                />
                 <label class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" for="self">
                   貨到付款 / 到店付款
                 </label>
@@ -90,7 +97,8 @@
                   name="payWay"
                   id="other"
                   :value="true"
-                  v-model="userInfo.user.order.is_paid" />
+                  v-model="userInfo.user.order.is_paid"
+                />
                 <label class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" for="other">
                   其他方式
                   <img class="ml-1 inline h-[20px] object-cover" src="@/assets/images/linepay.svg" alt="linePay" />
@@ -103,7 +111,8 @@
               type="button"
               class="to-check z-10 ml-auto flex items-center self-end rounded-full bg-brown-300 px-8 py-2 text-sm font-medium uppercase leading-normal tracking-wider text-white transition duration-150 ease-in-out hover:opacity-80 focus:outline-none focus:ring-0 disabled:bg-gray-300"
               :disabled="userInfo.user.order.is_paid === undefined"
-              @click.stop="showSwalCheck('warning', '確認資料並送出', () => submitOrder())">
+              @click.stop="showSwalCheck('warning', '確認資料並送出', () => submitOrder())"
+            >
               確認購買
             </button>
           </div>
@@ -118,7 +127,8 @@
             </div>
             <ul
               class="cart-list mb-2 flex h-[484px] flex-col overflow-y-auto pb-3"
-              v-if="cartList && cartList.length >= 1">
+              v-if="cartList && cartList.length >= 1"
+            >
               <li class="flex gap-2 py-3 pl-4" v-for="cartItem in cartList" :key="cartItem.id">
                 <a class="flex aspect-square w-1/4 grow items-center">
                   <img class="object-cover" :src="cartItem.product.imageUrl" :alt="cartItem.product.title" />
@@ -152,7 +162,8 @@
                 <span
                   :class="{
                     'mr-2 text-sm text-gray-400 line-through': finalTotalPrice !== cartTotalPrice && status.coupon,
-                  }">
+                  }"
+                >
                   {{ $filters.currency(cartTotalPrice) }}
                 </span>
                 <span class="text-success" v-if="finalTotalPrice !== cartTotalPrice && status.coupon">

@@ -3,7 +3,8 @@
     data-aos="fade-up"
     data-aos-duration="800"
     data-aos-once="true"
-    class="xl:10/12 container mb-16 w-full sm:mb-12 2xl:w-7/12">
+    class="xl:10/12 container mb-16 w-full sm:mb-12 2xl:w-7/12"
+  >
     <RouterLink to="/checkout" class="mb-4 inline-block">
       <div class="flex items-center">
         <span class="material-symbols-outlined mr-1">keyboard_double_arrow_left</span>
@@ -28,14 +29,16 @@
                 name="姓名"
                 id="name"
                 rules="required"
-                v-model="userInfo.user.name" />
+                v-model="userInfo.user.name"
+              />
               <ErrorMessage class="absolute right-0 text-sm text-danger" name="姓名" />
               <span class="material-symbols-outlined absolute bottom-[12%] right-2 text-danger" v-if="errors['姓名']">
                 error
               </span>
               <span
                 class="material-symbols-outlined absolute bottom-[12%] right-2 text-success"
-                v-else-if="!errors['姓名'] && userInfo.user.name">
+                v-else-if="!errors['姓名'] && userInfo.user.name"
+              >
                 check_circle
               </span>
             </div>
@@ -52,14 +55,16 @@
                 name="電話"
                 id="tel"
                 :rules="isTel"
-                v-model="userInfo.user.tel" />
+                v-model="userInfo.user.tel"
+              />
               <ErrorMessage class="absolute right-0 text-sm text-danger" name="電話" />
               <span class="material-symbols-outlined absolute bottom-[12%] right-2 text-danger" v-if="errors['電話']">
                 error
               </span>
               <span
                 class="material-symbols-outlined absolute bottom-[12%] right-2 text-success"
-                v-else-if="!errors['電話'] && userInfo.user.tel">
+                v-else-if="!errors['電話'] && userInfo.user.tel"
+              >
                 check_circle
               </span>
             </div>
@@ -77,14 +82,16 @@
               name="E-mail"
               id="mail"
               rules="email|required"
-              v-model="userInfo.user.email" />
+              v-model="userInfo.user.email"
+            />
             <ErrorMessage class="absolute right-0 text-sm text-danger" name="E-mail" />
             <span class="material-symbols-outlined absolute bottom-[12%] right-2 text-danger" v-if="errors['E-mail']">
               error
             </span>
             <span
               class="material-symbols-outlined absolute bottom-[12%] right-2 text-success"
-              v-else-if="!errors['E-mail'] && userInfo.user.email">
+              v-else-if="!errors['E-mail'] && userInfo.user.email"
+            >
               check_circle
             </span>
           </div>
@@ -102,14 +109,16 @@
               id="address"
               rules="required|min:9"
               v-model="userInfo.user.address"
-              :disabled="userInfo.user.order.pickupMethod === 'self'" />
+              :disabled="userInfo.user.order.pickupMethod === 'self'"
+            />
             <ErrorMessage class="absolute right-0 text-sm text-danger" name="地址" />
             <span class="material-symbols-outlined absolute bottom-[12%] right-2 text-danger" v-if="errors['地址']">
               error
             </span>
             <span
               class="material-symbols-outlined absolute bottom-[12%] right-2 text-success"
-              v-else-if="!errors['地址'] && userInfo.user.address">
+              v-else-if="!errors['地址'] && userInfo.user.address"
+            >
               check_circle
             </span>
           </div>
@@ -120,7 +129,8 @@
               class="focus:border-primary m-0 block min-h-[100px] w-full resize-none rounded border border-solid border-neutral-300 bg-neutral-50 bg-clip-padding px-3 py-[6px] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
               placeholder="若是有任何需求都可以留言備註唷！"
               id="message"
-              v-model="userInfo.message" />
+              v-model="userInfo.message"
+            />
           </div>
           <div class="mb-10">
             <label for="coupon" class="mb-1 block">優惠券</label>
@@ -130,22 +140,26 @@
                 class="focus:border-primary relative m-0 block w-[1px] min-w-0 flex-auto rounded-l border border-r-0 border-solid border-neutral-300 bg-neutral-50 bg-clip-padding px-3 py-[6px] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
                 placeholder="輸入優惠券編號"
                 id="coupon"
-                v-model="userInfo.couponCode" />
+                v-model="userInfo.couponCode"
+              />
               <button
                 type="button"
                 class="rounded-r border-2 border-solid border-brown-300 bg-neutral-50 px-5 py-[6px] text-center text-sm font-normal leading-[1.6] text-brown-300 hover:border-brown-300 hover:bg-brown-300 hover:text-white"
                 id="coupon"
-                @click="useCoupon(userInfo.couponCode)">
+                @click="useCoupon(userInfo.couponCode)"
+              >
                 點我套用
               </button>
               <span
                 class="material-symbols-outlined absolute right-[105px] top-[20%] z-10 mr-1 text-success lg:right-[22%]"
-                v-if="status.coupon && userInfo.couponCode">
+                v-if="status.coupon && userInfo.couponCode"
+              >
                 check_circle
               </span>
               <p
                 class="absolute right-[110px] top-[20%] z-10 flex items-center text-sm text-danger"
-                v-else-if="userInfo.couponCode">
+                v-else-if="userInfo.couponCode"
+              >
                 <span class="material-symbols-outlined mr-1">info</span>
                 未套用
               </p>
@@ -160,7 +174,8 @@
                 || userInfo.user.email === ''
                 || userInfo.user.name === ''
                 || userInfo.user.tel === ''
-            ">
+            "
+          >
             前往結帳
           </button>
         </VForm>
@@ -174,7 +189,8 @@
             </div>
             <ul
               class="cart-list mb-2 flex h-[473px] flex-col overflow-y-auto pb-3"
-              v-if="cartList && cartList.length >= 1">
+              v-if="cartList && cartList.length >= 1"
+            >
               <li class="flex gap-2 py-3 pl-4" v-for="cartItem in cartList" :key="cartItem.id">
                 <a class="flex aspect-square w-1/4 grow items-center">
                   <img class="object-cover" :src="cartItem.product.imageUrl" :alt="cartItem.product.title" />
@@ -212,7 +228,8 @@
                 <span
                   :class="{
                     'mr-2 text-sm text-gray-400 line-through': finalTotalPrice !== cartTotalPrice && status.coupon,
-                  }">
+                  }"
+                >
                   {{ $filters.currency(cartTotalPrice) }}
                 </span>
                 <span class="text-success" v-if="finalTotalPrice !== cartTotalPrice && status.coupon">
