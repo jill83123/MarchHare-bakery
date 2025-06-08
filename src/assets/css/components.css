@@ -23,11 +23,11 @@
 }
 
 /* SweetAlert */
-.swal-btn-cancel {
+.swal-btn-check {
   @apply mx-1 my-0 h-full rounded-full bg-brown-300 px-8 py-2 text-sm hover:bg-none hover:opacity-80 focus:shadow-none focus:ring-4 focus:ring-brown-100 focus:ring-opacity-[.6] !important;
 }
 
-.swal-btn-check {
+.swal-btn-cancel {
   @apply mx-1 my-0 rounded-full border-2 border-solid border-brown-300 bg-transparent px-8 py-2 text-sm text-brown-300 hover:bg-none hover:opacity-80 focus:shadow-none focus:ring-4 focus:ring-gray-200 focus:ring-opacity-[.6] !important;
 }
 
