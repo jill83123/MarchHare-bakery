@@ -221,13 +221,7 @@
     </section>
     <section class="bg-neutral-50 bg-opacity-50 pb-[72px] sm:pt-4">
       <div class="container">
-        <h3
-          data-aos="fade-up"
-          data-aos-duration="800"
-          class="mb-10 text-center font-maru text-[40px] font-medium tracking-widest text-brown-500"
-        >
-          更多商品⋯
-        </h3>
+        <h3 class="mb-10 text-center font-maru text-[40px] font-medium tracking-widest text-brown-500">更多商品⋯</h3>
         <swiper
           data-aos="fade-up"
           data-aos-duration="800"
