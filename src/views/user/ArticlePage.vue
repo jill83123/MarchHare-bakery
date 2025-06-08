@@ -89,9 +89,8 @@ export default {
     },
   },
   watch: {
-    // TODO: 需修正
-    $route() {
-      window.location.reload();
+    $route(newVal) {
+      this.getArticle(newVal.params.id);
     },
   },
   methods: {

@@ -348,6 +348,7 @@ import SwalMixin from '@/mixins/swalMixin';
 import cartStore from '@/stores/user/cartStore';
 import favoriteStore from '@/stores/user/favoriteStore';
 import productStore from '@/stores/user/productStore';
+import loadingStore from '@/stores/loadingStore';
 
 export default {
   data() {
@@ -378,20 +379,21 @@ export default {
     },
   },
   watch: {
-    $route() {
-      window.location.reload();
+    $route(newVal) {
+      this.getProductDetails(newVal.params.id);
     },
   },
   methods: {
     ...mapActions(cartStore, ['delCartItem', 'updateCart', 'getCartList', 'updateCurrentStep', 'addToCart']),
     ...mapActions(favoriteStore, ['toggleFavorite']),
     ...mapActions(productStore, ['getProducts']),
+    ...mapActions(loadingStore, ['addLoadingItem', 'removeLoadingItem']),
 
-    async getProductDetails() {
+    async getProductDetails(id) {
       try {
-        const { id } = this.$route.params;
-        const product = await apiGetProduct(id);
+        this.addLoadingItem('getProductDetails');
 
+        const product = await apiGetProduct(id);
         this.productDetails = product;
         this.currentImages = product.imageUrl;
         this.cachePrice = product.price;
@@ -399,6 +401,8 @@ export default {
         document.title = `${product.title}｜三月兔－MarchHare Bakery`;
       } catch (err) {
         this.showSwalToast('error', err.response?.data?.message);
+      } finally {
+        this.removeLoadingItem('getProductDetails');
       }
     },
     changeCurrentImage(img) {
@@ -421,7 +425,10 @@ export default {
   },
   mounted() {
     initTE({ Collapse });
-    this.getProductDetails();
+
+    const { id } = this.$route.params;
+    this.getProductDetails(id);
+
     this.getCartList();
     this.getProducts();
   },
