@@ -107,7 +107,7 @@
               placeholder="請輸入地址"
               name="地址"
               id="address"
-              rules="required|min:9"
+              :rules="userInfo.user.address === '到店自取' ? 'required' : 'required|min:9'"
               v-model="userInfo.user.address"
               :disabled="userInfo.user.order.pickupMethod === 'self'"
             />
